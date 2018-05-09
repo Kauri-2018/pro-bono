@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "nodemon --watch server & webpack --watch",
-    "knex": "knex",
+    "knex": "knex --knexfile ./server/db/knexfile.js",
     "migrate": "[ \"$NODE_ENV\" = \"production\" ] && exit 0; knex migrate:latest",
     "migrate:prod": "knex migrate:latest",
     "postinstall": "webpack && npm run migrate",
