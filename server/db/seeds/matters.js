@@ -6,21 +6,25 @@ exports.seed = (knex, Promise) => {
       return knex('matters').insert([
         {
           id: 1,
-          category: 1524718675000,
+          category: '',
           details: '',
           contact_email: '',
           is_complete: false,
           claimed_by: 1,
-          centre_id: 1
+          centre_id: 1,
+          name: '',
+          internal_matter_number: 0
         },
         {
-          id: 2,
-          category: 1524718675000,
+          id: 1,
+          category: '',
           details: '',
           contact_email: '',
           is_complete: false,
           claimed_by: 1,
-          centre_id: 1
+          centre_id: 1,
+          name: '',
+          internal_matter_number: 0
         }
       ])
     })
