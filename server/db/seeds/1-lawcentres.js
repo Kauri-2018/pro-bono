@@ -5,7 +5,7 @@ exports.seed = (knex, Promise) => {
       // Inserts seed entries
       return knex('lawcentres').insert([
         {
-          id: 1,
+          id: 110001,
           name: 'Auckland?',
           location: 'Auckland'
         }
