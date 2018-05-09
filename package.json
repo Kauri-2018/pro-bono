@@ -1,0 +1,63 @@
+{
+  "name": "boilerplate-local-jwt-auth",
+  "version": "0.2.0",
+  "description": "Local Passport strategy boilerplate using libsodium and JWTs",
+  "main": "server/index.js",
+  "author": "EDA",
+  "license": "ISC",
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "scripts": {
+    "dev": "nodemon --watch server & webpack --watch",
+    "knex": "knex",
+    "migrate": "[ \"$NODE_ENV\" = \"production\" ] && exit 0; knex migrate:latest",
+    "migrate:prod": "knex migrate:latest",
+    "postinstall": "webpack && npm run migrate",
+    "start": "node server",
+    "test": "jest",
+    "test:watch": "jest --watchAll"
+  },
+  "jest": {
+    "setupFiles": [
+      "dotenv/config"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "react",
+      "stage-3"
+    ]
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2",
+    "express-jwt": "^5.3.0",
+    "jsonwebtoken": "^8.1.1",
+    "jwt-decode": "^2.2.0",
+    "knex": "^0.14.3",
+    "pg": "^7.4.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "sodium": "^2.0.3",
+    "superagent": "^3.8.2",
+    "webpack": "^3.11.0"
+  },
+  "devDependencies": {
+    "jest": "^22.3.0",
+    "nodemon": "^1.15.0",
+    "sqlite3": "^3.1.13",
+    "supertest": "^3.0.0",
+    "webpack-livereload-plugin": "^1.0.0"
+  }
+}
