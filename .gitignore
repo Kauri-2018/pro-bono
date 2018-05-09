@@ -59,4 +59,4 @@ typings/
 
 #ignore unneeded files
 bundle.*
-*.sql3
+*.sqlite3
