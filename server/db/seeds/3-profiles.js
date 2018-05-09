@@ -5,9 +5,9 @@ exports.seed = (knex, Promise) => {
       // Inserts seed entries
       return knex('profiles').insert([
         {
-          id: 1,
-          centre_id: 1,
-          user_id: 1,
+          id: 440001,
+          centre_id: 110001,
+          user_id: 330001,
           firstname: 'Lionel',
           lastname: 'Hutz',
           phone_number: '027123123',
