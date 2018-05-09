@@ -1,7 +1,7 @@
 exports.up = knex => knex.schema.createTable('profiles', table => {
   table.increments('id').primary()
-  table.number('centre_id')
-  table.number('user_id')
+  table.integer('centre_id')
+  table.integer('user_id').references('user.id')
   table.string('firstname')
   table.string('lastname')
   table.string('phone_number')
