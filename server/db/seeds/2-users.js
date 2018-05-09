@@ -7,19 +7,19 @@ exports.seed = (knex, Promise) => {
       // Inserts seed entries
       return knex('users').insert([
         {
-          id: 1,
+          id: 330001,
           email: 'helloadmin@helloadmin.nz',
           hash: getHash('helloadmin'),
           role: 'admin'
         },
         {
-          id: 2,
+          id: 330002,
           email: 'helloadmin@helloadmin.nz',
           hash: getHash('hellolawcentre'),
           role: 'lawyer'
         },
         {
-          id: 3,
+          id: 330003,
           email: 'helloadmin@helloadmin.nz',
           hash: getHash('hellomember'),
           role: 'member'
