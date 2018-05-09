@@ -1,4 +1,4 @@
-const {generate} = require('../../auth/hash')
+const {getHash} = require('../../lib/crypto')
 
 exports.seed = (knex, Promise) => {
   // Deletes ALL existing entries
@@ -9,19 +9,19 @@ exports.seed = (knex, Promise) => {
         {
           id: 1,
           email: 'helloadmin@helloadmin.nz',
-          hash: generate('helloadmin'),
+          hash: getHash('helloadmin'),
           role: 'admin'
         },
         {
           id: 2,
           email: 'helloadmin@helloadmin.nz',
-          hash: generate('hellolawcentre'),
-          role: 'lawcentre'
+          hash: getHash('hellolawcentre'),
+          role: 'lawyer'
         },
         {
           id: 3,
           email: 'helloadmin@helloadmin.nz',
-          hash: generate('hellomember'),
+          hash: getHash('hellomember'),
           role: 'member'
         }
       ])
