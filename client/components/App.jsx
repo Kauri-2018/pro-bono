@@ -1,6 +1,6 @@
+// Boilerplate
 import React from 'react'
 
-import Quote from './Quote'
 import Navbar from './Navbar'
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
 
       <Navbar />
       <div className='quote'>
-        <Quote />
+        <h1>App</h1>
       </div>
     </div>
   )
