@@ -9,15 +9,13 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "dev": "nodemon --watch server & webpack --watch",
-    "knex": "knex",
-    "migrate": "[ \"$NODE_ENV\" = \"production\" ] && exit 0; knex migrate:latest",
-    "migrate:prod": "knex migrate:latest",
-    "postinstall": "webpack && npm run migrate",
+    "knex": "knex --knexfile ./server/db/knexfile.js",
+    "dev": "nodemon server --watch server & yarn build --watch",
     "start": "node server",
-    "test": "jest",
-    "test:watch": "jest --watchAll"
-  },
+    "build": "webpack --config ./client/webpack.config.js",
+    "test": "jest --watchAll",
+    "postinstall": "yarn build"
+},
   "jest": {
     "setupFiles": [
       "dotenv/config"
