@@ -1,10 +1,11 @@
+// Boilerplate
 import React from 'react'
 import {connect} from 'react-redux'
 
 import {loginUser} from '../actions/login'
 import ErrorMessage from './ErrorMessage'
 
-class LoginForm extends React.Component {
+class Login extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -55,4 +56,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(LoginForm)
+export default connect(null, mapDispatchToProps)(Login)
