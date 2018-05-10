@@ -9,8 +9,9 @@ import Matter from './Matter'
 
 const ActiveMatter = (props) => (
       <div>
-        <Matter matter={props.matterById} />
+        <button onClick={this.displayMatter}>Display Matter </button>
+        <Matter matterById={this.props.matterById} />
       </div>
-    )
+)
 
 export default ActiveMatter
