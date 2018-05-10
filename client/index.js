@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   render(
     <Router>
       <Provider store={store}>
+
         <App />
       </Provider>
     </Router>,
