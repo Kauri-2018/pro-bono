@@ -2,7 +2,7 @@ const express = require('express')
 const verifyJwt = require('express-jwt')
 
 const crypto = require('../lib/crypto')
-const users = require('../lib/users')
+const users = require('../db/users')
 const auth = require('../lib/auth')
 
 const router = express.Router()
