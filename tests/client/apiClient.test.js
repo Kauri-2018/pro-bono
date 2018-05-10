@@ -14,6 +14,7 @@ const data = {
 const testId = 5
 
 nock.cleanAll()
+
 nock('http://localhost')
   .get(`${MATTER_ROUTE}/${testId}`)
   .reply(200, {
