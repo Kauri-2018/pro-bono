@@ -11,7 +11,8 @@ exports.seed = (knex, Promise) => {
           contact_email: 'test-contact_email',
           is_complete: false,
           claimed_by: 440001,
-          name: 'name',
+          centre_id: 1,
+          title: 'name',
           internal_matter_number: 13546874860
         },
         {
@@ -20,7 +21,8 @@ exports.seed = (knex, Promise) => {
           contact_email: 'test-contact_email',
           is_complete: false,
           claimed_by: 440002,
-          name: 'name',
+          centre_id: 1,
+          title: 'name',
           internal_matter_number: 13546874860
         },
         {
@@ -29,7 +31,8 @@ exports.seed = (knex, Promise) => {
           contact_email: 'test-contact_email',
           is_complete: false,
           claimed_by: 440003,
-          name: 'name',
+          centre_id: 1,
+          title: 'name',
           internal_matter_number: 13546874860
         },
         {
@@ -38,7 +41,8 @@ exports.seed = (knex, Promise) => {
           contact_email: 'test-contact_email',
           is_complete: false,
           claimed_by: 440004,
-          name: 'name',
+          centre_id: 1,
+          title: 'name',
           internal_matter_number: 13546874860
         },
         {
@@ -47,7 +51,8 @@ exports.seed = (knex, Promise) => {
           contact_email: 'test-contact_email',
           is_complete: false,
           claimed_by: 440005,
-          name: 'name',
+          centre_id: 1,
+          title: 'name',
           internal_matter_number: 13546874860
         },
         {
@@ -56,7 +61,8 @@ exports.seed = (knex, Promise) => {
           contact_email: 'test-contact_email',
           is_complete: false,
           claimed_by: 440006,
-          name: 'name',
+          centre_id: 1,
+          title: 'name',
           internal_matter_number: 13546874860
         }
       ])
