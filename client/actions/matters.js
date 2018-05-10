@@ -3,10 +3,10 @@ import {
   requestMatterById
 } from '../apiClient'
 
-import errorHandle from './errorhandle'
+import errorHandle from './errorHandle'
 
 export const SHOW_ALL_MATTERS = 'SHOW_MATTERS'
-export const SHOW_MATTERS_BY_ID = 'SHOW_MATTERS_BY_ID'
+export const SHOW_MATTER_BY_ID = 'SHOW_MATTER_BY_ID'
 
 export function getallMatters () {
   return dispatch => {
@@ -32,7 +32,7 @@ export function getMatterById (id) {
   return dispatch => {
     return requestMatterById(id)
       .then(matterById => {
-        dispatch(showMattersById(matterById))
+        dispatch(showMatterById(matterById))
       })
       .catch(err => {
         dispatch(errorHandle(err.response.body.message))
@@ -41,9 +41,9 @@ export function getMatterById (id) {
   }
 }
 
-export function showMattersById (matterById) {
+export function showMatterById (matterById) {
   return {
-    type: SHOW_MATTERS_BY_ID,
+    type: SHOW_MATTER_BY_ID,
     matterById
   }
 }
