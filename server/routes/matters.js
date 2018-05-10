@@ -2,7 +2,7 @@ const express = require('express')
 
 // const token = require('../auth/token')
 
-const db = require('../lib/matters')
+const db = require('../db/matters')
 
 const router = express.Router()
 

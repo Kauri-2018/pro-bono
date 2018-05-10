@@ -1,5 +1,5 @@
 const environment = process.env.NODE_ENV || 'development'
-const config = require('../db/knexfile')[environment]
+const config = require('./knexfile')[environment]
 const knex = require('knex')(config)
 
 // const crypto = require('./crypto')
@@ -19,9 +19,9 @@ function getAllMatters (db = knex) {
     )
 }
 
-function getCompleteMatters (db = knex) {
+function getIncompleteMatters (db = knex) {
   return db('matters')
-    .where('is_complete', '=', true)
+    .where('is_complete', '=', false)
     .select(
       'id as referenceNumber',
       'category',
@@ -89,26 +89,9 @@ function getMattersByCategory (category, db = knex) {
     )
 }
 
-function getInCompleteMattersByCategory (category, db = knex) {
+function getIncompleteMattersByCategory (category, db = knex) {
   return db('matters')
     .where({'category': category, 'is_complete': false})
-    .select(
-      'id as referenceNumber',
-      'category',
-      'details',
-      'contact_email as contactEmail',
-      'is_complete as isComplete',
-      'claimed_by as claimedBy',
-      'centre_id as centreId',
-      'title',
-      'internal_matter_number as internalMatterNumber'
-    )
-}
-
-// getIncompleteMatters
-function getInCompleteMatters (db = knex) {
-  return db('matters')
-    .where('is_complete', '=', false)
     .select(
       'id as referenceNumber',
       'category',
@@ -144,9 +127,8 @@ module.exports = {
   markAsComplete,
   getMatterById,
   getMattersByCategory,
-  getInCompleteMattersByCategory,
-  getCompleteMatters,
-  getInCompleteMatters,
+  getIncompleteMattersByCategory,
+  getIncompleteMatters,
   getMattersByProfileId,
   addNewMatter
 }
