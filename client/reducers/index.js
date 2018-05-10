@@ -1,11 +1,15 @@
 import {combineReducers} from 'redux'
 
 import auth from './auth'
-import quote from './quote'
+import allMatters from './allMatters'
+import matterById from './matterById'
+import errorMessage from './errorHandle'
 
 const reducers = combineReducers({
   auth,
-  quote
+  allMatters,
+  matterById,
+  errorMessage
 })
 
 export default reducers
