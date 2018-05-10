@@ -23,4 +23,3 @@ export function addNewMatter (data) {
     // .set('Authorization', `Bearer ${token}`)
     .send(data)
 }
-requestMatterById(5)
