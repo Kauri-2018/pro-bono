@@ -15,7 +15,7 @@ class Lawyer extends React.Component {
   }
 
   componentDidMount () {
-    this.props.dispatch(getMatterById(550001))
+    this.props.dispatch(getMatterById(this.props.matterId))
   }
 
   render () {
