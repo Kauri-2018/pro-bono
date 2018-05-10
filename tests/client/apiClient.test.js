@@ -1,15 +1,38 @@
 import nock from 'nock'
 
-import {addNewMatter} from '../../client/apiClient'
+import {
+  requestMatterById,
+  MATTER_ROUTE,
+  addNewMatter
+} from '../../client/apiClient'
 
 const data = {
   category: 'civic',
   details: 'Hello world'
 }
 
+const testId = 5
+
+nock.cleanAll()
 
 nock('http://localhost')
-  .post('/api/v1/matters/new')
+  .get(`${MATTER_ROUTE}/${testId}`)
+  .reply(200, {
+    matter: {
+      id: testId
+    }
+  })
+
+test('requestMatterById returns the correct matter', () => {
+  return requestMatterById(testId)
+    .then(body => {
+      expect(body.matter.id).toBe(5)
+      expect(body.matter.id).not.toBe(4)
+    })
+})
+
+nock('http://localhost')
+  .post(`${MATTER_ROUTE}/new`)
   .reply(200, {
     data
   })
@@ -22,7 +45,7 @@ test('addNewMatter sends post request to server', () => {
 })
 
 nock('http://localhost')
-  .post('/api/v1/matters/new')
+  .post(`${MATTER_ROUTE}/new`)
   .reply(200, {
     data
   })
