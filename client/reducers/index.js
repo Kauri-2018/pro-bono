@@ -3,7 +3,7 @@ import {combineReducers} from 'redux'
 import auth from './auth'
 import allMatters from './allMatters'
 import matterById from './matterById'
-import errorMessage from './errorMessage'
+import errorMessage from './errorHandle'
 
 const reducers = combineReducers({
   auth,
