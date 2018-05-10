@@ -2,16 +2,16 @@
 import React from 'react'
 
 import Navbar from './Navbar'
+import Matter from './matters/Matter'
+import NewMatter from './matters/NewMatter'
 
 const App = () => {
   return (
-    <div>
-      <h1>Quotes</h1>
-
+    <div className='app container'>
       <Navbar />
-      <div className='quote'>
-        <h1>App</h1>
-      </div>
+      <Matter title={'Example title'} internalMatterNumber= {999}
+        category={'civil'} details={'a thing happened'} />
+      <NewMatter />
     </div>
   )
 }

@@ -6,7 +6,7 @@ exports.up = knex => knex.schema.createTable('matters', table => {
   table.boolean('is_complete')
   table.integer('claimed_by').references('profiles.id')
   table.integer('centre_id').references('lawcentres.id')
-  table.string('name')
+  table.string('title')
   table.integer('internal_matter_number')
 })
 
