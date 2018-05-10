@@ -1,6 +1,7 @@
 import request from 'superagent'
 
-const MATTER_ROUTE = 'api/v1/matter/'
+export const BASE_ROUTE = '/api/v1/'
+export const MATTER_ROUTE = BASE_ROUTE + 'matter/'
 
 /**
  * Gets a matter by id
