@@ -9,7 +9,7 @@ const router = express.Router()
 router.use(express.json())
 
 router.get('/', (req, res) => {
-  db.getCompleteMatters()
+  db.getAllMatters()
     .then(matters => {
       res.json({matters})
     })
