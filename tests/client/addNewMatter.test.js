@@ -10,19 +10,16 @@ const orderId = {
   id: 3
 }
 
-test('addNewMatter sends post request to server', () => {
-  nock('http://localhost')
-    .post('/api/v1/matters/new')
-    .reply(200, {
-      userId,
-      orderId
-    })
+nock('http://localhost')
+  .post('/api/v1/matters/new')
+  .reply(200, {
+    userId,
+    orderId
+  })
 
+test('addNewMatter sends post request to server', () => {
   return addNewMatter(userId, orderId)
     .then(res => {
-      expect(res.body.userId).toMatchObject(userId)
-    })
-    .catch(err => {
-      expect(err).toBeFalsy()
+      expect(res.body.userId).toEqual(userId)
     })
 })
