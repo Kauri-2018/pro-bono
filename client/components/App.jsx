@@ -1,24 +1,17 @@
 // Boilerplate
 import React from 'react'
-import {connect} from 'react-redux'
 
 import Navbar from './Navbar'
 import Matter from './matters/Matter'
 
 const App = () => {
-  const matter = this.props.matter
   return (
     <div>
       <Navbar />
-      <Matter propsFromParent={matter} />
+      <Matter title={'Example title'} internalMatterNumber= {999}
+        category={'civil'} details={'a thing happened'} />
     </div>
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    matter: this.state.matterById
-  }
-}
-
-export default connect(mapStateToProps)(App)
+export default App
