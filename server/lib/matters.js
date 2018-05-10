@@ -4,8 +4,8 @@ const knex = require('knex')(config)
 
 const crypto = require('./crypto')
 
-function getAllMatters (db = knex) {
-  return db('matters')
+function getAllMatters (connection = knex) {
+  return connection('matters')
     .select(
       'id as referenceNumber',
       'category',
@@ -19,8 +19,8 @@ function getAllMatters (db = knex) {
     )
 }
 
-function getMatterById (matterId, db = knex) {
-  return db('matters')
+function getMatterById (matterId, connection = knex) {
+  return connection('matters')
     .where('id', '=', matterId)
     .select(
       'id as referenceNumber',
@@ -36,8 +36,8 @@ function getMatterById (matterId, db = knex) {
     .first()
 }
 
-function getMattersByCategory (category, db = knex) {
-  return db('matters')
+function getMattersByCategory (category, connection = knex) {
+  return connection('matters')
     .where('category', '=', category)
     .select(
       'id as referenceNumber',
@@ -52,8 +52,8 @@ function getMattersByCategory (category, db = knex) {
     )
 }
 
-function getInCompleteMattersByCategory (category, db = knex) {
-  return db('matters')
+function getInCompleteMattersByCategory (category, connection = knex) {
+  return connection('matters')
     .where({'category': category, 'is_complete': false})
     .select(
       'id as referenceNumber',
@@ -69,8 +69,8 @@ function getInCompleteMattersByCategory (category, db = knex) {
 }
 
 // getIncompleteMatters
-function getInCompleteMatters (db = knex) {
-  return db('matters')
+function getInCompleteMatters (connection = knex) {
+  return connection('matters')
     .where('is_complete', '=', false)
     .select(
       'id as referenceNumber',
@@ -85,8 +85,8 @@ function getInCompleteMatters (db = knex) {
     )
 }
 
-function getCompleteMatters (db = knex) {
-  return db('matters')
+function getCompleteMatters (connection = knex) {
+  return connection('matters')
     .where('is_complete', '=', true)
     .select(
       'id as referenceNumber',
@@ -101,8 +101,8 @@ function getCompleteMatters (db = knex) {
     )
 }
 
-function getMattersByProfileId (profileId, db = knex) {
-  return db('matters')
+function getMattersByProfileId (profileId, connection = knex) {
+  return connection('matters')
     .join('profiles', 'matters.claimed_by', '=', 'profiles.id')
     .where('claimed_by', '=', profileId)
     .select(
