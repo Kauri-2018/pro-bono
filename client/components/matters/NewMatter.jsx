@@ -1,5 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import Button from 'material-ui/Button'
+import AppBar from 'material-ui/AppBar'
+import TextField from 'material-ui/TextField'
 
 class NewMatter extends React.Component {
   constructor (props) {
@@ -37,21 +40,28 @@ class NewMatter extends React.Component {
 
   render () {
     return (
-      <div className='new-matter-wrapper'>
-        <h1>Create a new matter</h1>
-        <span className='info'>Title: <input name='title' onChange={this.handleChange} /></span>
-        <br />
-        <span className='info'>Matter contact email: <input name='contactEmail' onChange={this.handleChange} /></span>
-        <br />
-        <span className='info'>Category: <input name='category' onChange={this.handleChange} /></span>
-        <br />
-        <span className='info'>Internal reference ID (optional): <input name='internalReferenceId' onChange={this.handleChange} /></span>
-        <br />
-        <span className='info'>Further details:</span>
-        <br />
-        <textarea name="details" cols="60" rows="10" onChange={this.handleChange} />
-        <hr />
-        <button onClick={this.submitNewMatter}>Submit</button>
+      <div className='new-matter-wrapper offset-by-two column eight columns'>
+        <AppBar position="static" color="default" className="new-matter">
+          <h1 className="offset-by-one columns">Submit New Matter</h1>
+          <div className="form-field">
+            <TextField fullWidth={true} required={true} placeholder="Title" multiline={true} name="title" label="Title" className="text-input" onChange={this.handleChange} margin="normal" />
+            <br />
+            <br />
+            <TextField fullWidth={true} required={true} placeholder="Matter contact email" multiline={true} name="contactEmail" label="Matter contact email" className="text-input" onChange={this.handleChange} margin="normal" />
+            <br />
+            <br />
+            <TextField fullWidth={true} required={true} placeholder="Category" multiline={true} name="category" label="Category" className="text-input" onChange={this.handleChange} margin="normal" />
+            <br />
+            <br />
+            <TextField fullWidth={true} placeholder="Internal reference ID (optional)" multiline={true} name="internalReferenceId" label="Internal reference ID (optional)" className="text-input" onChange={this.handleChange} margin="normal" />
+            <br />
+            <br />
+            <TextField fullWidth={true} placeholder="Add additional detail here" multiline={true} name="details" label="Additional Detail" className="text-input" onChange={this.handleChange} margin="normal" />
+          </div>
+          <div>
+            <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " onClick={this.submitNewMatter}>Submit</Button>
+          </div>
+        </AppBar>
       </div>
     )
   }
