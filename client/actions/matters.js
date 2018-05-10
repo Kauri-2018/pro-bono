@@ -1,6 +1,7 @@
 import {
   requestAllMatters,
-  requestMatterById
+  requestMatterById,
+  addNewMatter
 } from '../apiClient'
 
 import errorHandle from './errorHandle'
@@ -45,5 +46,12 @@ export function showMatterById (matterById) {
   return {
     type: SHOW_MATTER_BY_ID,
     matterById
+  }
+}
+
+// added to action so that it can be expanded upon later rather than adding straight to apiClient
+export function NewMatter (data) {
+  return dispatch => {
+    return addNewMatter(data)
   }
 }
