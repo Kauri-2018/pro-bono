@@ -1,4 +1,4 @@
-import { SHOW_MATTER_BY_ID } from "../actions/matters"
+import { SHOW_MATTER_BY_ID } from '../actions/matters'
 
 const initialMatterById = []
 
