@@ -124,5 +124,6 @@ module.exports = {
   getMattersByCategory,
   getInCompleteMattersByCategory,
   getCompleteMatters,
+  getInCompleteMatters,
   getMattersByProfileId
 }
