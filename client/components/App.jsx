@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div className='app container'>
       <Navbar />
-      <Lawyer />
+      <Lawyer matterId={550001}/>
       <NewMatter />
     </div>
   )
