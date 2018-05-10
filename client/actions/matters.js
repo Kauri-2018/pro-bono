@@ -6,7 +6,7 @@ import {
 
 import errorHandle from './errorHandle'
 
-export const SHOW_ALL_MATTERS = 'SHOW_MATTERS'
+export const SHOW_ALL_MATTERS = 'SHOW_ALL_MATTERS'
 export const SHOW_MATTER_BY_ID = 'SHOW_MATTER_BY_ID'
 
 export function getallMatters () {
