@@ -79,9 +79,10 @@ function markAsComplete (matterId, db = knex) {
 function markAsClaimed (matterId, profileId, db = knex) {
   return db('matters')
     .where('id', '=', matterId)
-    .update({is_complete: profileId})
+    .update({claimed_by: profileId})
 }
 
+// throw error if missing data that we need
 function addNewMatter (matter, db = knex) {
   return db('matters')
     .insert({
