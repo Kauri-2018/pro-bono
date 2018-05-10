@@ -16,5 +16,6 @@ test('requestMatterById returns the correct matter', () => {
   return requestMatterById(testId)
     .then(body => {
       expect(body.matter.id).toBe(5)
+      expect(body.matter.id).not.toBe(4)
     })
 })
