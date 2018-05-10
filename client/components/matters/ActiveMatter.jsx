@@ -22,7 +22,7 @@ class ActiveMatter extends React.Component {
     return (
       <div>
         <button onClick={this.displayMatter}>Display Matter </button>
-        <Matter matter={this.props.matterbyId} />
+        <Matter matterById={this.props.matterById} />
       </div>
     )
   }

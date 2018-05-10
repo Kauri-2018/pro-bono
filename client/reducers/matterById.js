@@ -6,13 +6,13 @@ const initialMatterById = {
   claimbedBy: 440002,
   centreId: 1,
   title: 'name',
-  internalReferenceNumber: 13546874860
+  internalMatterNumber: 13546874860
 }
 
 export default function (matterById = initialMatterById, action) {
   switch (action.type) {
     case 'SHOW_MATTER_BY_ID':
-      return {...action.matterById}
+      return action.matterById.matter
 
     default:
       return matterById
