@@ -13,7 +13,7 @@ server.use(express.static(path.join(__dirname, './public')))
 // routes
 server.use('/api/v1/auth/', authRoutes)
 server.use('/api/v1/matters/', matterRoutes)
-server.use('/api/v1/profiles/', profileRoutes)
+// git server.use('/api/v1/profiles/', profileRoutes)
 
 // wildcard route
 server.get('*', function (req, res) {
