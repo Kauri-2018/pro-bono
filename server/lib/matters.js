@@ -122,22 +122,6 @@ function getInCompleteMatters (db = knex) {
     )
 }
 
-function getCompleteMatters (db = knex) {
-  return db('matters')
-    .where('is_complete', '=', true)
-    .select(
-      'id as referenceNumber',
-      'category',
-      'details',
-      'contact_email as contactEmail',
-      'is_complete as isComplete',
-      'claimed_by as claimedBy',
-      'centre_id as centreId',
-      'title',
-      'internal_matter_number as internalMatterNumber'
-    )
-}
-
 function getMattersByProfileId (profileId, db = knex) {
   return db('matters')
     .join('profiles', 'matters.claimed_by', '=', 'profiles.id')
