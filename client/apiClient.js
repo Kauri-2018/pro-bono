@@ -1,7 +1,7 @@
 import request from 'superagent'
 
 export const BASE_ROUTE = '/api/v1/'
-export const MATTER_ROUTE = BASE_ROUTE + 'matter'
+export const MATTER_ROUTE = BASE_ROUTE + 'matters'
 
 // TODO Add Auth requirements to api calls
 // const token = localStorage.getItem('token')
@@ -18,7 +18,7 @@ export function requestMatterById (matterId) {
 }
 
 export function addNewMatter (data) {
-  return request.post(`${MATTER_ROUTE}/new`)
+  return request.post('/api/v1/matters/new')
   // TODO Add Auth requirements to api calls
     // .set('Authorization', `Bearer ${token}`)
     .send(data)
