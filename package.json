@@ -6,7 +6,7 @@
   "author": "EDA",
   "license": "ISC",
   "engines": {
-    "node": ">=8.9.0"
+    "node": ">=9.11.0"
   },
   "scripts": {
     "knex": "knex --knexfile ./server/db/knexfile.js",
