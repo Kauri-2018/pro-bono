@@ -2,14 +2,14 @@
 import React from 'react'
 
 import Navbar from './Navbar'
-import ActiveMatter from './matters/ActiveMatter'
+import Lawyer from './users/Lawyer'
 import NewMatter from './matters/NewMatter'
 
 const App = () => {
   return (
     <div className='app container'>
       <Navbar />
-      <ActiveMatter />
+      <Lawyer />
       <NewMatter />
     </div>
   )

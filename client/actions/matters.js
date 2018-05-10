@@ -45,7 +45,7 @@ export function getMatterById (id) {
 export function showMatterById (matterById) {
   return {
     type: SHOW_MATTER_BY_ID,
-    matterById
+    matterById: matterById.matter
   }
 }
 
