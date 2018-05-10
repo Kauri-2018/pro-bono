@@ -75,7 +75,7 @@ router.get('/id/:id', (req, res) => {
     })
 })
 
-router.get('/:profileId', (req, res) => {
+router.get('/profile/:profileId', (req, res) => {
   const profileId = req.params.profileId
   db.getMatterByProfileId(profileId)
     .then(matter => {
