@@ -5,7 +5,7 @@ import {requestMatterById, MATTER_ROUTE} from '../../client/apiClient'
 const testId = 5
 
 nock('http://localhost')
-  .get(`${MATTER_ROUTE}${testId}`)
+  .get(`${MATTER_ROUTE}/${testId}`)
   .reply(200, {
     matter: {
       id: testId
