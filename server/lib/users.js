@@ -11,10 +11,7 @@ module.exports = {
   getByName
 }
 
-function create (username, password, testDb) {
-  const hash = crypto.getHash(password)
-  const connection = testDb || knex
-
+function create (username, password, connection = knex) {
   return connection('users')
     .insert({
       username: username,
@@ -22,8 +19,7 @@ function create (username, password, testDb) {
     })
 }
 
-function exists (username, testDb) {
-  const connection = testDb || knex
+function exists (username, connection = knex) {
   return connection('users')
     .count('id as n')
     .where('username', username)
@@ -32,16 +28,14 @@ function exists (username, testDb) {
     })
 }
 
-function getById (id, testDb) {
-  const connection = testDb || knex
+function getById (id, connection = knex) {
   return connection('users')
     .select('id', 'username')
     .where('id', id)
     .first()
 }
 
-function getByName (username, testDb) {
-  const connection = testDb || knex
+function getByName (username, connection = knex) {
   return connection('users')
     .select()
     .where('username', username)
