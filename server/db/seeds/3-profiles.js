@@ -13,7 +13,26 @@ exports.seed = (knex, Promise) => {
           phone_number: '027123123',
           pending: true,
           certificate: '/url/Hello-Moto/PlaceHolder',
+        },
+        {
+          id: 440002,
+          user_id: 330002,
+          firstname: 'Cam',
+          lastname: 'Paddy',
+          phone_number: '027123123',
+          pending: false,
+          certificate: '/url/Hello-Moto/PlaceHolder',
           company: 'This is a company name'
+        },
+        {
+          id: 440003,
+          centre_id: 110002,
+          user_id: 330003,
+          firstname: 'Zoe',
+          lastname: 'Hurry',
+          phone_number: '027123123',
+          pending: false,
+          certificate: '/url/Hello-Moto/PlaceHolder',
         }
       ])
     })

@@ -21,6 +21,11 @@ router.get('/', (req, res) => {
 router.put('/', (req, res) => {
   const matterId = req.body.matterId
   db.markAsComplete(matterId)
+    .then((matterIds) => {
+      if (!matterIds.length) {
+        throw new Error('There was no incomplete matter with that id')
+      }
+    })
     .then(() => db.getLiveMatters())
     .then(matters => {
       res.json({matters})
@@ -40,13 +45,13 @@ router.get('/live', (req, res) => {
     })
 })
 
+// should check if matter exists, is complete and is claimed
 router.put('/claimed', (req, res) => {
   const matterId = req.body.matterId
   const profileId = req.body.profileId
   db.markAsClaimed(matterId, profileId)
-    .then(() => db.getLiveMatters())
-    .then(matters => {
-      res.json({matters})
+    .then(() => {
+      res.sendStatus(200)
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
@@ -68,6 +73,9 @@ router.get('/id/:id', (req, res) => {
   const matterId = req.params.id
   db.getMatterById(matterId)
     .then(matter => {
+      if (!matter) {
+        throw new Error('There was no matter with that id')
+      }
       res.json({matter})
     })
     .catch(err => {
@@ -79,6 +87,9 @@ router.get('/profile/:profileId', (req, res) => {
   const profileId = req.params.profileId
   db.getMatterByProfileId(profileId)
     .then(matter => {
+      if (!matter) {
+        throw new Error('There was no matter with that profile id')
+      }
       res.json({matter})
     })
     .catch(err => {
@@ -90,6 +101,9 @@ router.get('/category/:category', (req, res) => {
   const category = req.params.category
   db.getLiveMattersByCategory(category)
     .then(matters => {
+      if (!matters) {
+        throw new Error('There was no matter with that category')
+      }
       res.json({matters})
     })
     .catch(err => {
