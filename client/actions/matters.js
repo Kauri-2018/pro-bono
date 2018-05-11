@@ -5,7 +5,7 @@ import {
   requestLiveMatters
 } from '../apiClient'
 
-import errorHandle from './errorHandle'
+import {errorHandle} from './errorHandle'
 
 export const SHOW_MATTER_LIST = 'SHOW_MATTER_LIST'
 export const SHOW_MATTER_BY_ID = 'SHOW_MATTER_BY_ID'

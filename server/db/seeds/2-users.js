@@ -8,26 +8,20 @@ exports.seed = (knex, Promise) => {
       return knex('users').insert([
         {
           id: 330001,
-          email: 'helloadmin@helloadmin.nz',
-          hash: getHash('helloadmin'),
+          email: 'admin@test.co.nz',
+          hash: getHash('admin'),
           role: 'admin'
         },
         {
           id: 330002,
-          email: 'helloadmin@helloadmin.nz',
-          hash: getHash('hellolawcentre'),
+          email: 'lawyer@test.co.nz',
+          hash: getHash('lawyer'),
           role: 'lawyer'
         },
         {
           id: 330003,
-          email: 'helloadmin@helloadmin.nz',
-          hash: getHash('hellomember'),
-          role: 'lawyer'
-        },
-        {
-          id: 330004,
-          email: 'helloadmin@helloadmin.nz',
-          hash: getHash('hellomember'),
+          email: 'member@test.co.nz',
+          hash: getHash('member'),
           role: 'member'
         }
       ])

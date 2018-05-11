@@ -1,42 +1,44 @@
-import request from 'superagent'
+import {set} from './utils/localstorage'
+import consume from './utils/api'
 
-export const BASE_ROUTE = '/api/v1/'
-export const MATTER_ROUTE = BASE_ROUTE + 'matters'
-export const PROFILE_ROUTE = BASE_ROUTE + 'profiles'
+export const BASE_ROUTE = '/api/v1'
+export const MATTER_ROUTE = BASE_ROUTE + '/matters'
+export const AUTH_ROUTE = BASE_ROUTE + '/auth'
+export const PROFILE_ROUTE = BASE_ROUTE + '/profiles'
 
-// TODO Add Auth requirements to api calls
-// const token = localStorage.getItem('token')
 /**
  * Gets a matter by id
- * @param {number} matterId the is to get
- * @returns {Promise({ matter })}
+ * @param {number} matterId the ID of the matter to get
+ * @returns {Promise{ matter }}
  */
 export function requestMatterById (matterId) {
-  return request.get(`${MATTER_ROUTE}/id/${matterId}`)
-  // TODO Add Auth requirements to api calls
-    // .set('Authorization', `Bearer ${token}`)
-    .then(res => res.body)
+  return consume('get', `${MATTER_ROUTE}/${matterId}`)
+    .then(res => {
+      return res.body
+    })
+    .catch(err => {
+      throw err
+    })
 }
 
 export function addNewMatter (data) {
-  return request.post(`${MATTER_ROUTE}/add`)
-  // TODO Add Auth requirements to api calls
-    // .set('Authorization', `Bearer ${token}`)
-    .send(data)
-    .then(res => res.body)
+  return consume('post', `${MATTER_ROUTE}/new`, data)
+}
+
+export function login (email, password) {
+  return consume('post', `${AUTH_ROUTE}/login`, {email, password})
+    .then(res => {
+      set('token', res.body.token)
+    })
 }
 
 export function requestLiveMatters () {
-  return request.get(`${MATTER_ROUTE}/live`)
-  // TODO Add Auth requirements to api calls
-    // .set('Authorization', `Bearer ${token}`)
+  return consume('get', `${MATTER_ROUTE}/live`)
     .then(res => res.body)
 }
 
 export function requestAllMatters () {
-  return request.get(`${MATTER_ROUTE}/`)
-  // TODO Add Auth requirements to api calls
-    // .set('Authorization', `Bearer ${token}`)
+  return consume('get', `${MATTER_ROUTE}/`)
     .then(res => res.body)
 }
 

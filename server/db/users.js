@@ -3,7 +3,7 @@ const config = require('./knexfile')[environment]
 const knex = require('knex')(config)
 const {generate} = require('../lib/crypto')
 
-// const crypto = require('./crypto')
+const crypto = require('../lib/crypto')
 
 module.exports = {
   create,
@@ -14,14 +14,15 @@ module.exports = {
   makeAdmin
 }
 
-function create (email, password, testDb) {
+function create (email, password, role, testDb) {
   const hash = crypto.getHash(password)
   const connection = testDb || knex
 
   return connection('users')
     .insert({
-      email: email,
-      hash: hash
+      email,
+      hash: hash,
+      role
     })
 }
 
