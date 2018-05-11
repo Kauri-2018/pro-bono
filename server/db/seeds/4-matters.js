@@ -40,7 +40,7 @@ exports.seed = (knex, Promise) => {
           details: `hide behind curtain when vacuum cleaner is on scratch strangers and poo on owners food jump launch to pounce upon little yarn mouse, bare fangs at toy run hide in litter box until treats are fed allways wanting food or use lap as chair, Gate keepers of hell sit in a box for hours a nice warm laptop for me to sit on. Push your water glass on the floor love and fish i must find my red catnip fishy fish and meowzer. Have secret plans make muffins, yet lick human with sandpaper tongue so kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff`,
           contact_email: 'test-contact_email',
           is_complete: false,
-          claimed_by: 440004,
+          claimed_by: 0,
           centre_id: 1,
           title: 'name',
           internal_matter_number: 13546874860
@@ -50,7 +50,7 @@ exports.seed = (knex, Promise) => {
           details: `hide behind curtain when vacuum cleaner is on scratch strangers and poo on owners food jump launch to pounce upon little yarn mouse, bare fangs at toy run hide in litter box until treats are fed allways wanting food or use lap as chair, Gate keepers of hell sit in a box for hours a nice warm laptop for me to sit on. Push your water glass on the floor love and fish i must find my red catnip fishy fish and meowzer. Have secret plans make muffins, yet lick human with sandpaper tongue so kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff`,
           contact_email: 'test-contact_email',
           is_complete: false,
-          claimed_by: 440005,
+          claimed_by: 0,
           centre_id: 1,
           title: 'name',
           internal_matter_number: 13546874860
@@ -60,7 +60,7 @@ exports.seed = (knex, Promise) => {
           details: `hide behind curtain when vacuum cleaner is on scratch strangers and poo on owners food jump launch to pounce upon little yarn mouse, bare fangs at toy run hide in litter box until treats are fed allways wanting food or use lap as chair, Gate keepers of hell sit in a box for hours a nice warm laptop for me to sit on. Push your water glass on the floor love and fish i must find my red catnip fishy fish and meowzer. Have secret plans make muffins, yet lick human with sandpaper tongue so kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff`,
           contact_email: 'test-contact_email',
           is_complete: false,
-          claimed_by: 440006,
+          claimed_by: 0,
           centre_id: 1,
           title: 'name',
           internal_matter_number: 13546874860

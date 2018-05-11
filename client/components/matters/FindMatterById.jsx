@@ -1,11 +1,6 @@
-
-// Find matter
-// Reference ID: [         ]
-
-
 import React from 'react'
 
-import {getMatterById} from '../../actions/matters'
+import {requestMatterById} from '../../apiClient'
 
 class FindMatterById extends React.Component {
   constructor (props) {
@@ -25,8 +20,7 @@ class FindMatterById extends React.Component {
 
   searchMatter (e) {
     e.preventDefault()
-    getMatterById(this.state)
-      .then((user) => this.props.dispatch(updateUser(user)))
+    requestMatterById(this.state)
   }
 
   render () {
@@ -34,8 +28,7 @@ class FindMatterById extends React.Component {
       <div className='search-matter'>
         <form onSubmit={this.searchMatter}>
           <h2>Find a matter</h2>
-          <h5>Reference number: </h5>
-          <input type="number" onChange={this.handleChange} />
+          <h5><input type="number" onChange={this.handleChange} />Reference number: </h5>
           <button className="btn btn-submit">Find</button>
         </form>
       </div>
