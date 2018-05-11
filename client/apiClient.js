@@ -40,8 +40,8 @@ export function requestAllMatters () {
 }
 
 export function requestPendingProfiles () {
-  return request.get(`api/v1/profiles`)
+  return request.get(`api/v1/profiles/pending`)
   // TODO Add Auth requirements to api calls
     // .set('Authorization', `Bearer ${token}`)
-    .then(res => res.body)
+    .then(res => res.body.profiles)
 }
