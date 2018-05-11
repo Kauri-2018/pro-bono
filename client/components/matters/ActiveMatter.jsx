@@ -8,7 +8,7 @@ import Matter from './Matter'
 
 const ActiveMatter = props => (
       <div>
-        <Matter matterById={props.matterById} />
+        <Matter singleMatter={props.matterById} />
       </div>
 )
 

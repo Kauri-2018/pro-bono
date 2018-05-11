@@ -3,7 +3,7 @@ import {SHOW_MATTER_BY_ID} from '../actions/matters'
 const initialMatterById = {
   category: '',
   details: '',
-   contactEmail: '',
+  contactEmail: '',
   isComplete: false,
   claimbedBy: 0,
   centreId: 0,
