@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 router.get('/pending', (req, res) => {
   db.getPendingProfiles()
     .then(profiles => {
-      if (!profiles) {
+      if (!profiles.length) {
         throw new Error('There are no profiles pending approval')
       }
       res.json({profiles})
@@ -79,9 +79,8 @@ router.post('/add', (req, res) => {
 // have not tested if this updates role to admin in users
 router.put('/approve', (req, res) => {
   const profileId = req.body.profileId
-  const userId = req.body.userId
-  const admin = req.body.admin
-  db.markAsApproved(profileId, userId, admin)
+  const isAdmin = req.body.admin
+  db.markAsApproved(profileId, isAdmin)
     .then(() => {
       res.sendStatus(200)
     })
