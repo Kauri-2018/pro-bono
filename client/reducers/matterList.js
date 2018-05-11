@@ -1,4 +1,4 @@
-import { SHOW_MATTER_LIST } from "../actions/matters"
+import { SHOW_MATTER_LIST } from '../actions/matters'
 
 const initialMatterList = []
 

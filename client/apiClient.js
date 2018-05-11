@@ -37,6 +37,11 @@ export function requestLiveMatters () {
     .then(res => res.body)
 }
 
+export function requestIncompleteMatters () {
+  return consume('get', `${MATTER_ROUTE}/incomplete`)
+    .then(res => res.body)
+}
+
 export function requestAllMatters () {
   return consume('get', `${MATTER_ROUTE}/`)
     .then(res => res.body)
