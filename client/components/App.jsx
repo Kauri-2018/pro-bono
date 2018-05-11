@@ -1,6 +1,7 @@
 // Boilerplate
 import React from 'react'
 import {connect} from 'react-redux'
+import {Switch, Route} from 'react-router-dom'
 
 import Navbar from './Navbar'
 import Login from './auth/Login'
@@ -11,10 +12,13 @@ const App = props => {
   return (
     <div className='app container'>
       <Navbar />
-      {!props.user && <Login />}
-      {props.user && (props.user.role === 'lawyer'
-        ? <LawyerSection matterId={550001}/>
-        : <MemberSection />)}
+      <Switch>
+        <Route path='/lawyer/register' />
+        <Route path='/member/register' />
+        <Route path='/lawyer' component={LawyerSection}/>
+        <Route path='/member' component={MemberSection}/>
+      </Switch>
+      {!props.user ? <Login /> : <h1>You are already logged in</h1>}
     </div>
   )
 }

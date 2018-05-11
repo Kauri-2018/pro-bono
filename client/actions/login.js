@@ -40,18 +40,20 @@ export function loginUser (creds) {
     dispatch(requestLogin(creds))
 
     return request('post', `${AUTH_ROUTE}/login`, creds)
-      .then((response) => {
-        if (!response.ok) {
+      .then((res) => {
+        if (!res.ok) {
           // If there was a problem, we want to
           // dispatch the error condition
-          dispatch(loginError(response.body.message))
-          return Promise.reject(response.body.message)
+          dispatch(loginError(res.body.errorMessage))
+          return Promise.reject(res.body.errorMessage)
         } else {
           // If login was successful, set the token in local storage
-          const userInfo = saveUserToken(response.body.token)
+          const userInfo = saveUserToken(res.body.token)
           // Dispatch the success action
           dispatch(receiveLogin(userInfo))
+          return userInfo
         }
-      }).catch(err => dispatch(loginError(err.response.body.message)))
+      })
+      .catch(err => dispatch(loginError(err.res.body.message)))
   }
 }

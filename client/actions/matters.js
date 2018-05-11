@@ -4,7 +4,7 @@ import {
   addNewMatter
 } from '../apiClient'
 
-import errorHandle from './errorHandle'
+import {errorHandle} from './errorHandle'
 
 export const SHOW_ALL_MATTERS = 'SHOW_ALL_MATTERS'
 export const SHOW_MATTER_BY_ID = 'SHOW_MATTER_BY_ID'
