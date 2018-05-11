@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Button from 'material-ui/Button'
-import AppBar from 'material-ui/AppBar'
+import Card from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
 
 import {postNewMatter} from '../../actions/matters'
@@ -42,7 +42,7 @@ class NewMatter extends React.Component {
   render () {
     return (
       <div className='new-matter-wrapper offset-by-two column eight columns'>
-        <AppBar position="static" color="default" className="new-matter">
+        <Card position="static" color="default" className="new-matter">
           <h1 className="offset-by-one columns">Submit New Matter</h1>
 
           <div className="form-field">
@@ -63,8 +63,12 @@ class NewMatter extends React.Component {
           <div>
             <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " type="submit" onClick={this.handleAdd}>Submit</Button>
           </div>
+<<<<<<< HEAD
 
         </AppBar>
+=======
+        </Card>
+>>>>>>> 5b60059c1df7614404e703ea30c6863b07d2a8f5
       </div>
     )
   }
