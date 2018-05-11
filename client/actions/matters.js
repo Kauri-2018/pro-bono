@@ -1,11 +1,12 @@
 import {
   requestAllMatters,
-  requestMatterById
+  requestMatterById,
+  addNewMatter
 } from '../apiClient'
 
 import errorHandle from './errorHandle'
 
-export const SHOW_ALL_MATTERS = 'SHOW_MATTERS'
+export const SHOW_ALL_MATTERS = 'SHOW_ALL_MATTERS'
 export const SHOW_MATTER_BY_ID = 'SHOW_MATTER_BY_ID'
 
 export function getallMatters () {
@@ -45,5 +46,12 @@ export function showMatterById (matterById) {
   return {
     type: SHOW_MATTER_BY_ID,
     matterById
+  }
+}
+
+// added to action so that it can be expanded upon later rather than adding straight to apiClient
+export function postNewMatter (data) {
+  return dispatch => {
+    return addNewMatter(data)
   }
 }
