@@ -5,8 +5,8 @@
 }
 
 .new-matter {
-  padding-top: 3%;
-  padding-bottom: 3%;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
   padding-left: 20vw;
   padding-right: 20vw;
 }
@@ -14,3 +14,16 @@
 .text-input {
   display: flex;
 }
+
+.matter {
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+
+/* random yellow on community law is #D4BD68 */
+/*one  red is #C7003C */
+/* other red is #C10037 */
+/* off white is #F8FAF0 */
