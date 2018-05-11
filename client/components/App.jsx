@@ -6,6 +6,7 @@ import Navbar from './Navbar'
 import Login from './auth/Login'
 import Lawyer from './users/Lawyer'
 import NewMatter from './matters/NewMatter'
+import Register from './register/Register'
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Navbar />
       {/* <Matter title={'Example title'} internalMatterNumber= {999}
         category={'civil'} details={'a thing happened'} /> */}
+      <Register/>
       <Login />
       <Lawyer matterId={550001}/>
       <NewMatter />
