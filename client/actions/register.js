@@ -41,6 +41,7 @@ export function registerUser (email, password, role, profileData) {
           const userInfo = saveUserToken(res.body.token)
           // Dispatch the success action
           dispatch(receiveLogin(userInfo))
+          return userInfo
         }
       }).catch(err => {
         dispatch(registerError(err.message))

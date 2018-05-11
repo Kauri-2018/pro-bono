@@ -1,7 +1,14 @@
+// Node Packages
 import React from 'react'
 import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import decode from 'jwt-decode'
 
+// Our Modules
+import {get} from '../utils/localstorage'
+import { receiveLogin } from '../actions/login'
+
+// Components
 import Navbar from './Navbar'
 import Login from './auth/Login'
 import LawyerSection from './users/LawyerSection'
@@ -9,33 +16,32 @@ import MemberSection from './users/MemberSection'
 import RegisterSection from './auth/RegisterSection'
 import Register from './auth/Register'
 
-const App = props => {
-  return (
-    <Router>
-      <div className='app container'>
-        <Navbar />
-        <Switch>
-          <Route path='/lawyer/register/:type' component={Register}/>
-          <Route path='/member/register/:type' component={Register}/>
-          <Route path='/lawyer' component={LawyerSection} />
-          <Route path='/member' component={MemberSection} />
-          <Route path='/' component={renderHome} />
-        </Switch>
-
-      </div>
-    </Router>
-  )
+class App extends React.Component {
+  render () {
+    return (
+      <Router>
+        <div className='app container'>
+          <Navbar />
+          <Switch>
+            <Route exact path='/lawyer' component={LawyerSection} />
+            <Route exact path='/member' component={MemberSection} />
+            <Route path='/:type/register' component={Register}/>
+            <Route path='/' component={renderHome} />
+          </Switch>
+        </div>
+      </Router>
+    )
+  }
 }
 
-const renderHome = props => (
-  !props.user
-    ? <div>
+const renderHome = props => {
+  return !props.user
+    ? (<div>
       <Login />
       <RegisterSection />
-    </div>
+    </div>)
     : <h1>You are already logged in</h1>
-
-)
+}
 
 function mapStateToProps (state) {
   return {
