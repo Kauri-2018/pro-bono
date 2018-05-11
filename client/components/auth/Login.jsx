@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
 
 import {loginUser} from '../../actions/login'
-// import ErrorMessage from './ErrorMessage'
+import ErrorMessage from './ErrorMessage'
 
 class Login extends React.Component {
   constructor (props) {
@@ -51,7 +51,7 @@ class Login extends React.Component {
               <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " onClick={this.submitNewMatter}>Login</Button>
             </div>
           </div>
-          {/* <ErrorMessage reducer='auth' /> */}
+          <ErrorMessage reducer='auth' />
         </Card>
       </div>
     )
