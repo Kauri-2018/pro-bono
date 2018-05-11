@@ -17,7 +17,6 @@ class Login extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.redirect = this.redirect.bind(this)
   }
 
   handleChange (e) {
