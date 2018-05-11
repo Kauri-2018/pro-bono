@@ -23,7 +23,7 @@ function handleError (err, req, res, next) {
 }
 
 function issueJwt (req, res, next) {
-  users.getByName(req.body.email)
+  users.getByEmail(req.body.email)
     .then(user => {
       const token = createToken(user, process.env.JWT_SECRET)
       res.json({

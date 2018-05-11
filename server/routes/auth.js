@@ -19,7 +19,7 @@ router.post('/register',
 )
 
 function signIn (req, res, next) {
-  users.getByName(req.body.email)
+  users.getByEmail(req.body.email)
     .then(user => {
       return user && crypto.verifyUser(user.hash, req.body.password)
     })
