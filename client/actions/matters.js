@@ -64,7 +64,7 @@ export function showMatterById (matterById) {
 }
 
 // added to action so that it can be expanded upon later rather than adding straight to apiClient
-export function NewMatter (data) {
+export function postNewMatter (data) {
   return dispatch => {
     return addNewMatter(data)
   }
