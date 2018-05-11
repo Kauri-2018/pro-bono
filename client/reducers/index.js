@@ -1,13 +1,13 @@
 import {combineReducers} from 'redux'
 
 import auth from './auth'
-import allMatters from './allMatters'
+import matterList from './matterList'
 import matterById from './matterById'
 import errorMessage from './errorHandle'
 
 const reducers = combineReducers({
   auth,
-  allMatters,
+  matterList,
   matterById,
   errorMessage
 })

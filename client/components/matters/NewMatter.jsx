@@ -4,6 +4,8 @@ import Button from 'material-ui/Button'
 import Card from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
 
+import {postNewMatter} from '../../actions/matters'
+
 class NewMatter extends React.Component {
   constructor (props) {
     super(props)
@@ -16,7 +18,7 @@ class NewMatter extends React.Component {
     }
 
     this.handleChange = this.handleChange.bind(this)
-    this.submitNewMatter = this.submitNewMatter.bind(this)
+    this.handleAdd = this.handleAdd.bind(this)
   }
 
   handleChange (e) {
@@ -25,7 +27,7 @@ class NewMatter extends React.Component {
     })
   }
 
-  submitNewMatter () {
+  handleAdd (e) {
     const newMatter = {
       title: this.state.title,
       contactEmail: this.state.contactEmail,
@@ -33,9 +35,8 @@ class NewMatter extends React.Component {
       internalReferenceId: this.state.internalReferenceId,
       details: this.state.details
     }
-    alert('Submitted new matter: ' + newMatter.title)
-    // Dispatch state data
-    // this.props.dispatch(newMatter)
+    // alert('Submitted new matter: ' + newMatter.title)
+    this.props.dispatch(postNewMatter(newMatter))
   }
 
   render () {
@@ -43,6 +44,7 @@ class NewMatter extends React.Component {
       <div className='new-matter-wrapper offset-by-two column eight columns'>
         <Card position="static" color="default" className="new-matter">
           <h1 className="offset-by-one columns">Submit New Matter</h1>
+
           <div className="form-field">
             <TextField fullWidth={true} required={true} placeholder="Title" multiline={true} name="title" label="Title" className="text-input" onChange={this.handleChange} margin="normal" />
             <br />
@@ -59,7 +61,7 @@ class NewMatter extends React.Component {
             <TextField fullWidth={true} placeholder="Add additional detail here" multiline={true} name="details" label="Additional Detail" className="text-input" onChange={this.handleChange} margin="normal" />
           </div>
           <div>
-            <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " onClick={this.submitNewMatter}>Submit</Button>
+            <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " type="submit" onClick={this.handleAdd}>Submit</Button>
           </div>
         </Card>
       </div>

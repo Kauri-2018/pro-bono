@@ -54,6 +54,6 @@ export function loginUser (creds) {
           return userInfo
         }
       })
-      .catch(err => dispatch(loginError(err.res.body.message)))
+      .catch(err => dispatch(loginError(err.message)))
   }
 }

@@ -31,9 +31,12 @@ export function login (email, password) {
     })
 }
 
-export function register (email, password, profileData) {
-  return consume('post', `${AUTH_ROUTE}/login`, {email, password, profileData})
-    .then(res => {
-      set('token', res.body.token)
-    })
+export function requestLiveMatters () {
+  return consume('get', `${MATTER_ROUTE}/live`)
+    .then(res => res.body)
+}
+
+export function requestAllMatters () {
+  return consume('get', `${MATTER_ROUTE}/`)
+    .then(res => res.body)
 }

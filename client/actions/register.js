@@ -24,12 +24,12 @@ export function registerError (message) {
   }
 }
 
-export function registerUser (creds) {
+export function registerUser (email, password, role, profileData) {
   return dispatch => {
     // We dispatch requestRegister to kickoff the call to the API
-    dispatch(requestRegister(creds))
+    dispatch(requestRegister({email, password, role}))
 
-    return request('post', `${AUTH_ROUTE}/register`, creds)
+    return request('post', `${AUTH_ROUTE}/register`, {email, password, role, profileData})
       .then((res) => {
         if (!res.ok) {
           // If there was a problem, we want to
