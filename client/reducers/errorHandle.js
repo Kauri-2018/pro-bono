@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "../actions/errorHandle"
+import { ERROR_MESSAGE } from '../actions/errorHandle'
 
 const initialErrorMessage = []
 
