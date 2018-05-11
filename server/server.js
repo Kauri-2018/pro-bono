@@ -3,7 +3,8 @@ const express = require('express')
 
 const authRoutes = require('./routes/auth')
 const matterRoutes = require('./routes/matters')
-// const profileRoutes = require('./routes/profiles')
+const profileRoutes = require('./routes/profiles')
+const usersRoutes = require('./routes/users')
 
 const server = express()
 
@@ -13,7 +14,8 @@ server.use(express.static(path.join(__dirname, './public')))
 // routes
 server.use('/api/v1/auth/', authRoutes)
 server.use('/api/v1/matters/', matterRoutes)
-// server.use('/api/v1/profiles/', profileRoutes)
+server.use('/api/v1/profiles/', profileRoutes)
+server.use('/api/v1/users/', usersRoutes)
 
 // wildcard route
 server.get('*', function (req, res) {
