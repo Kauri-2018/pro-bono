@@ -16,7 +16,7 @@ const testId = 5
 nock.cleanAll()
 
 nock('http://localhost')
-  .get(`${MATTER_ROUTE}/${testId}`)
+  .get(`${MATTER_ROUTE}/id/${testId}`)
   .reply(200, {
     matter: {
       id: testId
@@ -32,7 +32,7 @@ test('requestMatterById returns the correct matter', () => {
 })
 
 nock('http://localhost')
-  .post(`${MATTER_ROUTE}/new`)
+  .post(`${MATTER_ROUTE}/add`)
   .reply(200, {
     data
   })
@@ -40,12 +40,12 @@ nock('http://localhost')
 test('addNewMatter sends post request to server', () => {
   return addNewMatter(data)
     .then(res => {
-      expect(res.body.data.category).toEqual(data.category)
+      expect(res.data.category).toEqual(data.category)
     })
 })
 
 nock('http://localhost')
-  .post(`${MATTER_ROUTE}/new`)
+  .post(`${MATTER_ROUTE}/add`)
   .reply(200, {
     data
   })
@@ -53,6 +53,6 @@ nock('http://localhost')
 test('addNewMatter expect to not equal', () => {
   return addNewMatter(data)
     .then(res => {
-      expect(res.body.data.category).not.toEqual('Family Law')
+      expect(res.data.category).not.toEqual('Family Law')
     })
 })

@@ -24,3 +24,17 @@ export function addNewMatter (data) {
     .send(data)
     .then(res => res.body)
 }
+
+export function requestLiveMatters () {
+  return request.get(`${MATTER_ROUTE}/live`)
+  // TODO Add Auth requirements to api calls
+    // .set('Authorization', `Bearer ${token}`)
+    .then(res => res.body)
+}
+
+export function requestAllMatters () {
+  return request.get(`${MATTER_ROUTE}/`)
+  // TODO Add Auth requirements to api calls
+    // .set('Authorization', `Bearer ${token}`)
+    .then(res => res.body)
+}
