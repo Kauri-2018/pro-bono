@@ -2,7 +2,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {loginUser} from '../actions/login'
+import {loginUser} from '../../actions/login'
 import ErrorMessage from './ErrorMessage'
 
 class Login extends React.Component {

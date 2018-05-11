@@ -14,7 +14,8 @@
     "start": "node server",
     "build": "webpack --config ./client/webpack.config.js",
     "test": "jest --watchAll",
-    "postinstall": "yarn build"
+    "postinstall": "yarn build",
+    "resetdb": "rm ./server/db/dev.sqlite3 && yarn knex migrate:latest && yarn knex seed:run"
   },
   "jest": {
     "setupFiles": [
