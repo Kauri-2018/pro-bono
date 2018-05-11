@@ -7,6 +7,7 @@ import Navbar from './Navbar'
 import Login from './auth/Login'
 import LawyerSection from './users/LawyerSection'
 import MemberSection from './users/MemberSection'
+import RegisterSection from './auth/RegisterSection'
 
 const App = props => {
   return (
@@ -15,13 +16,24 @@ const App = props => {
       <Switch>
         <Route path='/lawyer/register' />
         <Route path='/member/register' />
-        <Route path='/lawyer' component={LawyerSection}/>
-        <Route path='/member' component={MemberSection}/>
+        <Route path='/lawyer' component={LawyerSection} />
+        <Route path='/member' component={MemberSection} />
+        <Route path='/' component={renderHome} />
       </Switch>
-      {!props.user ? <Login /> : <h1>You are already logged in</h1>}
+
     </div>
   )
 }
+
+const renderHome = props => (
+  !props.user
+    ? <div>
+      <Login />
+      <RegisterSection />
+    </div>
+    : <h1>You are already logged in</h1>
+
+)
 
 function mapStateToProps (state) {
   return {

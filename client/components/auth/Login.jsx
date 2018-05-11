@@ -1,6 +1,7 @@
 // Boilerplate
 import React from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import Card from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
@@ -70,4 +71,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(withRouter(Login))
