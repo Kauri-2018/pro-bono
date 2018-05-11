@@ -1,6 +1,4 @@
-import request from 'superagent'
-
-import {get, set} from './utils/localstorage'
+import {set} from './utils/localstorage'
 import consume from './utils/api'
 
 export const BASE_ROUTE = '/api/v1'
@@ -23,33 +21,19 @@ export function requestMatterById (matterId) {
 }
 
 export function addNewMatter (data) {
-  return request.post(`${MATTER_ROUTE}/new`)
-  // TODO Add Auth requirements to api calls
-    .set('Authorization', `Bearer ${get('token')}`)
-    .send(data)
-    .then(res => {
-      if (res.status !== 200) throw new Error(res.body.errorMessage)
-    })
+  return consume('post', `${MATTER_ROUTE}/new`, data)
 }
 
 export function login (email, password) {
-  return request.post(`${AUTH_ROUTE}/login`)
-    .send({email, password})
+  return consume('post', `${AUTH_ROUTE}/login`, {email, password})
     .then(res => {
-      if (res.status === 200) {
-        set('token', res.body.token)
-      }
-      else throw new Error(res.body.errorMessage)
+      set('token', res.body.token)
     })
 }
 
 export function register (email, password, profileData) {
-  return request.post(`${AUTH_ROUTE}/register`)
-    .send({email, password, profileData})
+  return consume('post', `${AUTH_ROUTE}/login`, {email, password, profileData})
     .then(res => {
-      if (res.status === 200) {
-        set('token', res.body.token)
-      }
-      else throw new Error(res.body.errorMessage)
+      set('token', res.body.token)
     })
 }
