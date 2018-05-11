@@ -1,23 +1,28 @@
 // Boilerplate
 import React from 'react'
+import {connect} from 'react-redux'
 
 import Navbar from './Navbar'
-// import Matter from './matters/Matter'
 import Login from './auth/Login'
-import Lawyer from './users/Lawyer'
-import NewMatter from './matters/NewMatter'
+import LawyerSection from './users/LawyerSection'
+import MemberSection from './users/MemberSection'
 
-const App = () => {
+const App = props => {
   return (
     <div className='app container'>
       <Navbar />
-      {/* <Matter title={'Example title'} internalMatterNumber= {999}
-        category={'civil'} details={'a thing happened'} /> */}
-      <Login />
-      <Lawyer matterId={550001}/>
-      <NewMatter />
+      {!props.user && <Login />}
+      {props.user && (props.user.role === 'lawyer'
+        ? <LawyerSection matterId={550001}/>
+        : <MemberSection />)}
     </div>
   )
 }
 
-export default App
+function mapStateToProps (state) {
+  return {
+    user: state.auth.user
+  }
+}
+
+export default connect(mapStateToProps)(App)
