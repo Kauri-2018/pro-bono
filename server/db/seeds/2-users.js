@@ -14,12 +14,18 @@ exports.seed = (knex, Promise) => {
         },
         {
           id: 330002,
-          email: 'lawyer@test.co.nz',
+          email: 'lawyerpen@test.co.nz',
           hash: getHash('lawyer'),
           role: 'lawyer'
         },
         {
           id: 330003,
+          email: 'lawyer@test.co.nz',
+          hash: getHash('lawyer'),
+          role: 'lawyer'
+        },
+        {
+          id: 330004,
           email: 'member@test.co.nz',
           hash: getHash('member'),
           role: 'member'
