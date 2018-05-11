@@ -5,6 +5,7 @@ import Navbar from './Navbar'
 import Login from './auth/Login'
 import Lawyer from './users/Lawyer'
 import NewMatter from './matters/NewMatter'
+import Register from './register/Register'
 import ApproveProfiles from './users/ApproveProfiles'
 
 const App = () => {
