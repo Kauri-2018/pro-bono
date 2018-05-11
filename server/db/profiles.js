@@ -23,10 +23,12 @@ function getAllProfiles (db = knex) {
 
 function getPendingProfiles (db = knex) {
   return db('profiles')
+    .join('users', 'profiles.user_id', '=', 'users.id')
     .where('pending', '=', true)
     .select(
-      'id as profileId',
+      'profiles.id as profileId',
       'centre_id as centreId',
+      'email',
       'user_id as userId',
       'firstname',
       'lastname',
