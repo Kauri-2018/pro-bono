@@ -40,7 +40,7 @@ exports.seed = (knex, Promise) => {
           firstname: 'Zaeburn',
           lastname: 'Pearson',
           phone_number: '027123123',
-          pending: false
+          pending: true
         }
       ])
     })
