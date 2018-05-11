@@ -2,7 +2,8 @@ import {
   requestAllMatters,
   requestMatterById,
   addNewMatter,
-  requestLiveMatters
+  requestLiveMatters,
+  requestIncompleteMatters
 } from '../apiClient'
 
 import {errorHandle} from './errorHandle'
@@ -28,6 +29,19 @@ export function getLiveMatters () {
     return requestLiveMatters()
       .then(liveMatters => {
         dispatch(showMatterList(liveMatters))
+      })
+      .catch(err => {
+        dispatch(errorHandle(err.message))
+        return Promise.reject(err.message)
+      })
+  }
+}
+
+export function getIncompleteMatters () {
+  return dispatch => {
+    return requestIncompleteMatters()
+      .then(incompleteMatters => {
+        dispatch(showMatterList(incompleteMatters))
       })
       .catch(err => {
         dispatch(errorHandle(err.message))

@@ -22,7 +22,7 @@ export function requestMatterById (matterId) {
 }
 
 export function addNewMatter (data) {
-  return consume('post', `${MATTER_ROUTE}/new`, data)
+  return consume('post', `${MATTER_ROUTE}/add`, data)
 }
 
 export function login (email, password) {
@@ -34,6 +34,11 @@ export function login (email, password) {
 
 export function requestLiveMatters () {
   return consume('get', `${MATTER_ROUTE}/live`)
+    .then(res => res.body)
+}
+
+export function requestIncompleteMatters () {
+  return consume('get', `${MATTER_ROUTE}/incomplete`)
     .then(res => res.body)
 }
 
