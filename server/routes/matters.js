@@ -38,6 +38,9 @@ router.put('/', (req, res) => {
 router.get('/live', (req, res) => {
   db.getLiveMatters()
     .then(matters => {
+      if (!matters.length) {
+        throw new Error('There are no live matters')
+      }
       res.json(matters)
     })
     .catch(err => {
@@ -101,8 +104,8 @@ router.get('/category/:category', (req, res) => {
   const category = req.params.category
   db.getLiveMattersByCategory(category)
     .then(matters => {
-      if (!matters) {
-        throw new Error('There was no matter with that category')
+      if (!matters.length) {
+        throw new Error('There are no matters with that category')
       }
       res.json({matters})
     })
