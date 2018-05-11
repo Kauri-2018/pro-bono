@@ -8,19 +8,21 @@ import LawyerSection from './users/LawyerSection'
 import MemberSection from './users/MemberSection'
 import RegisterSection from './auth/RegisterSection'
 import Register from './auth/Register'
+import MatterList from './matters/MatterList'
 
 const App = props => {
   return (
     <Router>
       <div className='app container'>
         <Navbar />
-        <Switch>
+        <MatterList/>
+        {/* <Switch>
           <Route path='/lawyer/register/:type' component={Register}/>
           <Route path='/member/register/:type' component={Register}/>
           <Route path='/lawyer' component={LawyerSection} />
           <Route path='/member' component={MemberSection} />
           <Route path='/' component={renderHome} />
-        </Switch>
+        </Switch> */}
 
       </div>
     </Router>
