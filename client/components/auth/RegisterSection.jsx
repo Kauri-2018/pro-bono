@@ -5,8 +5,8 @@ import {Link} from 'react-router-dom'
 const RegisterSection = () => {
   return (
     <div>
-      <Link to='/register/lawyer'><button>Register as a Lawyer</button></Link>
-      <Link to='/register/member'><button>Register as a Community Law Centre Member</button></Link>
+      <Link to='/lawyer/register'><button>Register as a Lawyer</button></Link>
+      <Link to='/member/register'><button>Register as a Community Law Centre Member</button></Link>
     </div>
   )
 }
