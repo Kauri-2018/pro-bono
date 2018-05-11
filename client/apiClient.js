@@ -4,6 +4,7 @@ import consume from './utils/api'
 export const BASE_ROUTE = '/api/v1'
 export const MATTER_ROUTE = BASE_ROUTE + '/matters'
 export const AUTH_ROUTE = BASE_ROUTE + '/auth'
+export const PROFILE_ROUTE = BASE_ROUTE + '/profiles'
 
 /**
  * Gets a matter by id
@@ -39,4 +40,11 @@ export function requestLiveMatters () {
 export function requestAllMatters () {
   return consume('get', `${MATTER_ROUTE}/`)
     .then(res => res.body)
+}
+
+export function requestPendingProfiles () {
+  return request.get(`${PROFILE_ROUTE}/pending`)
+  // TODO Add Auth requirements to api calls
+    // .set('Authorization', `Bearer ${token}`)
+    .then(res => res.body.profiles)
 }
