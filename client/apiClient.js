@@ -33,7 +33,7 @@ export function requestLiveMatters () {
 }
 
 export function requestAllMatters () {
-  return request.get('/api/v1/matters/')
+  return request.get(`${MATTER_ROUTE}/`)
   // TODO Add Auth requirements to api calls
     // .set('Authorization', `Bearer ${token}`)
     .then(res => res.body)

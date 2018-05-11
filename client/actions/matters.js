@@ -7,7 +7,7 @@ import {
 
 import errorHandle from './errorHandle'
 
-export const SHOW_MATTER_LIST = 'SHOW_ALL_MATTERS'
+export const SHOW_MATTER_LIST = 'SHOW_MATTER_LIST'
 export const SHOW_MATTER_BY_ID = 'SHOW_MATTER_BY_ID'
 
 export function getAllMatters () {
@@ -17,8 +17,8 @@ export function getAllMatters () {
         dispatch(showMatterList(allMatters))
       })
       .catch(err => {
-        dispatch(errorHandle(err.response.body.message))
-        return Promise.reject(err.response.body.message)
+        dispatch(errorHandle(err.message))
+        return Promise.reject(err.message)
       })
   }
 }
@@ -30,8 +30,8 @@ export function getLiveMatters () {
         dispatch(showMatterList(liveMatters))
       })
       .catch(err => {
-        dispatch(errorHandle(err.response.body.message))
-        return Promise.reject(err.response.body.message)
+        dispatch(errorHandle(err.message))
+        return Promise.reject(err.message)
       })
   }
 }
@@ -50,8 +50,8 @@ export function getMatterById (id) {
         dispatch(showMatterById(matterById))
       })
       .catch(err => {
-        dispatch(errorHandle(err.response.body.message))
-        return Promise.reject(err.response.body.message)
+        dispatch(errorHandle(err.message))
+        return Promise.reject(err.message)
       })
   }
 }
