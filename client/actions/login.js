@@ -1,5 +1,6 @@
 import request from '../utils/api'
 import {saveUserToken} from '../utils/auth'
+import {AUTH_ROUTE} from '../apiClient'
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -38,7 +39,7 @@ export function loginUser (creds) {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds))
 
-    return request('post', '/signin', creds)
+    return request('post', `${AUTH_ROUTE}/login`, creds)
       .then((response) => {
         if (!response.ok) {
           // If there was a problem, we want to

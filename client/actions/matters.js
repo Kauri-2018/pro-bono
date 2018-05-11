@@ -16,8 +16,8 @@ export function getallMatters () {
         dispatch(showAllMatters(allMatters))
       })
       .catch(err => {
-        dispatch(errorHandle(err.response.body.message))
-        return Promise.reject(err.response.body.message)
+        dispatch(errorHandle(err.message))
+        return Promise.reject(err.message)
       })
   }
 }
@@ -36,8 +36,8 @@ export function getMatterById (id) {
         dispatch(showMatterById(matterById))
       })
       .catch(err => {
-        dispatch(errorHandle(err.response.body.message))
-        return Promise.reject(err.response.body.message)
+        dispatch(errorHandle(err.message))
+        return Promise.reject(err.message)
       })
   }
 }

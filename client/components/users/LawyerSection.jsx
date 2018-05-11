@@ -9,7 +9,7 @@ import {getMatterById} from '../../actions/matters'
 import ActiveMatter from '../matters/ActiveMatter'
 import MatterList from '../matters/MatterList'
 
-class Lawyer extends React.Component {
+class LawyerSection extends React.Component {
   constructor (props) {
     super(props)
   }
@@ -21,9 +21,9 @@ class Lawyer extends React.Component {
   render () {
     return (
       <div>
-        {this.props.matterById ? 
-        <ActiveMatter matterById={this.props.matterById} /> :
-        <MatterList matters={this.props.allMatters} />}
+        {this.props.matterById
+          ? <ActiveMatter matterById={this.props.matterById} />
+          : <MatterList matters={this.props.allMatters} />}
       </div>
     )
   }
@@ -36,4 +36,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Lawyer)
+export default connect(mapStateToProps)(LawyerSection)
