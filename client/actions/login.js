@@ -1,5 +1,6 @@
 import request from '../utils/api'
 import {saveUserToken} from '../utils/auth'
+import {AUTH_ROUTE} from '../apiClient'
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -38,19 +39,21 @@ export function loginUser (creds) {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds))
 
-    return request('post', '/signin', creds)
-      .then((response) => {
-        if (!response.ok) {
+    return request('post', `${AUTH_ROUTE}/login`, creds)
+      .then((res) => {
+        if (!res.ok) {
           // If there was a problem, we want to
           // dispatch the error condition
-          dispatch(loginError(response.body.message))
-          return Promise.reject(response.body.message)
+          dispatch(loginError(res.body.errorMessage))
+          return Promise.reject(res.body.errorMessage)
         } else {
           // If login was successful, set the token in local storage
-          const userInfo = saveUserToken(response.body.token)
+          const userInfo = saveUserToken(res.body.token)
           // Dispatch the success action
           dispatch(receiveLogin(userInfo))
+          return userInfo
         }
-      }).catch(err => dispatch(loginError(err.response.body.message)))
+      })
+      .catch(err => dispatch(loginError(err.message)))
   }
 }

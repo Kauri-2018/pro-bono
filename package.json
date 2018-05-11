@@ -1,7 +1,7 @@
 {
-  "name": "boilerplate-local-jwt-auth",
+  "name": "pro-bono",
   "version": "0.2.0",
-  "description": "Local Passport strategy boilerplate using libsodium and JWTs",
+  "description": "A project for the Auckland Community Law Centre, to connect clients with lawyers working pro-bono",
   "main": "server/index.js",
   "author": "EDA",
   "license": "ISC",
@@ -14,7 +14,8 @@
     "start": "node server",
     "build": "webpack --config ./client/webpack.config.js",
     "test": "jest --watchAll",
-    "postinstall": "yarn build"
+    "postinstall": "yarn build",
+    "resetdb": "rm ./server/db/dev.sqlite3 && yarn knex migrate:latest && yarn knex seed:run"
   },
   "jest": {
     "setupFiles": [
@@ -52,7 +53,9 @@
     "webpack": "^3.11.0"
   },
   "devDependencies": {
+    "@material-ui/icons": "^1.0.0-beta.43",
     "jest": "^22.3.0",
+    "material-ui": "^1.0.0-beta.47",
     "nock": "^9.2.5",
     "nodemon": "^1.15.0",
     "sqlite3": "^3.1.13",
