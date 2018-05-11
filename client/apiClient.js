@@ -18,10 +18,11 @@ export function requestMatterById (matterId) {
 }
 
 export function addNewMatter (data) {
-  return request.post('/api/v1/matters/add')
+  return request.post(`${MATTER_ROUTE}/add`)
   // TODO Add Auth requirements to api calls
     // .set('Authorization', `Bearer ${token}`)
     .send(data)
+    .then(res => res.body)
 }
 
 export function requestLiveMatters () {
