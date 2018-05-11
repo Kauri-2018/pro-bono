@@ -38,3 +38,10 @@ export function requestAllMatters () {
     // .set('Authorization', `Bearer ${token}`)
     .then(res => res.body)
 }
+
+export function requestPendingProfiles () {
+  return request.get(`api/v1/profiles`)
+  // TODO Add Auth requirements to api calls
+    // .set('Authorization', `Bearer ${token}`)
+    .then(res => res.body)
+}
