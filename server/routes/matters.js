@@ -37,7 +37,7 @@ router.put('/', (req, res) => {
 
 router.get('/live', (req, res) => {
   db.getLiveMatters()
-    .then( matters => {
+    .then(matters => {
       res.json(matters)
     })
     .catch(err => {
