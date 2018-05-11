@@ -107,7 +107,7 @@ function addNewMatter (matter, db = knex) {
       'details': matter.details,
       'contact_email': matter.contactEmail,
       'is_complete': false,
-      'claimed_by': null,
+      'claimed_by': 0,
       'centre_id': matter.centreId,
       'title': matter.title,
       'internal_matter_number': matter.internalMatterNumber

@@ -79,7 +79,7 @@ router.post('/add', (req, res) => {
 // have not tested if this updates role to admin in users
 router.put('/approve', (req, res) => {
   const profileId = req.body.profileId
-  const isAdmin = req.body.admin
+  const isAdmin = req.body.isAdmin
   db.markAsApproved(profileId, isAdmin)
     .then(() => {
       res.sendStatus(200)

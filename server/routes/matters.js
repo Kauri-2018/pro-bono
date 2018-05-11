@@ -21,8 +21,8 @@ router.get('/', (req, res) => {
 router.put('/', (req, res) => {
   const matterId = req.body.matterId
   db.markAsComplete(matterId)
-    .then((matterIds) => {
-      if (!matterIds) {
+    .then((matterId) => {
+      if (!matterId) {
         throw new Error('There was no incomplete matter with that id')
       }
     })
