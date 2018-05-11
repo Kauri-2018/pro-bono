@@ -63,12 +63,7 @@ class NewMatter extends React.Component {
           <div>
             <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " type="submit" onClick={this.handleAdd}>Submit</Button>
           </div>
-<<<<<<< HEAD
-
-        </AppBar>
-=======
         </Card>
->>>>>>> 5b60059c1df7614404e703ea30c6863b07d2a8f5
       </div>
     )
   }
