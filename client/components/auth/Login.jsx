@@ -34,12 +34,10 @@ class Login extends React.Component {
     }
     this.props.loginUser(creds)
       .then(userInfo => {
-        this.redirect(`/${userInfo.role}`)
+        if (userInfo.role) {
+          this.props.history.push(`/${userInfo.role}`)
+        }
       })
-  }
-
-  redirect (route) {
-    this.props.history.push(route)
   }
 
   render () {

@@ -1,19 +1,20 @@
 import {
   requestAllMatters,
   requestMatterById,
-  addNewMatter
+  addNewMatter,
+  requestLiveMatters
 } from '../apiClient'
 
 import {errorHandle} from './errorHandle'
 
-export const SHOW_ALL_MATTERS = 'SHOW_ALL_MATTERS'
+export const SHOW_MATTER_LIST = 'SHOW_MATTER_LIST'
 export const SHOW_MATTER_BY_ID = 'SHOW_MATTER_BY_ID'
 
-export function getallMatters () {
+export function getAllMatters () {
   return dispatch => {
     return requestAllMatters()
       .then(allMatters => {
-        dispatch(showAllMatters(allMatters))
+        dispatch(showMatterList(allMatters))
       })
       .catch(err => {
         dispatch(errorHandle(err.message))
@@ -22,10 +23,23 @@ export function getallMatters () {
   }
 }
 
-export function showAllMatters (allMatters) {
+export function getLiveMatters () {
+  return dispatch => {
+    return requestLiveMatters()
+      .then(liveMatters => {
+        dispatch(showMatterList(liveMatters))
+      })
+      .catch(err => {
+        dispatch(errorHandle(err.message))
+        return Promise.reject(err.message)
+      })
+  }
+}
+
+export function showMatterList (matterList) {
   return {
-    type: SHOW_ALL_MATTERS,
-    allMatters
+    type: SHOW_MATTER_LIST,
+    matterList
   }
 }
 
@@ -50,7 +64,7 @@ export function showMatterById (matterById) {
 }
 
 // added to action so that it can be expanded upon later rather than adding straight to apiClient
-export function NewMatter (data) {
+export function postNewMatter (data) {
   return dispatch => {
     return addNewMatter(data)
   }
