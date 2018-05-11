@@ -37,8 +37,8 @@ router.put('/', (req, res) => {
 
 router.get('/live', (req, res) => {
   db.getLiveMatters()
-    .then(matters => {
-      res.json({matters})
+    .then( matters => {
+      res.json(matters)
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})

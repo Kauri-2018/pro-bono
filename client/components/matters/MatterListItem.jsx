@@ -4,8 +4,10 @@
   // render Matter.jsx and Claim button
   import React from 'react'
 
-  const MatterListItem = () => (
-    <div>haiii</div>
+  import Matter from './Matter'
+
+  const MatterListItem = ({matter}) => (
+    <Matter singleMatter={matter} />
   )
 
   export default MatterListItem

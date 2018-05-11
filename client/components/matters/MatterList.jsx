@@ -18,12 +18,12 @@ class MatterList extends React.Component {
     return (
       <div className='matterList'>
         {this.props.liveMatters.length ?
-          this.props.liveMatters.map(matter => {
+          this.props.liveMatters.map(matter => 
             <MatterListItem
-            key={matter.id}
-            {...matter}
+            key={matter.referenceNumber}
+            matter={matter}
             />
-            }) :
+            ) :
           <h4>No Live Matters</h4>
         }
       </div>
@@ -33,8 +33,7 @@ class MatterList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    // should return an object with all details of a single matter
-   liveMatters: state.matterList || []
+   liveMatters: state.matterList
   }
 }
 
