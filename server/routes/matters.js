@@ -22,7 +22,7 @@ router.put('/', (req, res) => {
   const matterId = req.body.matterId
   db.markAsComplete(matterId)
     .then((matterIds) => {
-      if (!matterIds.length) {
+      if (!matterIds) {
         throw new Error('There was no incomplete matter with that id')
       }
     })
@@ -37,6 +37,19 @@ router.put('/', (req, res) => {
 
 router.get('/live', (req, res) => {
   db.getLiveMatters()
+    .then(matters => {
+      if (!matters.length) {
+        throw new Error('There are no live matters')
+      }
+      res.json(matters)
+    })
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
+
+router.get('/incomplete', (req, res) => {
+  db.getIncompleteMatters()
     .then(matters => {
       if (!matters.length) {
         throw new Error('There are no live matters')

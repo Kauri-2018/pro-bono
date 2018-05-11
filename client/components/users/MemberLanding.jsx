@@ -2,7 +2,7 @@ import React from 'react'
 
 import NewMatter from './matters/NewMatter'
 import FindMatterById from './matters/FindMatterById'
-import ApproveUser from './approveUser'
+import ApproveProfiles from './ApproveProfiles'
 
 const MemberLanding = () => {
   return (
@@ -22,7 +22,7 @@ const MemberLanding = () => {
       <div className="tab-approve-user">
         <button className="tablinks" onClick="openApproveUser(event, 'ApproveUser')">Approve users</button>
         <div id="ApproveUser" className="tabcontent">
-          <ApproveUser key='approve-user' />
+          <ApproveProfiles key='approve-user' />
         </div>
       </div>
     </div>
