@@ -2,14 +2,20 @@
 import React from 'react'
 
 import Navbar from './Navbar'
-import Matter from './matters/Matter'
+import Login from './auth/Login'
+import Lawyer from './users/Lawyer'
+import NewMatter from './matters/NewMatter'
+// import Register from './register/Register'
+import ApproveProfiles from './users/ApproveProfiles'
 
 const App = () => {
   return (
-    <div>
+    <div className='app container'>
       <Navbar />
-      <Matter title={'Example title'} internalMatterNumber= {999}
-        category={'civil'} details={'a thing happened'} />
+      <Login />
+      <Lawyer matterId={550001}/>
+      <NewMatter />
+      <ApproveProfiles />
     </div>
   )
 }
