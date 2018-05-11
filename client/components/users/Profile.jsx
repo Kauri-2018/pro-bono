@@ -15,6 +15,8 @@ const Profile = (props) => (
       <Divider />
       <div>{props.singleProfile.company}</div>
       <Divider />
+      <div>{props.singleProfile.email}</div>
+      <Divider />
       <div>{props.singleProfile.phoneNumber}</div>
     </Card>
   </div>
