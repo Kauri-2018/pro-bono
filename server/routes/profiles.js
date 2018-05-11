@@ -3,6 +3,7 @@ const express = require('express')
 // const token = require('../auth/token')
 
 const db = require('../db/profiles')
+const dbUsers = require('../db/users')
 
 const router = express.Router()
 
@@ -21,6 +22,9 @@ router.get('/', (req, res) => {
 router.get('/pending', (req, res) => {
   db.getPendingProfiles()
     .then(profiles => {
+      if (!profiles) {
+        throw new Error('There are no profiles pending approval')
+      }
       res.json({profiles})
     })
     .catch(err => {
@@ -42,6 +46,9 @@ router.get('/:id', (req, res) => {
   const profileId = req.params.id
   db.getProfileById(profileId)
     .then(profile => {
+      if (!profile) {
+        throw new Error('There is no profile with that id')
+      }
       res.json({profile})
     })
     .catch(err => {
@@ -49,26 +56,34 @@ router.get('/:id', (req, res) => {
     })
 })
 
+// check if user exists, if not then add user to users and add profile to profiles
+// if user does exist throw new error
+
 router.post('/add', (req, res) => {
-  const profile = req.body
-  db.addProfile(profile)
-    .then(() => {
-      res.sendStatus(200)
+  dbUsers.exists(req.body.email)
+    .then(exists => {
+      if (exists) {
+        throw new Error('User exists')
+      }
+      const profile = req.body
+      db.addProfile(profile)
+        .then(() => { // next())
+          res.sendStatus(200)
+        })
     })
     .catch(err => {
       res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })
 
-router.put('/', (req, res) => {
+// have not tested if this updates role to admin in users
+router.put('/approve', (req, res) => {
   const profileId = req.body.profileId
-  // const admin = req.body.admin
-  // if admin === true db(makeAdmin) & db(markAsApproved)
-  // if admin === false db(markAsApproved)
-  db.markAsApproved(profileId)
-    .then(() => db.getPendingProfiles())
-    .then(profiles => {
-      res.json({profiles})
+  const userId = req.body.userId
+  const admin = req.body.admin
+  db.markAsApproved(profileId, userId, admin)
+    .then(() => {
+      res.sendStatus(200)
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})

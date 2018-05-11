@@ -2,6 +2,8 @@ const environment = process.env.NODE_ENV || 'development'
 const config = require('./knexfile')[environment]
 const knex = require('knex')(config)
 
+const {makeAdmin} = require('./users')
+
 // const crypto = require('./crypto')
 
 function getAllProfiles (db = knex) {
@@ -38,8 +40,8 @@ function getPendingProfiles (db = knex) {
 function getApprovedProfiles (db = knex) {
   return db('profiles')
     .join('users', 'profiles.user_id', '=', 'users.id')
-    .join('lawcentres', 'profiles.centre_id', '=', 'lawcentres.id')
-    .where('pending', '=', true)
+    // .join('lawcentres', 'profiles.centre_id', '=', 'lawcentres.id')
+    .where('pending', '=', false)
     .select(
       'profiles.id as profileId',
       'centre_id as centreId',
@@ -71,29 +73,25 @@ function getProfileById (profileId, db = knex) {
     .first()
 }
 
-function markAsApproved (profileId, db = knex) {
+function markAsApproved (profileId, userId, admin, db = knex) {
   return db('profiles')
     .where('id', '=', profileId)
     .update({pending: false})
-}
-
-function makeAdmin (profileId, db = knex) {
-  return db('users')
-    .join('profiles', 'profiles.user_id', '=', 'users.id')
-    .where('users.id', '=', profileId)
-    .update({role: 'admin'})
+    .then(() => {
+      if (admin) makeAdmin(userId)
+    })
 }
 
 function addProfile (profile, db = knex) {
   return db('profiles')
     .insert({
       'centre_id': profile.centreId || 0,
-      // 'user_id': profile.userId, - check with Kaufee!!
+      'user_id': profile.userId,
       'firstname': profile.firstname,
       'lastname': profile.lastname,
       'phone_number': profile.phoneNumber,
       'pending': true,
-      'certificate': null,
+      'certificate': profile.certificate || null,
       'company': profile.company || null
     })
 }
