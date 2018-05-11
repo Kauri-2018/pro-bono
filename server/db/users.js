@@ -8,7 +8,6 @@ const {generate} = require('../lib/crypto')
 module.exports = {
   create,
   exists,
-  getUsers,
   getById,
   getByEmail,
   addUser,
@@ -34,16 +33,6 @@ function exists (email, testDb) {
     .then(count => {
       return count[0].n > 0
     })
-}
-
-function getUsers (testDb) {
-  const connection = testDb || knex
-  return connection('users')
-    .select(
-      'id as userId',
-      'email',
-      'role'
-    )
 }
 
 function getById (id, testDb) {
@@ -73,10 +62,9 @@ function addUser (email, password, role, testDb) {
     })
 }
 
-function makeAdmin (profileUserId, testDb) {
+function makeAdmin (userId, testDb) {
   const connection = testDb || knex
   return connection('users')
-    .join('profiles', 'profiles.user_id', '=', 'users.id')
-    .where('users.id', '=', profileUserId)
+    .where('id', '=', userId)
     .update({role: 'admin'})
 }

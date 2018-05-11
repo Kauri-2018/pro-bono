@@ -8,16 +8,6 @@ const router = express.Router()
 
 router.use(express.json())
 
-router.get('/', (req, res) => {
-  db.getUsers()
-    .then(users => {
-      res.json({users})
-    })
-    .catch(err => {
-      res.status(500).json({errorMessage: err.message})
-    })
-})
-
 router.get('/:userId', (req, res) => {
   const userId = req.params.userId
   db.getById(userId)

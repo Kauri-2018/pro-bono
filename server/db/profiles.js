@@ -73,12 +73,19 @@ function getProfileById (profileId, db = knex) {
     .first()
 }
 
-function markAsApproved (profileId, userId, admin, db = knex) {
+function markAsApproved (profileId, isAdmin, db = knex) {
   return db('profiles')
     .where('id', '=', profileId)
     .update({pending: false})
     .then(() => {
-      if (admin) makeAdmin(userId)
+      if (isAdmin) {
+        return db('profiles')
+          .where('id', '=', profileId)
+          .select().first()
+          .then((profile) => {
+            return makeAdmin(profile.user_id)
+          })
+      }
     })
 }
 
