@@ -21,9 +21,9 @@ class Lawyer extends React.Component {
   render () {
     return (
       <div>
-        {this.props.matterById ? 
+        {this.props.matterId ? 
         <ActiveMatter matterById={this.props.matterById} /> :
-        <MatterList matters={this.props.allMatters} />}
+        <MatterList />}
       </div>
     )
   }
@@ -31,7 +31,6 @@ class Lawyer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    // should return an object with all details of a single matter
     matterById: state.matterById
   }
 }

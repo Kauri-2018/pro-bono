@@ -2,6 +2,7 @@ import request from 'superagent'
 
 export const BASE_ROUTE = '/api/v1/'
 export const MATTER_ROUTE = BASE_ROUTE + 'matters'
+export const PROFILE_ROUTE = BASE_ROUTE + 'profiles'
 
 // TODO Add Auth requirements to api calls
 // const token = localStorage.getItem('token')
@@ -23,4 +24,25 @@ export function addNewMatter (data) {
     // .set('Authorization', `Bearer ${token}`)
     .send(data)
     .then(res => res.body)
+}
+
+export function requestLiveMatters () {
+  return request.get(`${MATTER_ROUTE}/live`)
+  // TODO Add Auth requirements to api calls
+    // .set('Authorization', `Bearer ${token}`)
+    .then(res => res.body)
+}
+
+export function requestAllMatters () {
+  return request.get(`${MATTER_ROUTE}/`)
+  // TODO Add Auth requirements to api calls
+    // .set('Authorization', `Bearer ${token}`)
+    .then(res => res.body)
+}
+
+export function requestPendingProfiles () {
+  return request.get(`${PROFILE_ROUTE}/pending`)
+  // TODO Add Auth requirements to api calls
+    // .set('Authorization', `Bearer ${token}`)
+    .then(res => res.body.profiles)
 }
