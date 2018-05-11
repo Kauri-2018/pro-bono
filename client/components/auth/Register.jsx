@@ -37,7 +37,7 @@ class Register extends React.Component {
       company: this.state.company
     }
 
-    this.props.dispatch(registerUser(this.state.email, this.state.password, this.props, newUser))
+    this.props.dispatch(registerUser(this.state.email, this.state.password, this.props.match.params.type, newUser))
   }
 
   render () {

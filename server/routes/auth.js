@@ -8,7 +8,7 @@ const auth = require('../lib/auth')
 const router = express.Router()
 router.use(express.json())
 
-router.post('/signin',
+router.post('/login',
   signIn,
   auth.issueJwt
 )
@@ -19,10 +19,7 @@ router.post('/register',
 )
 
 function signIn (req, res, next) {
-  users.getByName(req.body.username)
-    .then(user => {
-      return user || invalidCredentials(res)
-    })
+  users.getByEmail(req.body.email)
     .then(user => {
       return user && crypto.verifyUser(user.hash, req.body.password)
     })
@@ -37,16 +34,19 @@ function signIn (req, res, next) {
 }
 
 function register (req, res, next) {
-  users.exists(req.body.username)
+  if (!req.body.role) {
+    throw new Error('Missing user role')
+  }
+  users.exists(req.body.email)
     .then(exists => {
       if (exists) {
-        return res.status(400).send({message: 'User exists'})
+        throw new Error('User already exists')
       }
-      users.create(req.body.username, req.body.password)
+      users.create(req.body.email, req.body.password, req.body.role)
         .then(() => next())
     })
     .catch(err => {
-      res.status(400).send({message: err.message})
+      res.status(400).json({errorMessage: err.message})
     })
 }
 
@@ -56,26 +56,10 @@ function invalidCredentials (res) {
   })
 }
 
-// express-jwt middleware lets us use a function as the secret,
-// so we can grab from wherever...
+// express-jwt middleware lets us use a function as the secret
 function getSecret (req, payload, done) {
   done(null, process.env.JWT_SECRET)
 }
-
-// This route will set the req.user object if it exists, but is still public
-router.get('/quote',
-  verifyJwt({
-    credentialsRequired: false,
-    secret: getSecret
-  }),
-  (req, res) => {
-    const response = {message: 'This is a PUBLIC quote.'}
-    if (req.user) {
-      response.user = `Your user ID is: ${req.user.id}`
-    }
-    res.json(response)
-  }
-)
 
 // Protect all routes beneath this point
 router.use(
