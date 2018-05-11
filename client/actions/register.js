@@ -1,6 +1,7 @@
 import request from '../utils/api'
 import {receiveLogin} from './login'
 import {saveUserToken} from '../utils/auth'
+import {AUTH_ROUTE} from '../apiClient'
 
 export const REGISTER_REQUEST = 'REGISTER_REQUEST'
 export const REGISTER_FAILURE = 'REGISTER_FAILURE'
@@ -28,21 +29,21 @@ export function registerUser (creds) {
     // We dispatch requestRegister to kickoff the call to the API
     dispatch(requestRegister(creds))
 
-    return request('post', '/register', creds)
-      .then((response) => {
-        if (!response.ok) {
+    return request('post', `${AUTH_ROUTE}/register`, creds)
+      .then((res) => {
+        if (!res.ok) {
           // If there was a problem, we want to
           // dispatch the error condition
-          dispatch(registerError(response.body.message))
-          return Promise.reject(response.body.message)
+          dispatch(registerError(res.body.message))
+          return Promise.reject(res.body.message)
         } else {
           // If login was successful, set the token in local storage
-          const userInfo = saveUserToken(response.body.token)
+          const userInfo = saveUserToken(res.body.token)
           // Dispatch the success action
           dispatch(receiveLogin(userInfo))
         }
       }).catch(err => {
-        dispatch(registerError(err.response.body.message))
+        dispatch(registerError(err.message))
       })
   }
 }

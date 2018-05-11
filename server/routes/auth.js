@@ -35,18 +35,18 @@ function signIn (req, res, next) {
 
 function register (req, res, next) {
   if (!req.body.role) {
-    return res.status(400).send({message: 'Missing user role'})
+    throw new Error('Missing user role')
   }
   users.exists(req.body.email)
     .then(exists => {
       if (exists) {
-        return res.status(400).send({message: 'User already exists'})
+        throw new Error('User already exists')
       }
-      users.create(req.body.email, req.body.password)
+      users.create(req.body.email, req.body.password, req.body.role)
         .then(() => next())
     })
     .catch(err => {
-      res.status(400).send({message: err.message})
+      res.status(400).json({errorMessage: err.message})
     })
 }
 

@@ -11,14 +11,15 @@ module.exports = {
   getByName
 }
 
-function create (email, password, testDb) {
+function create (email, password, role, testDb) {
   const hash = crypto.getHash(password)
   const connection = testDb || knex
 
   return connection('users')
     .insert({
-      email: email,
-      hash: hash
+      email,
+      hash: hash,
+      role
     })
 }
 
