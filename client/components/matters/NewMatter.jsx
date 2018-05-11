@@ -14,7 +14,8 @@ class NewMatter extends React.Component {
       contactEmail: '',
       category: '',
       internalReferenceId: '',
-      details: ''
+      details: '',
+      centreId: props.centreId
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -28,13 +29,7 @@ class NewMatter extends React.Component {
   }
 
   handleAdd (e) {
-    const newMatter = {
-      title: this.state.title,
-      contactEmail: this.state.contactEmail,
-      category: this.state.category,
-      internalReferenceId: this.state.internalReferenceId,
-      details: this.state.details
-    }
+    const newMatter = { ...this.state }
     // alert('Submitted new matter: ' + newMatter.title)
     this.props.dispatch(postNewMatter(newMatter))
   }
@@ -55,7 +50,7 @@ class NewMatter extends React.Component {
             <TextField fullWidth={true} required={true} placeholder="Category" multiline={true} name="category" label="Category" className="text-input" onChange={this.handleChange} margin="normal" />
             <br />
             <br />
-            <TextField fullWidth={true} placeholder="Internal reference ID (optional)" multiline={true} name="internalReferenceId" label="Internal reference ID (optional)" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField fullWidth={true} placeholder="Internal reference ID (optional)" multiline={true} name="internalMatterNumber" label="Internal reference ID (optional)" className="text-input" onChange={this.handleChange} margin="normal" />
             <br />
             <br />
             <TextField fullWidth={true} placeholder="Add additional detail here" multiline={true} name="details" label="Additional Detail" className="text-input" onChange={this.handleChange} margin="normal" />
@@ -66,6 +61,12 @@ class NewMatter extends React.Component {
         </Card>
       </div>
     )
+  }
+}
+
+function mapStateToProps (state) {
+  return {
+    currentUser: state.auth.user 
   }
 }
 
