@@ -1,3 +1,7 @@
+html {
+  font-size: 100%; 
+}
+
 .container {
   position: relative;
   width: 100%;
@@ -20,6 +24,15 @@
   padding-bottom: 3vh;
   padding-left: 10vw;
   padding-right: 10vw;
+}
+.register-input {
+  float: right;
+}
+.register {
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  padding-left: 15vw;
+  padding-right: 15vw;
 }
 
 
