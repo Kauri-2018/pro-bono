@@ -11,15 +11,16 @@ export const MATTER_ROUTE = BASE_ROUTE + 'matters'
  * @returns {Promise({ matter })}
  */
 export function requestMatterById (matterId) {
-  return request.get(`${MATTER_ROUTE}/${matterId}`)
+  return request.get(`${MATTER_ROUTE}/id/${matterId}`)
   // TODO Add Auth requirements to api calls
     // .set('Authorization', `Bearer ${token}`)
     .then(res => res.body)
 }
 
 export function addNewMatter (data) {
-  return request.post('/api/v1/matters/new')
+  return request.post(`${MATTER_ROUTE}/add`)
   // TODO Add Auth requirements to api calls
     // .set('Authorization', `Bearer ${token}`)
     .send(data)
+    .then(res => res.body)
 }
