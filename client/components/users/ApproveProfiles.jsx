@@ -1,7 +1,7 @@
 // renders 'Profiles' waiting for approval:'
   import React from 'react'
   import {connect} from 'react-redux'
-  import {action} from '../../actions/profiles'
+  import {getPendingProfiles} from '../../actions/profiles'
 
   import ProfileList from './ProfileList'
 
@@ -14,11 +14,19 @@ class ApproveProfile extends React.Component {
     this.props.dispatch(getPendingProfiles())
   }
 
-  Render () {
+  render () {
     return (
-      <div>haiiiii</div>
+      <div>
+        <ProfileList pendingProfiles={this.props.pendingProfilesArray} />
+      </div>
     )
   }
 }
 
-export default connect()(ApproveProfile)
+const mapStateToProps = state => {
+  return {
+   pendingProfilesArray: state.profiles
+  }
+}
+
+export default connect(mapStateToProps)(ApproveProfile)

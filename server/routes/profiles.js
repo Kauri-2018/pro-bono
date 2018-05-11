@@ -12,7 +12,7 @@ router.use(express.json())
 router.get('/', (req, res) => {
   db.getAllProfiles()
     .then(profiles => {
-      res.json({profiles})
+      res.json(profiles)
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
