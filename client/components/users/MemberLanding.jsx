@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography'
 
 import NewMatter from '../matters/NewMatter'
 import ApproveProfiles from './ApproveProfiles'
+import MemberMatterList from '../matters/MemberMatterList'
 import {getMatterById} from '../../actions/matters'
 
 class MemberLanding extends React.Component {
@@ -23,7 +24,6 @@ class MemberLanding extends React.Component {
     this.setState({ selectedTabIndex })
   }
 
-
   componentDidMount () {
     if (this.props.matterId) {
       this.props.dispatch(getMatterById(this.props.matterId))
@@ -38,11 +38,13 @@ class MemberLanding extends React.Component {
         <AppBar position='static'>
           <Tabs value={selectedTabIndex} onChange={this.switchTab}>
             <Tab label="New Matters" />
+            <Tab label="See Matters" />
             <Tab label="Approve Users" disabled={!isAdmin} />
           </Tabs>
         </AppBar>
         {selectedTabIndex === 0 && <NewMatter />}
-        {selectedTabIndex === 1 && <ApproveProfiles />}
+        {selectedTabIndex === 1 && <MemberMatterList />}
+        {selectedTabIndex === 2 && <ApproveProfiles />}
       </div>
     )
   }
