@@ -1,23 +1,42 @@
 // renders 'Profiles' waiting for approval:'
-  import React from 'react'
-  import {connect} from 'react-redux'
-  import {getPendingProfiles} from '../../actions/profiles'
+import React from 'react'
+import {connect} from 'react-redux'
+import {getPendingProfiles} from '../../actions/profiles'
+import {approvePendingProfile} from '../../apiClient'
 
-  import ProfileList from './ProfileList'
+import ProfileList from './ProfileList'
+import ErrorMessage from '../ErrorMessage'
 
-class ApproveProfile extends React.Component {
-  constructor(props){
+class ApproveProfiles extends React.Component {
+  constructor (props) {
     super(props)
+    this.approveProfile = this.approveProfile.bind(this)
   }
 
   componentDidMount () {
     this.props.dispatch(getPendingProfiles())
   }
 
+  approveProfile (profileId) {
+    let isAdmin = false
+    if (this.props.role === 'admin') {
+      isAdmin = true
+    } else {
+      isAdmin = false
+    }
+    approvePendingProfile(profileId, isAdmin)
+      .then(() => {
+        this.props.dispatch(getPendingProfiles())
+      })
+  }
+
   render () {
     return (
       <div>
-        <ProfileList pendingProfiles={this.props.pendingProfilesArray} />
+        <ProfileList
+          pendingProfiles={this.props.pendingProfilesArray}
+          approveProfile={this.approveProfile} />
+        <ErrorMessage />
       </div>
     )
   }
@@ -25,8 +44,9 @@ class ApproveProfile extends React.Component {
 
 const mapStateToProps = state => {
   return {
-   pendingProfilesArray: state.profiles
+    pendingProfilesArray: state.profiles,
+    role: state.auth.user.role
   }
 }
 
-export default connect(mapStateToProps)(ApproveProfile)
+export default connect(mapStateToProps)(ApproveProfiles)

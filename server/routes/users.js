@@ -10,12 +10,12 @@ router.get('/pending', (req, res) => {
   db.getPendingProfiles()
     .then(profiles => {
       if (!profiles.length) {
-        throw new Error('There are no profiles pending approval')
+        profiles = []
       }
       res.json({profiles})
     })
     .catch(err => {
-      res.status(500).json({errorMessage: err.message})
+      res.status(400).json({errorMessage: err.messae})
     })
 })
 
@@ -23,20 +23,6 @@ router.get('/approved', (req, res) => {
   db.getApprovedProfiles()
     .then(profiles => {
       res.json({profiles})
-    })
-    .catch(err => {
-      res.status(500).json({errorMessage: err.message})
-    })
-})
-
-router.get('/:userId', (req, res) => {
-  const userId = req.params.userId
-  db.getById(userId)
-    .then(user => {
-      if (!user) {
-        throw new Error('There is no user with that id')
-      }
-      res.json({user})
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
@@ -69,6 +55,20 @@ router.put('/approve', (req, res) => {
   db.markAsApproved(profileId, isAdmin)
     .then(() => {
       res.sendStatus(200)
+    })
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
+
+router.get('/:userId', (req, res) => {
+  const userId = req.params.userId
+  db.getById(userId)
+    .then(user => {
+      if (!user) {
+        throw new Error('There is no user with that id')
+      }
+      res.json({user})
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})

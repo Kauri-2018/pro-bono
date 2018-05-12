@@ -2,19 +2,23 @@ import {
   requestPendingProfiles
 } from '../apiClient'
 
-import errorHandle from './errorHandle'
+import {errorHandle} from './errorHandle'
 
 export const SHOW_PROFILE_LIST = 'SHOW_PROFILE_LIST'
+export const SHOW_NO_PROFILES = 'SHOW_NO_PROFILES'
 
 export function getPendingProfiles () {
   return dispatch => {
     return requestPendingProfiles()
       .then(pendingProfiles => {
-        dispatch(showProfiles(pendingProfiles))
+        if (pendingProfiles.length) {
+          dispatch(showProfiles(pendingProfiles))
+        } else {
+          dispatch(showProfiles([]))
+        }
       })
       .catch(err => {
-        dispatch(errorHandle(err.message))
-        return Promise.reject(err.message)
+        dispatch(errorHandle(err.response.error.message))
       })
   }
 }
