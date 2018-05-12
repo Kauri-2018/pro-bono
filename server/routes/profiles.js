@@ -1,6 +1,7 @@
 const express = require('express')
 
-// const token = require('../auth/token')
+const auth = require('../lib/auth')
+const exists = require('../db/users').exists
 
 const db = require('../db/profiles')
 const dbUsers = require('../db/users')
@@ -8,8 +9,9 @@ const dbUsers = require('../db/users')
 const router = express.Router()
 
 router.use(express.json())
+router.use(auth.decode)
 
-router.get('/', (req, res) => {
+router.get('/', auth.isAdmin, (req, res) => {
   db.getAllProfiles()
     .then(profiles => {
       res.json(profiles)
