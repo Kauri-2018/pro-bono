@@ -7,7 +7,7 @@ import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
 
 import {loginUser} from '../../actions/login'
-import ErrorMessage from './ErrorMessage'
+import ErrorMessage from '../ErrorMessage'
 
 class Login extends React.Component {
   constructor (props) {

@@ -10,9 +10,9 @@ class ErrorMessage extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
-    message: state[ownProps.reducer].errorMessage
+    message: state.errorMessage
   }
 }
 
