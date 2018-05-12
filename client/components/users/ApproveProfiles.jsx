@@ -8,16 +8,28 @@ import ProfileList from './ProfileList'
 class ApproveProfiles extends React.Component {
   constructor (props) {
     super(props)
+    this.approveProfile = this.approveProfile.bind(this)
   }
 
   componentDidMount () {
     this.props.dispatch(getPendingProfiles())
   }
 
+  approveProfile () {
+    const profileId = this.props.profile.profileId
+    let isAdmin = false
+    if (this.props.auth.user.role === 'admin') {
+      isAdmin = true
+    } else {
+      isAdmin = false
+    }
+    this.props.dipatch(approvePendingProfile(profileId, isAdmin))
+  }
+
   render () {
     return (
       <div>
-        <ProfileList pendingProfiles={this.props.pendingProfilesArray} />
+        <ProfileList pendingProfiles={this.props.pendingProfilesArray} approveProfile={this.approveProfile}/>
       </div>
     )
   }
