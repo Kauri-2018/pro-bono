@@ -83,12 +83,19 @@ function isAdmin (req, res, next) {
   }
   next()
 }
-function isPending (req, res, next) {
+
+function securityCheck (req, res, next) {
   const user = req.user
-  if (user.pending) {
-    return res.status(403).json({errorMessage: 'User not authorised'})
-  }
-  next()
+  users.exists(req.user.email)
+    .then(userExists => {
+      if (!userExists) {
+        return res.status(403).json({errorMessage: 'User does not exist'})
+      }
+      if (user.pending) {
+        return res.status(403).json({errorMessage: 'User not authorised'})
+      }
+      next()
+    })
 }
 
 module.exports = {
@@ -98,5 +105,5 @@ module.exports = {
   isLawyer,
   isMember,
   isAdmin,
-  isPending
+  securityCheck
 }
