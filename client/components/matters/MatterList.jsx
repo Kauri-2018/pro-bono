@@ -1,9 +1,7 @@
-// Contains accordion of MatterListItems
 import React from 'react'
 import {connect} from 'react-redux'
 import {getLiveMatters} from '../../actions/matters'
 import {claimMatter} from '../../apiClient'
-
 import MatterListItem from './MatterListItem'
 
 class MatterList extends React.Component {
@@ -22,6 +20,9 @@ class MatterList extends React.Component {
       .then(() => {
         this.props.dispatch(getLiveMatters())
       })
+      .catch(err => {
+        console.log(err.message)
+      })
   }
 
   handleExpand (panel) {
@@ -29,6 +30,9 @@ class MatterList extends React.Component {
       this.setState({
         expanded: expanded ? panel : false
       })
+        .catch(err => {
+          console.log(err.message)
+        })
     }
   }
 
