@@ -3,12 +3,29 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 // Material UI Components
+import classNames from 'classnames'
+import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
+import Input, {InputLabel, InputAdornment} from 'material-ui/Input'
+import Icon from 'material-ui/Icon'
 
 // Our Components
 import {getLiveMatters} from '../../actions/matters'
 import {claimMatter} from '../../apiClient'
 import MatterListItem from './MatterListItem'
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing.unit,
+  },
+  textField: {
+    flexBasis: 200,
+  },
+})
 
 class MatterList extends React.Component {
   constructor (props) {
@@ -61,12 +78,15 @@ class MatterList extends React.Component {
         Reference ID: <TextField
           className='input-left'
           name="idFilter"
+          floatingLabelText="Reference ID"
           margin="normal"
           onChange={this.changeFilter}
+          endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
         />
         Category: <TextField
           className='input-left'
           name="categoryFilter"
+          label="Category"
           margin="normal"
           onChange={this.changeFilter}
         />
@@ -99,4 +119,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(MatterList)
+export default connect(mapStateToProps)(withStyles(styles)(MatterList))

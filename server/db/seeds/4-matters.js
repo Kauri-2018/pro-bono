@@ -12,7 +12,7 @@ exports.seed = (knex, Promise) => {
           is_complete: true,
           claimed_by: 440001,
           centre_id: 110001,
-          title: 'Civil Cat',
+          title: 'Civil Cat Complete',
           internal_matter_number: 13546874860
         },
         {
@@ -23,7 +23,7 @@ exports.seed = (knex, Promise) => {
           is_complete: false,
           claimed_by: 440002,
           centre_id: 110001,
-          title: 'name',
+          title: 'Family Cat Claimed',
           internal_matter_number: 13262348
         },
         {
@@ -32,9 +32,9 @@ exports.seed = (knex, Promise) => {
           details: `hide behind curtain when vacuum cleaner is on scratch strangers and poo on owners food jump launch to pounce upon little yarn mouse, bare fangs at toy run hide in litter box until treats are fed allways wanting food or use lap as chair, Gate keepers of hell sit in a box for hours a nice warm laptop for me to sit on. Push your water glass on the floor love and fish i must find my red catnip fishy fish and meowzer. Have secret plans make muffins, yet lick human with sandpaper tongue so kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff`,
           contact_email: 'test-contact_email',
           is_complete: false,
-          claimed_by: 440003,
+          claimed_by: null,
           centre_id: 110001,
-          title: 'name',
+          title: 'Admin Cat Unclaimed',
           internal_matter_number: 34784860
         },
         {
@@ -45,7 +45,7 @@ exports.seed = (knex, Promise) => {
           is_complete: false,
           claimed_by: null,
           centre_id: 110001,
-          title: 'name',
+          title: 'Criminal Cat Unclaimed',
           internal_matter_number: 9874
         },
         {
@@ -54,9 +54,9 @@ exports.seed = (knex, Promise) => {
           details: `hide behind curtain when vacuum cleaner is on scratch strangers and poo on owners food jump launch to pounce upon little yarn mouse, bare fangs at toy run hide in litter box until treats are fed allways wanting food or use lap as chair, Gate keepers of hell sit in a box for hours a nice warm laptop for me to sit on. Push your water glass on the floor love and fish i must find my red catnip fishy fish and meowzer. Have secret plans make muffins, yet lick human with sandpaper tongue so kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff`,
           contact_email: 'test-contact_email',
           is_complete: false,
-          claimed_by: null,
+          claimed_by: 440003,
           centre_id: 110001,
-          title: 'name',
+          title: 'Maori Cat Claimed',
           internal_matter_number: 135327475
         },
         {
@@ -67,7 +67,7 @@ exports.seed = (knex, Promise) => {
           is_complete: false,
           claimed_by: null,
           centre_id: 110001,
-          title: 'name',
+          title: 'Special Cat Unclaimed',
           internal_matter_number: 81643561453
         }
       ])
