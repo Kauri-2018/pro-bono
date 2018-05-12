@@ -17,14 +17,14 @@ import MatterListItem from './MatterListItem'
 const styles = theme => ({
   root: {
     display: 'flex',
-    flexWrap: 'wrap',
+    flexWrap: 'wrap'
   },
   margin: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing.unit
   },
   textField: {
-    flexBasis: 200,
-  },
+    flexBasis: 200
+  }
 })
 
 class MatterList extends React.Component {
@@ -92,10 +92,10 @@ class MatterList extends React.Component {
         />
         <br />
         {this.props.liveMatters.length
-          ? this.props.liveMatters.filter(matter => 
-              this.state.idFilter.test(matter.referenceNumber)
-              && this.state.categoryFilter.test(matter.category.toLowerCase())
-            )
+          ? this.props.liveMatters.filter(matter =>
+            this.state.idFilter.test(matter.referenceNumber) &&
+              this.state.categoryFilter.test(matter.category.toLowerCase())
+          )
             .map(matter =>
               <MatterListItem
                 key={matter.referenceNumber}
