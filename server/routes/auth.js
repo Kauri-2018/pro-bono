@@ -33,6 +33,7 @@ function signIn (req, res, next) {
 }
 
 function register (req, res, next) {
+  const profile = req.body.profileData
   if (!req.body.role) {
     throw new Error('Missing user role')
   }
@@ -41,7 +42,7 @@ function register (req, res, next) {
       if (exists) {
         throw new Error('User already exists')
       }
-      users.create(req.body.email, req.body.password, req.body.role)
+      users.create(req.body.email, req.body.password, req.body.role, profile)
         .then(() => next())
     })
     .catch(err => {
