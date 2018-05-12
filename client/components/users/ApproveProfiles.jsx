@@ -17,13 +17,7 @@ class ApproveProfiles extends React.Component {
     this.props.dispatch(getPendingProfiles())
   }
 
-  approveProfile (profileId) {
-    let isAdmin = false
-    if (this.props.role === 'admin') {
-      isAdmin = true
-    } else {
-      isAdmin = false
-    }
+  approveProfile (profileId, isAdmin) {
     approvePendingProfile(profileId, isAdmin)
       .then(() => {
         this.props.dispatch(getPendingProfiles())

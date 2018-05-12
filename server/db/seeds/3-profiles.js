@@ -37,6 +37,22 @@ exports.seed = (knex, Promise) => {
           firstname: 'Zaeburn',
           lastname: 'Pearson',
           phone_number: '027123123'
+        },
+        {
+          id: 440005,
+          centre_id: 110001,
+          user_id: 330005,
+          firstname: 'Sarah',
+          lastname: 'Suit',
+          phone_number: '027123124'
+        },
+        {
+          id: 440006,
+          centre_id: 110001,
+          user_id: 330006,
+          firstname: 'Don',
+          lastname: 'Smith',
+          phone_number: '027123128'
         }
       ])
     })
