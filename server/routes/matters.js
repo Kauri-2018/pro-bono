@@ -39,7 +39,7 @@ router.get('/live', (req, res) => {
   db.getLiveMatters()
     .then(matters => {
       if (!matters.length) {
-        throw new Error('There are no live matters')
+        matters = []
       }
       res.json(matters)
     })
