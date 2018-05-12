@@ -10,8 +10,7 @@ exports.seed = (knex, Promise) => {
           user_id: 330001,
           firstname: 'Kale',
           lastname: 'Litt',
-          phone_number: '027123123',
-          pending: true
+          phone_number: '027123123'
         },
         {
           id: 440002,
@@ -19,7 +18,6 @@ exports.seed = (knex, Promise) => {
           firstname: 'Cam',
           lastname: 'Specter',
           phone_number: '027123123',
-          pending: false,
           certificate: '/url/Hello-Moto/PlaceHolder',
           company: 'This is a company name'
         },
@@ -29,7 +27,6 @@ exports.seed = (knex, Promise) => {
           firstname: 'Zoe',
           lastname: 'Zane',
           phone_number: '027123123',
-          pending: true,
           certificate: '/url/Hello-Moto/PlaceHolder',
           company: 'Another company name'
         },
@@ -39,8 +36,7 @@ exports.seed = (knex, Promise) => {
           user_id: 330004,
           firstname: 'Zaeburn',
           lastname: 'Pearson',
-          phone_number: '027123123',
-          pending: true
+          phone_number: '027123123'
         }
       ])
     })
