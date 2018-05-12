@@ -10,9 +10,9 @@ import ActiveMatter from '../matters/ActiveMatter'
 import MatterList from '../matters/MatterList'
 
 class LawyerSection extends React.Component {
-  constructor (props) {
-    super(props)
-  }
+  // constructor (props) {
+  //   super(props)
+  // }
 
   componentDidMount () {
     this.props.dispatch(getMatterById(this.props.matterId))
