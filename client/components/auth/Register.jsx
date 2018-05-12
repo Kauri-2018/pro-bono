@@ -6,6 +6,9 @@ import TextField from 'material-ui/TextField'
 
 import {registerUser} from '../../actions/register'
 
+const passwordError = 'Must be at least 7 characters long'
+const confPasswordError = 'Must match password'
+
 class Register extends React.Component {
   constructor (props) {
     super(props)
@@ -16,7 +19,9 @@ class Register extends React.Component {
       phoneNumber: '',
       company: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      passwordError: '',
+      confPasswordError
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -24,12 +29,22 @@ class Register extends React.Component {
   }
 
   handleChange (e) {
+    
     this.setState({
       [e.target.name]: e.target.value
+    }, () => {
+      if (this.state.password.length < 7) this.setState({passwordError})
+      else this.setState({passwordError: ''})
+      if (this.state.confirmPassword.length >= 7 && this.state.password !== this.state.confirmPassword) this.setState({confPasswordError})
+      else this.setState({confPasswordError: ''})
     })
   }
 
   handleAdd (e) {
+    if (this.state.password !== this.state.confirmPassword || this.state.password.length < 7) {
+      return
+    }
+
     const newUser = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -61,9 +76,27 @@ class Register extends React.Component {
             <br/>
             <p>Company:  <TextField required={true} placeholder="Company" name="company" className="input-right" onChange={this.handleChange} margin="normal" /></p>
             <br/>
-            <p>Password:  <TextField required={true} placeholder="Password" type="password" name="password" className="input-right" onChange={this.handleChange} margin="normal" /></p>
+            <p>Password:  <TextField
+              required={true}
+              placeholder="Password"
+              type="password"
+              name="password"
+              className="input-right"
+              onChange={this.handleChange}
+              margin="normal"
+              error={!!this.state.passwordError}
+              label={this.state.passwordError} /></p>
             <br/>
-            <p>Confirm Password:  <TextField required={true} placeholder="Confirm Password" type="password" name="confirmPassword" className="input-right" onChange={this.handleChange} margin="normal" /></p>
+            <p>Confirm Password:  <TextField
+              required={true}
+              placeholder="Confirm Password"
+              type="password"
+              name="confirmPassword"
+              className="input-right"
+              onChange={this.handleChange}
+              margin="normal"
+              error={!!this.state.confPasswordError}
+              label={this.state.confPasswordError} /></p>
 
           </div>
           <div>
