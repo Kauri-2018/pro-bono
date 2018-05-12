@@ -1,8 +1,8 @@
 // renders:
-  //<Lastname>, <Firstname>
-  // Company: <company>
-  // Email: <email>
-  // Phone Number: <phoneNumber>
+// <Lastname>, <Firstname>
+// Company: <company>
+// Email: <email>
+// Phone Number: <phoneNumber>
 import React from 'react'
 import Card from 'material-ui/Card'
 import Divider from 'material-ui/Divider'
