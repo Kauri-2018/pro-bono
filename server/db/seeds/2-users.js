@@ -8,29 +8,43 @@ exports.seed = (knex, Promise) => {
       return knex('users').insert([
         {
           id: 330001,
-          email: 'admin@test.co.nz',
+          email: 'admin',
           hash: getHash('admin'),
           role: 'admin',
-          pending: true
+          pending: false
         },
         {
           id: 330002,
-          email: 'lawyerpen@test.co.nz',
+          email: 'lawyerpen',
+          hash: getHash('lawyer'),
+          role: 'lawyer',
+          pending: true
+        },
+        {
+          id: 330003,
+          email: 'lawyer',
           hash: getHash('lawyer'),
           role: 'lawyer',
           pending: false
         },
         {
-          id: 330003,
-          email: 'lawyer@test.co.nz',
-          hash: getHash('lawyer'),
-          role: 'lawyer',
+          id: 330004,
+          email: 'memberpen',
+          hash: getHash('member'),
+          role: 'member',
           pending: true
         },
         {
-          id: 330004,
-          email: 'member@test.co.nz',
+          id: 330005,
+          email: 'member',
           hash: getHash('member'),
+          role: 'member',
+          pending: false
+        },
+        {
+          id: 330006,
+          email: 'adminpen',
+          hash: getHash('admin'),
           role: 'member',
           pending: true
         }

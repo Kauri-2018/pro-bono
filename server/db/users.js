@@ -26,6 +26,7 @@ function getPendingProfiles (db = knex) {
       'profiles.id as profileId',
       'centre_id as centreId',
       'email',
+      'role',
       'user_id as userId',
       'firstname',
       'lastname',
@@ -115,7 +116,7 @@ function exists (email, testDb) {
 function getByUserId (id, testDb) {
   const connection = testDb || knex
   return connection('users')
-    .select('id', 'email', 'role')
+    .select('id', 'email', 'role', 'pending')
     .where('id', id)
     .first()
 }
@@ -142,6 +143,6 @@ function addUser (email, password, role, testDb) {
 function makeAdmin (userId, testDb) {
   const connection = testDb || knex
   return connection('users')
-    .where('id', '=', userId)
+    .where({id: userId, role: 'member'})
     .update({role: 'admin'})
 }
