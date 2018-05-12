@@ -9,20 +9,11 @@ import React from 'react'
 
 import Profile from './Profile'
 
-class ProfileListItem extends React.Component {
-  constructor (props) {
-    super(props)
-   // this.approveProfile = this.approveProfile.bind(this)
-  }
-
-  render () {
-    return (
-      <div>
-        <Profile singleProfile={this.props.profile} />
-        {/* <button onClick={this.props.approveProfile}>Approve</button> */}
-      </div>
-    )
-  }
-}
+const ProfileListItem = () => (
+  <div>
+    <Profile singleProfile={this.props.profile} />
+    <button onClick={this.props.approveProfile(this.props.profile.profileId)}>Approve</button>
+  </div>
+)
 
 export default ProfileListItem
