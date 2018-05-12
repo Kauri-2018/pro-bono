@@ -37,7 +37,7 @@ function getIncompleteMatters (db = knex) {
 
 function getLiveMatters (db = knex) {
   return db('matters')
-    .where({'is_complete': false, 'claimed_by': 0})
+    .where({'is_complete': false, 'claimed_by': null})
     .select(
       'id as referenceNumber',
       'category',
@@ -107,7 +107,7 @@ function addNewMatter (matter, db = knex) {
       'details': matter.details,
       'contact_email': matter.contactEmail,
       'is_complete': false,
-      'claimed_by': 0,
+      'claimed_by': null,
       'centre_id': matter.centreId,
       'title': matter.title,
       'internal_matter_number': matter.internalMatterNumber
@@ -116,7 +116,7 @@ function addNewMatter (matter, db = knex) {
 
 function getLiveMattersByCategory (category, db = knex) {
   return db('matters')
-    .where({'category': category, 'is_complete': false, 'claimed_by': 0})
+    .where({'category': category, 'is_complete': false, 'claimed_by': null})
     .select(
       'id as referenceNumber',
       'category',
