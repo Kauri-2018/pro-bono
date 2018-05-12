@@ -49,7 +49,7 @@ router.get('/live', (req, res) => {
 })
 
 // should check if matter exists, is complete and is claimed
-router.put('/claimed', (req, res) => {
+router.put('/claim', (req, res) => {
   const matterId = req.body.matterId
   const profileId = req.body.profileId
   db.markAsClaimed(matterId, profileId)

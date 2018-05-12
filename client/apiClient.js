@@ -43,8 +43,11 @@ export function requestAllMatters () {
 }
 
 export function requestPendingProfiles () {
-  return request.get(`${PROFILE_ROUTE}/pending`)
-  // TODO Add Auth requirements to api calls
-    // .set('Authorization', `Bearer ${token}`)
+  return consume('get', `${PROFILE_ROUTE}/pending`)
     .then(res => res.body.profiles)
+}
+
+export function claimMatter (matterId, profileId) {
+  return consume('put', `${MATTER_ROUTE}/claim`, {matterId, profileId})
+    .then(res => res.body)
 }
