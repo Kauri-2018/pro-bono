@@ -24,7 +24,7 @@ const Matter = (props) => (
             color="primary"
             className="btn-submit offset-by-four columns four columns "
             type="submit"
-            onClick={props.handleClaim(props.referenceNumber)}>Claim
+            onClick={() => { props.handleClaim(props.singleMatter.referenceNumber)}}>Claim
           </Button>
         </Typography>
       </ExpansionPanelDetails>

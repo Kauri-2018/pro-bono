@@ -18,9 +18,9 @@ class MatterList extends React.Component {
   }
 
   handleClaim (matterId) {
-    claimMatter(matterId, this.props.profileId)
+    claimMatter(matterId, this.props.claimedById)
       .then(() => {
-        getLiveMatters()
+        this.props.dispatch(getLiveMatters())
       })
   }
 
@@ -59,7 +59,7 @@ class MatterList extends React.Component {
 const mapStateToProps = state => {
   return {
     liveMatters: state.matterList,
-    profileId: state.profiles.profileId
+    claimedById: state.auth.user.id
   }
 }
 
