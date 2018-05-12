@@ -57,3 +57,8 @@ export function requestPendingProfiles () {
   return consume('get', `${USER_ROUTE}/pending`)
     .then(res => res.body.profiles)
 }
+
+export function approvePendingProfile (profileId, isAdmin) {
+  return consume('put', `${USER_ROUTE}/approve`, {profileId, isAdmin})
+    .then(res => res.body)
+}
