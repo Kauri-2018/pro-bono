@@ -1,13 +1,21 @@
 import React from 'react'
+import {connect} from 'react-redux'
+
 import Logout from './auth/Logout'
 
-const Navbar = () => {
+const Navbar = props => {
   return (
-    <div>
+    <div className='row navbar'>
       <h1>Nav bar to be completed</h1>
-      <Logout />
+      {props.isAuthenticated && <Logout />}
     </div>
   )
 }
 
-export default Navbar
+function mapStateToProps (state) {
+  return {
+    isAuthenticated: state.auth.isAuthenticated
+  }
+}
+
+export default connect(mapStateToProps)(Navbar)
