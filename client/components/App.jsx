@@ -15,7 +15,6 @@ import LawyerSection from './users/LawyerSection'
 import MemberSection from './users/MemberSection'
 import RegisterSection from './auth/RegisterSection'
 import Register from './auth/Register'
-import MatterList from './matters/MatterList'
 
 class App extends React.Component {
   render () {
