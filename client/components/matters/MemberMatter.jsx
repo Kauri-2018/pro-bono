@@ -5,9 +5,10 @@ import ExpansionPanel, {
 } from 'material-ui/ExpansionPanel'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Typography from 'material-ui/Typography'
+import Button from 'material-ui/Button'
 
 // parents coming through from different containers for this Matter.jsx
-const Matter = (props) => (
+const MemberMatter = (props) => (
   <div className='new-matter-wrapper offset-by-two column eight columns'>
     <ExpansionPanel>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -20,10 +21,16 @@ const Matter = (props) => (
       <ExpansionPanelDetails>
         <Typography>
           <strong>Details: </strong>{props.singleMatter.details}
+          <Button variant="raised"
+            color="primary"
+            className="btn-submit offset-by-four columns four columns "
+            type="submit"
+            onClick={() => { props.handleClose(props.singleMatter.referenceNumber) }}>Close
+          </Button>
         </Typography>
       </ExpansionPanelDetails>
     </ExpansionPanel>
   </div>
 )
 
-export default Matter
+export default MemberMatter
