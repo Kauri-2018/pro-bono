@@ -44,6 +44,11 @@ export function claimMatter (matterId, profileId) {
     .then(res => res.body)
 }
 
+export function closeMatter (matterId) {
+  return consume('put', `${MATTER_ROUTE}/`, {matterId})
+    .then(res => res.body)
+}
+
 // AUTH routes
 export function login (email, password) {
   return consume('post', `${AUTH_ROUTE}/login`, {email, password})

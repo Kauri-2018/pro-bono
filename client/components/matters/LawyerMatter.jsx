@@ -8,7 +8,7 @@ import Typography from 'material-ui/Typography'
 import Button from 'material-ui/Button'
 
 // parents coming through from different containers for this Matter.jsx
-const Matter = (props) => (
+const LawyerMatter = (props) => (
   <div className='new-matter-wrapper offset-by-two column eight columns'>
     <ExpansionPanel expanded={props.expanded} onChange={e => { props.handleExpand(props.singleMatter.referenceNumber)(e, !props.expanded) } }>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -24,7 +24,7 @@ const Matter = (props) => (
             color="primary"
             className="btn-submit offset-by-four columns four columns "
             type="submit"
-            onClick={() => { props.handleClaim(props.singleMatter.referenceNumber)}}>Claim
+            onClick={() => { props.handleClaim(props.singleMatter.referenceNumber) }}>Claim
           </Button>
         </Typography>
       </ExpansionPanelDetails>
@@ -32,4 +32,4 @@ const Matter = (props) => (
   </div>
 )
 
-export default Matter
+export default LawyerMatter

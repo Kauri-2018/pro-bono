@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getIncompleteMatters} from '../../actions/matters'
-// import {closeMatter} from '../../apiClient'
-import MemberMatterListItem from './MatterListItem'
+import {closeMatter} from '../../apiClient'
+import MemberMatterListItem from './MemberMatterListItem'
 
 class MemberMatterList extends React.Component {
   constructor (props) {
@@ -10,8 +10,7 @@ class MemberMatterList extends React.Component {
     this.state = {
       expanded: false
     }
-
-    this.handleClaim = this.handleClaim.bind(this)
+    this.handleClose = this.handleClose.bind(this)
     this.handleExpand = this.handleExpand.bind(this)
   }
 
@@ -48,7 +47,7 @@ class MemberMatterList extends React.Component {
             <MemberMatterListItem
               key={matter.referenceNumber}
               matter={matter}
-              handleClaim = {this.handleClaim}
+              handleClose= {this.handleClose}
               handleExpand = {this.handleExpand}
               expanded = {this.state.expanded === matter.referenceNumber}
             />
