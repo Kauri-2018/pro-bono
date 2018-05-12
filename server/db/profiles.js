@@ -41,8 +41,8 @@ function addProfile (profile, db = knex) {
     .insert({
       'centre_id': profile.centreId || 0,
       'user_id': profile.userId,
-      'firstname': profile.firstname,
-      'lastname': profile.lastname,
+      'firstname': profile.firstName,
+      'lastname': profile.lastName,
       'phone_number': profile.phoneNumber,
       'certificate': profile.certificate || null,
       'company': profile.company || null
