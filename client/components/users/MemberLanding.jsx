@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import AppBar from 'material-ui/AppBar'
 import Tabs, {Tab} from 'material-ui/Tabs'
-import Typography from 'material-ui/Typography'
+// import Typography from 'material-ui/Typography'
 
 import NewMatter from '../matters/NewMatter'
 import ApproveProfiles from './ApproveProfiles'
