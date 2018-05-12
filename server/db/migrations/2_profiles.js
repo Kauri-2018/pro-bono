@@ -5,7 +5,6 @@ exports.up = knex => knex.schema.createTable('profiles', table => {
   table.string('firstname')
   table.string('lastname')
   table.string('phone_number')
-  table.boolean('pending')
   table.string('certificate')
   table.string('company')
 })
