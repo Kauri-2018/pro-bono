@@ -15,6 +15,7 @@ const Matter = (props) => (
         <Typography className="">
           <strong>Title: </strong>{props.singleMatter.title} <br/>
           <strong>Category: </strong>{props.singleMatter.category}<br/>
+          <strong>Reference Number: </strong>{props.singleMatter.referenceNumber}<br/>
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
