@@ -1,9 +1,8 @@
 const express = require('express')
 
 const auth = require('../lib/auth')
-const exists = require('../db/users').exists
-
 const db = require('../db/profiles')
+const dbUsers = require('../db/users')
 
 const router = express.Router()
 
@@ -13,7 +12,7 @@ router.use(express.json())
 // if user does exist throw new error
 
 router.post('/add', (req, res) => {
-  exists(req.body.email)
+  dbUsers.exists(req.body.email)
     .then(exists => {
       if (exists) {
         throw new Error('User exists')
@@ -43,7 +42,7 @@ router.get('/', auth.isAdmin, (req, res) => {
 })
 
 router.get('/pending', auth.isAdmin, (req, res) => {
-  db.getPendingProfiles()
+  dbUsers.getPendingProfiles()
     .then(profiles => {
       if (!profiles.length) {
         throw new Error('There are no profiles pending approval')
@@ -56,7 +55,7 @@ router.get('/pending', auth.isAdmin, (req, res) => {
 })
 
 router.get('/approved', auth.isAdmin, (req, res) => {
-  db.getApprovedProfiles()
+  dbUsers.getApprovedProfiles()
     .then(profiles => {
       res.json({profiles})
     })
@@ -83,7 +82,7 @@ router.get('/:id', (req, res) => {
 router.put('/approve', auth.isAdmin, (req, res) => {
   const profileId = req.body.profileId
   const isAdmin = req.body.isAdmin
-  db.markAsApproved(profileId, isAdmin)
+  dbUsers.markAsApproved(profileId, isAdmin)
     .then(() => {
       res.sendStatus(200)
     })
