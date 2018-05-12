@@ -1,32 +1,56 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-import NewMatter from './matters/NewMatter'
-import FindMatterById from './matters/FindMatterById'
+import AppBar from 'material-ui/AppBar'
+import Tabs, {Tab} from 'material-ui/Tabs'
+import Typography from 'material-ui/Typography'
+
+import NewMatter from '../matters/NewMatter'
 import ApproveProfiles from './ApproveProfiles'
+import {getMatterById} from '../../actions/matters'
 
-const MemberLanding = () => {
-  return (
-    <div>
-      <div className="tab-new-matter">
-        <button className="tablinks" onClick="openNewMatter(event, 'NewMatter')">Add new matter</button>
-        <div id="NewMatter" className="tabcontent">
-          <NewMatter key='new-matter' />
-        </div>
+class MemberLanding extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      selectedTabIndex: 0
+    }
+
+    this.switchTab = this.switchTab.bind(this)
+  }
+
+  switchTab (e, selectedTabIndex) {
+    this.setState({ selectedTabIndex })
+  }
+
+
+  componentDidMount () {
+    this.props.dispatch(getMatterById(this.props.matterId))
+  }
+
+  render () {
+    const selectedTabIndex = this.state.selectedTabIndex
+    const isAdmin = this.props.isAdmin
+    return (
+      <div className='member-landing'>
+        <AppBar position='static'>
+          <Tabs value={selectedTabIndex} onChange={this.switchTab}>
+            <Tab label="New Matters" />
+            <Tab label="Approve Users" disabled={!isAdmin} />
+          </Tabs>
+        </AppBar>
+        {selectedTabIndex === 0 && <NewMatter />}
+        {selectedTabIndex === 1 && <ApproveProfiles />}
       </div>
-      <div className="tab-find-matter">
-        <button className="tablinks" onClick="openFindMatterById(event, 'FindMatterById')">Find a matter</button>
-        <div id="FindMatterById" className="tabcontent">
-          <FindMatterById key='find-matter-by-id' />
-        </div>
-      </div>
-      <div className="tab-approve-user">
-        <button className="tablinks" onClick="openApproveUser(event, 'ApproveUser')">Approve users</button>
-        <div id="ApproveUser" className="tabcontent">
-          <ApproveProfiles key='approve-user' />
-        </div>
-      </div>
-    </div>
-  )
+    )
+  }
 }
 
-export default MemberLanding
+const mapStateToProps = (state) => {
+  return {
+    isAdmin: state.auth.user.role === 'admin',
+    matterById: state.matterById
+  }
+}
+
+export default connect(mapStateToProps)(MemberLanding)
