@@ -18,7 +18,7 @@ class MatterList extends React.Component {
   }
 
   handleClaim (matterId) {
-    claimMatter(matterId, props.profileId)
+    claimMatter(matterId, this.props.profileId)
       .then(() => {
         getLiveMatters()
       })
@@ -58,7 +58,7 @@ class MatterList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    liveMatters: state.matterList
+    liveMatters: state.matterList,
     profileId: state.profiles.profileId
   }
 }
