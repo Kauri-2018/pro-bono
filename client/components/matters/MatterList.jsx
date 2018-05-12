@@ -15,7 +15,8 @@ class MatterList extends React.Component {
     super(props)
     this.state = {
       expanded: false,
-      filterRegex: new RegExp('')
+      idFilter: new RegExp(''),
+      categoryFilter: new RegExp('')
     }
 
     this.handleClaim = this.handleClaim.bind(this)
@@ -25,7 +26,7 @@ class MatterList extends React.Component {
 
   changeFilter (e) {
     this.setState({
-      [e.target.name]: new RegExp(e.target.value)
+      [e.target.name]: new RegExp(e.target.value.toLowerCase())
     })
   }
 
@@ -56,17 +57,25 @@ class MatterList extends React.Component {
 
   render () {
     return (
-      <div className='matterList'>
-        <TextField
-          name="filterRegex"
-          label="Filter"
-          placeholder="Filter"
+      <div className='matter-list-wrapper'>
+        Reference ID: <TextField
+          className='input-left'
+          name="idFilter"
+          margin="normal"
+          onChange={this.changeFilter}
+        />
+        Category: <TextField
+          className='input-left'
+          name="categoryFilter"
           margin="normal"
           onChange={this.changeFilter}
         />
         <br />
         {this.props.liveMatters.length
-          ? this.props.liveMatters.filter(matter => this.state.filterRegex.test(matter.referenceNumber))
+          ? this.props.liveMatters.filter(matter => 
+              this.state.idFilter.test(matter.referenceNumber)
+              && this.state.categoryFilter.test(matter.category.toLowerCase())
+            )
             .map(matter =>
               <MatterListItem
                 key={matter.referenceNumber}
