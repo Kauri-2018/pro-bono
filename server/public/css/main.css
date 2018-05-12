@@ -25,14 +25,25 @@ html {
   padding-left: 10vw;
   padding-right: 10vw;
 }
-.register-input {
+
+.input-right {
   float: right;
 }
+
+.input-left {
+  float: left;
+}
+
 .register {
   padding-top: 3vh;
   padding-bottom: 3vh;
   padding-left: 15vw;
   padding-right: 15vw;
+}
+
+.matter-list-wrapper {
+  padding-left: 15vw;
+  width: 70vw;
 }
 
 

@@ -13,8 +13,9 @@ const LawyerMatter = (props) => (
     <ExpansionPanel expanded={props.expanded} onChange={e => { props.handleExpand(props.singleMatter.referenceNumber)(e, !props.expanded) } }>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
         <Typography className="">
-          <strong>Title: </strong>{props.singleMatter.title} <br/>
+          <strong>Title: </strong>{props.singleMatter.title}<br/>
           <strong>Category: </strong>{props.singleMatter.category}<br/>
+          <strong>Reference Number: </strong>{props.singleMatter.referenceNumber}<br/>
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
