@@ -93,19 +93,12 @@ router.get('/incomplete', auth.isMember, (req, res) => {
 })
 
 // should check if matter exists, is complete and is claimed
-router.put('/claimed', auth.isLawyer, (req, res) => {
-  exists(req.user.email)
-    .then(userExists => {
-      if (userExists) {
-        const matterId = req.body.matterId
-        const profileId = req.body.profileId
-        return db.markAsClaimed(matterId, profileId)
-          .then(() => {
-            res.sendStatus(200)
-          })
-      } else {
-        res.status(403).end()
-      }
+router.put('/claim', auth.isLawyer, (req, res) => {
+  const matterId = req.body.matterId
+  const profileId = req.body.profileId
+  db.markAsClaimed(matterId, profileId)
+    .then(() => {
+      res.sendStatus(200)
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
