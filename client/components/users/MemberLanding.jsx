@@ -25,7 +25,9 @@ class MemberLanding extends React.Component {
 
 
   componentDidMount () {
-    this.props.dispatch(getMatterById(this.props.matterId))
+    if (this.props.matterId) {
+      this.props.dispatch(getMatterById(this.props.matterId))
+    }
   }
 
   render () {
