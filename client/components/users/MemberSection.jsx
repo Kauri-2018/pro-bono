@@ -5,11 +5,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import MemberLanding from '../users/MemberLanding'
+// import MemberLanding from '../users/MemberLanding'
+import ApproveProfiles from './ApproveProfiles'
 
 const MemberSection = () => (
   <div>
-    <MemberLanding />
+    {/* <MemberLanding /> */}
+    <ApproveProfiles />
   </div>
 )
 

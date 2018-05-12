@@ -10,12 +10,12 @@ router.get('/pending', (req, res) => {
   db.getPendingProfiles()
     .then(profiles => {
       if (!profiles.length) {
-        throw new Error('There are no profiles pending approval')
+        profiles = []
       }
       res.json({profiles})
     })
     .catch(err => {
-      res.status(500).json({errorMessage: err.message})
+      res.status(400).json({errorMessage: err.messae})
     })
 })
 
