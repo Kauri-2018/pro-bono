@@ -17,7 +17,7 @@ export function requestMatterById (matterId) {
       return res.body
     })
     .catch(err => {
-      throw err
+      console.log(err.message)
     })
 }
 
@@ -35,6 +35,9 @@ export function login (email, password) {
 export function requestLiveMatters () {
   return consume('get', `${MATTER_ROUTE}/live`)
     .then(res => res.body)
+    .catch(err => {
+      console.log(err.message)
+    })
 }
 
 export function requestIncompleteMatters () {
