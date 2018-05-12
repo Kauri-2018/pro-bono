@@ -2,6 +2,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getPendingProfiles} from '../../actions/profiles'
+import {approvePendingProfile} from '../../apiClient'
 
 import ProfileList from './ProfileList'
 
@@ -15,21 +16,23 @@ class ApproveProfiles extends React.Component {
     this.props.dispatch(getPendingProfiles())
   }
 
-  approveProfile () {
-    const profileId = this.props.profile.profileId
+  approveProfile (profileId) {
     let isAdmin = false
-    if (this.props.auth.user.role === 'admin') {
+    if (this.props.role === 'admin') {
       isAdmin = true
     } else {
       isAdmin = false
     }
-    this.props.dipatch(approvePendingProfile(profileId, isAdmin))
+    approvePendingProfile(profileId, isAdmin)
+      .then(this.props.dispatch(getPendingProfiles()))
   }
 
   render () {
     return (
       <div>
-        <ProfileList pendingProfiles={this.props.pendingProfilesArray} approveProfile={this.approveProfile}/>
+        <ProfileList
+          pendingProfiles={this.props.pendingProfilesArray}
+          approveProfile={this.approveProfile} />
       </div>
     )
   }
@@ -37,7 +40,8 @@ class ApproveProfiles extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    pendingProfilesArray: state.profiles
+    pendingProfilesArray: state.profiles,
+    role: state.auth.user.role
   }
 }
 

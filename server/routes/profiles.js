@@ -27,8 +27,8 @@ router.get('/pending', (req, res) => {
       }
       res.json({profiles})
     })
-    .catch(err => {
-      res.status(500).json({errorMessage: err.message})
+    .catch(() => {
+      res.status(500).json({errorMessage: 'There are no profiles pending approval'})
     })
 })
 
@@ -36,20 +36,6 @@ router.get('/approved', (req, res) => {
   db.getApprovedProfiles()
     .then(profiles => {
       res.json({profiles})
-    })
-    .catch(err => {
-      res.status(500).json({errorMessage: err.message})
-    })
-})
-
-router.get('/:id', (req, res) => {
-  const profileId = req.params.id
-  db.getProfileById(profileId)
-    .then(profile => {
-      if (!profile) {
-        throw new Error('There is no profile with that id')
-      }
-      res.json({profile})
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
@@ -83,6 +69,20 @@ router.put('/approve', (req, res) => {
   db.markAsApproved(profileId, isAdmin)
     .then(() => {
       res.sendStatus(200)
+    })
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
+
+router.get('/:id', (req, res) => {
+  const profileId = req.params.id
+  db.getProfileById(profileId)
+    .then(profile => {
+      if (!profile) {
+        throw new Error('There is no profile with that id')
+      }
+      res.json({profile})
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})

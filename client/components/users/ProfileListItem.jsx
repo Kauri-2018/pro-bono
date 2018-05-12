@@ -9,10 +9,10 @@ import React from 'react'
 
 import Profile from './Profile'
 
-const ProfileListItem = () => (
+const ProfileListItem = (props) => (
   <div>
-    <Profile singleProfile={this.props.profile} />
-    <button onClick={this.props.approveProfile(this.props.profile.profileId)}>Approve</button>
+    <Profile singleProfile={props.profile} />
+    <button onClick={() => props.approveProfile(props.profile.profileId)}>Approve</button>
   </div>
 )
 
