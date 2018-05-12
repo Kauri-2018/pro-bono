@@ -22,7 +22,7 @@ export function requestMatterById (matterId) {
 }
 
 export function addNewMatter (data) {
-  return consume('post', `${MATTER_ROUTE}/new`, data)
+  return consume('post', `${MATTER_ROUTE}/add`, data)
 }
 
 export function login (email, password) {

@@ -38,6 +38,11 @@ class Register extends React.Component {
     }
 
     this.props.dispatch(registerUser(this.state.email, this.state.password, this.props.match.params.type, newUser))
+      .then(userInfo => {
+        if (userInfo) {
+          this.props.history.push('/' + userInfo.role)
+        }
+      })
   }
 
   render () {
