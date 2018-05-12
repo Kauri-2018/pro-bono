@@ -23,7 +23,6 @@ class App extends React.Component {
       <Router>
         <div className='app container'>
           <Navbar />
-          <MatterList/>
           <Switch>
             <Route exact path='/lawyer' component={LawyerSection} />
             <Route exact path='/member' component={MemberSection} />
