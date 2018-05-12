@@ -28,7 +28,7 @@ router.put('/', auth.isMember, (req, res) => {
         throw new Error('There was no incomplete matter with that id')
       }
     })
-    .then(() => db.getLiveMatters())
+    .then(() => db.getIncompleteMatters())
     .then(matters => {
       res.json({matters})
     })
