@@ -1,7 +1,7 @@
 import React from 'react'
 
-import NewMatter from './matters/NewMatter'
-import FindMatterById from './matters/FindMatterById'
+import NewMatter from '../matters/NewMatter'
+import FindMatterById from '../matters/FindMatterById'
 import ApproveProfiles from './ApproveProfiles'
 
 const MemberLanding = () => {
