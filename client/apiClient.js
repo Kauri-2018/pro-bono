@@ -56,3 +56,8 @@ export function approvePendingProfile (profileId, isAdmin) {
   return consume('put', `${PROFILE_ROUTE}/approve`, {profileId, isAdmin})
     .then(res => res.body)
 }
+
+export function claimMatter (matterId, profileId) {
+  return consume('put', `${MATTER_ROUTE}/claim`, {matterId, profileId})
+    .then(res => res.body)
+}
