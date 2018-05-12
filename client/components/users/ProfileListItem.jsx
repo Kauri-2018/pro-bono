@@ -37,7 +37,7 @@ class ProfileListItem extends React.Component {
       <div>
         <Profile singleProfile={this.props.profile} />
         <button onClick={() => this.props.approveProfile(this.props.profile.profileId, this.state.isAdmin)}>Approve</button>
-        <FormControlLabel
+        {this.props.profile.role === 'member' && <FormControlLabel
           control={
             <Checkbox
               checked={this.state.isAdmin}
@@ -45,7 +45,7 @@ class ProfileListItem extends React.Component {
             />
           }
           label="Give user administrator priveleges"
-        />
+        />}
         
       </div>
     )}
