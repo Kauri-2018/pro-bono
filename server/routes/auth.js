@@ -1,5 +1,4 @@
 const express = require('express')
-const verifyJwt = require('express-jwt')
 
 const crypto = require('../lib/crypto')
 const users = require('../db/users')
@@ -55,26 +54,5 @@ function invalidCredentials (res) {
     errorType: 'INVALID_CREDENTIALS'
   })
 }
-
-// express-jwt middleware lets us use a function as the secret
-function getSecret (req, payload, done) {
-  done(null, process.env.JWT_SECRET)
-}
-
-// Protect all routes beneath this point
-router.use(
-  verifyJwt({
-    secret: getSecret
-  }),
-  auth.handleError
-)
-
-// These routes are protected
-router.get('/secret', (req, res) => {
-  res.json({
-    message: 'This is a SECRET quote.',
-    user: `Your user ID is: ${req.user.id}`
-  })
-})
 
 module.exports = router
