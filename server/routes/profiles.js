@@ -4,12 +4,33 @@ const auth = require('../lib/auth')
 const exists = require('../db/users').exists
 
 const db = require('../db/profiles')
-const dbUsers = require('../db/users')
 
 const router = express.Router()
 
 router.use(express.json())
+
+// check if user exists, if not then add user to users and add profile to profiles
+// if user does exist throw new error
+
+router.post('/add', (req, res) => {
+  exists(req.body.email)
+    .then(exists => {
+      if (exists) {
+        throw new Error('User exists')
+      }
+      const profile = req.body
+      db.addProfile(profile)
+        .then(() => { // next())
+          res.sendStatus(200)
+        })
+    })
+    .catch(err => {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
+
 router.use(auth.decode)
+router.use(auth.securityCheck)
 
 router.get('/', auth.isAdmin, (req, res) => {
   db.getAllProfiles()
@@ -21,7 +42,7 @@ router.get('/', auth.isAdmin, (req, res) => {
     })
 })
 
-router.get('/pending', (req, res) => {
+router.get('/pending', auth.isAdmin, (req, res) => {
   db.getPendingProfiles()
     .then(profiles => {
       if (!profiles.length) {
@@ -34,7 +55,7 @@ router.get('/pending', (req, res) => {
     })
 })
 
-router.get('/approved', (req, res) => {
+router.get('/approved', auth.isAdmin, (req, res) => {
   db.getApprovedProfiles()
     .then(profiles => {
       res.json({profiles})
@@ -58,28 +79,8 @@ router.get('/:id', (req, res) => {
     })
 })
 
-// check if user exists, if not then add user to users and add profile to profiles
-// if user does exist throw new error
-
-router.post('/add', (req, res) => {
-  dbUsers.exists(req.body.email)
-    .then(exists => {
-      if (exists) {
-        throw new Error('User exists')
-      }
-      const profile = req.body
-      db.addProfile(profile)
-        .then(() => { // next())
-          res.sendStatus(200)
-        })
-    })
-    .catch(err => {
-      res.status(500).send('DATABASE ERROR: ' + err.message)
-    })
-})
-
 // have not tested if this updates role to admin in users
-router.put('/approve', (req, res) => {
+router.put('/approve', auth.isAdmin, (req, res) => {
   const profileId = req.body.profileId
   const isAdmin = req.body.isAdmin
   db.markAsApproved(profileId, isAdmin)
