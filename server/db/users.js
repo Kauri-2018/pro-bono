@@ -76,7 +76,7 @@ function markAsApproved (profileId, isAdmin, db = knex) {
     })
 }
 
-function create (email, password, role, testDb) {
+function create (email, password, role, profile, testDb) {
   const hash = crypto.getHash(password)
   const connection = testDb || knex
 
@@ -86,6 +86,19 @@ function create (email, password, role, testDb) {
       hash: hash,
       role,
       pending: true
+    })
+    // updating profile table when registering
+    .then(id => {
+      return connection('profiles')
+        .insert({
+          'centre_id': profile.centreId || 0,
+          'user_id': id[0],
+          'firstname': profile.firstName,
+          'lastname': profile.lastName,
+          'phone_number': profile.phoneNumber,
+          'certificate': profile.certificate || null,
+          'company': profile.company || null
+        })
     })
 }
 
