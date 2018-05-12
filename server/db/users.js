@@ -21,7 +21,7 @@ module.exports = {
 function getPendingProfiles (db = knex) {
   return db('users')
     .join('profiles', 'users.id', '=', 'profiles.user_id')
-    .where('users.pending', '=', true)
+    .where('pending', '=', true)
     .select(
       'profiles.id as profileId',
       'centre_id as centreId',

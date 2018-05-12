@@ -5,6 +5,7 @@ import {getPendingProfiles} from '../../actions/profiles'
 import {approvePendingProfile} from '../../apiClient'
 
 import ProfileList from './ProfileList'
+import ErrorMessage from '../ErrorMessage'
 
 class ApproveProfiles extends React.Component {
   constructor (props) {
@@ -24,7 +25,9 @@ class ApproveProfiles extends React.Component {
       isAdmin = false
     }
     approvePendingProfile(profileId, isAdmin)
-      .then(this.props.dispatch(getPendingProfiles()))
+      .then(() => {
+        this.props.dispatch(getPendingProfiles())
+      })
   }
 
   render () {
@@ -33,6 +36,7 @@ class ApproveProfiles extends React.Component {
         <ProfileList
           pendingProfiles={this.props.pendingProfilesArray}
           approveProfile={this.approveProfile} />
+        <ErrorMessage />
       </div>
     )
   }
