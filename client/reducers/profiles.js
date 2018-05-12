@@ -12,15 +12,3 @@ export default function (profileList = initialProfileList, action) {
       return profileList
   }
 }
-
-/* {
-  centreId: 0,
-  certificate: '',
-  company: null,
-  firstname: 'example',
-  lastname: 'state',
-  pending: 1,
-  phoneNumber: 0,
-  profileId: 440001,
-  userId: 0
-} */

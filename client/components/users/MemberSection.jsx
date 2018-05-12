@@ -3,16 +3,13 @@
 // Matter.jsx
 // 'Please contact the above law centre for extra information'
 import React from 'react'
-import {connect} from 'react-redux'
 
-// import MemberLanding from '../users/MemberLanding'
-import ApproveProfiles from './ApproveProfiles'
+import MemberLanding from './MemberLanding'
 
-const MemberSection = () => (
+const MemberSection = props => (
   <div>
-    {/* <MemberLanding /> */}
-    <ApproveProfiles />
+    <MemberLanding />
   </div>
 )
 
-export default connect()(MemberSection)
+export default MemberSection
