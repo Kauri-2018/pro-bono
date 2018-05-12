@@ -1,14 +1,16 @@
 const express = require('express')
 
-// const token = require('../auth/token')
+const auth = require('../lib/auth')
 
 const db = require('../db/matters')
 
 const router = express.Router()
 
 router.use(express.json())
+router.use(auth.decode)
+router.use(auth.securityCheck)
 
-router.get('/', (req, res) => {
+router.get('/', auth.isAdmin, (req, res) => {
   db.getAllMatters()
     .then(matters => {
       res.json({matters})
@@ -18,7 +20,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.put('/', (req, res) => {
+router.put('/', auth.isMember, (req, res) => {
   const matterId = req.body.matterId
   db.markAsComplete(matterId)
     .then((matterId) => {
@@ -48,7 +50,7 @@ router.get('/live', (req, res) => {
     })
 })
 
-router.get('/incomplete', (req, res) => {
+router.get('/incomplete', auth.isMember, (req, res) => {
   db.getIncompleteMatters()
     .then(matters => {
       if (!matters.length) {
@@ -62,7 +64,7 @@ router.get('/incomplete', (req, res) => {
 })
 
 // should check if matter exists, is complete and is claimed
-router.put('/claim', (req, res) => {
+router.put('/claim', auth.isLawyer, (req, res) => {
   const matterId = req.body.matterId
   const profileId = req.body.profileId
   db.markAsClaimed(matterId, profileId)
@@ -74,7 +76,7 @@ router.put('/claim', (req, res) => {
     })
 })
 
-router.post('/add', (req, res) => {
+router.post('/add', auth.isMember, (req, res) => {
   const matter = req.body
   db.addNewMatter(matter)
     .then(() => {
