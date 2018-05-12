@@ -23,12 +23,13 @@ class App extends React.Component {
       <Router>
         <div className='app container'>
           <Navbar />
-          <Switch>
+          <MatterList/>
+          {/* <Switch>
             <Route exact path='/lawyer' component={LawyerSection} />
             <Route exact path='/member' component={MemberSection} />
             <Route path='/:type/register' component={Register}/>
             <Route path='/' component={renderHome} />
-          </Switch>
+          </Switch> */}
         </div>
       </Router>
     )

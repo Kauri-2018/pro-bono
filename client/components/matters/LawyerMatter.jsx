@@ -10,7 +10,7 @@ import Button from 'material-ui/Button'
 // parents coming through from different containers for this Matter.jsx
 const Matter = (props) => (
   <div className='new-matter-wrapper offset-by-two column eight columns'>
-    <ExpansionPanel expanded={props.expanded === 'panel1'} onChange={props.handleChange('panel1')}>
+    <ExpansionPanel expanded={props.expanded} onChange={e => { props.handleExpand(props.singleMatter.referenceNumber)(e, !props.expanded) } }>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
         <Typography className="">
           <strong>Title: </strong>{props.singleMatter.title} <br/>
@@ -24,7 +24,7 @@ const Matter = (props) => (
             color="primary"
             className="btn-submit offset-by-four columns four columns "
             type="submit"
-            onClick={props.handleClaim}>Claim
+            onClick={props.handleClaim(props.referenceNumber)}>Claim
           </Button>
         </Typography>
       </ExpansionPanelDetails>

@@ -1,31 +1,36 @@
 // Contains accordion of MatterListItems
 import React from 'react'
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
-import { withStyles } from 'material-ui/styles'
 import {getLiveMatters} from '../../actions/matters'
+import {claimMatter} from '../../apiClient'
 
 import MatterListItem from './MatterListItem'
 
 class MatterList extends React.Component {
   constructor (props) {
     super(props)
-    state = {
-      expanded: null
+    this.state = {
+      expanded: false
     }
 
     this.handleClaim = this.handleClaim.bind(this)
     this.handleExpand = this.handleExpand.bind(this)
   }
 
-  handleClaim () {
-    console.log('Hello')
+  handleClaim (matterId) {
+    claimMatter(matterId, props.profileId)
+      .then(() => {
+        getLiveMatters()
+      })
   }
-    handleExpand = panel => (event, expanded) => {
+
+  handleExpand (panel) {
+    return (event, expanded) => {
       this.setState({
         expanded: expanded ? panel : false
-      });
+      })
     }
+  }
 
   componentDidMount () {
     this.props.dispatch(getLiveMatters())
@@ -41,7 +46,7 @@ class MatterList extends React.Component {
               matter={matter}
               handleClaim = {this.handleClaim}
               handleExpand = {this.handleExpand}
-              expanded = {{expanded} = this.state.expanded}
+              expanded = {this.state.expanded === matter.referenceNumber}
             />
           )
           : <h4>No Live Matters</h4>
@@ -54,11 +59,8 @@ class MatterList extends React.Component {
 const mapStateToProps = state => {
   return {
     liveMatters: state.matterList
+    profileId: state.profiles.profileId
   }
 }
 
-MatterList.propTypes = {
-  classes: PropTypes.object.isRequired,
-}
-
-export default connect(mapStateToProps)(withStyles(styles))(MatterList)
+export default connect(mapStateToProps)(MatterList)
