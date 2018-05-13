@@ -22,6 +22,12 @@ class NewMatter extends React.Component {
     this.handleAdd = this.handleAdd.bind(this)
   }
 
+  componentWillMount () {
+    if (!this.props.isAuthenticated) {
+      this.props.history.push('/')
+    }
+  }
+
   handleChange (e) {
     this.setState({
       [e.target.name]: e.target.value
@@ -29,7 +35,7 @@ class NewMatter extends React.Component {
   }
 
   handleAdd (e) {
-    const newMatter = { ...this.state }
+    const newMatter = {...this.state}
     // alert('Submitted new matter: ' + newMatter.title)
     this.props.dispatch(postNewMatter(newMatter))
   }
@@ -66,8 +72,9 @@ class NewMatter extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    currentUser: state.auth.user 
+    currentUser: state.auth.user,
+    isAuthenticated: state.auth.isAuthenticated
   }
 }
 
-export default connect()(NewMatter)
+export default connect(mapStateToProps)(NewMatter)

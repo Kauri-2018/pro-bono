@@ -6,7 +6,7 @@ import decode from 'jwt-decode'
 
 // Our Modules
 import {get} from '../utils/localstorage'
-import { receiveLogin } from '../actions/login'
+import {receiveLogin} from '../actions/login'
 
 // Components
 import Navbar from './Navbar'
