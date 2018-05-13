@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
 import AppBar from 'material-ui/AppBar'
 import Tabs, {Tab} from 'material-ui/Tabs'
@@ -21,7 +21,7 @@ class MemberLanding extends React.Component {
   }
 
   switchTab (e, selectedTabIndex) {
-    this.setState({ selectedTabIndex })
+    this.setState({selectedTabIndex})
   }
 
   componentDidMount () {
@@ -52,7 +52,7 @@ class MemberLanding extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isAdmin: state.auth.user.role === 'admin',
+    isAdmin: state.auth && state.auth.user && state.auth.user.role === 'admin',
     matterById: state.matterById
   }
 }

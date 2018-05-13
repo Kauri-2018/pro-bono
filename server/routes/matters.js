@@ -43,7 +43,7 @@ router.get('/live', (req, res) => {
       if (!matters.length) {
         matters = []
       }
-      res.json(matters)
+      res.json({matters})
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
@@ -56,7 +56,7 @@ router.get('/incomplete', auth.isMember, (req, res) => {
       if (!matters.length) {
         throw new Error('There are no live matters')
       }
-      res.json(matters)
+      res.json({matters})
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})

@@ -27,6 +27,7 @@ const LawyerMatter = (props) => (
             type="submit"
             onClick={() => { props.handleClaim(props.singleMatter.referenceNumber) }}>Claim
           </Button>
+          <strong>Enquiries to: </strong>{props.singleMatter.contactEmail}
         </Typography>
       </ExpansionPanelDetails>
     </ExpansionPanel>

@@ -10,7 +10,7 @@ import React from 'react'
 
 // Material UI Components
 import Checkbox from 'material-ui/Checkbox'
-import { FormControlLabel } from 'material-ui/Form'
+import {FormControlLabel} from 'material-ui/Form'
 
 // Our Components
 import Profile from './Profile'
