@@ -59,7 +59,7 @@ class NewMatter extends React.Component {
         <Card position="static" color="default" className="new-matter">
           <h1 className="offset-by-one columns">Submit New Matter</h1>
 
-          <div className="form-field">
+          <section className="form-field">
             <TextField fullWidth={true} required={true} placeholder="Title" multiline={true} name="title" label="Title" className="text-input" onChange={this.handleChange} margin="normal" />
             <br />
             <br />
@@ -81,10 +81,10 @@ class NewMatter extends React.Component {
             <br />
             <br />
             <TextField fullWidth={true} placeholder="Add additional detail here" multiline={true} name="details" label="Additional Detail" className="text-input" onChange={this.handleChange} margin="normal" />
-          </div>
-          <div>
+          </section>
+          <section>
             <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " type="submit" onClick={this.handleAdd}>Submit</Button>
-          </div>
+          </section>
         </Card>
       </div>
     )
