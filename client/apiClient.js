@@ -5,6 +5,7 @@ export const BASE_ROUTE = '/api/v1'
 export const MATTER_ROUTE = BASE_ROUTE + '/matters'
 export const AUTH_ROUTE = BASE_ROUTE + '/auth'
 export const USER_ROUTE = BASE_ROUTE + '/users'
+export const MAIL_GUN = BASE_ROUTE + '/mailgun'
 
 // MATTER routes
 
@@ -66,4 +67,8 @@ export function requestPendingProfiles () {
 export function approvePendingProfile (profileId, isAdmin) {
   return consume('put', `${USER_ROUTE}/approve`, {profileId, isAdmin})
     .then(res => res.body)
+}
+
+export function dispatchMailGun (data) {
+  return consume('post', `${MAIL_GUN}`, data)
 }
