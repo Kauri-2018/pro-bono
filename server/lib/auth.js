@@ -18,7 +18,8 @@ function createToken (user, secret) {
   return jwt.sign({
     id: user.id,
     email: user.email,
-    role: user.role
+    role: user.role,
+    pending: user.pending
   }, secret, {
     expiresIn: 60 * 60 * 24 // or '1d'
   })

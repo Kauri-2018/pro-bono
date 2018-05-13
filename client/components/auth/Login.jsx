@@ -34,7 +34,9 @@ class Login extends React.Component {
     }
     this.props.loginUser(creds)
       .then(userInfo => {
-        if (userInfo.role) {
+        if (userInfo.pending) {
+          this.props.history.push(`/pending`)
+        } else {
           this.props.history.push(`/${userInfo.role}`)
         }
       })
