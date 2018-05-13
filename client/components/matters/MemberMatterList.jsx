@@ -39,12 +39,12 @@ const styles = {
 class MemberMatterList extends ListTemplate {
   constructor (props) {
     super(props)
-    this.state = {
+    this.setState({
       expanded: false,
       claimFilter: 'all',
       menuIsOpen: false,
       anchorEl: null
-    }
+    })
     this.handleCloseMatter = this.handleCloseMatter.bind(this)
     this.closeMenu = this.closeMenu.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -86,7 +86,7 @@ class MemberMatterList extends ListTemplate {
           aria-haspopup="true"
           onClick={this.handleClick}
         >
-          {claimFilter === 'all' ? 'All matters' : claimFilter === 'claimed' ? 'Claimed matters' : 'Unclaimed matters'}
+          {(claimFilter === 'all' || !claimFilter) ? 'All matters' : claimFilter === 'claimed' ? 'Claimed matters' : 'Unclaimed matters'}
         </Button>
         <Menu
           id="simple-menu"
@@ -101,7 +101,7 @@ class MemberMatterList extends ListTemplate {
 
         Reference number: <TextField
           className='input-left'
-          name="refNumFilter"
+          name="referenceNumber"
           floatingLabelText="Reference number"
           margin="normal"
           onChange={this.changeFilter}
@@ -109,7 +109,7 @@ class MemberMatterList extends ListTemplate {
         />
         Internal matter number: <TextField
           className='input-left'
-          name="intNumFilter"
+          name="internalMatterNumber"
           floatingLabelText="Internal matter number"
           margin="normal"
           onChange={this.changeFilter}
@@ -117,7 +117,7 @@ class MemberMatterList extends ListTemplate {
         />
           Category: <TextField
           className='input-left'
-          name="categoryFilter"
+          name="category"
           label="Category"
           margin="normal"
           onChange={this.changeFilter}
@@ -132,16 +132,17 @@ class MemberMatterList extends ListTemplate {
       <div className='matter-list-wrapper'>
         {this.props.incompleteMatters.length
           ? this.applyFilters(this.props.incompleteMatters)
-            .filter(matter =>
-              (claimFilter === 'all' ||
+            .filter(matter => {
+              if (!claimFilter) return true
+              return (claimFilter === 'all' ||
               (claimFilter === 'claimed' && matter.isClaimed) ||
               (claimFilter === 'unclaimed' && !matter.isClaimed))
-            )
+            })
             .map(matter =>
               <MemberMatterListItem
                 key={matter.referenceNumber}
                 matter={matter}
-                handleClose= {this.handleClose}
+                handleClose= {this.handleCloseMatter}
                 handleExpand = {this.handleExpand}
                 expanded = {this.state.expanded === matter.referenceNumber}
               />
@@ -156,7 +157,8 @@ class MemberMatterList extends ListTemplate {
 const mapStateToProps = state => {
   if (!state.matterList.matters) {
     return {
-      incompleteMatters: []
+      incompleteMatters: [],
+      currentUser: state.auth.user
     }
   }
   const incompleteMatters = state.matterList.matters.map(matter => {
@@ -165,7 +167,8 @@ const mapStateToProps = state => {
     return newMatter
   })
   return {
-    incompleteMatters
+    incompleteMatters,
+    currentUser: state.auth.user
   }
 }
 

@@ -21,12 +21,12 @@ const LawyerMatter = (props) => (
       <ExpansionPanelDetails>
         <Typography>
           <strong>Details: </strong>{props.singleMatter.details}
-          <Button variant="raised"
+          {props.handleClaim && <Button variant="raised"
             color="primary"
             className="btn-submit offset-by-four columns four columns "
             type="submit"
             onClick={() => { props.handleClaim(props.singleMatter.referenceNumber) }}>Claim
-          </Button>
+          </Button>}
           <strong>Enquiries to: </strong>{props.singleMatter.contactEmail}
         </Typography>
       </ExpansionPanelDetails>

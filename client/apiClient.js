@@ -40,6 +40,11 @@ export function requestAllMatters () {
     .then(res => res.body)
 }
 
+export function requestMattersByProfileId (profileId) {
+  return consume('get', `${MATTER_ROUTE}/profile/${profileId}`)
+    .then(res => res.body)
+}
+
 export function claimMatter (matterId, profileId) {
   return consume('put', `${MATTER_ROUTE}/claim`, {matterId, profileId})
     .then(res => res.body)

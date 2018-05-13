@@ -103,12 +103,12 @@ router.get('/id/:id', (req, res) => {
 
 router.get('/profile/:profileId', (req, res) => {
   const profileId = req.params.profileId
-  db.getMatterByProfileId(profileId)
-    .then(matter => {
-      if (!matter) {
-        throw new Error('There was no matter with that profile id')
+  db.getMattersByProfileId(profileId)
+    .then(matters => {
+      if (!matters) {
+        throw new Error('There were no matters with that profile id')
       }
-      res.json({matter})
+      res.json({matters})
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
