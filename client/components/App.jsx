@@ -26,6 +26,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/lawyer' component={LawyerSection} />
             <Route exact path='/member' component={MemberSection} />
+            <Route exact path='/admin' component={MemberSection} />
             <Route path='/:type/register' component={Register}/>
             <Route path='/' component={renderHome} />
           </Switch>
