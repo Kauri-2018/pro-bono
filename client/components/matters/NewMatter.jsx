@@ -93,8 +93,7 @@ class NewMatter extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    currentUser: state.auth.user,
-    isAuthenticated: state.auth.isAuthenticated
+    currentUser: state.auth.user
   }
 }
 

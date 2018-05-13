@@ -21,7 +21,6 @@ class MemberSection extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    currentUser: state.auth.user,
     isAuthenticated: state.auth.isAuthenticated
   }
 }
