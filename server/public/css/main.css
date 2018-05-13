@@ -53,41 +53,41 @@ html {
   justify-content: center;
 }
 .center50 {
-  width: 50vw;
+  width: 50%;
   justify-content: center;
 }
 .center45 {
-  width: 45vw;
+  width: 45%;
   justify-content: center;
 }
 .center40 {
-  width: 40vw;
+  width: 40%;
   justify-content: center;
 }
 .center35 {
-  width: 35vw;
+  width: 35%;
   justify-content: center;
 }
 .center30 {
-  width: 30vw;
+  width: 30%;
   justify-content: center;
 }
 .center25 {
-  width: 25vw;
+  width: 25%;
   justify-content: center;
 }
 .center20 {
-  width: 20vw;
+  width: 20%;
   justify-content: center;
 }
 .center10 {
-  width: 10vw;
+  width: 10%;
   justify-content: center;
 }
 .center {
   align-content: center;
-  margin-left: 2vw;
-  margin-right: 2vw;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 .register-btn {
   margin-left: 30%;
