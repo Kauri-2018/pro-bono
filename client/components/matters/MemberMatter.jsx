@@ -14,7 +14,8 @@ const MemberMatter = (props) => (
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
         <Typography className="">
           <strong>Title: </strong>{props.singleMatter.title} <br/>
-          <strong>Internal Reference Id: </strong>{props.singleMatter.internalMatterNumber}<br/>
+          <strong>Reference number: </strong>{props.singleMatter.referenceNumber} <br/>
+          <strong>Internal matter number: </strong>{props.singleMatter.internalMatterNumber}<br/>
           <strong>Category: </strong>{props.singleMatter.category}<br/>
         </Typography>
       </ExpansionPanelSummary>
@@ -26,6 +27,13 @@ const MemberMatter = (props) => (
             className="btn-submit offset-by-four columns four columns "
             type="submit"
             onClick={() => { props.handleClose(props.singleMatter.referenceNumber) }}>Close
+          </Button>
+          <Button variant="raised"
+            color="primary"
+            className="btn-submit offset-by-four columns four columns "
+            type="submit"
+            // onClick={() => { props.handleEdit(props.singleMatter.referenceNumber) }}
+          >Edit
           </Button>
         </Typography>
       </ExpansionPanelDetails>
