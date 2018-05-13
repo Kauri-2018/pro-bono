@@ -20,14 +20,14 @@ const LawyerMatter = (props) => (
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <Typography>
-          <strong>Details: </strong>{props.singleMatter.details}
+          <strong>Details: </strong>{props.singleMatter.details} <br/><br/>
+          <strong>Enquiries to: </strong>{props.singleMatter.contactEmail} <br/><br/>
           {props.handleClaim && <Button variant="raised"
             color="primary"
             className="btn-submit offset-by-four columns four columns "
             type="submit"
             onClick={() => { props.handleClaim(props.singleMatter.referenceNumber) }}>Claim
           </Button>}
-          <strong>Enquiries to: </strong>{props.singleMatter.contactEmail}
         </Typography>
       </ExpansionPanelDetails>
     </ExpansionPanel>
