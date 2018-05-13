@@ -46,49 +46,42 @@ html {
   width: 70vw;
 }
 
-.center100 {
+.center-content {
   display: flex;
-  width: 100vw;
+  flex-wrap: wrap;
+  width: 100%;
   justify-content: center;
 }
 .center50 {
-  display: flex;
-  width: 50%;
+  width: 50vw;
   justify-content: center;
 }
 .center45 {
-  display: flex;
-  width: 45%;
+  width: 45vw;
   justify-content: center;
 }
 .center40 {
-  display: flex;
-  width: 40%;
+  width: 40vw;
   justify-content: center;
 }
 .center35 {
-  display: flex;
-  width: 35%;
+  width: 35vw;
   justify-content: center;
 }
 .center30 {
-  display: flex;
-  width: 30%;
+  width: 30vw;
   justify-content: center;
 }
 .center25 {
-  display: flex;
-  width: 25%;
+  width: 25vw;
   justify-content: center;
 }
 .center20 {
-  display: flex;
-  width: 20%;
+  width: 20vw;
   justify-content: center;
 }
 .center10 {
-  display: flex;
-  width: 10%;
+  width: 10vw;
   justify-content: center;
 }
 .center {

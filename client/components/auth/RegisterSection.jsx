@@ -5,10 +5,12 @@ import Button from 'material-ui/Button'
 
 const RegisterSection = () => {
   return (
-    <div className='center100'>
-      <Link to='/lawyer/register'><Button className="register-btn" variant="raised">Register as a Lawyer</Button></Link>
-      <span> </span>
-      <Link to='/member/register'><Button className="register-btn" variant="raised">Register as a Law Centre Member</Button></Link>
+    <div className=' offset-by-two column eight columns'>
+      <div className='center-content'>
+        <Link to='/lawyer/register'><Button className="center register-btn" variant="raised">Register as a Lawyer</Button></Link>
+        <span> </span>
+        <Link to='/member/register'><Button className="center register-btn" variant="raised">Register as a Law Centre Member</Button></Link>
+      </div>
     </div>
   )
 }
