@@ -46,6 +46,23 @@ html {
   width: 70vw;
 }
 
+.submit-matter-headings {
+  color: #b52545;;
+  font-family: 'Raleway', sans-serif;
+}
+
+.category-dropdown {
+ text-align: left;
+}
+
+.submit-matter-title {
+  font-size: 2em;
+}
+
+.new-matter-submit {
+  background-color: #b52545;
+}
+
 
 /* random yellow on community law is #D4BD68 */
 /*one  red is #C7003C */
