@@ -72,12 +72,6 @@ class MemberMatterList extends React.Component {
     this.setState({ menuIsOpen: true })
   }
 
-  // handleChange (e) {
-  //   this.setState({
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
-
   handleClose (matterId) {
     closeMatter(matterId)
       .then(() => {

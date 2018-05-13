@@ -44,11 +44,11 @@ class ProfileListItem extends React.Component {
               onChange={this.setAdmin}
             />
           }
-          label="Give user administrator priveleges"
+          label="Give user administrator privileges"
         />}
-        
       </div>
-    )}
+    )
+  }
 }
 
 export default ProfileListItem
