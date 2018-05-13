@@ -1,15 +1,27 @@
-// renders
-// 'Your active matter'
-// Matter.jsx
-// 'Please contact the above law centre for extra information'
 import React from 'react'
+import {connect} from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import MemberLanding from './MemberLanding'
 
-const MemberSection = props => (
-  <div>
-    <MemberLanding />
-  </div>
-)
+class MemberSection extends React.Component {
+  componentWillMount () {
+    if (!this.props.isAuthenticated) {
+      this.props.history.push('/')
+    }
+  }
+  render () {
+    return (
+      <div>
+        <MemberLanding />
+      </div>
+    )
+  }
+}
 
-export default MemberSection
+function mapStateToProps (state) {
+  return {
+    isAuthenticated: state.auth.isAuthenticated
+  }
+}
+export default connect(mapStateToProps)(withRouter(MemberSection))

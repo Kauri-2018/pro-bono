@@ -46,7 +46,7 @@ class NewMatter extends React.Component {
   }
 
   handleAdd (e) {
-    const newMatter = { ...this.state }
+    const newMatter = {...this.state}
     // alert('Submitted new matter: ' + newMatter.title)
     this.props.dispatch(postNewMatter(newMatter))
   }

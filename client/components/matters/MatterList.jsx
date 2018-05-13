@@ -81,7 +81,7 @@ class MatterList extends ListTemplate {
 const mapStateToProps = state => {
   return {
     liveMatters: state.matterList,
-    claimedById: state.auth.user.id
+    claimedById: state.auth.user ? state.auth.user.id : null
   }
 }
 
