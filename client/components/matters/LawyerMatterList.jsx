@@ -15,7 +15,7 @@ import MatterListItem from './MatterListItem'
 import {getLiveMatters} from '../../actions/matters'
 import {claimMatter} from '../../apiClient'
 
-class MatterList extends ListTemplate {
+class LawyerMatterList extends ListTemplate {
   constructor (props) {
     super(props)
     this.handleClaim = this.handleClaim.bind(this)
@@ -81,8 +81,8 @@ class MatterList extends ListTemplate {
 const mapStateToProps = state => {
   return {
     liveMatters: state.matterList,
-    claimedById: state.auth.user ? state.auth.user.id : null
+    claimedById: state.auth.user.id
   }
 }
 
-export default connect(mapStateToProps)(MatterList)
+export default connect(mapStateToProps)(LawyerMatterList)

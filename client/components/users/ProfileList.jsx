@@ -50,7 +50,7 @@ class ProfileList extends React.Component {
           aria-haspopup="true"
           onClick={this.handleClick}
         >
-          {roleFilter === 'all' ? 'All roles' : roleFilter === 'lawyer' ? 'Law Centre Members' : 'Lawyers'}
+          {roleFilter === 'all' ? 'All roles' : roleFilter === 'lawyer' ? 'Lawyers' : 'Law centre members'}
         </Button>
         <Menu
           id="simple-menu"
@@ -82,17 +82,5 @@ class ProfileList extends React.Component {
     )
   }
 }
-
-// const ProfileList = ({pendingProfiles, approveProfile}) => (
-//   <div className='profileList'>
-//     {pendingProfiles.map(profile =>
-//       <ProfileListItem
-//         key={profile.profileId}
-//         profile={profile}
-//         approveProfile={approveProfile}
-//       />
-//     )}
-//   </div>
-// )
 
 export default ProfileList

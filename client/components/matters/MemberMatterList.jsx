@@ -11,7 +11,8 @@ import Menu, { MenuItem } from 'material-ui/Menu'
 import Input, {InputLabel, InputAdornment} from 'material-ui/Input'
 import Icon from 'material-ui/Icon'
 
-// Our Components
+// Our Modules and Components
+import ListTemplate from './ListTemplate'
 import {getIncompleteMatters} from '../../actions/matters'
 import {closeMatter} from '../../apiClient'
 import MemberMatterListItem from './MemberMatterListItem'
@@ -35,29 +36,18 @@ const styles = {
 //   }
 // })
 
-class MemberMatterList extends React.Component {
+class MemberMatterList extends ListTemplate {
   constructor (props) {
     super(props)
     this.state = {
       expanded: false,
-      refNumFilter: new RegExp(''),
-      intNumFilter: new RegExp(''),
-      categoryFilter: new RegExp(''),
       claimFilter: 'all',
       menuIsOpen: false,
       anchorEl: null
     }
-    this.handleClose = this.handleClose.bind(this)
-    this.handleExpand = this.handleExpand.bind(this)
-    this.changeFilter = this.changeFilter.bind(this)
+    this.handleCloseMatter = this.handleCloseMatter.bind(this)
     this.closeMenu = this.closeMenu.bind(this)
     this.handleClick = this.handleClick.bind(this)
-  }
-
-  changeFilter (e) {
-    this.setState({
-      [e.target.name]: new RegExp(e.target.value.toLowerCase())
-    })
   }
 
   closeMenu (e, filterType) {
@@ -72,7 +62,7 @@ class MemberMatterList extends React.Component {
     this.setState({ menuIsOpen: true })
   }
 
-  handleClose (matterId) {
+  handleCloseMatter (matterId) {
     closeMatter(matterId)
       .then(() => {
         this.props.dispatch(getIncompleteMatters())
@@ -82,25 +72,14 @@ class MemberMatterList extends React.Component {
       })
   }
 
-  handleExpand (panel) {
-    return (event, expanded) => {
-      this.setState({
-        expanded: expanded ? panel : false
-      })
-        .catch(err => {
-          console.log(err.message)
-        })
-    }
-  }
-
   componentDidMount () {
     this.props.dispatch(getIncompleteMatters())
   }
 
-  render () {
+  renderFilters () {
     const claimFilter = this.state.claimFilter
     return (
-      <div className='matter-list-wrapper'>
+      <div className='filter-list-wrapper'>
 
         <Button
           aria-owns={this.state.anchorEl ? 'simple-menu' : null}
@@ -143,16 +122,21 @@ class MemberMatterList extends React.Component {
           margin="normal"
           onChange={this.changeFilter}
         />
-        <br />
+      </div>
+    )
+  }
+
+  renderList () {
+    const claimFilter = this.state.claimFilter
+    return (
+      <div className='matter-list-wrapper'>
         {this.props.incompleteMatters.length
-          ? this.props.incompleteMatters.filter(matter =>
-            (claimFilter === 'all' ||
-            (claimFilter === 'claimed' && matter.isClaimed) ||
-            (claimFilter === 'unclaimed' && !matter.isClaimed)) &&
-            this.state.refNumFilter.test(matter.referenceNumber) &&
-            this.state.intNumFilter.test(matter.internalMatterNumber) &&
-            this.state.categoryFilter.test(matter.category.toLowerCase())
-          )
+          ? this.applyFilters(this.props.incompleteMatters)
+            .filter(matter =>
+              (claimFilter === 'all' ||
+              (claimFilter === 'claimed' && matter.isClaimed) ||
+              (claimFilter === 'unclaimed' && !matter.isClaimed))
+            )
             .map(matter =>
               <MemberMatterListItem
                 key={matter.referenceNumber}
@@ -162,7 +146,7 @@ class MemberMatterList extends React.Component {
                 expanded = {this.state.expanded === matter.referenceNumber}
               />
             )
-          : <h4>No Matters</h4>
+          : <h4>No Incomplete Matters</h4>
         }
       </div>
     )
@@ -170,7 +154,12 @@ class MemberMatterList extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const incompleteMatters = state.matterList.map(matter => {
+  if (!state.matterList.matters) {
+    return {
+      incompleteMatters: []
+    }
+  }
+  const incompleteMatters = state.matterList.matters.map(matter => {
     const newMatter = {...matter}
     newMatter.isClaimed = !!matter.claimedBy
     return newMatter
