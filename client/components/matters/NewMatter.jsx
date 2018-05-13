@@ -22,12 +22,6 @@ class NewMatter extends React.Component {
     this.handleAdd = this.handleAdd.bind(this)
   }
 
-  componentWillMount () {
-    if (!this.props.isAuthenticated) {
-      this.props.history.push('/')
-    }
-  }
-
   handleChange (e) {
     this.setState({
       [e.target.name]: e.target.value
