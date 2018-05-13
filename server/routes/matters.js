@@ -43,7 +43,7 @@ router.get('/live', (req, res) => {
       if (!matters.length) {
         matters = []
       }
-      res.json(matters)
+      res.json({matters})
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
@@ -56,7 +56,7 @@ router.get('/incomplete', auth.isMember, (req, res) => {
       if (!matters.length) {
         throw new Error('There are no live matters')
       }
-      res.json(matters)
+      res.json({matters})
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
@@ -103,12 +103,26 @@ router.get('/id/:id', (req, res) => {
 
 router.get('/profile/:profileId', (req, res) => {
   const profileId = req.params.profileId
-  db.getMatterByProfileId(profileId)
-    .then(matter => {
-      if (!matter) {
-        throw new Error('There was no matter with that profile id')
+  db.getMattersByProfileId(profileId)
+    .then(matters => {
+      if (!matters) {
+        throw new Error('There were no matters with that profile id')
       }
-      res.json({matter})
+      res.json({matters})
+    })
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
+
+router.get('/user/:userId', (req, res) => {
+  const userId = req.params.userId
+  db.getMattersByUserId(userId)
+    .then(matters => {
+      if (!matters) {
+        throw new Error('There were no matters with that user id')
+      }
+      res.json({matters})
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
