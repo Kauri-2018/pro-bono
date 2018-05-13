@@ -11,20 +11,20 @@ import Icon from 'material-ui/Icon'
 
 // Our Modules and Components
 import ListTemplate from './ListTemplate'
-import {getIncompleteMatters} from '../../actions/matters'
-import {closeMatter} from '../../apiClient'
-import MemberMatterListItem from './MemberMatterListItem'
+import MatterListItem from './MatterListItem'
+import {getLiveMatters} from '../../actions/matters'
+import {claimMatter} from '../../apiClient'
 
-class MemberMatterList extends ListTemplate {
+class LawyerMatterList extends ListTemplate {
   constructor (props) {
     super(props)
-    this.handleCloseMatter = this.handleCloseMatter.bind(this)
+    this.handleClaim = this.handleClaim.bind(this)
   }
 
-  handleCloseMatter (matterId) {
-    closeMatter(matterId)
+  handleClaim (matterId) {
+    claimMatter(matterId, this.props.claimedById)
       .then(() => {
-        this.props.dispatch(getIncompleteMatters())
+        this.props.dispatch(getLiveMatters())
       })
       .catch(err => {
         console.log(err.message)
@@ -32,7 +32,7 @@ class MemberMatterList extends ListTemplate {
   }
 
   componentDidMount () {
-    this.props.dispatch(getIncompleteMatters())
+    this.props.dispatch(getLiveMatters())
   }
 
   renderFilters () {
@@ -59,19 +59,19 @@ class MemberMatterList extends ListTemplate {
 
   renderList () {
     return (
-      <div className='matterList'>
-        {this.props.incompleteMatters.length
-          ? this.applyFilters(this.props.incompleteMatters)
+      <div className='list'>
+        {this.props.liveMatters.length
+          ? this.applyFilters(this.props.liveMatters)
             .map(matter =>
-              <MemberMatterListItem
+              <MatterListItem
                 key={matter.referenceNumber}
                 matter={matter}
-                handleClose= {this.handleClose}
+                handleClaim = {this.handleClaim}
                 handleExpand = {this.handleExpand}
                 expanded = {this.state.expanded === matter.referenceNumber}
               />
             )
-          : <h4>No Incomplete Matters</h4>
+          : <h4>No Live Matters</h4>
         }
       </div>
     )
@@ -80,8 +80,9 @@ class MemberMatterList extends ListTemplate {
 
 const mapStateToProps = state => {
   return {
-    incompleteMatters: state.matterList
+    liveMatters: state.matterList,
+    claimedById: state.auth.user.id
   }
 }
 
-export default connect(mapStateToProps)(MemberMatterList)
+export default connect(mapStateToProps)(LawyerMatterList)
