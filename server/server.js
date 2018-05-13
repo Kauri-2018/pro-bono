@@ -5,6 +5,7 @@ const authRoutes = require('./routes/auth')
 const matterRoutes = require('./routes/matters')
 const profileRoutes = require('./routes/profiles')
 const usersRoutes = require('./routes/users')
+const mailGun = require('./routes/mailgun')
 
 const server = express()
 
@@ -16,6 +17,7 @@ server.use('/api/v1/auth/', authRoutes)
 server.use('/api/v1/matters/', matterRoutes)
 server.use('/api/v1/profiles/', profileRoutes)
 server.use('/api/v1/users/', usersRoutes)
+server.use('/api/v1/mailgun/', mailGun)
 
 // wildcard route
 server.get('*', function (req, res) {
