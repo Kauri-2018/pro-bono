@@ -45,8 +45,8 @@ class Login extends React.Component {
   render () {
     return (
       <div className='new-matter-wrapper offset-by-two column eight columns'>
-        <Card position="static" color="default" className="new-matter">
-          <h1 className="offset-by-four columns">LOGIN</h1>
+        <Card position="static" color="default" className="login">
+          <h3 className="centertext"><strong>LOGIN</strong></h3>
           <section>
             <span>
             Email <TextField fullWidth={true} required={true} placeholder="email" name="email" className="text-TextField" onChange={this.handleChange} margin="normal" />

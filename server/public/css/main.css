@@ -46,6 +46,70 @@ html {
   width: 70vw;
 }
 
+.center100 {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+}
+.center50 {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+}
+.center45 {
+  display: flex;
+  width: 45%;
+  justify-content: center;
+}
+.center40 {
+  display: flex;
+  width: 40%;
+  justify-content: center;
+}
+.center35 {
+  display: flex;
+  width: 35%;
+  justify-content: center;
+}
+.center30 {
+  display: flex;
+  width: 30%;
+  justify-content: center;
+}
+.center25 {
+  display: flex;
+  width: 25%;
+  justify-content: center;
+}
+.center20 {
+  display: flex;
+  width: 20%;
+  justify-content: center;
+}
+.center10 {
+  display: flex;
+  width: 10%;
+  justify-content: center;
+}
+.center {
+  align-content: center;
+  margin-left: 2vw;
+  margin-right: 2vw;
+}
+.register-btn {
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.login {
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  padding-left: 20vw;
+  padding-right: 20vw;
+  margin-bottom: 5%;
+}
+.centertext{
+  text-align: center;
+}
 
 /* random yellow on community law is #D4BD68 */
 /*one  red is #C7003C */
