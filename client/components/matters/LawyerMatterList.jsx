@@ -24,7 +24,7 @@ class LawyerMatterList extends ListTemplate {
   handleClaim (matterId) {
     claimMatter(matterId, this.props.claimedById)
       .then(() => {
-        this.props.dispatch(getLiveMatters())
+        this.props.dispatch(this.props.getMattersFunction())
       })
       .catch(err => {
         console.log(err.message)
@@ -32,7 +32,7 @@ class LawyerMatterList extends ListTemplate {
   }
 
   componentDidMount () {
-    this.props.dispatch(getLiveMatters())
+    this.props.dispatch(this.props.getMattersFunction())
   }
 
   renderFilters () {
