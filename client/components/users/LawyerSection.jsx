@@ -5,6 +5,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getMatterById} from '../../actions/matters'
+import { withRouter } from 'react-router-dom'
 
 import ActiveMatter from '../matters/ActiveMatter'
 import MatterList from '../matters/MatterList'
@@ -13,9 +14,14 @@ class LawyerSection extends React.Component {
   // constructor (props) {
   //   super(props)
   // }
+  componentWillMount () {
+    if (!this.props.isAuthenticated) {
+      this.props.history.push('/')
+    }
+  }
 
   componentDidMount () {
-    if (this.props.matterId){
+    if (this.props.matterId) {
       this.props.dispatch(getMatterById(this.props.matterId))
     }
   }
@@ -33,8 +39,9 @@ class LawyerSection extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    matterById: state.matterById
+    matterById: state.matterById,
+    isAuthenticated: state.auth.isAuthenticated
   }
 }
 
-export default connect(mapStateToProps)(LawyerSection)
+export default connect(mapStateToProps)(withRouter(LawyerSection))
