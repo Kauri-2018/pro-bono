@@ -1,6 +1,6 @@
 // const domain = 'sandboxdf4879c1b10c4e79bf6d2c0beeddc065.mailgun.org'
 const mailgun = require('mailgun.js')
-const mg = mailgun.client({username: 'api', key: process.env.MAILGUN_API_KEY || 'key-c5a4d6ba4370184f0ce0477f2d198076'})
+const mg = mailgun.client({username: 'api', key: process.env.MAILGUN_API_KEY})
 
 const express = require('express')
 
@@ -20,14 +20,14 @@ function mailGunApi (data) {
     text: data.text,
     html: `<p>${data.text}</p>`
   })
-    .then(msg => msg) // logs response data
-    .catch(err => err) // logs any error
+    .then(msg => msg) 
+    .catch(err => err)
 }
 
 router.post('/', auth.isMember, (req, res) => {
   const data = req.body
   mailGunApi(data)
-    .then(() => { // next())
+    .then(() => { 
       res.sendStatus(200)
     })
 })
