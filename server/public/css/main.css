@@ -1,0 +1,53 @@
+html {
+  font-size: 100%; 
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.new-matter {
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  padding-left: 20vw;
+  padding-right: 20vw;
+}
+
+.text-input {
+  display: flex;
+}
+
+.matter {
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+.input-right {
+  float: right;
+}
+
+.input-left {
+  float: left;
+}
+
+.register {
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  padding-left: 15vw;
+  padding-right: 15vw;
+}
+
+.matter-list-wrapper {
+  padding-left: 15vw;
+  width: 70vw;
+}
+
+
+/* random yellow on community law is #D4BD68 */
+/*one  red is #C7003C */
+/* other red is #C10037 */
+/* off white is #F8FAF0 */

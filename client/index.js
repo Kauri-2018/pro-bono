@@ -3,6 +3,7 @@ import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 import {createStore, applyMiddleware, compose} from 'redux'
 import {BrowserRouter as Router} from 'react-router-dom'
+import CssBaseline from 'material-ui/CssBaseline'
 import thunk from 'redux-thunk'
 
 import reducers from './reducers'
@@ -17,7 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
   render(
     <Router>
       <Provider store={store}>
-        <App />
+        <div>
+          <CssBaseline />
+          <App />
+        </div>
       </Provider>
     </Router>,
     document.getElementById('app')
