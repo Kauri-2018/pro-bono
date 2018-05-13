@@ -1,3 +1,7 @@
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
 html {
   font-size: 100%; 
 }
@@ -44,6 +48,22 @@ html {
 .matter-list-wrapper {
   padding-left: 15vw;
   width: 70vw;
+}
+
+.submit-matter-headings {
+  color: #b52545;
+}
+
+.category-dropdown {
+ text-align: left;
+}
+
+.submit-matter-title {
+  font-size: 2em;
+}
+
+.new-matter-submit {
+  background-color: #b52545;
 }
 
 
