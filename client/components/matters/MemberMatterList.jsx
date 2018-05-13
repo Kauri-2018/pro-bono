@@ -80,7 +80,7 @@ class MemberMatterList extends ListTemplate {
 
 const mapStateToProps = state => {
   return {
-    incompleteMatters: state.matterList
+    incompleteMatters: state.matterList.matters
   }
 }
 
