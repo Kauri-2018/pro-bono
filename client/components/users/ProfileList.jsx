@@ -50,7 +50,7 @@ class ProfileList extends React.Component {
           aria-haspopup="true"
           onClick={this.handleClick}
         >
-          {roleFilter === 'all' ? 'All roles' : roleFilter === 'lawyer' ? 'Lawyers' : 'Law centre members'}
+          {(roleFilter === 'all' || !roleFilter) ? 'All roles' : roleFilter === 'lawyers' ? 'Lawyers' : 'Law centre members'}
         </Button>
         <Menu
           id="simple-menu"
