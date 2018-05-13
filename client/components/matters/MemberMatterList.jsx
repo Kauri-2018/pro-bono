@@ -1,10 +1,13 @@
+// Node modules
 import React from 'react'
 import {connect} from 'react-redux'
+
+// Our modules and imports
 import {getIncompleteMatters} from '../../actions/matters'
 import {closeMatter} from '../../apiClient'
 import MemberMatterListItem from './MemberMatterListItem'
 
-class MemberMatterList extends React.Component {
+class MemberMatterList extends ListTemplate {
   constructor (props) {
     super(props)
     this.state = {
