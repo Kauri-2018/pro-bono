@@ -115,20 +115,6 @@ router.get('/profile/:profileId', (req, res) => {
     })
 })
 
-router.get('/user/:userId', (req, res) => {
-  const userId = req.params.userId
-  db.getMattersByUserId(userId)
-    .then(matters => {
-      if (!matters) {
-        throw new Error('There were no matters with that user id')
-      }
-      res.json({matters})
-    })
-    .catch(err => {
-      res.status(500).json({errorMessage: err.message})
-    })
-})
-
 router.get('/category/:category', (req, res) => {
   const category = req.params.category
   db.getLiveMattersByCategory(category)
