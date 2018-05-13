@@ -3,17 +3,20 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 // Material UI Components
-import classNames from 'classnames'
-import { withStyles } from 'material-ui/styles'
-import TextField from 'material-ui/TextField'
-import Input, {InputLabel, InputAdornment} from 'material-ui/Input'
-import Icon from 'material-ui/Icon'
+// import classNames from 'classnames'
+// import { withStyles } from 'material-ui/styles'
+// import TextField from 'material-ui/TextField'
+// import Input, {InputLabel, InputAdornment} from 'material-ui/Input'
+// import Icon from 'material-ui/Icon'
 
 // Our Modules and Components
-import { listStyles } from '../../constants'
-import {getLiveMatters} from '../../actions/matters'
-import {claimMatter} from '../../apiClient'
+// import { listStyles } from '../../constants'
+// import {getLiveMatters} from '../../actions/matters'
+// import {claimMatter} from '../../apiClient'
 
+/**
+ * EXTEND THIS CLASS IF YOU WANT A LIST DO NOT COPY IT
+ */
 class ListTemplate extends React.Component {
   constructor (props) {
     super(props)
@@ -70,10 +73,10 @@ class ListTemplate extends React.Component {
   }
 
   renderFilters () {
-    
+
   }
 
-  renderList() {
+  renderList () {
 
   }
 }
