@@ -15,7 +15,8 @@ module.exports = {
   getByUserId,
   getByEmail,
   addUser,
-  makeAdmin
+  makeAdmin,
+  getFullUserByUserId
 }
 
 function getPendingProfiles (db = knex) {
@@ -118,6 +119,27 @@ function getByUserId (id, testDb) {
   return connection('users')
     .select('id', 'email', 'role', 'pending')
     .where('id', id)
+    .first()
+}
+
+function getFullUserByUserId (userId, testDb) {
+  const connection = testDb || knex
+  return connection('users')
+    .join('profiles', 'profiles.user_id', '=', 'users.id')
+    .select(
+      'users.id as userId',
+      'email',
+      'role',
+      'profiles.id as profileId',
+      'centre_id as centreId',
+      'firstname',
+      'lastname',
+      'phone_number as phoneNumber',
+      'pending',
+      'certificate',
+      'company'
+    )
+    .where('userId', userId)
     .first()
 }
 

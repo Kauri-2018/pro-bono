@@ -16,10 +16,17 @@ const adminPermissions = [
 
 function createToken (user, secret) {
   return jwt.sign({
-    id: user.id,
+    id: user.userId,
     email: user.email,
     role: user.role,
-    pending: user.pending
+    pending: user.pending,
+    profileId: user.profileId,
+    centreId: user.centreId,
+    firstname: user.firstname,
+    lastname: user.lastname,
+    phoneNumber: user.phoneNumber,
+    certificate: user.certificate,
+    company: user.company
   }, secret, {
     expiresIn: 60 * 60 * 24 // or '1d'
   })
@@ -38,11 +45,14 @@ function handleError (err, req, res, next) {
 function issueJwt (req, res, next) {
   users.getByEmail(req.body.email)
     .then(user => {
-      const token = createToken(user, process.env.JWT_SECRET)
-      res.json({
-        message: 'Authentication successful.',
-        token
-      })
+      users.getFullUserByUserId(user.id)
+        .then(userData => {
+          const token = createToken(userData, process.env.JWT_SECRET)
+          res.json({
+            message: 'Authentication successful.',
+            token
+          })
+        })
     })
     .catch(err => {
       return res.status(403).json({
