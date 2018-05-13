@@ -6,6 +6,8 @@ import {connect} from 'react-redux'
 import classNames from 'classnames'
 import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
+import Button from 'material-ui/Button'
+import Menu, { MenuItem } from 'material-ui/Menu'
 import Input, {InputLabel, InputAdornment} from 'material-ui/Input'
 import Icon from 'material-ui/Icon'
 
@@ -13,6 +15,12 @@ import Icon from 'material-ui/Icon'
 import {getIncompleteMatters} from '../../actions/matters'
 import {closeMatter} from '../../apiClient'
 import MemberMatterListItem from './MemberMatterListItem'
+
+const styles = {
+  customWidth: {
+    width: 200
+  }
+}
 
 // const styles = theme => ({
 //   root: {
@@ -34,11 +42,16 @@ class MemberMatterList extends React.Component {
       expanded: false,
       refNumFilter: new RegExp(''),
       intNumFilter: new RegExp(''),
-      categoryFilter: new RegExp('')
+      categoryFilter: new RegExp(''),
+      claimFilter: 'all',
+      menuIsOpen: false,
+      anchorEl: null
     }
     this.handleClose = this.handleClose.bind(this)
     this.handleExpand = this.handleExpand.bind(this)
     this.changeFilter = this.changeFilter.bind(this)
+    this.closeMenu = this.closeMenu.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   changeFilter (e) {
@@ -46,6 +59,24 @@ class MemberMatterList extends React.Component {
       [e.target.name]: new RegExp(e.target.value.toLowerCase())
     })
   }
+
+  closeMenu (e, filterType) {
+    this.setState({
+      menuIsOpen: false,
+      claimFilter: filterType,
+      anchorEl: e.target
+    })
+  }
+
+  handleClick (e) {
+    this.setState({ menuIsOpen: true })
+  }
+
+  // handleChange (e) {
+  //   this.setState({
+  //     [e.target.name]: e.target.value
+  //   })
+  // }
 
   handleClose (matterId) {
     closeMatter(matterId)
@@ -73,8 +104,28 @@ class MemberMatterList extends React.Component {
   }
 
   render () {
+    const claimFilter = this.state.claimFilter
     return (
       <div className='matter-list-wrapper'>
+
+        <Button
+          aria-owns={this.state.anchorEl ? 'simple-menu' : null}
+          aria-haspopup="true"
+          onClick={this.handleClick}
+        >
+          {claimFilter === 'all' ? 'All matters' : claimFilter === 'claimed' ? 'Claimed matters' : 'Unclaimed matters'}
+        </Button>
+        <Menu
+          id="simple-menu"
+          anchorEl={this.state.anchorEl}
+          open={this.state.menuIsOpen}
+          onClose={e => { this.closeMenu(e, claimFilter) }}
+        >
+          <MenuItem onClick={e => { this.closeMenu(e, 'all') }}>All matters</MenuItem>
+          <MenuItem onClick={e => { this.closeMenu(e, 'claimed') }}>Claimed matters</MenuItem>
+          <MenuItem onClick={e => { this.closeMenu(e, 'unclaimed') }}>Unclaimed matters</MenuItem>
+        </Menu>
+
         Reference number: <TextField
           className='input-left'
           name="refNumFilter"
@@ -89,7 +140,7 @@ class MemberMatterList extends React.Component {
           floatingLabelText="Internal matter number"
           margin="normal"
           onChange={this.changeFilter}
-          // endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
+          endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
         />
           Category: <TextField
           className='input-left'
@@ -101,6 +152,9 @@ class MemberMatterList extends React.Component {
         <br />
         {this.props.incompleteMatters.length
           ? this.props.incompleteMatters.filter(matter =>
+            (claimFilter === 'all' ||
+            (claimFilter === 'claimed' && matter.isClaimed) ||
+            (claimFilter === 'unclaimed' && !matter.isClaimed)) &&
             this.state.refNumFilter.test(matter.referenceNumber) &&
             this.state.intNumFilter.test(matter.internalMatterNumber) &&
             this.state.categoryFilter.test(matter.category.toLowerCase())
@@ -122,8 +176,13 @@ class MemberMatterList extends React.Component {
 }
 
 const mapStateToProps = state => {
+  const incompleteMatters = state.matterList.map(matter => {
+    const newMatter = {...matter}
+    newMatter.isClaimed = !!matter.claimedBy
+    return newMatter
+  })
   return {
-    incompleteMatters: state.matterList
+    incompleteMatters
   }
 }
 
