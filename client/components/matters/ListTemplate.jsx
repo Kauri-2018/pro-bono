@@ -27,6 +27,17 @@ class ListTemplate extends React.Component {
     this.applyFilters = this.applyFilters.bind(this)
   }
 
+  handleExpand (panel) {
+    return (event, expanded) => {
+      this.setState({
+        expanded: expanded ? panel : false
+      })
+        .catch(err => {
+          console.log(err.message)
+        })
+    }
+  }
+
   changeFilter (e) {
     const newFilters = { ...this.state.filters }
     newFilters[e.target.name] = {
@@ -46,17 +57,6 @@ class ListTemplate extends React.Component {
         return foundNotMatching || !filter.regex.test(('' + item[filter.field]).toLowerCase())
       }, false)
     })
-  }
-
-  handleExpand (panel) {
-    return (event, expanded) => {
-      this.setState({
-        expanded: expanded ? panel : false
-      })
-        .catch(err => {
-          console.log(err.message)
-        })
-    }
   }
 
   render () {
