@@ -11,7 +11,7 @@ import Divider from 'material-ui/Divider'
 const Profile = (props) => (
   <div className='profile'>
     <Card position="static" color="default" className="matter">
-      <div>{props.singleProfile.lastname},{props.singleProfile.firstname}</div>
+      <div>{props.singleProfile.firstname} {props.singleProfile.lastname}</div>
       <Divider />
       <div>{props.singleProfile.company}</div>
       <Divider />

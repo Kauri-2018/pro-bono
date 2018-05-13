@@ -22,9 +22,9 @@ class LawyerMatterList extends ListTemplate {
   }
 
   handleClaim (matterId) {
-    claimMatter(matterId, this.props.claimedById)
+    claimMatter(matterId, this.props.currentUser.profileId)
       .then(() => {
-        this.props.dispatch(getLiveMatters())
+        this.props.dispatch(this.props.getMattersFunction(this.props.currentUser.profileId))
       })
       .catch(err => {
         console.log(err.message)
@@ -32,7 +32,7 @@ class LawyerMatterList extends ListTemplate {
   }
 
   componentDidMount () {
-    this.props.dispatch(getLiveMatters())
+    this.props.dispatch(this.props.getMattersFunction(this.props.currentUser.profileId))
   }
 
   renderFilters () {
@@ -60,8 +60,8 @@ class LawyerMatterList extends ListTemplate {
   renderList () {
     return (
       <div className='list'>
-        {this.props.liveMatters.length
-          ? this.applyFilters(this.props.liveMatters)
+        {this.props.storedMatters && this.props.storedMatters.length
+          ? this.applyFilters(this.props.storedMatters)
             .map(matter =>
               <MatterListItem
                 key={matter.referenceNumber}
@@ -80,8 +80,8 @@ class LawyerMatterList extends ListTemplate {
 
 const mapStateToProps = state => {
   return {
-    liveMatters: state.matterList,
-    claimedById: state.auth.user.id
+    storedMatters: state.matterList.matters,
+    currentUser: state.auth.user
   }
 }
 
