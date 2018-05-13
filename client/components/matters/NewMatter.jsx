@@ -66,7 +66,7 @@ class NewMatter extends React.Component {
             <TextField fullWidth={true} required={true} placeholder="Matter contact email" multiline={true} name="contactEmail" label="Matter contact email" className="text-input" onChange={this.handleChange} margin="normal" />
             <br />
             <br />
-            <Button fullWidth={true} required={true} aria-owns={anchorEl ? 'category-menu' : null} aria-haspopup="true" onClick={this.handleClick}>Categories</Button>
+            <Button fullWidth={true} required={true} aria-owns={anchorEl ? 'category-menu' : null} aria-haspopup="true" onClick={this.handleClick}>{category ? `Category: ${category}` : 'Select category'}</Button>
             <Menu id="category-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={e => { this.handleClose(e, category) }}>
               <MenuItem onClick={ e => { this.handleClose(e, 'Civil') }}>Civil</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Family') }}>Family</MenuItem>
