@@ -85,25 +85,6 @@ function getMattersByProfileId (profileId, db = knex) {
     )
 }
 
-function getMattersByUserId (userId, db = knex) {
-  return db('users')
-    .join('profiles', 'users.id', '=', 'profiles.id')
-    .where({user_id: userId})
-    .join('matters', 'profiles.id', '=', 'matters.claimed_by')
-    .where({claimed_by: profiles.id})
-    .select(
-      'matters.id as referenceNumber',
-      'category',
-      'details',
-      'contact_email as contactEmail',
-      'is_complete as isComplete',
-      'claimed_by as claimedBy',
-      'matters.centre_id as centreId',
-      'title',
-      'internal_matter_number as internalMatterNumber'
-    )
-}
-
 function markAsComplete (matterId, db = knex) {
   return db('matters')
     .where('id', '=', matterId)
@@ -157,6 +138,5 @@ module.exports = {
   getLiveMattersByCategory,
   getLiveMatters,
   getMattersByProfileId,
-  getMattersByUserId,
   addNewMatter
 }
