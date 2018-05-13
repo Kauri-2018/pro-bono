@@ -3,7 +3,8 @@ import {
   requestMatterById,
   addNewMatter,
   requestLiveMatters,
-  requestIncompleteMatters
+  requestIncompleteMatters,
+  requestMattersByProfileId
 } from '../apiClient'
 
 import {errorHandle} from './errorHandle'
@@ -16,6 +17,19 @@ export function getAllMatters () {
     return requestAllMatters()
       .then(allMatters => {
         dispatch(showMatterList(allMatters))
+      })
+      .catch(err => {
+        dispatch(errorHandle(err.message))
+        return Promise.reject(err.message)
+      })
+  }
+}
+
+export function getMattersByProfileId (profileId) {
+  return dispatch => {
+    return requestMattersByProfileId(profileId)
+      .then(matters => {
+        dispatch(showMatterList(matters))
       })
       .catch(err => {
         dispatch(errorHandle(err.message))

@@ -1,37 +1,51 @@
-// renders
-// 'Your active matter'
-// Matter.jsx
-// 'Please contact the above law centre for extra information'
 import React from 'react'
 import {connect} from 'react-redux'
 import {getMatterById} from '../../actions/matters'
 import { withRouter } from 'react-router-dom'
 
+import AppBar from 'material-ui/AppBar'
+import Tabs, {Tab} from 'material-ui/Tabs'
+// import Typography from 'material-ui/Typography'
+
+import ApproveProfiles from './ApproveProfiles'
+import LawyerMatterList from '../matters/LawyerMatterList'
 import ActiveMatter from '../matters/ActiveMatter'
 import MatterList from '../matters/MatterList'
+import NewMatter from '../matters/NewMatter'
+import {getLiveMatters, getMattersByProfileId} from '../../actions/matters'
 
 class LawyerSection extends React.Component {
-  // constructor (props) {
-  //   super(props)
-  // }
+  constructor (props) {
+    super(props)
+    this.state = {
+      selectedTabIndex: 0
+    }
+
+    this.switchTab = this.switchTab.bind(this)
+  }
+
+  switchTab (e, selectedTabIndex) {
+    this.setState({selectedTabIndex})
+  }
+
   componentWillMount () {
     if (!this.props.isAuthenticated) {
       this.props.history.push('/')
     }
   }
 
-  componentDidMount () {
-    if (this.props.matterId) {
-      this.props.dispatch(getMatterById(this.props.matterId))
-    }
-  }
-
   render () {
+    const selectedTabIndex = this.state.selectedTabIndex
+    const isAdmin = this.props.isAdmin
     return (
-      <div>
-        {this.props.matterId
-          ? <ActiveMatter matterById={this.props.matterById} />
-          : <MatterList />}
+      <div className='member-landing'>
+        <AppBar position='static'>
+          <Tabs value={selectedTabIndex} onChange={this.switchTab}>
+            <Tab label="Your Active Matters" />
+            <Tab label="Browse Unclaimed Matters" />
+          </Tabs>
+        </AppBar>
+        <LawyerMatterList getMattersFunction={selectedTabIndex ? getLiveMatters : getMattersByProfileId}/>
       </div>
     )
   }
@@ -39,6 +53,7 @@ class LawyerSection extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    isAdmin: state.auth && state.auth.user && state.auth.user.role === 'admin',
     matterById: state.matterById,
     isAuthenticated: state.auth.isAuthenticated
   }
