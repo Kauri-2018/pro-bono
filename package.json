@@ -41,6 +41,7 @@
     "jsonwebtoken": "^8.1.1",
     "jwt-decode": "^2.2.0",
     "knex": "^0.14.3",
+    "mailgun.js": "^2.0.1",
     "pg": "^7.4.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -58,6 +59,7 @@
     "material-ui": "^1.0.0-beta.47",
     "nock": "^9.2.5",
     "nodemon": "^1.15.0",
+    "socks-proxy-agent": "^4.0.1",
     "sqlite3": "^3.1.13",
     "supertest": "^3.0.0",
     "webpack-livereload-plugin": "^1.0.0"
