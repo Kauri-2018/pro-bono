@@ -47,17 +47,19 @@ class Login extends React.Component {
       <div className='new-matter-wrapper offset-by-two column eight columns'>
         <Card position="static" color="default" className="new-matter">
           <h1 className="offset-by-four columns">LOGIN</h1>
-          <div>
-            <p>
-            Email <TextField fullWidth={true} required={true} placeholder="email" name="email" className="text-input" onChange={this.handleChange} margin="normal" />
-            </p>
-            <p>
-            Password <TextField fullWidth={true} required={true} type="password" placeholder="Password" name="password" className="text-input" onChange={this.handleChange} margin="normal" />
-            </p>
-            <div>
+          <section>
+            <span>
+            Email <TextField fullWidth={true} required={true} placeholder="email" name="email" className="text-TextField" onChange={this.handleChange} margin="normal" />
+            </span>
+            <br/><br/>
+            <span>
+            Password <TextField fullWidth={true} required={true} type="password" placeholder="Password" name="password" className="text-TextField" onChange={this.handleChange} margin="normal" />
+            </span>
+            <br/><br/>
+            <section>
               <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " onClick={this.handleClick}>Login</Button>
-            </div>
-          </div>
+            </section>
+          </section>
           <ErrorMessage reducer='auth' />
         </Card>
       </div>
