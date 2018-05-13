@@ -15,7 +15,7 @@ import LawyerSection from './users/LawyerSection'
 import MemberSection from './users/MemberSection'
 import RegisterSection from './auth/RegisterSection'
 import Register from './auth/Register'
-import MatterList from './matters/MatterList'
+import PendingLanding from './auth/PendingLanding'
 
 class App extends React.Component {
   render () {
@@ -24,6 +24,7 @@ class App extends React.Component {
         <div className='app container'>
           <Navbar />
           <Switch>
+            <Route exact path='/pending' component={PendingLanding} />
             <Route exact path='/lawyer' component={LawyerSection} />
             <Route exact path='/member' component={MemberSection} />
             <Route path='/:type/register' component={Register}/>
