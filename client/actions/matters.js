@@ -4,6 +4,7 @@ import {
   addNewMatter,
   requestLiveMatters,
   requestIncompleteMatters,
+  requestMattersByUserId,
   requestMattersByProfileId
 } from '../apiClient'
 
@@ -28,6 +29,19 @@ export function getAllMatters () {
 export function getMattersByProfileId (profileId) {
   return dispatch => {
     return requestMattersByProfileId(profileId)
+      .then(matters => {
+        dispatch(showMatterList(matters))
+      })
+      .catch(err => {
+        dispatch(errorHandle(err.message))
+        return Promise.reject(err.message)
+      })
+  }
+}
+
+export function getMattersByUserId (userId) {
+  return dispatch => {
+    return requestMattersByUserId(userId)
       .then(matters => {
         dispatch(showMatterList(matters))
       })

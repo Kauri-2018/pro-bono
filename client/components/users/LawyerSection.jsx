@@ -12,7 +12,7 @@ import LawyerMatterList from '../matters/LawyerMatterList'
 import ActiveMatter from '../matters/ActiveMatter'
 import MatterList from '../matters/MatterList'
 import NewMatter from '../matters/NewMatter'
-import {getLiveMatters, getMattersByProfileId} from '../../actions/matters'
+import {getLiveMatters, getMattersByUserId} from '../../actions/matters'
 
 class LawyerSection extends React.Component {
   constructor (props) {
@@ -45,7 +45,9 @@ class LawyerSection extends React.Component {
             <Tab label="Browse Unclaimed Matters" />
           </Tabs>
         </AppBar>
-        <LawyerMatterList getMattersFunction={selectedTabIndex ? getLiveMatters : getMattersByProfileId}/>
+        {selectedTabIndex ? 
+          <LawyerMatterList getMattersFunction={getLiveMatters}/> :
+          <LawyerMatterList getMattersFunction={getMattersByUserId}/>}
       </div>
     )
   }
