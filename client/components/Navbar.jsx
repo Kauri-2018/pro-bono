@@ -6,7 +6,7 @@ import Logout from './auth/Logout'
 const Navbar = props => {
   return (
     <div className='row navbar'>
-      <h1>Nav bar to be completed</h1>
+      <h4>Nav bar to be completed</h4>
       {props.isAuthenticated && <Logout />}
     </div>
   )
