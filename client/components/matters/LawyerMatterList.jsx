@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 // Material UI Components
 import classNames from 'classnames'
-import { withStyles } from 'material-ui/styles'
+import {withStyles} from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import Input, {InputLabel, InputAdornment} from 'material-ui/Input'
 import Icon from 'material-ui/Icon'
@@ -25,22 +25,22 @@ class LawyerMatterList extends ListTemplate {
 
   renderFilters () {
     return (
-      <div className='filter-list-wrapper'>
-        Reference ID: <TextField
+      <div className='filter-list-wrapper offset-by-two column four columns center-vertical'>
+        <span className="flex-alignright"><span> Reference ID: </span><TextField
           className='input-left'
           name="referenceNumber"
           floatingLabelText="Reference ID"
           margin="normal"
           onChange={this.changeFilter}
           endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
-        />
-        Category: <TextField
+        /></span>
+        <span className="flex-alignright"><span>Category: </span><TextField
           className='input-left'
           name="category"
           label="Category"
           margin="normal"
           onChange={this.changeFilter}
-        />
+        /></span>
       </div>
     )
   }
