@@ -129,6 +129,19 @@ function getLiveMattersByCategory (category, db = knex) {
     )
 }
 
+function editMatter (matter, db = knex) {
+  return db('matters')
+    .where('id', '=', matter.referenceNumber)
+    .update({
+      category: matter.category,
+      details: matter.details,
+      contact_email: matter.contactEmail,
+      centre_id: matter.centreId,
+      title: matter.title,
+      internal_matter_number: matter.internalMatterNumber
+    })
+}
+
 module.exports = {
   getAllMatters,
   getIncompleteMatters,
@@ -138,5 +151,6 @@ module.exports = {
   getLiveMattersByCategory,
   getLiveMatters,
   getMattersByProfileId,
-  addNewMatter
+  addNewMatter,
+  editMatter
 }

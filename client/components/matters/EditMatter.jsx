@@ -1,22 +1,22 @@
 import React from 'react'
-import {connect} from 'react-redux'
 import Button from 'material-ui/Button'
 import Card from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
 import Menu, { MenuItem } from 'material-ui/Menu'
 
-import {postNewMatter} from '../../actions/matters'
+import {editMatter, requestMatterById} from '../../apiClient'
 
-class NewMatter extends React.Component {
+class EditMatter extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      referenceNumber: 0,
       title: '',
       contactEmail: '',
-      category: null,
-      internalMatterNumber: '',
+      category: '',
+      internalMatterNumber: 0,
       details: '',
-      centreId: props.centreId,
+      centreId: 0,
       anchorEl: null
     }
 
@@ -24,6 +24,21 @@ class NewMatter extends React.Component {
     this.handleClick = this.handleClick.bind(this)
     this.handleClose = this.handleClose.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
+  }
+
+  componentDidMount () {
+    requestMatterById(this.props.match.params.id)
+      .then(matter => {
+        this.setState({
+          referenceNumber: matter.matter.referenceNumber,
+          title: matter.matter.title,
+          contactEmail: matter.matter.contactEmail,
+          category: matter.matter.category,
+          internalMatterNumber: matter.matter.internalMatterNumber,
+          details: matter.matter.details,
+          centreId: matter.matter.centreId
+        })
+      })
   }
 
   handleChange (e) {
@@ -46,9 +61,8 @@ class NewMatter extends React.Component {
   }
 
   handleAdd (e) {
-    const newMatter = {...this.state}
-    // alert('Submitted new matter: ' + newMatter.title)
-    this.props.dispatch(postNewMatter(newMatter))
+    const matter = {...this.state}
+    editMatter(matter)
   }
 
   render () {
@@ -57,13 +71,13 @@ class NewMatter extends React.Component {
     return (
       <div className='new-matter-wrapper offset-by-two column eight columns'>
         <Card position="static" color="default" className="new-matter">
-          <h1 className="offset-by-one columns">Submit New Matter</h1>
+          <h1 className="offset-by-one columns">Edit Matter</h1>
 
           <section className="form-field">
-            <TextField fullWidth={true} required={true} placeholder="Title" multiline={true} name="title" label="Title" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField fullWidth={true} required={true} placeholder={this.state.title} multiline={true} name="title" label="Title" className="text-input" onChange={this.handleChange} margin="normal" />
             <br />
             <br />
-            <TextField fullWidth={true} required={true} placeholder="Matter contact email" multiline={true} name="contactEmail" label="Matter contact email" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField fullWidth={true} required={true} placeholder={this.state.contactEmail} multiline={true} name="contactEmail" label="Matter contact email" className="text-input" onChange={this.handleChange} margin="normal" />
             <br />
             <br />
             <Button fullWidth={true} required={true} aria-owns={anchorEl ? 'category-menu' : null} aria-haspopup="true" onClick={this.handleClick}>{category ? `Category: ${category}` : 'Select category'}</Button>
@@ -77,10 +91,10 @@ class NewMatter extends React.Component {
             </Menu>
             <br />
             <br />
-            <TextField fullWidth={true} placeholder="Internal matter number (optional)" multiline={true} name="internalMatterNumber" label="Internal matter number (optional)" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField fullWidth={true} placeholder={this.state.internalMatterNumber} multiline={true} name="internalMatterNumber" label="Internal matter number" className="text-input" onChange={this.handleChange} margin="normal" />
             <br />
             <br />
-            <TextField fullWidth={true} placeholder="Add additional detail here" multiline={true} name="details" label="Additional Detail" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField fullWidth={true} placeholder={this.state.details} multiline={true} name="details" label="Additional Detail" className="text-input" onChange={this.handleChange} margin="normal" />
           </section>
           <section>
             <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " type="submit" onClick={this.handleAdd}>Submit</Button>
@@ -91,10 +105,4 @@ class NewMatter extends React.Component {
   }
 }
 
-function mapStateToProps (state) {
-  return {
-    currentUser: state.auth.user
-  }
-}
-
-export default connect(mapStateToProps)(NewMatter)
+export default EditMatter

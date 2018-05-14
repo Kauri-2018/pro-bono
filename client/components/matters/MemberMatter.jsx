@@ -32,7 +32,7 @@ const MemberMatter = (props) => (
             color="primary"
             className="btn-submit offset-by-four columns four columns "
             type="submit"
-            // onClick={() => { props.handleEdit(props.singleMatter.referenceNumber) }}
+            href={`/edit/${props.singleMatter.referenceNumber}`}
           >Edit
           </Button>
         </Typography>
