@@ -80,50 +80,47 @@ class MemberMatterList extends ListTemplate {
     const claimFilter = this.state.claimFilter
     return (
 
-      <div className='filter-list-wrapper center-content'>
-        <div className="offset-by-two column eight columns">
-          <Button
-            aria-owns={this.state.anchorEl ? 'simple-menu' : null}
-            aria-haspopup="true"
-            onClick={this.handleClick}
-          >
-            {(claimFilter === 'all' || !claimFilter) ? 'All matters' : claimFilter === 'claimed' ? 'Claimed matters' : 'Unclaimed matters'}
-          </Button>
-          <Menu
-            id="simple-menu"
-            anchorEl={this.state.anchorEl}
-            open={this.state.menuIsOpen}
-            onClose={e => { this.closeMenu(e, claimFilter) }}
-          >
-            <MenuItem onClick={e => { this.closeMenu(e, 'all') }}>All matters</MenuItem>
-            <MenuItem onClick={e => { this.closeMenu(e, 'claimed') }}>Claimed matters</MenuItem>
-            <MenuItem onClick={e => { this.closeMenu(e, 'unclaimed') }}>Unclaimed matters</MenuItem>
-          </Menu>
+      <div className='filter-list-wrapper offset-by-two column four columns center-vertical'>
+        <Button
+          aria-owns={this.state.anchorEl ? 'simple-menu' : null}
+          aria-haspopup="true"
+          onClick={this.handleClick}
+        >
+          {(claimFilter === 'all' || !claimFilter) ? 'All matters' : claimFilter === 'claimed' ? 'Claimed matters' : 'Unclaimed matters'}
+        </Button>
+        <Menu
+          id="simple-menu"
+          anchorEl={this.state.anchorEl}
+          open={this.state.menuIsOpen}
+          onClose={e => { this.closeMenu(e, claimFilter) }}
+        >
+          <MenuItem onClick={e => { this.closeMenu(e, 'all') }}>All matters</MenuItem>
+          <MenuItem onClick={e => { this.closeMenu(e, 'claimed') }}>Claimed matters</MenuItem>
+          <MenuItem onClick={e => { this.closeMenu(e, 'unclaimed') }}>Unclaimed matters</MenuItem>
+        </Menu>
 
-        Reference number: <TextField
-            className='input-left'
-            name="referenceNumber"
-            floatingLabelText="Reference number"
-            margin="normal"
-            onChange={this.changeFilter}
-            endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
-          />
-        Internal matter number: <TextField
-            className='input-left'
-            name="internalMatterNumber"
-            floatingLabelText="Internal matter number"
-            margin="normal"
-            onChange={this.changeFilter}
-            endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
-          />
-          Category: <TextField
-            className='input-left'
-            name="category"
-            label="Category"
-            margin="normal"
-            onChange={this.changeFilter}
-          />
-        </div>
+        <span className="flex-alignright"><span>Reference number: </span><TextField
+          className='input-left'
+          name="referenceNumber"
+          floatingLabelText="Reference number"
+          margin="normal"
+          onChange={this.changeFilter}
+          endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
+        /></span>
+        <span className="flex-alignright"><span> Internal matter number: </span><TextField
+          className='input-left'
+          name="internalMatterNumber"
+          floatingLabelText="Internal matter number"
+          margin="normal"
+          onChange={this.changeFilter}
+          endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
+        /></span>
+        <span className="flex-alignright"><span>Category: </span><TextField
+          className='input-left'
+          name="category"
+          margin="normal"
+          onChange={this.changeFilter}
+        /></span>
       </div>
     )
   }
