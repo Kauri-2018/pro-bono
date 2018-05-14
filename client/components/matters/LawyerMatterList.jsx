@@ -10,10 +10,6 @@ import ListTemplate from './ListTemplate'
 import MatterListItem from './MatterListItem'
 
 class LawyerMatterList extends ListTemplate {
-  constructor (props) {
-    super(props)
-  }
-
   componentDidMount () {
     if (this.props.currentUser) {
       this.props.dispatch(this.props.getMattersFunction(this.props.currentUser.profileId))

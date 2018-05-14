@@ -41,6 +41,7 @@ class MemberMatterList extends ListTemplate {
     super(props)
     this.setState({
       expanded: false,
+      filters: {},
       claimFilter: 'all',
       menuIsOpen: false,
       anchorEl: null
