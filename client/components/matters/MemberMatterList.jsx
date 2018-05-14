@@ -100,20 +100,26 @@ class MemberMatterList extends ListTemplate {
             endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
           />
         </span>
-        <span className="flex-alignright"><span> Internal matter number: </span><TextField
-          className='input-left'
-          name="internalMatterNumber"
-          floatingLabelText="Internal matter number"
-          margin="normal"
-          onChange={this.changeFilter}
-          endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
-        /></span>
-        <span className="flex-alignright"><span>Category: </span><TextField
-          className='input-left'
-          name="category"
-          margin="normal"
-          onChange={this.changeFilter}
-        /></span>
+        <span className="flex-alignright">
+          <span> Internal matter number: </span>
+          <TextField
+            className='input-left'
+            name="internalMatterNumber"
+            floatingLabelText="Internal matter number"
+            margin="normal"
+            onChange={this.changeFilter}
+            endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
+          />
+        </span>
+        <span className="flex-alignright">
+          <span>Category: </span>
+          <TextField
+            className='input-left'
+            name="category"
+            margin="normal"
+            onChange={this.changeFilter}
+          />
+        </span>
       </div>
     )
   }
