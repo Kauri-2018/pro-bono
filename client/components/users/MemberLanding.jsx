@@ -42,9 +42,9 @@ class MemberLanding extends React.Component {
             <Tab label="Approve Users" disabled={!isAdmin} />
           </Tabs>
         </AppBar>
-        {selectedTabIndex === 0 && <NewMatter />}
-        {selectedTabIndex === 1 && <MemberMatterList />}
-        {selectedTabIndex === 2 && <ApproveProfiles />}
+        {selectedTabIndex === 0 && <NewMatter key='newmatter'/>}
+        {selectedTabIndex === 1 && <MemberMatterList key='MemberMatterList'/>}
+        {selectedTabIndex === 2 && <ApproveProfiles key='ApproveProfiles'/>}
       </div>
     )
   }

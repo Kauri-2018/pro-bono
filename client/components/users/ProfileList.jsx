@@ -20,11 +20,12 @@ import ListTemplate from '../matters/ListTemplate'
 class ProfileList extends ListTemplate {
   constructor (props) {
     super(props)
-    this.state = {
+    this.setState({
+      expanded: false,
       roleFilter: 'all',
       menuIsOpen: false,
       anchorEl: null
-    }
+    })
     this.closeMenu = this.closeMenu.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
@@ -45,6 +46,7 @@ class ProfileList extends ListTemplate {
     const roleFilter = this.state.roleFilter
     return (
       <div className='pending-profiles-wrapper'>
+      Filter by:
         <Button
           aria-owns={this.state.anchorEl ? 'simple-menu' : null}
           aria-haspopup="true"
@@ -55,7 +57,7 @@ class ProfileList extends ListTemplate {
         <Menu
           id="simple-menu"
           anchorEl={this.state.anchorEl}
-          open={this.state.menuIsOpen}
+          open={this.state.menuIsOpen || false}
           onClose={e => { this.closeMenu(e, roleFilter) }}
         >
           <MenuItem onClick={e => { this.closeMenu(e, 'all') }}>All roles</MenuItem>
@@ -70,7 +72,7 @@ class ProfileList extends ListTemplate {
     return (
       <div className='list'>
         {this.props.pendingProfiles.length
-          ? this.applyFilters(this.props.pendingProfiles.filter(profile =>
+          ? (this.props.pendingProfiles.filter(profile =>
             (roleFilter === 'all' ||
             (roleFilter === 'lawyers' && profile.role === 'lawyer') ||
             (roleFilter === 'members' && profile.role === 'member'))
