@@ -97,7 +97,7 @@ class EditMatter extends React.Component {
             <TextField fullWidth={true} value={this.state.internalMatterNumber} multiline={true} name="internalMatterNumber" label="Internal matter number" className="text-input" onChange={this.handleChange} margin="normal" />
             <br />
             <br />
-            <TextField fullWidth={true} value={this.state.details} multiline={true} name="details" label="Additional Detail" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField fullWidth={true} value={this.state.details} multiline={true} name="details" label="Additional detail" className="text-input" onChange={this.handleChange} margin="normal" />
           </section>
           <section>
             <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " type="submit" onClick={this.handleAdd}>Submit</Button>

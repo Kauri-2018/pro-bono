@@ -41,13 +41,13 @@ class Profile extends React.Component {
           } }>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography>
-              <strong>{this.props.singleProfile.lastname}</strong>, {this.props.singleProfile.firstname}
+              <strong>{this.props.singleProfile.firstname} {this.props.singleProfile.lastname}</strong>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography>
-              <strong>Lastname: </strong>{this.props.singleProfile.lastname} <br/><br/>
-              <strong>Firstname: </strong>{this.props.singleProfile.firstname} <br/><br/>
+              {/* <strong>Lastname: </strong>{this.props.singleProfile.lastname} <br/><br/>
+              <strong>Firstname: </strong>{this.props.singleProfile.firstname} <br/><br/> */}
               <strong>Company: </strong>{this.props.singleProfile.company} <br/><br/>
               <strong>Email: </strong>{this.props.singleProfile.email} <br/><br/>
               <strong>Phone No. </strong>{this.props.singleProfile.phoneNumber} <br/><br/>
@@ -65,7 +65,7 @@ class Profile extends React.Component {
                 onChange={this.setAdmin}
               />
             }
-            label="Give user administrator privileges"
+            label="Admin"
           />}
             </Typography>
           </ExpansionPanelDetails>
