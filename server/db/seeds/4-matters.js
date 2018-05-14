@@ -16,7 +16,7 @@ exports.seed = (knex, Promise) => {
           claimed_by: 440003,
           centre_id: 110001,
           title: 'Civil Cat Complete',
-          internal_matter_number: 13546874860
+          internal_matter_number: 1354687
         },
         {
           id: 550002,
@@ -27,7 +27,7 @@ exports.seed = (knex, Promise) => {
           claimed_by: 440003,
           centre_id: 110001,
           title: 'Family Cat Claimed',
-          internal_matter_number: 13262348
+          internal_matter_number: 1326234
         },
         {
           id: 550003,
@@ -38,7 +38,7 @@ exports.seed = (knex, Promise) => {
           claimed_by: null,
           centre_id: 110001,
           title: 'Admin Cat Unclaimed',
-          internal_matter_number: 34784860
+          internal_matter_number: 3478486
         },
         {
           id: 550004,
@@ -60,7 +60,7 @@ exports.seed = (knex, Promise) => {
           claimed_by: 440003,
           centre_id: 110001,
           title: 'Maori Cat Claimed',
-          internal_matter_number: 135327475
+          internal_matter_number: 1353274
         },
         {
           id: 550006,
@@ -71,7 +71,7 @@ exports.seed = (knex, Promise) => {
           claimed_by: null,
           centre_id: 110001,
           title: 'Special Cat Unclaimed',
-          internal_matter_number: 81643561453
+          internal_matter_number: 816435
         },
         ...randomMatters
       ])
@@ -87,7 +87,7 @@ function generateMatters (numMatters) {
     const additionalDetails = details[Math.floor(Math.random() * details.length)]
     const contactEmail = emails[Math.floor(Math.random() * emails.length)]
     const centreId = 110001// + Math.floor(Math.random() * 23)
-    const internalMatterNumber = 1000 + Math.floor(Math.random() * 100000000)
+    const internalMatterNumber = 1000 + Math.floor(Math.random() * 100000)
     matterArray.push({title,
       category,
       details: additionalDetails,
