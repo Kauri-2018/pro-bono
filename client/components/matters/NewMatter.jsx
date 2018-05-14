@@ -75,7 +75,7 @@ class NewMatter extends React.Component {
             <br />
             <br />
             <span className='submit-matter-headings'>
-            Matter Contact Email
+            Matter contact email
               <TextField
                 fullWidth={true}
                 required={true}
@@ -88,7 +88,7 @@ class NewMatter extends React.Component {
             </span>
             <br />
             <br />
-            <span className='submit-matter-headings'>Select A Category</span>
+            <span className='submit-matter-headings'>Select a category</span>
             <Button
               className='category-dropdown'
               fullWidth={true}
@@ -107,13 +107,13 @@ class NewMatter extends React.Component {
               <MenuItem onClick={ e => { this.handleClose(e, 'Family') }}>Family</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Administrative') }}>Administrative</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Criminal') }}>Criminal</MenuItem>
-              <MenuItem onClick={ e => { this.handleClose(e, 'Maori') }}>Maori</MenuItem>
+              <MenuItem onClick={ e => { this.handleClose(e, 'Māori') }}>Māori</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Specialist Services') }}>Specialist Services</MenuItem>
             </Menu>
             <br />
             <br />
             <span className='submit-matter-headings'>
-            Internal Matter Number (optional)
+            Internal matter number (optional)
               <TextField
                 fullWidth={true}
                 required={true}
@@ -127,7 +127,7 @@ class NewMatter extends React.Component {
             <br />
             <br />
             <span className='submit-matter-headings'>
-            Add Additional Detail Here
+            Matter details
               <TextField
                 fullWidth={true}
                 required={true}
