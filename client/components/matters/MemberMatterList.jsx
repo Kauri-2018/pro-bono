@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 
 // Material UI Components
 import classNames from 'classnames'
-import {withStyles} from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
 import Menu, {MenuItem} from 'material-ui/Menu'
@@ -17,34 +16,16 @@ import {getIncompleteMatters} from '../../actions/matters'
 import {closeMatter} from '../../apiClient'
 import MemberMatterListItem from './MemberMatterListItem'
 
-const styles = {
-  customWidth: {
-    width: 200
-  }
-}
-
-// const styles = theme => ({
-//   root: {
-//     display: 'flex',
-//     flexWrap: 'wrap'
-//   },
-//   margin: {
-//     margin: theme.spacing.unit
-//   },
-//   textField: {
-//     flexBasis: 200
-//   }
-// })
-
 class MemberMatterList extends ListTemplate {
   constructor (props) {
     super(props)
-    this.setState({
+    this.state = {
       expanded: false,
       claimFilter: 'all',
       menuIsOpen: false,
-      anchorEl: null
-    })
+      anchorEl: null,
+      filters: {}
+    }
     this.handleCloseMatter = this.handleCloseMatter.bind(this)
     this.closeMenu = this.closeMenu.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -86,7 +67,11 @@ class MemberMatterList extends ListTemplate {
           aria-haspopup="true"
           onClick={this.handleClick}
         >
-          {(claimFilter === 'all' || !claimFilter) ? 'All matters' : claimFilter === 'claimed' ? 'Claimed matters' : 'Unclaimed matters'}
+          {(claimFilter === 'all' || !claimFilter)
+            ? 'All matters'
+            : claimFilter === 'claimed'
+              ? 'Claimed matters'
+              : 'Unclaimed matters'}
         </Button>
         <Menu
           id="simple-menu"
@@ -94,19 +79,27 @@ class MemberMatterList extends ListTemplate {
           open={this.state.menuIsOpen}
           onClose={e => { this.closeMenu(e, claimFilter) }}
         >
-          <MenuItem onClick={e => { this.closeMenu(e, 'all') }}>All matters</MenuItem>
-          <MenuItem onClick={e => { this.closeMenu(e, 'claimed') }}>Claimed matters</MenuItem>
-          <MenuItem onClick={e => { this.closeMenu(e, 'unclaimed') }}>Unclaimed matters</MenuItem>
+          <MenuItem onClick={e => { this.closeMenu(e, 'all') }}>
+            All matters
+          </MenuItem>
+          <MenuItem onClick={e => { this.closeMenu(e, 'claimed') }}>
+            Claimed matters
+          </MenuItem>
+          <MenuItem onClick={e => { this.closeMenu(e, 'unclaimed') }}>
+            Unclaimed matters
+          </MenuItem>
         </Menu>
 
-        <span className="flex-alignright"><span>Reference number: </span><TextField
-          className='input-left'
-          name="referenceNumber"
-          floatingLabelText="Reference number"
-          margin="normal"
-          onChange={this.changeFilter}
-          endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
-        /></span>
+        <span className="flex-alignright"><span>Reference number: </span>
+          <TextField
+            className='input-left'
+            name="referenceNumber"
+            floatingLabelText="Reference number"
+            margin="normal"
+            onChange={this.changeFilter}
+            endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
+          />
+        </span>
         <span className="flex-alignright"><span> Internal matter number: </span><TextField
           className='input-left'
           name="internalMatterNumber"
