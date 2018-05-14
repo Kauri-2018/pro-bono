@@ -75,7 +75,10 @@ class Profile extends React.Component {
               <br/>
               <Button
                 variant="raised"
-                color="primary"
+                style={{
+                  backgroundColor: '#b52545',
+                  color: '#ffffff'
+                }}
                 className="btn-submit"
                 type="submit"
                 onClick={() => {
