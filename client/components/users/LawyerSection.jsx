@@ -59,9 +59,9 @@ class LawyerSection extends React.Component {
       <div className='member-landing'>
         <AppBar position='static'>
           <Tabs value={selectedTabIndex} onChange={this.switchTab}>
-            <Tab label="Your Active Matters" />
-            <Tab label="Browse Unclaimed Matters" />
-            <Tab label="Your Completed Matters" />
+            <Tab label="Your Matters" />
+            <Tab label="Browse Matters" />
+            <Tab label="Your Assigned Matters" />
             <Tab label="Log out" onClick={() => {
               this.props.dispatch(logoutUser())
               this.props.history.push('/')
