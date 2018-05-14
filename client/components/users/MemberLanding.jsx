@@ -37,7 +37,7 @@ class MemberLanding extends React.Component {
       <div className='member-landing'>
         <AppBar position='static'>
           <Tabs value={selectedTabIndex} onChange={this.switchTab}>
-            <Tab label="New Matters" />
+            <Tab label="New Matter" />
             <Tab label="See Matters" />
             <Tab label="Approve Users" disabled={!isAdmin} />
           </Tabs>
