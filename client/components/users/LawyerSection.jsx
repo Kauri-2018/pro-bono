@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getMatterById} from '../../actions/matters'
-import { withRouter } from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
 import AppBar from 'material-ui/AppBar'
 import Tabs, {Tab} from 'material-ui/Tabs'
@@ -79,16 +79,16 @@ class LawyerSection extends React.Component {
         {selectedTabIndex === 0 && <LawyerMatterList
           key="claimedMatterList" buttonData={undefined}
           getMattersFunction={getIncompleteMattersByProfileId}
-          />}
+        />}
         {selectedTabIndex === 1 && <LawyerMatterList
           key="liveMatterList"
-          buttonData={[{text: "Claim", fn: this.handleClaimMatter}]}
+          buttonData={[{text: 'Claim', fn: this.handleClaimMatter}]}
           getMattersFunction={getLiveMatters}
-          />}
+        />}
         {selectedTabIndex === 2 && <LawyerMatterList
           key="completedMatterList"
           getMattersFunction={getCompleteMattersByProfileId}
-          />}
+        />}
       </div>
     )
   }
