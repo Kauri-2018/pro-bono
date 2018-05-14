@@ -12,7 +12,8 @@ import LawyerMatterList from '../matters/LawyerMatterList'
 import ActiveMatter from '../matters/ActiveMatter'
 import MatterList from '../matters/MatterList'
 import NewMatter from '../matters/NewMatter'
-import {getLiveMatters, getMattersByProfileId} from '../../actions/matters'
+import {getLiveMatters, getIncompleteMattersByProfileId, getCompleteMattersByProfileId} from '../../actions/matters'
+import {claimMatter, releaseMatter} from '../../apiClient'
 
 class LawyerSection extends React.Component {
   constructor (props) {
@@ -21,6 +22,8 @@ class LawyerSection extends React.Component {
       selectedTabIndex: 0
     }
 
+    this.handleClaimMatter = this.handleClaimMatter.bind(this)
+    this.handleReleaseMatter = this.handleReleaseMatter.bind(this)
     this.switchTab = this.switchTab.bind(this)
   }
 
@@ -34,6 +37,26 @@ class LawyerSection extends React.Component {
     }
   }
 
+  handleClaimMatter (getMattersFunction, matterId) {
+    claimMatter(matterId, this.props.currentUser.profileId)
+      .then(() => {
+        this.props.dispatch(getMattersFunction(this.props.currentUser.profileId))
+      })
+      .catch(err => {
+        console.log(err.message)
+      })
+  }
+
+  handleReleaseMatter (getMattersFunction, matterId) {
+    releaseMatter(matterId, this.props.currentUser.profileId)
+      .then(() => {
+        this.props.dispatch(getMattersFunction(this.props.currentUser.profileId))
+      })
+      .catch(err => {
+        console.log(err.message)
+      })
+  }
+
   render () {
     const selectedTabIndex = this.state.selectedTabIndex
     const isAdmin = this.props.isAdmin
@@ -43,11 +66,22 @@ class LawyerSection extends React.Component {
           <Tabs value={selectedTabIndex} onChange={this.switchTab}>
             <Tab label="Your Active Matters" />
             <Tab label="Browse Unclaimed Matters" />
+            <Tab label="Your Completed Matters" />
           </Tabs>
         </AppBar>
-        {selectedTabIndex ? 
-          <LawyerMatterList key="liveMatterList" showClaimButton={true} getMattersFunction={getLiveMatters}/> :
-          <LawyerMatterList key="claimedMatterList" showClaimButton={false} getMattersFunction={getMattersByProfileId}/>}
+        {selectedTabIndex === 0 && <LawyerMatterList
+          key="claimedMatterList" buttonData={undefined}
+          getMattersFunction={getIncompleteMattersByProfileId}
+          />}
+        {selectedTabIndex === 1 && <LawyerMatterList
+          key="liveMatterList"
+          buttonData={[{text: "Claim", fn: this.handleClaimMatter}]}
+          getMattersFunction={getLiveMatters}
+          />}
+        {selectedTabIndex === 2 && <LawyerMatterList
+          key="completedMatterList"
+          getMattersFunction={getCompleteMattersByProfileId}
+          />}
       </div>
     )
   }
@@ -55,7 +89,7 @@ class LawyerSection extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isAdmin: state.auth && state.auth.user && state.auth.user.role === 'admin',
+    currentUser: state.auth.user,
     matterById: state.matterById,
     isAuthenticated: state.auth.isAuthenticated
   }

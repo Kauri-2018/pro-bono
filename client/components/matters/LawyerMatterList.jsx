@@ -13,22 +13,10 @@ import Icon from 'material-ui/Icon'
 import ListTemplate from './ListTemplate'
 import MatterListItem from './MatterListItem'
 import {getLiveMatters} from '../../actions/matters'
-import {claimMatter} from '../../apiClient'
 
 class LawyerMatterList extends ListTemplate {
   constructor (props) {
     super(props)
-    this.handleClaim = this.handleClaim.bind(this)
-  }
-
-  handleClaim (matterId) {
-    claimMatter(matterId, this.props.currentUser.profileId)
-      .then(() => {
-        this.props.dispatch(this.props.getMattersFunction(this.props.currentUser.profileId))
-      })
-      .catch(err => {
-        console.log(err.message)
-      })
   }
 
   componentDidMount () {
@@ -66,8 +54,9 @@ class LawyerMatterList extends ListTemplate {
               <MatterListItem
                 key={matter.referenceNumber}
                 matter={matter}
-                handleClaim = {this.handleClaim}
+                buttonData = {this.props.buttonData}
                 handleExpand = {this.handleExpand}
+                getMattersFunction = {this.props.getMattersFunction}
                 expanded = {this.state.expanded === matter.referenceNumber}
               />
             )
