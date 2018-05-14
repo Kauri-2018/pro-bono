@@ -13,6 +13,7 @@ import ActiveMatter from '../matters/ActiveMatter'
 import MatterList from '../matters/MatterList'
 import NewMatter from '../matters/NewMatter'
 import {getLiveMatters, getIncompleteMattersByProfileId, getCompleteMattersByProfileId} from '../../actions/matters'
+import {logoutUser} from '../../actions/logout'
 import {claimMatter, releaseMatter} from '../../apiClient'
 
 class LawyerSection extends React.Component {
@@ -67,6 +68,10 @@ class LawyerSection extends React.Component {
             <Tab label="Your Active Matters" />
             <Tab label="Browse Unclaimed Matters" />
             <Tab label="Your Completed Matters" />
+            <Tab label="Log out" onClick={() => {
+              this.props.dispatch(logoutUser())
+              this.props.history.push('/')
+            }}/>
           </Tabs>
         </AppBar>
         {selectedTabIndex === 0 && <LawyerMatterList
