@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import AppBar from 'material-ui/AppBar'
 import Tabs, {Tab} from 'material-ui/Tabs'
@@ -9,6 +10,7 @@ import NewMatter from '../matters/NewMatter'
 import ApproveProfiles from './ApproveProfiles'
 import MemberMatterList from '../matters/MemberMatterList'
 import {getMatterById} from '../../actions/matters'
+import {logoutUser} from '../../actions/logout'
 
 class MemberLanding extends React.Component {
   constructor (props) {
@@ -40,6 +42,10 @@ class MemberLanding extends React.Component {
             <Tab label="New Matters" />
             <Tab label="See Matters" />
             <Tab label="Approve Users" disabled={!isAdmin} />
+            <Tab label="Log out" onClick={() => {
+              this.props.dispatch(logoutUser())
+              this.props.history.push('/')
+            }}/>
           </Tabs>
         </AppBar>
         {selectedTabIndex === 0 && <NewMatter />}
@@ -57,4 +63,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(MemberLanding)
+export default connect(mapStateToProps)(withRouter(MemberLanding))

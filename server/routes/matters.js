@@ -115,6 +115,34 @@ router.get('/profile/:profileId', (req, res) => {
     })
 })
 
+router.get('/profile/:profileId/complete', (req, res) => {
+  const profileId = req.params.profileId
+  db.getCompleteMattersByProfileId(profileId)
+    .then(matters => {
+      if (!matters) {
+        throw new Error('There were no complete matters with that profile id')
+      }
+      res.json({matters})
+    })
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
+
+router.get('/profile/:profileId/incomplete', (req, res) => {
+  const profileId = req.params.profileId
+  db.getIncompleteMattersByProfileId(profileId)
+    .then(matters => {
+      if (!matters) {
+        throw new Error('There were no incomplete matters with that profile id')
+      }
+      res.json({matters})
+    })
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
+
 router.get('/category/:category', (req, res) => {
   const category = req.params.category
   db.getLiveMattersByCategory(category)
