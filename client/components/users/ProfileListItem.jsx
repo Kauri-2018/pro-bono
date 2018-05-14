@@ -35,7 +35,11 @@ class ProfileListItem extends React.Component {
   render () {
     return (
       <div>
-        <Profile singleProfile={this.props.profile} />
+        <Profile
+          singleProfile={this.props.profile}
+          handleExpand = {this.props.handleExpand}
+          expanded = {this.props.expanded}
+        />
         <button onClick={() => this.props.approveProfile(this.props.profile.profileId, this.state.isAdmin)}>Approve</button>
         {this.props.profile.role === 'member' && <FormControlLabel
           control={

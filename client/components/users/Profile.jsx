@@ -4,21 +4,34 @@
 // Email: <email>
 // Phone Number: <phoneNumber>
 import React from 'react'
-import Card from 'material-ui/Card'
-import Divider from 'material-ui/Divider'
+import ExpansionPanel, {
+  ExpansionPanelSummary,
+  ExpansionPanelDetails
+} from 'material-ui/ExpansionPanel'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import Typography from 'material-ui/Typography'
 
 // parents coming through from different containers for this Matter.jsx
 const Profile = (props) => (
-  <div className='profile'>
-    <Card position="static" color="default" className="matter">
-      <div>{props.singleProfile.firstname} {props.singleProfile.lastname}</div>
-      <Divider />
-      <div>{props.singleProfile.company}</div>
-      <Divider />
-      <div>{props.singleProfile.email}</div>
-      <Divider />
-      <div>{props.singleProfile.phoneNumber}</div>
-    </Card>
+  <div className='new-matter-wrapper offset-by-two column eight columns'>
+    <ExpansionPanel
+      expanded={props.expanded}
+      onChange={e => { props.handleExpand(props.singleProfile.profileId)(e, !props.expanded) } }>
+      <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <Typography>
+          <strong>{props.singlePrfile.lastname}</strong>,{props.singlePrfile.firstname}
+        </Typography>
+      </ExpansionPanelSummary>
+      <ExpansionPanelDetails>
+        <Typography>
+          <strong>Lastname: </strong>{props.singleProfile.lastname} <br/><br/>
+          <strong>Firstname: </strong>{props.singleProfile.firstname} <br/><br/>
+          <strong>Company: </strong>{props.singleProfile.company} <br/><br/>
+          <strong>Email: </strong>{props.singleProfile.email} <br/><br/>
+          <strong>Phone No. </strong>{props.singleProfile.phoneNumber} <br/><br/>
+        </Typography>
+      </ExpansionPanelDetails>
+    </ExpansionPanel>
   </div>
 )
 

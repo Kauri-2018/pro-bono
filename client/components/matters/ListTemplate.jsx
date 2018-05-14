@@ -57,7 +57,8 @@ class ListTemplate extends React.Component {
 
     return itemArray.filter(item => {
       return !filterArray.reduce((foundNotMatching, filter) => {
-        return foundNotMatching || !filter.regex.test(('' + item[filter.field]).toLowerCase())
+        return foundNotMatching || !filter.regex.test(('' + item[filter.field])
+          .toLowerCase())
       }, false)
     })
   }

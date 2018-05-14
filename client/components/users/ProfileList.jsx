@@ -2,21 +2,22 @@
 import React from 'react'
 
 // // Material UI Components
-import classNames from 'classnames'
-import { withStyles } from 'material-ui/styles'
+// import classNames from 'classnames'
+// import { withStyles } from 'material-ui/styles'
 import Button from 'material-ui/Button'
 import Menu, { MenuItem } from 'material-ui/Menu'
 
 // Our Components
 import ProfileListItem from './ProfileListItem'
+import ListTemplate from '../matters/ListTemplate'
 
-const styles = {
+/* const styles = {
   customWidth: {
     width: 200
   }
-}
+} */
 
-class ProfileList extends React.Component {
+class ProfileList extends ListTemplate {
   constructor (props) {
     super(props)
     this.state = {
@@ -40,11 +41,10 @@ class ProfileList extends React.Component {
     this.setState({ menuIsOpen: true })
   }
 
-  render () {
+  renderFilters () {
     const roleFilter = this.state.roleFilter
     return (
       <div className='pending-profiles-wrapper'>
-
         <Button
           aria-owns={this.state.anchorEl ? 'simple-menu' : null}
           aria-haspopup="true"
@@ -62,21 +62,29 @@ class ProfileList extends React.Component {
           <MenuItem onClick={e => { this.closeMenu(e, 'lawyers') }}>Lawyers</MenuItem>
           <MenuItem onClick={e => { this.closeMenu(e, 'members') }}>Law centre members</MenuItem>
         </Menu>
-
+      </div>
+    )
+  }
+  renderList () {
+    const roleFilter = this.state.roleFilter
+    return (
+      <div className='list'>
         {this.props.pendingProfiles.length
-          ? this.props.pendingProfiles.filter(profile =>
+          ? this.applyFilters(this.props.pendingProfiles.filter(profile =>
             (roleFilter === 'all' ||
             (roleFilter === 'lawyers' && profile.role === 'lawyer') ||
             (roleFilter === 'members' && profile.role === 'member'))
-          )
+          ))
             .map(profile =>
               <ProfileListItem
                 key={profile.profileId}
                 profile={profile}
                 approveProfile={this.props.approveProfile}
+                handleExpand = {this.handleExpand}
+                expanded = {this.state.expanded === profile.profileId}
               />
             )
-          : <h4>No pending profiles</h4>
+          : <h4>No Pending Profiles</h4>
         }
       </div>
     )
