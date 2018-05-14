@@ -31,6 +31,8 @@ class LawyerSection extends React.Component {
   componentWillMount () {
     if (!this.props.isAuthenticated) {
       this.props.history.push('/')
+    } else if (this.props.pending) {
+      this.props.history.push('/pending')
     }
   }
 
@@ -57,7 +59,8 @@ const mapStateToProps = (state) => {
   return {
     isAdmin: state.auth && state.auth.user && state.auth.user.role === 'admin',
     matterById: state.matterById,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    pending: state.auth.user.pending
   }
 }
 
