@@ -191,13 +191,9 @@ module.exports = {
   getLiveMattersByCategory,
   getLiveMatters,
   getMattersByProfileId,
-<<<<<<< HEAD
-  addNewMatter,
-  editMatter
-=======
   getCompleteMattersByProfileId,
   getIncompleteMattersByProfileId,
   addNewMatter,
-  markAsUnclaimed
->>>>>>> 29a723f5d6c8bd35e8f01ed023062d5ad2317f4b
+  markAsUnclaimed,
+  editMatter
 }
