@@ -99,6 +99,17 @@ router.post('/add', auth.isMember, (req, res) => {
     })
 })
 
+router.put('/edit', auth.isMember, (req, res) => {
+  const matter = req.body.matter
+  db.editMatter(matter)
+    .then(() => {
+      res.sendStatus(200)
+    })
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
+
 router.get('/id/:id', (req, res) => {
   const matterId = req.params.id
   db.getMatterById(matterId)
