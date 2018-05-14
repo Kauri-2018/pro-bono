@@ -3,16 +3,11 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 // Material UI Components
-import classNames from 'classnames'
-import {withStyles} from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
-import Input, {InputLabel, InputAdornment} from 'material-ui/Input'
-import Icon from 'material-ui/Icon'
 
 // Our Modules and Components
 import ListTemplate from './ListTemplate'
 import MatterListItem from './MatterListItem'
-import {getLiveMatters} from '../../actions/matters'
 
 class LawyerMatterList extends ListTemplate {
   constructor (props) {
@@ -20,7 +15,9 @@ class LawyerMatterList extends ListTemplate {
   }
 
   componentDidMount () {
-    this.props.dispatch(this.props.getMattersFunction(this.props.currentUser.profileId))
+    if (this.props.currentUser) {
+      this.props.dispatch(this.props.getMattersFunction(this.props.currentUser.profileId))
+    }
   }
 
   renderFilters () {
@@ -32,7 +29,6 @@ class LawyerMatterList extends ListTemplate {
           floatingLabelText="Reference ID"
           margin="normal"
           onChange={this.changeFilter}
-          endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
         /></span>
         <span className="flex-alignright"><span>Category: </span><TextField
           className='input-left'

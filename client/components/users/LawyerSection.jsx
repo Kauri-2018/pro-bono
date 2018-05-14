@@ -1,17 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getMatterById} from '../../actions/matters'
 import {withRouter} from 'react-router-dom'
 
 import AppBar from 'material-ui/AppBar'
 import Tabs, {Tab} from 'material-ui/Tabs'
 // import Typography from 'material-ui/Typography'
 
-import ApproveProfiles from './ApproveProfiles'
 import LawyerMatterList from '../matters/LawyerMatterList'
-import ActiveMatter from '../matters/ActiveMatter'
-import MatterList from '../matters/MatterList'
-import NewMatter from '../matters/NewMatter'
 import {getLiveMatters, getIncompleteMattersByProfileId, getCompleteMattersByProfileId} from '../../actions/matters'
 import {logoutUser} from '../../actions/logout'
 import {claimMatter, releaseMatter} from '../../apiClient'
@@ -26,18 +21,16 @@ class LawyerSection extends React.Component {
     this.handleClaimMatter = this.handleClaimMatter.bind(this)
     this.handleReleaseMatter = this.handleReleaseMatter.bind(this)
     this.switchTab = this.switchTab.bind(this)
-  }
 
-  switchTab (e, selectedTabIndex) {
-    this.setState({selectedTabIndex})
-  }
-
-  componentWillMount () {
     if (!this.props.isAuthenticated) {
       this.props.history.push('/')
     } else if (this.props.pending) {
       this.props.history.push('/pending')
     }
+  }
+
+  switchTab (e, selectedTabIndex) {
+    this.setState({selectedTabIndex})
   }
 
   handleClaimMatter (getMattersFunction, matterId) {
@@ -62,7 +55,6 @@ class LawyerSection extends React.Component {
 
   render () {
     const selectedTabIndex = this.state.selectedTabIndex
-    const isAdmin = this.props.isAdmin
     return (
       <div className='member-landing'>
         <AppBar position='static'>
@@ -77,8 +69,8 @@ class LawyerSection extends React.Component {
           </Tabs>
         </AppBar>
         {selectedTabIndex === 0 && <LawyerMatterList
-          key="claimedMatterList" buttonData={undefined}
-          buttonData={[{text: "Unclaim", fn: this.handleReleaseMatter}]}
+          key="claimedMatterList"
+          buttonData={[{text: 'Unclaim', fn: this.handleReleaseMatter}]}
           getMattersFunction={getIncompleteMattersByProfileId}
         />}
         {selectedTabIndex === 1 && <LawyerMatterList
@@ -100,7 +92,7 @@ const mapStateToProps = (state) => {
     currentUser: state.auth.user,
     matterById: state.matterById,
     isAuthenticated: state.auth.isAuthenticated,
-    pending: state.auth.user.pending
+    pending: state.auth.user ? state.auth.user.pending : 1
   }
 }
 
