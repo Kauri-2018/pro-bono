@@ -10,18 +10,18 @@ import Button from 'material-ui/Button'
 // parents coming through from different containers for this Matter.jsx
 const MemberMatter = (props) => (
   <div className='new-matter-wrapper offset-by-two column eight columns'>
-    <ExpansionPanel expanded={props.expanded} onChange={e => { props.handleExpand(props.singleMatter.referenceNumber)(e, !props.expanded) } }>
+    <ExpansionPanel className="margin-bottom" expanded={props.expanded} onChange={e => { props.handleExpand(props.singleMatter.referenceNumber)(e, !props.expanded) } }>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-        <Typography className="">
-          <strong>Title: </strong>{props.singleMatter.title} <br/>
-          <strong>Reference number: </strong>{props.singleMatter.referenceNumber} <br/>
-          <strong>Internal matter number: </strong>{props.singleMatter.internalMatterNumber}<br/>
-          <strong>Category: </strong>{props.singleMatter.category}<br/>
+        <Typography >
+          <span className="span-margin-bottom fontsize175"><strong>Title: </strong>{props.singleMatter.title}</span><br/>
+          <span className="span-margin-bottom fontsize125"><strong>Reference number: </strong>{props.singleMatter.referenceNumber}</span><br/>
+          <span className="span-margin-bottom fontsize125"><strong>Internal matter number: </strong>{props.singleMatter.internalMatterNumber}</span><br/>
+          <span className="span-margin-bottom fontsize125"><strong>Category: </strong>{props.singleMatter.category}</span><br/>
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <Typography>
-          <strong>Details: </strong>{props.singleMatter.details}
+          <span className="fontsize125"><strong>Details: </strong>{props.singleMatter.details}</span>
           <Button variant="raised"
             color="primary"
             className="btn-submit offset-by-four columns four columns "
