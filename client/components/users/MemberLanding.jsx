@@ -48,9 +48,9 @@ class MemberLanding extends React.Component {
             }}/>
           </Tabs>
         </AppBar>
-        {selectedTabIndex === 0 && <NewMatter />}
-        {selectedTabIndex === 1 && <MemberMatterList />}
-        {selectedTabIndex === 2 && <ApproveProfiles />}
+        {selectedTabIndex === 0 && <NewMatter key='newmatter'/>}
+        {selectedTabIndex === 1 && <MemberMatterList key='MemberMatterList'/>}
+        {selectedTabIndex === 2 && <ApproveProfiles key='ApproveProfiles'/>}
       </div>
     )
   }
