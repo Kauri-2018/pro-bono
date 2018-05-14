@@ -12,6 +12,22 @@ html {
   max-width: 100%;
 }
 
+.fontsize125 {
+  font-size: 1.25em;
+}
+.fontsize150 {
+  font-size: 1.50em;
+}
+.fontsize175 {
+  font-size: 1.75em;
+}
+.margin-bottom {
+  margin-bottom: 0.3%;
+}
+.span-margin-bottom {
+  line-height: 1.5;
+}
+
 .new-matter {
   padding-top: 3vh;
   padding-bottom: 3vh;
@@ -46,10 +62,49 @@ html {
 }
 
 .matter-list-wrapper {
-  padding-left: 15vw;
-  width: 70vw;
+  width: 100%;
+}
+.flex-alignleft {
+  display: flex;
+}
+.flex-alignright {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
 }
 
+.center-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+.center-vertical {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+.center {
+  align-content: center;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.register-btn {
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.login {
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  padding-left: 20vw;
+  padding-right: 20vw;
+  margin-bottom: 5%;
+}
+.centertext{
+  text-align: center;
+}
 .submit-matter-headings {
   color: #b52545;
 }
