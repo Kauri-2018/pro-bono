@@ -41,6 +41,7 @@
     "jsonwebtoken": "^8.1.1",
     "jwt-decode": "^2.2.0",
     "knex": "^0.14.3",
+    "mailgun-js": "^0.18.0",
     "mailgun.js": "^2.0.1",
     "pg": "^7.4.1",
     "react": "^16.2.0",
