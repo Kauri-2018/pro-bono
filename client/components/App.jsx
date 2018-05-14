@@ -9,7 +9,6 @@ import {get} from '../utils/localstorage'
 import {receiveLogin} from '../actions/login'
 
 // Components
-import Navbar from './Navbar'
 import Login from './auth/Login'
 import LawyerSection from './users/LawyerSection'
 import MemberSection from './users/MemberSection'
@@ -22,7 +21,6 @@ class App extends React.Component {
     return (
       <Router>
         <div className='app container'>
-          <Navbar />
           <Switch>
             <Route exact path='/pending' component={PendingLanding} />
             <Route exact path='/lawyer' component={LawyerSection} />
