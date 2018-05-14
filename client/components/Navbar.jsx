@@ -7,15 +7,8 @@ const Navbar = props => {
   return (
     <div className='row navbar'>
       <h4>Nav bar to be completed</h4>
-      {props.isAuthenticated && <Logout />}
     </div>
   )
 }
 
-function mapStateToProps (state) {
-  return {
-    isAuthenticated: state.auth.isAuthenticated
-  }
-}
-
-export default connect(mapStateToProps)(Navbar)
+export default connect()(Navbar)
