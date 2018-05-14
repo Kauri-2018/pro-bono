@@ -22,13 +22,14 @@ const LawyerMatter = (props) => (
         <Typography>
           <span className="fontsize125"><strong>Details: </strong>{props.singleMatter.details}</span><br/><br/>
           <span className="fontsize125"><strong>Enquiries to: </strong>{props.singleMatter.contactEmail} </span><br/><br/>
-          {props.buttonData && 
+          {props.buttonData &&
             props.buttonData.map(button => {
               return (
                 <Button variant="raised"
                   color="primary"
                   className="btn-submit offset-by-four columns four columns "
                   type="submit"
+                  key="btn"
                   onClick={() => { button.fn(props.getMattersFunction, props.singleMatter.referenceNumber) }}>{button.text}
                 </Button>
               )
