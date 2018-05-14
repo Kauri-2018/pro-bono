@@ -106,7 +106,7 @@ html {
 .centertext{
   text-align: center;
 }
-.submit-matter-headings {
+.submit-matter-headings, .profile-title, .matter-title {
   color: #b52545;
 }
 
@@ -120,6 +120,11 @@ html {
 
 .new-matter-submit {
   background-color: #b52545;
+}
+
+.submit-button{
+  background-color: #b52545;
+  color: #b52545;
 }
 
 
