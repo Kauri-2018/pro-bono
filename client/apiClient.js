@@ -45,8 +45,23 @@ export function requestMattersByProfileId (profileId) {
     .then(res => res.body)
 }
 
+export function requestIncompleteMattersByProfileId (profileId) {
+  return consume('get', `${MATTER_ROUTE}/profile/${profileId}/incomplete`)
+    .then(res => res.body)
+}
+
+export function requestCompleteMattersByProfileId (profileId) {
+  return consume('get', `${MATTER_ROUTE}/profile/${profileId}/complete`)
+    .then(res => res.body)
+}
+
 export function claimMatter (matterId, profileId) {
   return consume('put', `${MATTER_ROUTE}/claim`, {matterId, profileId})
+    .then(res => res.body)
+}
+
+export function releaseMatter (matterId, profileId) {
+  return consume('put', `${MATTER_ROUTE}/release`, {matterId, profileId})
     .then(res => res.body)
 }
 

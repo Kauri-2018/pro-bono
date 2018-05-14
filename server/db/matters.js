@@ -85,6 +85,40 @@ function getMattersByProfileId (profileId, db = knex) {
     )
 }
 
+function getCompleteMattersByProfileId (profileId, db = knex) {
+  return db('matters')
+    .join('profiles', 'matters.claimed_by', '=', 'profiles.id')
+    .where({claimed_by: profileId, is_complete: true})
+    .select(
+      'matters.id as referenceNumber',
+      'category',
+      'details',
+      'contact_email as contactEmail',
+      'is_complete as isComplete',
+      'claimed_by as claimedBy',
+      'matters.centre_id as centreId',
+      'title',
+      'internal_matter_number as internalMatterNumber'
+    )
+}
+
+function getIncompleteMattersByProfileId (profileId, db = knex) {
+  return db('matters')
+    .join('profiles', 'matters.claimed_by', '=', 'profiles.id')
+    .where({claimed_by: profileId, is_complete: false})
+    .select(
+      'matters.id as referenceNumber',
+      'category',
+      'details',
+      'contact_email as contactEmail',
+      'is_complete as isComplete',
+      'claimed_by as claimedBy',
+      'matters.centre_id as centreId',
+      'title',
+      'internal_matter_number as internalMatterNumber'
+    )
+}
+
 function markAsComplete (matterId, db = knex) {
   return db('matters')
     .where('id', '=', matterId)
@@ -95,6 +129,12 @@ function markAsClaimed (matterId, profileId, db = knex) {
   return db('matters')
     .where('id', '=', matterId)
     .update({claimed_by: profileId})
+}
+
+function markAsUnclaimed (matterId, profileId, db = knex) {
+  return db('matters')
+    .where('id', '=', matterId)
+    .update({claimed_by: null})
 }
 
 // throw error if missing data that we need
@@ -151,6 +191,13 @@ module.exports = {
   getLiveMattersByCategory,
   getLiveMatters,
   getMattersByProfileId,
+<<<<<<< HEAD
   addNewMatter,
   editMatter
+=======
+  getCompleteMattersByProfileId,
+  getIncompleteMattersByProfileId,
+  addNewMatter,
+  markAsUnclaimed
+>>>>>>> 29a723f5d6c8bd35e8f01ed023062d5ad2317f4b
 }

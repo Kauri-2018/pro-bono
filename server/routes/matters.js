@@ -76,6 +76,18 @@ router.put('/claim', auth.isLawyer, (req, res) => {
     })
 })
 
+// should check if matter exists, is complete and is claimed
+router.put('/release', auth.isLawyerOrAdmin, (req, res) => {
+  const matterId = req.body.matterId
+  db.markAsUnclaimed(matterId)
+    .then(() => {
+      res.sendStatus(200)
+    })
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
+
 router.post('/add', auth.isMember, (req, res) => {
   const matter = req.body
   db.addNewMatter(matter)
@@ -118,6 +130,34 @@ router.get('/profile/:profileId', (req, res) => {
     .then(matters => {
       if (!matters) {
         throw new Error('There were no matters with that profile id')
+      }
+      res.json({matters})
+    })
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
+
+router.get('/profile/:profileId/complete', (req, res) => {
+  const profileId = req.params.profileId
+  db.getCompleteMattersByProfileId(profileId)
+    .then(matters => {
+      if (!matters) {
+        throw new Error('There were no complete matters with that profile id')
+      }
+      res.json({matters})
+    })
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
+
+router.get('/profile/:profileId/incomplete', (req, res) => {
+  const profileId = req.params.profileId
+  db.getIncompleteMattersByProfileId(profileId)
+    .then(matters => {
+      if (!matters) {
+        throw new Error('There were no incomplete matters with that profile id')
       }
       res.json({matters})
     })
