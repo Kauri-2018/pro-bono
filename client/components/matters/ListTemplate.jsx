@@ -35,9 +35,6 @@ class ListTemplate extends React.Component {
       this.setState({
         expanded: expanded ? panel : false
       })
-        .catch(err => {
-          console.log(err.message)
-        })
     }
   }
 

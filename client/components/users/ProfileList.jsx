@@ -20,12 +20,13 @@ import ListTemplate from '../matters/ListTemplate'
 class ProfileList extends ListTemplate {
   constructor (props) {
     super(props)
-    this.setState({
+    this.state = {
       expanded: false,
+      filters: {},
       roleFilter: 'all',
       menuIsOpen: false,
       anchorEl: null
-    })
+    }
     this.closeMenu = this.closeMenu.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
@@ -57,7 +58,7 @@ class ProfileList extends ListTemplate {
         <Menu
           id="simple-menu"
           anchorEl={this.state.anchorEl}
-          open={this.state.menuIsOpen || false}
+          open={this.state.menuIsOpen}
           onClose={e => { this.closeMenu(e, roleFilter) }}
         >
           <MenuItem onClick={e => { this.closeMenu(e, 'all') }}>All roles</MenuItem>
