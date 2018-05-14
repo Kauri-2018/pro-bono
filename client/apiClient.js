@@ -19,7 +19,7 @@ export function addNewMatter (data) {
  * @returns {Promise{ matter }}
  */
 export function requestMatterById (matterId) {
-  return consume('get', `${MATTER_ROUTE}/${matterId}`)
+  return consume('get', `${MATTER_ROUTE}/id/${matterId}`)
     .then(res => {
       return res.body
     })
@@ -67,6 +67,11 @@ export function releaseMatter (matterId, profileId) {
 
 export function closeMatter (matterId) {
   return consume('put', `${MATTER_ROUTE}/`, {matterId})
+    .then(res => res.body)
+}
+
+export function editMatter (matter) {
+  return consume('put', `${MATTER_ROUTE}/edit`, {matter})
     .then(res => res.body)
 }
 

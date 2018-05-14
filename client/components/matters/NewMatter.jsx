@@ -14,7 +14,7 @@ class NewMatter extends React.Component {
       title: '',
       contactEmail: '',
       category: null,
-      internalReferenceId: '',
+      internalMatterNumber: '',
       details: '',
       centreId: props.centreId,
       anchorEl: null
@@ -113,7 +113,7 @@ class NewMatter extends React.Component {
             <br />
             <br />
             <span className='submit-matter-headings'>
-            Internal Reference ID (optional)
+            Internal Matter Number (optional)
               <TextField
                 fullWidth={true}
                 required={true}
