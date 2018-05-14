@@ -4,10 +4,10 @@ import {connect} from 'react-redux'
 
 // Material UI Components
 import classNames from 'classnames'
-import { withStyles } from 'material-ui/styles'
+import {withStyles} from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
-import Menu, { MenuItem } from 'material-ui/Menu'
+import Menu, {MenuItem} from 'material-ui/Menu'
 import Input, {InputLabel, InputAdornment} from 'material-ui/Input'
 import Icon from 'material-ui/Icon'
 
@@ -59,7 +59,7 @@ class MemberMatterList extends ListTemplate {
   }
 
   handleClick (e) {
-    this.setState({ menuIsOpen: true })
+    this.setState({menuIsOpen: true})
   }
 
   handleCloseMatter (matterId) {
@@ -79,8 +79,8 @@ class MemberMatterList extends ListTemplate {
   renderFilters () {
     const claimFilter = this.state.claimFilter
     return (
-      <div className='filter-list-wrapper'>
 
+      <div className='filter-list-wrapper offset-by-two column four columns center-vertical'>
         <Button
           aria-owns={this.state.anchorEl ? 'simple-menu' : null}
           aria-haspopup="true"
@@ -99,29 +99,28 @@ class MemberMatterList extends ListTemplate {
           <MenuItem onClick={e => { this.closeMenu(e, 'unclaimed') }}>Unclaimed matters</MenuItem>
         </Menu>
 
-        Reference number: <TextField
+        <span className="flex-alignright"><span>Reference number: </span><TextField
           className='input-left'
           name="referenceNumber"
           floatingLabelText="Reference number"
           margin="normal"
           onChange={this.changeFilter}
           endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
-        />
-        Internal matter number: <TextField
+        /></span>
+        <span className="flex-alignright"><span> Internal matter number: </span><TextField
           className='input-left'
           name="internalMatterNumber"
           floatingLabelText="Internal matter number"
           margin="normal"
           onChange={this.changeFilter}
           endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
-        />
-          Category: <TextField
+        /></span>
+        <span className="flex-alignright"><span>Category: </span><TextField
           className='input-left'
           name="category"
-          label="Category"
           margin="normal"
           onChange={this.changeFilter}
-        />
+        /></span>
       </div>
     )
   }
