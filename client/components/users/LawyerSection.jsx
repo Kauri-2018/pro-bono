@@ -76,6 +76,7 @@ class LawyerSection extends React.Component {
         </AppBar>
         {selectedTabIndex === 0 && <LawyerMatterList
           key="claimedMatterList" buttonData={undefined}
+          buttonData={[{text: "Unclaim", fn: this.handleReleaseMatter}]}
           getMattersFunction={getIncompleteMattersByProfileId}
           />}
         {selectedTabIndex === 1 && <LawyerMatterList

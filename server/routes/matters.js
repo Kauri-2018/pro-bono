@@ -76,6 +76,18 @@ router.put('/claim', auth.isLawyer, (req, res) => {
     })
 })
 
+// should check if matter exists, is complete and is claimed
+router.put('/release', auth.isLawyerOrAdmin, (req, res) => {
+  const matterId = req.body.matterId
+  db.markAsUnclaimed(matterId)
+    .then(() => {
+      res.sendStatus(200)
+    })
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
+
 router.post('/add', auth.isMember, (req, res) => {
   const matter = req.body
   db.addNewMatter(matter)
