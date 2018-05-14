@@ -46,9 +46,14 @@ class Profile extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography>
-              {/* <strong>Lastname: </strong>{this.props.singleProfile.lastname} <br/><br/>
-              <strong>Firstname: </strong>{this.props.singleProfile.firstname} <br/><br/> */}
-              <strong>Company: </strong>{this.props.singleProfile.company} <br/><br/>
+              {this.props.singleProfile.company
+                ? <div>
+                  <strong>Company: </strong>{this.props.singleProfile.company} <br/><br/>
+                </div>
+                : <div>
+                  <strong>Law centre: </strong>{this.props.singleProfile.centreId} <br/><br/>
+                </div>
+              }
               <strong>Email: </strong>{this.props.singleProfile.email} <br/><br/>
               <strong>Phone No. </strong>{this.props.singleProfile.phoneNumber} <br/><br/>
               <button onClick={() => {

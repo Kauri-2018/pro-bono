@@ -52,7 +52,9 @@ class LawyerMatterList extends ListTemplate {
                 expanded = {this.state.expanded === matter.referenceNumber}
               />
             )
-          : <h4>No live matters</h4>
+          : this.props.matters === 'claimed' ? <h4>No unclaimed matters</h4>
+            : this.props.matters === 'live' ? <h4>No live matters</h4>
+              : <h4>No incomplete matters</h4>
         }
       </div>
     )
