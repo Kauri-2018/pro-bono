@@ -13,21 +13,27 @@ const LawyerMatter = (props) => (
     <ExpansionPanel expanded={props.expanded} onChange={e => { props.handleExpand(props.singleMatter.referenceNumber)(e, !props.expanded) } }>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
         <Typography className="">
-          <strong>Title: </strong>{props.singleMatter.title}<br/>
-          <strong>Category: </strong>{props.singleMatter.category}<br/>
-          <strong>Reference Number: </strong>{props.singleMatter.referenceNumber}<br/>
+          <span className="span-margin-bottom fontsize175"><strong>Title: </strong>{props.singleMatter.title}</span><br/>
+          <span className="span-margin-bottom fontsize125"><strong>Category: </strong>{props.singleMatter.category}</span><br/>
+          <span className="span-margin-bottom fontsize125"><strong>Reference number: </strong>{props.singleMatter.referenceNumber}</span><br/>
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <Typography>
-          <strong>Details: </strong>{props.singleMatter.details} <br/><br/>
-          <strong>Enquiries to: </strong>{props.singleMatter.contactEmail} <br/><br/>
-          {props.handleClaim && <Button variant="raised"
-            color="primary"
-            className="btn-submit offset-by-four columns four columns "
-            type="submit"
-            onClick={() => { props.handleClaim(props.singleMatter.referenceNumber) }}>Claim
-          </Button>}
+          <span className="fontsize125"><strong>Details: </strong>{props.singleMatter.details}</span><br/><br/>
+          <span className="fontsize125"><strong>Enquiries to: </strong>{props.singleMatter.contactEmail} </span><br/><br/>
+          {props.buttonData && 
+            props.buttonData.map(button => {
+              return (
+                <Button variant="raised"
+                  color="primary"
+                  className="btn-submit offset-by-four columns four columns "
+                  type="submit"
+                  onClick={() => { button.fn(props.getMattersFunction, props.singleMatter.referenceNumber) }}>{button.text}
+                </Button>
+              )
+            })
+          }
         </Typography>
       </ExpansionPanelDetails>
     </ExpansionPanel>

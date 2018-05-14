@@ -2,12 +2,13 @@ import React from 'react'
 
 import LawyerMatter from './LawyerMatter'
 
-const MatterListItem = ({matter, handleClaim, handleExpand, expanded}) => (
+const MatterListItem = ({matter, buttonData, handleExpand, expanded, getMattersFunction}) => (
   <LawyerMatter
     singleMatter={matter}
-    handleClaim = {handleClaim}
-    handleExpand = {handleExpand}
-    expanded = {expanded}
+    buttonData={buttonData}
+    handleExpand={handleExpand}
+    expanded={expanded}
+    getMattersFunction = {getMattersFunction}
   />
 )
 
