@@ -49,15 +49,41 @@ class Login extends React.Component {
           <h3 className="centertext"><strong>LOGIN</strong></h3>
           <section>
             <span>
-            Email <TextField fullWidth={true} required={true} placeholder="email" name="email" className="text-TextField" onChange={this.handleChange} margin="normal" />
+            Email
+              <TextField
+                fullWidth={true}
+                required={true}
+                placeholder="email"
+                name="email"
+                className="text-TextField"
+                onChange={this.handleChange}
+                margin="normal"
+              />
             </span>
             <br/><br/>
             <span>
-            Password <TextField fullWidth={true} required={true} type="password" placeholder="Password" name="password" className="text-TextField" onChange={this.handleChange} margin="normal" />
+            Password
+              <TextField
+                fullWidth={true}
+                required={true}
+                type="password"
+                placeholder="Password"
+                name="password"
+                className="text-TextField"
+                onChange={this.handleChange}
+                margin="normal"
+              />
             </span>
             <br/><br/>
             <section>
-              <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " onClick={this.handleClick}>Login</Button>
+              <Button
+                variant="raised"
+                color="primary"
+                className="btn-submit offset-by-four columns four columns "
+                onClick={this.handleClick}
+              >
+              Login
+              </Button>
             </section>
           </section>
           <ErrorMessage reducer='auth' />
