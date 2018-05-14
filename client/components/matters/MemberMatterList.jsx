@@ -21,6 +21,7 @@ class MemberMatterList extends ListTemplate {
     super(props)
     this.state = {
       expanded: false,
+      filters: {},
       claimFilter: 'all',
       menuIsOpen: false,
       anchorEl: null,
