@@ -57,17 +57,52 @@ class NewMatter extends React.Component {
     return (
       <div className='new-matter-wrapper offset-by-two column eight columns'>
         <Card position="static" color="default" className="new-matter">
-          <h1 className="offset-by-one columns">Submit New Matter</h1>
+          <h1 className="offset-by-one columns submit-matter-title">Submit New Matter</h1>
 
           <section className="form-field">
-            <TextField fullWidth={true} required={true} placeholder="Title" multiline={true} name="title" label="Title" className="text-input" onChange={this.handleChange} margin="normal" />
+            <span className='submit-matter-headings'>
+            Title
+              <TextField
+                fullWidth={true}
+                required={true}
+                placeholder="Title"
+                name="title"
+                className="text-input"
+                onChange={this.handleChange}
+                margin="normal"
+              />
+            </span>
             <br />
             <br />
-            <TextField fullWidth={true} required={true} placeholder="Matter contact email" multiline={true} name="contactEmail" label="Matter contact email" className="text-input" onChange={this.handleChange} margin="normal" />
+            <span className='submit-matter-headings'>
+            Matter Contact Email
+              <TextField
+                fullWidth={true}
+                required={true}
+                placeholder="Matter contact email"
+                name="contactEmail"
+                className="text-input"
+                onChange={this.handleChange}
+                margin="normal"
+              />
+            </span>
             <br />
             <br />
-            <Button fullWidth={true} required={true} aria-owns={anchorEl ? 'category-menu' : null} aria-haspopup="true" onClick={this.handleClick}>{category ? `Category: ${category}` : 'Select category'}</Button>
-            <Menu id="category-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={e => { this.handleClose(e, category) }}>
+            <span className='submit-matter-headings'>Select A Category</span>
+            <Button
+              className='category-dropdown'
+              fullWidth={true}
+              required={true}
+              aria-owns={anchorEl ? 'category-menu' : null}
+              aria-haspopup="true"
+              onClick={this.handleClick}>
+              {category ? `Category: ${category}` : 'Select category'}
+            </Button>
+            <Menu
+              id="category-menu"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={e => { this.handleClose(e, category) }}>
               <MenuItem onClick={ e => { this.handleClose(e, 'Civil') }}>Civil</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Family') }}>Family</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Administrative') }}>Administrative</MenuItem>
@@ -77,13 +112,42 @@ class NewMatter extends React.Component {
             </Menu>
             <br />
             <br />
-            <TextField fullWidth={true} placeholder="Internal reference ID (optional)" multiline={true} name="internalMatterNumber" label="Internal reference ID (optional)" className="text-input" onChange={this.handleChange} margin="normal" />
+            <span className='submit-matter-headings'>
+            Internal Reference ID (optional)
+              <TextField
+                fullWidth={true}
+                required={true}
+                placeholder="Internal reference ID (optional)"
+                name="internalMatterNumber"
+                className="text-input"
+                onChange={this.handleChange}
+                margin="normal"
+              />
+            </span>
             <br />
             <br />
-            <TextField fullWidth={true} placeholder="Add additional detail here" multiline={true} name="details" label="Additional Detail" className="text-input" onChange={this.handleChange} margin="normal" />
+            <span className='submit-matter-headings'>
+            Add Additional Detail Here
+              <TextField
+                fullWidth={true}
+                required={true}
+                placeholder="Add additional detail here"
+                multiline={true}
+                name="details"
+                className="text-input"
+                onChange={this.handleChange}
+                margin="normal"
+              />
+            </span>
           </section>
           <section>
-            <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " type="submit" onClick={this.handleAdd}>Submit</Button>
+            <Button
+              variant="raised"
+              color="primary"
+              className="btn-submit offset-by-four columns four columns"
+              type="submit"
+              onClick={this.handleAdd}>Submit
+            </Button>
           </section>
         </Card>
       </div>
