@@ -88,7 +88,7 @@ router.post('/add', auth.isMember, (req, res) => {
 })
 
 router.put('/edit', auth.isMember, (req, res) => {
-  const matter = req.body
+  const matter = req.body.matter
   db.editMatter(matter)
     .then(() => {
       res.sendStatus(200)

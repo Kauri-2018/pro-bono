@@ -63,6 +63,9 @@ class EditMatter extends React.Component {
   handleAdd (e) {
     const matter = {...this.state}
     editMatter(matter)
+      .then(() => {
+        this.props.history.push('/member')
+      })
   }
 
   render () {
@@ -74,10 +77,10 @@ class EditMatter extends React.Component {
           <h1 className="offset-by-one columns">Edit Matter</h1>
 
           <section className="form-field">
-            <TextField fullWidth={true} required={true} placeholder={this.state.title} multiline={true} name="title" label="Title" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField fullWidth={true} required={true} value={this.state.title} multiline={true} name="title" label="Title" className="text-input" onChange={this.handleChange} margin="normal" />
             <br />
             <br />
-            <TextField fullWidth={true} required={true} placeholder={this.state.contactEmail} multiline={true} name="contactEmail" label="Matter contact email" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField fullWidth={true} required={true} value={this.state.contactEmail} multiline={true} name="contactEmail" label="Matter contact email" className="text-input" onChange={this.handleChange} margin="normal" />
             <br />
             <br />
             <Button fullWidth={true} required={true} aria-owns={anchorEl ? 'category-menu' : null} aria-haspopup="true" onClick={this.handleClick}>{category ? `Category: ${category}` : 'Select category'}</Button>
@@ -91,10 +94,10 @@ class EditMatter extends React.Component {
             </Menu>
             <br />
             <br />
-            <TextField fullWidth={true} placeholder={this.state.internalMatterNumber} multiline={true} name="internalMatterNumber" label="Internal matter number" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField fullWidth={true} value={this.state.internalMatterNumber} multiline={true} name="internalMatterNumber" label="Internal matter number" className="text-input" onChange={this.handleChange} margin="normal" />
             <br />
             <br />
-            <TextField fullWidth={true} placeholder={this.state.details} multiline={true} name="details" label="Additional Detail" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField fullWidth={true} value={this.state.details} multiline={true} name="details" label="Additional Detail" className="text-input" onChange={this.handleChange} margin="normal" />
           </section>
           <section>
             <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " type="submit" onClick={this.handleAdd}>Submit</Button>
