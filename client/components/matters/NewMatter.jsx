@@ -14,7 +14,7 @@ class NewMatter extends React.Component {
       title: '',
       contactEmail: '',
       category: null,
-      internalReferenceId: '',
+      internalMatterNumber: '',
       details: '',
       centreId: props.centreId,
       anchorEl: null
