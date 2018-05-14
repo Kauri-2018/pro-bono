@@ -6,7 +6,7 @@
   "author": "EDA",
   "license": "ISC",
   "engines": {
-    "node": ">=8.9.0"
+    "node": "=9.11.0"
   },
   "scripts": {
     "knex": "knex --knexfile ./server/db/knexfile.js",
@@ -14,7 +14,7 @@
     "start": "node server",
     "build": "webpack --config ./client/webpack.config.js",
     "test": "jest --watchAll",
-    "postinstall": "yarn build",
+    "postinstall": "yarn build; knex migrate:latest && knex seed:run",
     "resetdb": "yarn knex migrate:rollback; yarn knex migrate:latest && yarn knex seed:run"
   },
   "jest": {
@@ -30,39 +30,38 @@
     ]
   },
   "dependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-3": "^6.24.1",
     "dotenv": "^5.0.0",
     "express": "^4.16.2",
     "express-jwt": "^5.3.0",
     "jsonwebtoken": "^8.1.1",
-    "jwt-decode": "^2.2.0",
     "knex": "^0.14.3",
-    "mailgun-js": "^0.18.0",
-    "mailgun.js": "^2.0.1",
     "pg": "^7.4.1",
+    "jwt-decode": "^2.2.0",
+    "sodium": "^2.0.3",
+    "webpack": "^3.11.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "sodium": "^2.0.3",
-    "superagent": "^3.8.2",
-    "webpack": "^3.11.0"
+    "@material-ui/icons": "^1.0.0-beta.43",
+    "socks-proxy-agent": "^4.0.1",
+    "webpack-livereload-plugin": "^1.0.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "material-ui": "^1.0.0-beta.47",
+    "mailgun-js": "^0.18.0",
+    "superagent": "^3.8.2"
   },
   "devDependencies": {
-    "@material-ui/icons": "^1.0.0-beta.43",
     "jest": "^22.3.0",
-    "material-ui": "^1.0.0-beta.47",
     "nock": "^9.2.5",
     "nodemon": "^1.15.0",
-    "socks-proxy-agent": "^4.0.1",
     "sqlite3": "^3.1.13",
-    "supertest": "^3.0.0",
-    "webpack-livereload-plugin": "^1.0.0"
+    "supertest": "^3.0.0"
   }
 }
