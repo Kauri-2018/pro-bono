@@ -3,7 +3,7 @@ exports.up = knex => knex.schema.createTable('matters', table => {
   table.string('category')
   table.text('details')
   table.string('contact_email')
-  table.boolean('is_complete')
+  table.boolean('is_complete').defaultTo(false)
   table.integer('claimed_by').references('profiles.id')
   table.integer('centre_id').references('lawcentres.id')
   table.string('title')
