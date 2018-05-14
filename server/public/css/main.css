@@ -86,39 +86,6 @@ html {
   width: 100%;
   justify-content: center;
 }
-
-.center50 {
-  width: 50%;
-  justify-content: center;
-}
-.center45 {
-  width: 45%;
-  justify-content: center;
-}
-.center40 {
-  width: 40%;
-  justify-content: center;
-}
-.center35 {
-  width: 35%;
-  justify-content: center;
-}
-.center30 {
-  width: 30%;
-  justify-content: center;
-}
-.center25 {
-  width: 25%;
-  justify-content: center;
-}
-.center20 {
-  width: 20%;
-  justify-content: center;
-}
-.center10 {
-  width: 10%;
-  justify-content: center;
-}
 .center {
   align-content: center;
   margin-left: 2%;
