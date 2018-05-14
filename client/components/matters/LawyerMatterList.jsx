@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 // Material UI Components
 import classNames from 'classnames'
-import { withStyles } from 'material-ui/styles'
+import {withStyles} from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import Input, {InputLabel, InputAdornment} from 'material-ui/Input'
 import Icon from 'material-ui/Icon'
@@ -13,22 +13,10 @@ import Icon from 'material-ui/Icon'
 import ListTemplate from './ListTemplate'
 import MatterListItem from './MatterListItem'
 import {getLiveMatters} from '../../actions/matters'
-import {claimMatter} from '../../apiClient'
 
 class LawyerMatterList extends ListTemplate {
   constructor (props) {
     super(props)
-    this.handleClaim = this.handleClaim.bind(this)
-  }
-
-  handleClaim (matterId) {
-    claimMatter(matterId, this.props.currentUser.profileId)
-      .then(() => {
-        this.props.dispatch(this.props.getMattersFunction(this.props.currentUser.profileId))
-      })
-      .catch(err => {
-        console.log(err.message)
-      })
   }
 
   componentDidMount () {
@@ -37,22 +25,22 @@ class LawyerMatterList extends ListTemplate {
 
   renderFilters () {
     return (
-      <div className='filter-list-wrapper'>
-        Reference ID: <TextField
+      <div className='filter-list-wrapper offset-by-two column four columns center-vertical'>
+        <span className="flex-alignright"><span> Reference ID: </span><TextField
           className='input-left'
           name="referenceNumber"
           floatingLabelText="Reference ID"
           margin="normal"
           onChange={this.changeFilter}
           endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
-        />
-        Category: <TextField
+        /></span>
+        <span className="flex-alignright"><span>Category: </span><TextField
           className='input-left'
           name="category"
           label="Category"
           margin="normal"
           onChange={this.changeFilter}
-        />
+        /></span>
       </div>
     )
   }
@@ -66,8 +54,9 @@ class LawyerMatterList extends ListTemplate {
               <MatterListItem
                 key={matter.referenceNumber}
                 matter={matter}
-                handleClaim = {this.handleClaim}
+                buttonData = {this.props.buttonData}
                 handleExpand = {this.handleExpand}
+                getMattersFunction = {this.props.getMattersFunction}
                 expanded = {this.state.expanded === matter.referenceNumber}
               />
             )
