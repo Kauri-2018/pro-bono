@@ -26,7 +26,7 @@ function mailGunApi (data) {
       html: `<p>${data.text}</p>`
     }, (err, body) => {
       if (err) console.error('err: ' + err)
-      if (body) console.log('msg: ' + body)
+      if (body) console.log('msg: ' + body.msg)
     })
 }
 
