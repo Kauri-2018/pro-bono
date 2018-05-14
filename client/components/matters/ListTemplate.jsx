@@ -35,9 +35,6 @@ class ListTemplate extends React.Component {
       this.setState({
         expanded: expanded ? panel : false
       })
-        .catch(err => {
-          console.log(err.message)
-        })
     }
   }
 
@@ -57,7 +54,8 @@ class ListTemplate extends React.Component {
 
     return itemArray.filter(item => {
       return !filterArray.reduce((foundNotMatching, filter) => {
-        return foundNotMatching || !filter.regex.test(('' + item[filter.field]).toLowerCase())
+        return foundNotMatching || !filter.regex.test(('' + item[filter.field])
+          .toLowerCase())
       }, false)
     })
   }

@@ -1,3 +1,7 @@
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
 html {
   font-size: 100%; 
 }
@@ -6,6 +10,22 @@ html {
   position: relative;
   width: 100%;
   max-width: 100%;
+}
+
+.fontsize125 {
+  font-size: 1.25em;
+}
+.fontsize150 {
+  font-size: 1.50em;
+}
+.fontsize175 {
+  font-size: 1.75em;
+}
+.margin-bottom {
+  margin-bottom: 0.3%;
+}
+.span-margin-bottom {
+  line-height: 1.5;
 }
 
 .new-matter {
@@ -42,8 +62,64 @@ html {
 }
 
 .matter-list-wrapper {
-  padding-left: 15vw;
-  width: 70vw;
+  width: 100%;
+}
+.flex-alignleft {
+  display: flex;
+}
+.flex-alignright {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.center-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+.center-vertical {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+.center {
+  align-content: center;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.register-btn {
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.login {
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 33%;
+  padding-right: 33%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+.centertext{
+  text-align: center;
+}
+.submit-matter-headings {
+  color: #b52545;
+}
+
+.category-dropdown {
+ text-align: left;
+}
+
+.submit-matter-title {
+  font-size: 2em;
+}
+
+.new-matter-submit {
+  background-color: #b52545;
 }
 
 
