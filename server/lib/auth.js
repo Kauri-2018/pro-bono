@@ -79,6 +79,14 @@ function isLawyer (req, res, next) {
   next()
 }
 
+function isLawyerOrAdmin (req, res, next) {
+  const user = req.user
+  if (!(lawyerPermissions.includes(user.role) || adminPermissions.includes(user.role))) {
+    return res.status(403).json({errorMessage: 'User not authorised'})
+  }
+  next()
+}
+
 function isMember (req, res, next) {
   const user = req.user
   if (!memberPermissions.includes(user.role)) {
@@ -116,5 +124,6 @@ module.exports = {
   isLawyer,
   isMember,
   isAdmin,
-  securityCheck
+  securityCheck,
+  isLawyerOrAdmin
 }

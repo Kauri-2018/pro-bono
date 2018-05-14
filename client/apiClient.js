@@ -60,6 +60,11 @@ export function claimMatter (matterId, profileId) {
     .then(res => res.body)
 }
 
+export function releaseMatter (matterId, profileId) {
+  return consume('put', `${MATTER_ROUTE}/release`, {matterId, profileId})
+    .then(res => res.body)
+}
+
 export function closeMatter (matterId) {
   return consume('put', `${MATTER_ROUTE}/`, {matterId})
     .then(res => res.body)

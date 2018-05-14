@@ -131,6 +131,12 @@ function markAsClaimed (matterId, profileId, db = knex) {
     .update({claimed_by: profileId})
 }
 
+function markAsUnclaimed (matterId, profileId, db = knex) {
+  return db('matters')
+    .where('id', '=', matterId)
+    .update({claimed_by: null})
+}
+
 // throw error if missing data that we need
 function addNewMatter (matter, db = knex) {
   return db('matters')
@@ -174,5 +180,6 @@ module.exports = {
   getMattersByProfileId,
   getCompleteMattersByProfileId,
   getIncompleteMattersByProfileId,
-  addNewMatter
+  addNewMatter,
+  markAsUnclaimed
 }
