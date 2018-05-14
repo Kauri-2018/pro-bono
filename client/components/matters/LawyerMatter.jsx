@@ -22,12 +22,18 @@ const LawyerMatter = (props) => (
         <Typography>
           <span className="fontsize125"><strong>Details: </strong>{props.singleMatter.details}</span><br/><br/>
           <span className="fontsize125"><strong>Enquiries to: </strong>{props.singleMatter.contactEmail} </span><br/><br/>
-          {props.handleClaim && <Button variant="raised"
-            color="primary"
-            className="btn-submit offset-by-four columns four columns "
-            type="submit"
-            onClick={() => { props.handleClaim(props.singleMatter.referenceNumber) }}>Claim
-          </Button>}
+          {props.buttonData && 
+            props.buttonData.map(button => {
+              return (
+                <Button variant="raised"
+                  color="primary"
+                  className="btn-submit offset-by-four columns four columns "
+                  type="submit"
+                  onClick={() => { button.fn(props.getMattersFunction, props.singleMatter.referenceNumber) }}>{button.text}
+                </Button>
+              )
+            })
+          }
         </Typography>
       </ExpansionPanelDetails>
     </ExpansionPanel>
