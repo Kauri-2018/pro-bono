@@ -121,6 +121,9 @@ html {
   background-color: #b52545;
 }
 
+.form-field > span{
+  justify-content: space-between;  
+}
 
 /* random yellow on community law is #D4BD68 */
 /*one  red is #C7003C */
