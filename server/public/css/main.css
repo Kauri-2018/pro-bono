@@ -96,11 +96,12 @@ html {
   margin-right: 30%;
 }
 .login {
-  padding-top: 3vh;
-  padding-bottom: 3vh;
-  padding-left: 20vw;
-  padding-right: 20vw;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 33%;
+  padding-right: 33%;
   margin-bottom: 5%;
+  margin-top: 5%;
 }
 .centertext{
   text-align: center;
