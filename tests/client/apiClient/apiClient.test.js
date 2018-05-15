@@ -4,7 +4,13 @@ import {
   requestMatterById,
   MATTER_ROUTE,
   addNewMatter
-} from '../../client/apiClient'
+} from '../../../client/apiClient'
+
+jest.mock('../../../client/utils/localstorage', () => ({
+  get: () => {
+    return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzMwMDAxLCJlbWFpbCI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwicGVuZGluZyI6MCwicHJvZmlsZUlkIjo0NDAwMDEsImNlbnRyZUlkIjoxMTAwMDEsImZpcnN0bmFtZSI6IkthbGUiLCJsYXN0bmFtZSI6IkxpdHQiLCJwaG9uZU51bWJlciI6IjAyNzEyMzEyMyIsImNlcnRpZmljYXRlIjpudWxsLCJjb21wYW55IjpudWxsLCJpYXQiOjE1MjY0MjYzMjYsImV4cCI6MTUyNjUxMjcyNn0.wVWXAkZ3D1lOcd6O39ZtL9CtnHK8jPnNOqzX5R0yBcc'
+  }
+}))
 
 const data = {
   category: 'civic',
@@ -40,7 +46,7 @@ nock('http://localhost')
 test('addNewMatter sends post request to server', () => {
   return addNewMatter(data)
     .then(res => {
-      expect(res.data.category).toEqual(data.category)
+      expect(res.body.data.category).toEqual(data.category)
     })
 })
 
@@ -53,6 +59,6 @@ nock('http://localhost')
 test('addNewMatter expect to not equal', () => {
   return addNewMatter(data)
     .then(res => {
-      expect(res.data.category).not.toEqual('Family Law')
+      expect(res.body.data.category).not.toEqual('Family Law')
     })
 })
