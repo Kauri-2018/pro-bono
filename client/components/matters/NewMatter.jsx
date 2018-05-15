@@ -13,16 +13,7 @@ import {showSnackbar} from '../../actions/snackbar'
 class NewMatter extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      title: '',
-      contactEmail: '',
-      category: null,
-      internalMatterNumber: '',
-      details: '',
-      centreId: props.centreId,
-      anchorEl: null
-    }
-
+    this.state = blankState(props.centreId)
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleClose = this.handleClose.bind(this)
@@ -52,6 +43,7 @@ class NewMatter extends React.Component {
     const newMatter = {...this.state}
     // alert('Submitted new matter: ' + newMatter.title)
     this.props.dispatch(postNewMatter(newMatter))
+    this.setState(blankState(this.props.centreId))
     this.props.dispatch(showSnackbar(`New matter added`))
   }
 
@@ -74,6 +66,7 @@ class NewMatter extends React.Component {
                 className="text-input"
                 onChange={this.handleChange}
                 margin="normal"
+                value={this.state.title}
               />
             </span>
             <br />
@@ -88,6 +81,7 @@ class NewMatter extends React.Component {
                 className="text-input"
                 onChange={this.handleChange}
                 margin="normal"
+                value={this.state.contactEmail}
               />
             </span>
             <br />
@@ -126,6 +120,7 @@ class NewMatter extends React.Component {
                 className="text-input"
                 onChange={this.handleChange}
                 margin="normal"
+                value={this.state.internalMatterNumber}
               />
             </span>
             <br />
@@ -141,6 +136,7 @@ class NewMatter extends React.Component {
                 className="text-input"
                 onChange={this.handleChange}
                 margin="normal"
+                value={this.state.details}
               />
             </span>
           </section>
@@ -156,6 +152,18 @@ class NewMatter extends React.Component {
         </Card>
       </div>
     )
+  }
+}
+
+const blankState = (centreId) => {
+  return {
+    title: '',
+    contactEmail: '',
+    category: null,
+    internalMatterNumber: '',
+    details: '',
+    centreId: centreId,
+    anchorEl: null
   }
 }
 
