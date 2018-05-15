@@ -52,12 +52,7 @@ router.get('/live', (req, res) => {
 
 router.get('/incomplete', auth.isMember, (req, res) => {
   db.getIncompleteMatters()
-    .then(matters => {
-      if (!matters.length) {
-        throw new Error('There are no live matters')
-      }
-      res.json({matters})
-    })
+    .then(matters => res.json({matters}))
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
     })
