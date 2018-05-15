@@ -1,6 +1,7 @@
 const express = require('express')
 
 const db = require('../db/users')
+const mailGunApi = require('../lib/mailgun')
 
 const router = express.Router()
 
@@ -55,6 +56,12 @@ router.put('/approve', (req, res) => {
   db.markAsApproved(profileId, isAdmin)
     .then(() => {
       res.sendStatus(200)
+    })
+    .then(() => {
+      db.getFullUserByProfileId(profileId)
+        .then(userData => {
+          mailGunApi.mailGunApproveUser(userData.firstname, userData.lastname, userData.email)
+        })
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})

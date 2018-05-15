@@ -1,5 +1,8 @@
+const {categories, titles, details, emails} = require('../case-studies-data/case-studies')
+
 exports.seed = (knex, Promise) => {
   // Deletes ALL existing entries
+  const randomMatters = generateMatters(100)
   return knex('matters').del()
     .then(() => {
       // Inserts seed entries
@@ -69,7 +72,30 @@ exports.seed = (knex, Promise) => {
           centre_id: 110001,
           title: 'Special Cat Unclaimed',
           internal_matter_number: 81643561453
-        }
+        },
+        ...randomMatters
       ])
     })
+}
+
+function generateMatters (numMatters) {
+  const matterArray = []
+
+  for (let i = 0; i < numMatters; i++) {
+    const title = titles[Math.floor(Math.random() * titles.length)]
+    const category = categories[Math.floor(Math.random() * categories.length)]
+    const additionalDetails = details[Math.floor(Math.random() * details.length)]
+    const contactEmail = emails[Math.floor(Math.random() * emails.length)]
+    const centreId = 110001// + Math.floor(Math.random() * 23)
+    const internalMatterNumber = 1000 + Math.floor(Math.random() * 100000000)
+    matterArray.push({title,
+      category,
+      details: additionalDetails,
+      centre_id: centreId,
+      contact_email: contactEmail,
+      internal_matter_number: internalMatterNumber,
+      is_complete: false
+    })
+  }
+  return matterArray
 }

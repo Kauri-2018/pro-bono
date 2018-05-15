@@ -57,11 +57,11 @@ class NewMatter extends React.Component {
     return (
       <div className='new-matter-wrapper offset-by-two column eight columns'>
         <Card position="static" color="default" className="new-matter">
-          <h1 className="offset-by-one columns submit-matter-title">Submit New Matter</h1>
+          <h4 className="centertext">SUBMIT NEW MATTER</h4>
 
           <section className="form-field">
             <span className='submit-matter-headings'>
-            Title
+            TITLE
               <TextField
                 fullWidth={true}
                 required={true}
@@ -75,7 +75,7 @@ class NewMatter extends React.Component {
             <br />
             <br />
             <span className='submit-matter-headings'>
-            Matter contact email
+            MATTER CONTACT EMAIL
               <TextField
                 fullWidth={true}
                 required={true}
@@ -88,7 +88,7 @@ class NewMatter extends React.Component {
             </span>
             <br />
             <br />
-            <span className='submit-matter-headings'>Select a category</span>
+            <span className='submit-matter-headings'>SELECT A CATEGORY</span>
             <Button
               className='category-dropdown'
               fullWidth={true}
@@ -113,7 +113,7 @@ class NewMatter extends React.Component {
             <br />
             <br />
             <span className='submit-matter-headings'>
-            Internal matter number (optional)
+            INTERNAL MATTER NUMBER (OPTIONAL)
               <TextField
                 fullWidth={true}
                 required={true}
@@ -127,7 +127,7 @@ class NewMatter extends React.Component {
             <br />
             <br />
             <span className='submit-matter-headings'>
-            Matter details
+            MATTER DETAILS
               <TextField
                 fullWidth={true}
                 required={true}
