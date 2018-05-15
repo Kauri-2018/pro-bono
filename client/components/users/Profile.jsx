@@ -12,6 +12,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Typography from 'material-ui/Typography'
 import Checkbox from 'material-ui/Checkbox'
 import {FormControlLabel} from 'material-ui/Form'
+import Button from 'material-ui/Button'
 
 // parents coming through from different containers for this Matter.jsx
 class Profile extends React.Component {
@@ -54,24 +55,41 @@ class Profile extends React.Component {
                   <strong>Law centre: </strong>{this.props.singleProfile.centreId} <br/><br/>
                 </div>
               }
-              <strong>Email: </strong>{this.props.singleProfile.email} <br/><br/>
-              <strong>Phone No. </strong>{this.props.singleProfile.phoneNumber} <br/><br/>
-              <button onClick={() => {
-                this.props.approveProfile(this.props.singleProfile.profileId, this.state.isAdmin)
-              }}
-              >
-          Approve
-              </button>
+              <br/>
+              <br/>
+              <strong className='profile-title'>Email: </strong>
+              {this.props.singleProfile.email}
+              <br/>
+              <br/>
+              <strong className='profile-title'>Phone No. </strong>
+              {this.props.singleProfile.phoneNumber}
+              <br/>
+              <br/>
               {this.props.singleProfile.role === 'member' &&
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={this.state.isAdmin}
-                onChange={this.setAdmin}
-              />
-            }
-            label="Admin"
-          />}
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={this.state.isAdmin}
+                    onChange={this.setAdmin}
+                  />
+                }
+                label="Set user as admin"
+              />}
+              <br/>
+              <Button
+                variant="raised"
+                style={{
+                  backgroundColor: '#b52545',
+                  color: '#ffffff'
+                }}
+                className="btn-submit"
+                type="submit"
+                onClick={() => {
+                  this.props.approveProfile(this.props.singleProfile.profileId, this.state.isAdmin)
+                }}
+              >
+                Approve
+              </Button>
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
