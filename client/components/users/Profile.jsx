@@ -42,36 +42,38 @@ class Profile extends React.Component {
           } }>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography>
-              <strong>
-                {this.props.singleProfile.firstname} {this.props.singleProfile.lastname}
-              </strong>
+              <span className='expansion-header'>
+                <span className='secondary-text role-indicator'>
+                  {this.props.singleProfile.role.toUpperCase()}
+                </span>
+                <span className='secondary-text role-indicator'>
+                  {'   >   '}
+                </span>
+                <span className='primary-text'>
+                  <strong>
+                    {this.props.singleProfile.firstname} {this.props.singleProfile.lastname}
+                  </strong>
+                </span>
+              </span>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography>
               {this.props.singleProfile.company
                 ? <div>
-                  <strong className='profile-title'>Company: </strong>
+                  <strong className='primary-text-red'>Company: </strong>
                   {this.props.singleProfile.company}
-                  <br/>
-                  <br/>
                 </div>
                 : <div>
-                  <strong className='profile-title'>Law centre: </strong>
+                  <strong className='primary-text-red'>Law centre: </strong>
                   {this.props.singleProfile.centreId}
-                  <br/>
-                  <br/>
                 </div>
               }
-              <br/>
-              <br/>
-              <strong className='profile-title'>Email: </strong>
+              <strong className='primary-text-red'>Email: </strong>
               {this.props.singleProfile.email}
               <br/>
-              <br/>
-              <strong className='profile-title'>Phone No. </strong>
+              <strong className='primary-text-red'>Phone No. </strong>
               {this.props.singleProfile.phoneNumber}
-              <br/>
               <br/>
               {this.props.singleProfile.role === 'member' &&
               <FormControlLabel
@@ -87,7 +89,7 @@ class Profile extends React.Component {
               <Button
                 variant="raised"
                 style={{
-                  backgroundColor: '#24b56f',
+                  backgroundColor: '#C7003C',
                   color: '#ffffff'
                 }}
                 className="btn-submit"
