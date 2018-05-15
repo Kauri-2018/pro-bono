@@ -4,7 +4,7 @@ import {
   requestMatterById,
   MATTER_ROUTE,
   addNewMatter
-} from '../../client/apiClient'
+} from '../../../client/apiClient'
 
 const data = {
   category: 'civic',
