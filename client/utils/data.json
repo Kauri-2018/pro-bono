@@ -1,0 +1,34 @@
+{
+  "categories": [
+    {
+      "category": "Civil",
+      "subcategories": ["Consumer", "Employment", "Financial", "Media Law", "Property", "Trusts"]
+
+    },
+    {
+      "category": "Family",
+      "subcategories": ["Consumer", "Employment", "Financial", "Media Law", "Property", "Trusts"]
+
+    },
+    {
+      "category": "Administrative",
+      "subcategories": ["Consumer", "Employment", "Financial", "Media Law", "Property", "Trusts"]
+
+    },
+    {
+      "category": "Criminal",
+      "subcategories": ["Consumer", "Employment", "Financial", "Media Law", "Property", "Trusts"]
+
+    },
+    {
+      "category": "Māori",
+      "subcategories": ["Consumer", "Employment", "Financial", "Media Law", "Property", "Trusts"]
+
+    },
+    {
+      "category": "Specialist Services",
+      "subcategories": ["Consumer", "Employment", "Financial", "Media Law", "Property", "Trusts"]
+
+    }
+  ]
+}
