@@ -55,14 +55,15 @@
     "sodium": "^2.0.3",
     "superagent": "^3.8.2",
     "webpack": "^3.11.0",
+    "react-async-script": "^0.9.1",
+    "react-google-recaptcha": "^0.11.1",
     "webpack-livereload-plugin": "^1.0.0"
   },
   "devDependencies": {
     "jest": "^22.3.0",
     "nock": "^9.2.5",
     "nodemon": "^1.15.0",
-    "react-async-script": "^0.9.1",
-    "react-google-recaptcha": "^0.11.1",
+
     "sqlite3": "^3.1.13",
     "supertest": "^3.0.0"
   }
