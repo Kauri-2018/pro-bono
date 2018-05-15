@@ -12,6 +12,15 @@ import {logoutUser} from '../../actions/logout'
 import {claimMatter, releaseMatter} from '../../apiClient'
 import {showSnackbar} from '../../actions/snackbar'
 
+const styles = {
+  headline: {
+    fontSize: 24,
+    paddingTop: 16,
+    marginBottom: 12,
+    fontWeight: 400
+  }
+}
+
 class LawyerSection extends React.Component {
   constructor (props) {
     super(props)
@@ -60,7 +69,7 @@ class LawyerSection extends React.Component {
     const selectedTabIndex = this.state.selectedTabIndex
     return (
       <div className='member-landing'>
-        <AppBar position='static'>
+        <AppBar >
           <Tabs value={selectedTabIndex} onChange={this.switchTab}>
             <Tab label="Your Matters" />
             <Tab label="Browse Matters" />
@@ -71,23 +80,25 @@ class LawyerSection extends React.Component {
             }}/>
           </Tabs>
         </AppBar>
-        {selectedTabIndex === 0 && <LawyerMatterList
-          key="claimedMatterList"
-          matters="claimed"
-          buttonData={[{text: 'Unclaim', fn: this.handleReleaseMatter}]}
-          getMattersFunction={getIncompleteMattersByProfileId}
-        />}
-        {selectedTabIndex === 1 && <LawyerMatterList
-          key="liveMatterList"
-          matters="live"
-          buttonData={[{text: 'Claim', fn: this.handleClaimMatter}]}
-          getMattersFunction={getLiveMatters}
-        />}
-        {selectedTabIndex === 2 && <LawyerMatterList
-          key="completedMatterList"
-          matters="completed"
-          getMattersFunction={getCompleteMattersByProfileId}
-        />}
+        <div className='section-wrapper'>
+          {selectedTabIndex === 0 && <LawyerMatterList
+            key="claimedMatterList"
+            matters="claimed"
+            buttonData={[{text: 'Unclaim', fn: this.handleReleaseMatter}]}
+            getMattersFunction={getIncompleteMattersByProfileId}
+          />}
+          {selectedTabIndex === 1 && <LawyerMatterList
+            key="liveMatterList"
+            matters="live"
+            buttonData={[{text: 'Claim', fn: this.handleClaimMatter}]}
+            getMattersFunction={getLiveMatters}
+          />}
+          {selectedTabIndex === 2 && <LawyerMatterList
+            key="completedMatterList"
+            matters="completed"
+            getMattersFunction={getCompleteMattersByProfileId}
+          />}
+        </div>
       </div>
     )
   }
