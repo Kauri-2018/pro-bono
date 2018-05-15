@@ -12,7 +12,14 @@ router.use(auth.securityCheck)
 
 router.get('/', auth.isAdmin, (req, res) => {
   db.getAllMatters()
-    .then(matters => {
+    .then(matterList => {
+      const matters = matterList.map(matter => {
+        const subcategories = JSON.parse(matter.subcategories)
+        return {
+          ...matter,
+          subcategories
+        }
+      })
       res.json({matters})
     })
     .catch(err => {
@@ -29,7 +36,14 @@ router.put('/', auth.isMember, (req, res) => {
       }
     })
     .then(() => db.getIncompleteMatters())
-    .then(matters => {
+    .then(matterList => {
+      const matters = matterList.map(matter => {
+        const subcategories = JSON.parse(matter.subcategories)
+        return {
+          ...matter,
+          subcategories
+        }
+      })
       res.json({matters})
     })
     .catch(err => {
@@ -39,10 +53,17 @@ router.put('/', auth.isMember, (req, res) => {
 
 router.get('/live', (req, res) => {
   db.getLiveMatters()
-    .then(matters => {
-      if (!matters.length) {
-        matters = []
+    .then(matterList => {
+      if (!matterList.length) {
+        matterList = []
       }
+      const matters = matterList.map(matter => {
+        const subcategories = JSON.parse(matter.subcategories)
+        return {
+          ...matter,
+          subcategories
+        }
+      })
       res.json({matters})
     })
     .catch(err => {
@@ -52,7 +73,16 @@ router.get('/live', (req, res) => {
 
 router.get('/incomplete', auth.isMember, (req, res) => {
   db.getIncompleteMatters()
-    .then(matters => res.json({matters}))
+    .then(matterList => {
+      const matters = matterList.map(matter => {
+        const subcategories = JSON.parse(matter.subcategories)
+        return {
+          ...matter,
+          subcategories
+        }
+      })
+      res.json({matters})
+    })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
     })
@@ -122,10 +152,17 @@ router.get('/id/:id', (req, res) => {
 router.get('/profile/:profileId', (req, res) => {
   const profileId = req.params.profileId
   db.getMattersByProfileId(profileId)
-    .then(matters => {
-      if (!matters) {
+    .then(matterList => {
+      if (!matterList) {
         throw new Error('There were no matters with that profile id')
       }
+      const matters = matterList.map(matter => {
+        const subcategories = JSON.parse(matter.subcategories)
+        return {
+          ...matter,
+          subcategories
+        }
+      })
       res.json({matters})
     })
     .catch(err => {
@@ -136,10 +173,17 @@ router.get('/profile/:profileId', (req, res) => {
 router.get('/profile/:profileId/complete', (req, res) => {
   const profileId = req.params.profileId
   db.getCompleteMattersByProfileId(profileId)
-    .then(matters => {
-      if (!matters) {
+    .then(matterList => {
+      if (!matterList) {
         throw new Error('There were no complete matters with that profile id')
       }
+      const matters = matterList.map(matter => {
+        const subcategories = JSON.parse(matter.subcategories)
+        return {
+          ...matter,
+          subcategories
+        }
+      })
       res.json({matters})
     })
     .catch(err => {
@@ -150,10 +194,17 @@ router.get('/profile/:profileId/complete', (req, res) => {
 router.get('/profile/:profileId/incomplete', (req, res) => {
   const profileId = req.params.profileId
   db.getIncompleteMattersByProfileId(profileId)
-    .then(matters => {
-      if (!matters) {
+    .then(matterList => {
+      if (!matterList) {
         throw new Error('There were no incomplete matters with that profile id')
       }
+      const matters = matterList.map(matter => {
+        const subcategories = JSON.parse(matter.subcategories)
+        return {
+          ...matter,
+          subcategories
+        }
+      })
       res.json({matters})
     })
     .catch(err => {
@@ -164,15 +215,36 @@ router.get('/profile/:profileId/incomplete', (req, res) => {
 router.get('/category/:category', (req, res) => {
   const category = req.params.category
   db.getLiveMattersByCategory(category)
-    .then(matters => {
-      if (!matters.length) {
+    .then(matterList => {
+      if (!matterList.length) {
         throw new Error('There are no matters with that category')
       }
+      const matters = matterList.map(matter => {
+        const subcategories = JSON.parse(matter.subcategories)
+        return {
+          ...matter,
+          subcategories
+        }
+      })
       res.json({matters})
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
     })
 })
+
+  .then(matterList => {
+    if (!matterList) {
+      throw new Error('There were no incomplete matters with that profile id')
+    }
+    const matters = matterList.map(matter => {
+      const subcategories = JSON.parse(matter.subcategories)
+      return {
+        ...matter,
+        subcategories
+      }
+    })
+    res.json({matters})
+  })
 
 module.exports = router
