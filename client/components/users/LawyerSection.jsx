@@ -10,7 +10,6 @@ import LawyerMatterList from '../matters/LawyerMatterList'
 import {getLiveMatters, getIncompleteMattersByProfileId, getCompleteMattersByProfileId} from '../../actions/matters'
 import {logoutUser} from '../../actions/logout'
 import {claimMatter, releaseMatter} from '../../apiClient'
-import {showSnackbar} from '../../actions/snackbar'
 
 class LawyerSection extends React.Component {
   constructor (props) {
@@ -38,7 +37,6 @@ class LawyerSection extends React.Component {
     claimMatter(matterId, this.props.currentUser.profileId)
       .then(() => {
         this.props.dispatch(getMattersFunction(this.props.currentUser.profileId))
-        this.props.dispatch(showSnackbar(`Matter claimed`))
       })
       .catch(err => {
         console.log(err.message)
@@ -49,7 +47,6 @@ class LawyerSection extends React.Component {
     releaseMatter(matterId, this.props.currentUser.profileId)
       .then(() => {
         this.props.dispatch(getMattersFunction(this.props.currentUser.profileId))
-        this.props.dispatch(showSnackbar(`Matter released`))
       })
       .catch(err => {
         console.log(err.message)

@@ -1,14 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
-// Material UI Components
 import Button from 'material-ui/Button'
 import Card from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
-import Menu, {MenuItem} from 'material-ui/Menu'
+import Menu, { MenuItem } from 'material-ui/Menu'
 
 import {postNewMatter} from '../../actions/matters'
-import {showSnackbar} from '../../actions/snackbar'
 
 class NewMatter extends React.Component {
   constructor (props) {
@@ -52,7 +49,6 @@ class NewMatter extends React.Component {
     const newMatter = {...this.state}
     // alert('Submitted new matter: ' + newMatter.title)
     this.props.dispatch(postNewMatter(newMatter))
-    this.props.dispatch(showSnackbar(`New matter added`))
   }
 
   render () {

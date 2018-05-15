@@ -15,7 +15,6 @@ import ListTemplate from './ListTemplate'
 import {getIncompleteMatters} from '../../actions/matters'
 import {closeMatter} from '../../apiClient'
 import MemberMatterListItem from './MemberMatterListItem'
-import {showSnackbar} from '../../actions/snackbar'
 
 class MemberMatterList extends ListTemplate {
   constructor (props) {
@@ -25,7 +24,8 @@ class MemberMatterList extends ListTemplate {
       filters: {},
       claimFilter: 'all',
       menuIsOpen: false,
-      anchorEl: null
+      anchorEl: null,
+      filters: {}
     }
     this.handleCloseMatter = this.handleCloseMatter.bind(this)
     this.closeMenu = this.closeMenu.bind(this)
@@ -48,7 +48,6 @@ class MemberMatterList extends ListTemplate {
     closeMatter(matterId)
       .then(() => {
         this.props.dispatch(getIncompleteMatters())
-        this.props.dispatch(showSnackbar(`Matter #${matterId} closed`))
       })
       .catch(err => {
         console.log(err.message)

@@ -6,8 +6,8 @@ import TextField from 'material-ui/TextField'
 import Menu, { MenuItem } from 'material-ui/Menu'
 import ReCAPTCHA from 'react-google-recaptcha'
 
+
 import {registerUser} from '../../actions/register'
-import {showSnackbar} from '../../actions/snackbar'
 
 const passwordError = 'Must be at least 7 characters long'
 const confPasswordError = 'Must match password'
@@ -95,7 +95,6 @@ class Register extends React.Component {
       .then(userInfo => {
         if (userInfo) {
           this.props.history.push('/pending')
-          this.props.dispatch(showSnackbar('Thank you for registering'))
         }
       })
   }
