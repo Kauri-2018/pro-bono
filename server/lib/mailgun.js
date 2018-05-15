@@ -1,4 +1,3 @@
-const mailgun = require('mailgun-js')
 var apiKey = process.env.MAILGUN_API_KEY
 var OUR_EMAIL = 'edaprobono@gmail.com'
 const OUR_DOMAIN = 'probono.rgs.nz'
