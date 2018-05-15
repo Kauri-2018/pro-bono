@@ -9,6 +9,7 @@ import {registerUser} from '../../actions/register'
 
 const passwordError = 'Must be at least 7 characters long'
 const confPasswordError = 'Must match password'
+const emailError = 'Please enter a valid email address'
 
 class Register extends React.Component {
   constructor (props) {
@@ -25,13 +26,20 @@ class Register extends React.Component {
       confirmPassword: '',
       passwordError: '',
       confPasswordError,
-      anchorEl: null
+      anchorEl: null,
+      emailError: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleClose = this.handleClose.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
+    this.isEmailAddress = this.isEmailAddress.bind(this)
+  }
+
+  isEmailAddress (str) {
+    var pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return pattern.test(str) // returns a boolean
   }
 
   handleChange (e) {
@@ -42,6 +50,8 @@ class Register extends React.Component {
       else this.setState({passwordError: ''})
       if (this.state.confirmPassword.length >= 7 && this.state.password !== this.state.confirmPassword) this.setState({confPasswordError})
       else this.setState({confPasswordError: ''})
+      if (!this.isEmailAddress(this.state.email)) this.setState({emailError})
+      else this.setState({emailError: ''})
     })
   }
 
@@ -60,7 +70,7 @@ class Register extends React.Component {
   }
 
   handleAdd (e) {
-    if (this.state.password !== this.state.confirmPassword || this.state.password.length < 7) {
+    if (this.state.password !== this.state.confirmPassword || this.state.password.length < 7 || !this.isEmailAddress(this.state.email)) {
       return
     }
 
@@ -93,7 +103,17 @@ class Register extends React.Component {
             <br/>
             <span>Last Name:  <TextField required={true} placeholder="Last Name" name="lastName" className="TextField-right" onChange={this.handleChange} margin="normal" /></span>
             <br/>
-            <span>Email:  <TextField required={true} placeholder="Email" name="email" className="TextField-right" onChange={this.handleChange} margin="normal" /></span>
+            <span>Email:  <TextField
+              required={true}
+              placeholder="Email"
+              name="email"
+              className="TextField-right"
+              onChange={this.handleChange}
+              margin="normal"
+              error={!!this.state.emailError}
+              label={this.state.emailError} />
+            </span>
+
             <br/>
             <span>Phone Number:  <TextField required={true} placeholder="Phone Number" name="phoneNumber" className="TextField-right" onChange={this.handleChange} margin="normal" /></span>
             <br/>
