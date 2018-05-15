@@ -4,12 +4,15 @@ import Button from 'material-ui/Button'
 import Card from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
 import Menu, { MenuItem } from 'material-ui/Menu'
+import ReCAPTCHA from 'react-google-recaptcha'
+
 
 import {registerUser} from '../../actions/register'
 
 const passwordError = 'Must be at least 7 characters long'
 const confPasswordError = 'Must match password'
 const emailError = 'Please enter a valid email address'
+let captcha = false
 
 class Register extends React.Component {
   constructor (props) {
@@ -35,6 +38,11 @@ class Register extends React.Component {
     this.handleClose = this.handleClose.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
     this.isEmailAddress = this.isEmailAddress.bind(this)
+    this.onChange = this.onChange.bind(this)
+  }
+
+  onChange(value) {
+    captcha=true
   }
 
   isEmailAddress (str) {
@@ -70,7 +78,8 @@ class Register extends React.Component {
   }
 
   handleAdd (e) {
-    if (this.state.password !== this.state.confirmPassword || this.state.password.length < 7 || !this.isEmailAddress(this.state.email)) {
+    e.preventDefault()
+    if (this.state.password !== this.state.confirmPassword || this.state.password.length < 7 || !this.isEmailAddress(this.state.email) || !captcha) {
       return
     }
 
@@ -98,6 +107,7 @@ class Register extends React.Component {
       <div className='new-matter-wrapper offset-by-two column eight columns'>
         <Card position="static" color="default" className="register">
           <h1 className="offset-by-two columns">Register</h1>
+          <form onSubmit={() => { captcha.execute(); }}>
           <section className="form-field">
             <span>First Name:  <TextField required={true} placeholder="First Name" name="firstName" className="TextField-right" onChange={this.handleChange} margin="normal" /></span>
             <br/>
@@ -189,8 +199,15 @@ class Register extends React.Component {
               label={this.state.confPasswordError} /></span>
           </section>
           <section>
+          <ReCAPTCHA
+            ref="recaptcha"
+            sitekey="6Lf4QFkUAAAAAFFvtEdYhoMyHL72NxOxbJwaaUcs"
+            onChange={this.onChange}
+          />
             <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " type="submit" onClick={this.handleAdd}>Submit</Button>
-          </section>
+      </section>
+  </form>
+
         </Card>
       </div>
     )
