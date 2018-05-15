@@ -3,7 +3,7 @@ import React from 'react'
 
 // // Material UI Components
 import Button from 'material-ui/Button'
-import Menu, { MenuItem } from 'material-ui/Menu'
+import Menu, {MenuItem} from 'material-ui/Menu'
 import Paper from 'material-ui/Paper'
 
 // Our Components
@@ -33,7 +33,7 @@ class ProfileList extends ListTemplate {
   }
 
   handleClick (e) {
-    this.setState({ menuIsOpen: true })
+    this.setState({menuIsOpen: true})
   }
 
   renderFilters () {
