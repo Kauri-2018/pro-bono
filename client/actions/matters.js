@@ -69,7 +69,11 @@ export function getIncompleteMatters () {
   return dispatch => {
     return requestIncompleteMatters()
       .then(incompleteMatters => {
-        dispatch(showMatterList(incompleteMatters))
+        if (incompleteMatters) {
+          dispatch(showMatterList(incompleteMatters))
+        } else {
+          dispatch(showMatterList([]))
+        }
       })
       .catch(err => {
         dispatch(errorHandle(err.message))
