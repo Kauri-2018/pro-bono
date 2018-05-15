@@ -127,6 +127,10 @@ html {
   position: relative;
 }
 
+.filter-list-wrapper {
+  padding-top: 3em;
+}
+
 .pageHeader {
   color: #3f51b5;
   text-align: center;
