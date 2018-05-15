@@ -14,7 +14,7 @@
     "start": "node server",
     "build": "webpack --config ./client/webpack.config.js",
     "test": "jest --watchAll",
-    "postinstall": "yarn build | yarn knex migrate:latest",
+    "postinstall": "yarn build & yarn knex migrate:latest",
     "resetdb": "yarn knex migrate:rollback; yarn knex migrate:latest && yarn knex seed:run"
   },
   "jest": {
