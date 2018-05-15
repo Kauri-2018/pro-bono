@@ -59,7 +59,7 @@ exports.seed = (knex, Promise) => {
           is_complete: false,
           claimed_by: 440003,
           centre_id: 110001,
-          title: 'Maori Cat Claimed',
+          title: 'Māori Cat Claimed',
           internal_matter_number: 1353274
         },
         {

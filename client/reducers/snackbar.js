@@ -1,8 +1,9 @@
-import {CLOSE_SNACKBAR, SHOW_SNACKBAR} from '../actions/snackbar'
+import {CLOSE_SNACKBAR, SHOW_SNACKBAR, SHOW_ERROR_SNACKBAR} from '../actions/snackbar'
 
 const initialSnackbar = {
   open: false,
-  message: ''
+  message: '',
+  error: false
 }
 
 export default function (snackbar = initialSnackbar, action) {
@@ -13,7 +14,15 @@ export default function (snackbar = initialSnackbar, action) {
     case SHOW_SNACKBAR:
       return {
         open: true,
-        message: action.message
+        message: action.message,
+        error: false
+      }
+
+    case SHOW_ERROR_SNACKBAR:
+      return {
+        open: true,
+        message: action.message,
+        error: true
       }
 
     default:
