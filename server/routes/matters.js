@@ -74,6 +74,9 @@ router.get('/live', (req, res) => {
 router.get('/incomplete', auth.isMember, (req, res) => {
   db.getIncompleteMatters()
     .then(matterList => {
+      if (!matterList.length) {
+        matterList = []
+      }
       const matters = matterList.map(matter => {
         const subcategories = JSON.parse(matter.subcategories)
         return {
@@ -114,7 +117,17 @@ router.put('/release', auth.isLawyerOrAdmin, (req, res) => {
 })
 
 router.post('/add', auth.isMember, (req, res) => {
-  const matter = req.body
+  const newMatter = req.body
+  const subcategories = JSON.stringify(newMatter.subcategories)
+  const matter = {
+    category: newMatter.category,
+    subcategories: subcategories,
+    details: newMatter.details,
+    contactEmail: newMatter.contactEmail,
+    centreId: newMatter.centreId,
+    title: newMatter.title,
+    internalMatterNumber: newMatter.internalMatterNumber
+  }
   db.addNewMatter(matter)
     .then(() => {
       res.sendStatus(200)
@@ -138,9 +151,14 @@ router.put('/edit', auth.isMember, (req, res) => {
 router.get('/id/:id', (req, res) => {
   const matterId = req.params.id
   db.getMatterById(matterId)
-    .then(matter => {
-      if (!matter) {
+    .then(matterReceived => {
+      if (!matterReceived) {
         throw new Error('There was no matter with that id')
+      }
+      const subcategories = JSON.parse(matterReceived.subcategories)
+      const matter = {
+        ...matterReceived,
+        subcategories
       }
       res.json({matter})
     })
@@ -232,19 +250,5 @@ router.get('/category/:category', (req, res) => {
       res.status(500).json({errorMessage: err.message})
     })
 })
-
-  .then(matterList => {
-    if (!matterList) {
-      throw new Error('There were no incomplete matters with that profile id')
-    }
-    const matters = matterList.map(matter => {
-      const subcategories = JSON.parse(matter.subcategories)
-      return {
-        ...matter,
-        subcategories
-      }
-    })
-    res.json({matters})
-  })
 
 module.exports = router
