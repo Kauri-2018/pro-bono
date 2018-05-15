@@ -106,8 +106,12 @@ html {
 .centertext{
   text-align: center;
 }
-.submit-matter-headings, .profile-title, .matter-title {
+.submit-matter-headings, .matter-title, .register-title {
   color: #b52545;
+}
+
+.profile-title {
+ color: #24b56f;
 }
 
 .category-dropdown {
@@ -116,6 +120,18 @@ html {
 
 .submit-matter-title {
   font-size: 1.5em;
+}
+
+.list-empty {
+  color: #b52545;
+  position: relative;
+}
+
+.pageHeader {
+  color: #3f51b5;
+  text-align: center;
+  font-size: 2.5em;
+  padding-top: 1em
 }
 
 

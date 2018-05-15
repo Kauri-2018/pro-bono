@@ -32,7 +32,6 @@ class App extends React.Component {
           <Snackbar
             anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}
             open={this.props.snackbar.open}
-            onClose={this.handleClose}
             ContentProps={{
               'aria-describedby': 'message-id'
             }}
