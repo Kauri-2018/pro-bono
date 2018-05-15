@@ -42,17 +42,25 @@ class Profile extends React.Component {
           } }>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography>
-              <strong>{this.props.singleProfile.firstname} {this.props.singleProfile.lastname}</strong>
+              <strong>
+                {this.props.singleProfile.firstname} {this.props.singleProfile.lastname}
+              </strong>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography>
               {this.props.singleProfile.company
                 ? <div>
-                  <strong>Company: </strong>{this.props.singleProfile.company} <br/><br/>
+                  <strong className='profile-title'>Company: </strong>
+                  {this.props.singleProfile.company}
+                  <br/>
+                  <br/>
                 </div>
                 : <div>
-                  <strong>Law centre: </strong>{this.props.singleProfile.centreId} <br/><br/>
+                  <strong className='profile-title'>Law centre: </strong>
+                  {this.props.singleProfile.centreId}
+                  <br/>
+                  <br/>
                 </div>
               }
               <br/>
@@ -79,13 +87,16 @@ class Profile extends React.Component {
               <Button
                 variant="raised"
                 style={{
-                  backgroundColor: '#b52545',
+                  backgroundColor: '#24b56f',
                   color: '#ffffff'
                 }}
                 className="btn-submit"
                 type="submit"
                 onClick={() => {
-                  this.props.approveProfile(this.props.singleProfile.profileId, this.state.isAdmin)
+                  this.props.approveProfile(
+                    this.props.singleProfile.profileId,
+                    this.state.isAdmin
+                  )
                 }}
               >
                 Approve

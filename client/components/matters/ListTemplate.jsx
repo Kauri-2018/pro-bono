@@ -63,9 +63,13 @@ class ListTemplate extends React.Component {
   render () {
     return (
       <div className='list-wrapper'>
-        {this.renderFilters()}
+        <div>
+          {this.renderFilters()}
+        </div>
         <br />
-        {this.renderList()}
+        <div>
+          {this.renderList()}
+        </div>
       </div>
     )
   }
