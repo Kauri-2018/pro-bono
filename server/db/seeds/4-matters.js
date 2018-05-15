@@ -15,7 +15,7 @@ exports.seed = (knex, Promise) => {
           is_complete: true,
           claimed_by: 440003,
           centre_id: 110001,
-          title: 'Civil Cat Complete',
+          title: 'Civil Cat',
           internal_matter_number: 1354687
         },
         {
@@ -26,7 +26,7 @@ exports.seed = (knex, Promise) => {
           is_complete: false,
           claimed_by: 440003,
           centre_id: 110001,
-          title: 'Family Cat Claimed',
+          title: 'Family Cat',
           internal_matter_number: 1326234
         },
         {
@@ -37,7 +37,7 @@ exports.seed = (knex, Promise) => {
           is_complete: false,
           claimed_by: null,
           centre_id: 110001,
-          title: 'Admin Cat Unclaimed',
+          title: 'Admin Cat',
           internal_matter_number: 3478486
         },
         {
@@ -48,7 +48,7 @@ exports.seed = (knex, Promise) => {
           is_complete: false,
           claimed_by: null,
           centre_id: 110001,
-          title: 'Criminal Cat Unclaimed',
+          title: 'Criminal Cat',
           internal_matter_number: 9874
         },
         {
@@ -59,18 +59,18 @@ exports.seed = (knex, Promise) => {
           is_complete: false,
           claimed_by: 440003,
           centre_id: 110001,
-          title: 'Māori Cat Claimed',
+          title: 'Māori Cat',
           internal_matter_number: 1353274
         },
         {
           id: 550006,
-          category: 'Specialist Services',
+          category: 'Criminal',
           details: `hide behind curtain when vacuum cleaner is on scratch strangers and poo on owners food jump launch to pounce upon little yarn mouse, bare fangs at toy run hide in litter box until treats are fed allways wanting food or use lap as chair, Gate keepers of hell sit in a box for hours a nice warm laptop for me to sit on. Push your water glass on the floor love and fish i must find my red catnip fishy fish and meowzer. Have secret plans make muffins, yet lick human with sandpaper tongue so kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff`,
           contact_email: 'test-contact_email',
           is_complete: false,
           claimed_by: null,
           centre_id: 110001,
-          title: 'Special Cat Unclaimed',
+          title: 'Another Criminal Cat',
           internal_matter_number: 816435
         },
         ...randomMatters
