@@ -46,11 +46,10 @@ class ProfileList extends ListTemplate {
             height: 50,
             width: 400,
             textAlign: 'center',
-            marginTop: 50,
-            marginBottom: 50
+            marginBottom: 20
           }}
         >
-          FILTER BY:
+          FILTERS BY:
           <Button
             aria-owns={this.state.anchorEl ? 'simple-menu' : null}
             aria-haspopup="true"

@@ -80,23 +80,25 @@ class LawyerSection extends React.Component {
             }}/>
           </Tabs>
         </AppBar>
-        {selectedTabIndex === 0 && <LawyerMatterList
-          key="claimedMatterList"
-          matters="claimed"
-          buttonData={[{text: 'Unclaim', fn: this.handleReleaseMatter}]}
-          getMattersFunction={getIncompleteMattersByProfileId}
-        />}
-        {selectedTabIndex === 1 && <LawyerMatterList
-          key="liveMatterList"
-          matters="live"
-          buttonData={[{text: 'Claim', fn: this.handleClaimMatter}]}
-          getMattersFunction={getLiveMatters}
-        />}
-        {selectedTabIndex === 2 && <LawyerMatterList
-          key="completedMatterList"
-          matters="completed"
-          getMattersFunction={getCompleteMattersByProfileId}
-        />}
+        <div className='section-wrapper'>
+          {selectedTabIndex === 0 && <LawyerMatterList
+            key="claimedMatterList"
+            matters="claimed"
+            buttonData={[{text: 'Unclaim', fn: this.handleReleaseMatter}]}
+            getMattersFunction={getIncompleteMattersByProfileId}
+          />}
+          {selectedTabIndex === 1 && <LawyerMatterList
+            key="liveMatterList"
+            matters="live"
+            buttonData={[{text: 'Claim', fn: this.handleClaimMatter}]}
+            getMattersFunction={getLiveMatters}
+          />}
+          {selectedTabIndex === 2 && <LawyerMatterList
+            key="completedMatterList"
+            matters="completed"
+            getMattersFunction={getCompleteMattersByProfileId}
+          />}
+        </div>
       </div>
     )
   }

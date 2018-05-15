@@ -39,7 +39,7 @@ class LawyerMatterList extends ListTemplate {
 
   renderList () {
     return (
-      <div className='list'>
+      <div>
         {this.props.storedMatters && this.props.storedMatters.length
           ? this.applyFilters(this.props.storedMatters)
             .map(matter =>

@@ -36,8 +36,8 @@ class MemberLanding extends React.Component {
     const selectedTabIndex = this.state.selectedTabIndex
     const isAdmin = this.props.isAdmin
     return (
-      <div className='member-landing'>
-        <AppBar position='static'>
+      <div className='section-wrapper'>
+        <AppBar >
           <Tabs value={selectedTabIndex} onChange={this.switchTab}>
             <Tab label="New Matter" />
             <Tab label="See Matters" />
@@ -48,9 +48,11 @@ class MemberLanding extends React.Component {
             }}/>
           </Tabs>
         </AppBar>
-        {selectedTabIndex === 0 && <NewMatter key='newmatter'/>}
-        {selectedTabIndex === 1 && <MemberMatterList key='MemberMatterList'/>}
-        {selectedTabIndex === 2 && <ApproveProfiles key='ApproveProfiles'/>}
+        <div className='member-section-wrapper'>
+          {selectedTabIndex === 0 && <NewMatter key='newmatter'/>}
+          {selectedTabIndex === 1 && <MemberMatterList key='MemberMatterList'/>}
+          {selectedTabIndex === 2 && <ApproveProfiles key='ApproveProfiles'/>}
+        </div>
       </div>
     )
   }

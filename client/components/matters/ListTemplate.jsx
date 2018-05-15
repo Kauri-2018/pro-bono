@@ -62,7 +62,7 @@ class ListTemplate extends React.Component {
 
   render () {
     return (
-      <div className='list-wrapper'>
+      <div className='list-wrapper row'>
         <div>
           {this.renderFilters()}
         </div>
