@@ -1,10 +1,14 @@
 import React from 'react'
+import {connect} from 'react-redux'
+
+// Material UI Components
 import Button from 'material-ui/Button'
 import Card from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
-import Menu, { MenuItem } from 'material-ui/Menu'
+import Menu, {MenuItem} from 'material-ui/Menu'
 
 import {editMatter, requestMatterById} from '../../apiClient'
+import {showSnackbar} from '../../actions/snackbar'
 
 class EditMatter extends React.Component {
   constructor (props) {
@@ -65,6 +69,7 @@ class EditMatter extends React.Component {
     editMatter(matter)
       .then(() => {
         this.props.history.push('/member')
+        this.props.dispatch(showSnackbar(`Matter #${this.state.referenceNumber} has been edited`))
       })
   }
 
@@ -108,4 +113,4 @@ class EditMatter extends React.Component {
   }
 }
 
-export default EditMatter
+export default connect()(EditMatter)

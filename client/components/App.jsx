@@ -2,13 +2,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import decode from 'jwt-decode'
 
-// Our Modules
-import {get} from '../utils/localstorage'
-import {receiveLogin} from '../actions/login'
+// Material UI Components
+import Snackbar from 'material-ui/Snackbar'
 
-// Components
+// Our Modules and Components
 import Login from './auth/Login'
 import LawyerSection from './users/LawyerSection'
 import MemberSection from './users/MemberSection'
@@ -21,7 +19,7 @@ class App extends React.Component {
   render () {
     return (
       <Router>
-        <div className='app container'>
+        <div className='app container' >
           <Switch>
             <Route exact path='/pending' component={PendingLanding} />
             <Route exact path='/lawyer' component={LawyerSection} />
@@ -31,6 +29,15 @@ class App extends React.Component {
             <Route path='/:type/register' component={Register}/>
             <Route path='/' component={renderHome} />
           </Switch>
+          <Snackbar
+            anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}
+            open={this.props.snackbar.open}
+            onClose={this.handleClose}
+            ContentProps={{
+              'aria-describedby': 'message-id'
+            }}
+            message={<span id="message-id">{this.props.snackbar.message}</span>}
+          />
         </div>
       </Router>
     )
@@ -48,7 +55,8 @@ const renderHome = props => {
 
 function mapStateToProps (state) {
   return {
-    user: state.auth.user
+    user: state.auth.user,
+    snackbar: state.snackbar
   }
 }
 
