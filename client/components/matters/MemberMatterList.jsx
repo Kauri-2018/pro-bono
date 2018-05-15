@@ -146,7 +146,7 @@ class MemberMatterList extends ListTemplate {
                 expanded = {this.state.expanded === matter.referenceNumber}
               />
             )
-          : <h4>No Incomplete Matters</h4>
+          : <h4>There are no open matters</h4>
         }
       </div>
     )

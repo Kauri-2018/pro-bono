@@ -71,7 +71,7 @@ class MatterList extends ListTemplate {
                 expanded = {this.state.expanded === matter.referenceNumber}
               />
             )
-          : <h4>No Live Matters</h4>
+          : <h4>No live matters</h4>
         }
       </div>
     )

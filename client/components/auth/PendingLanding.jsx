@@ -2,15 +2,15 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 class PendingLanding extends React.Component {
-  constructor (props) {
-    super(props)
-  }
+  // constructor (props) {
+  //   super(props)
+  // }
 
   render () {
     return (
       <div>
         <p>Thank you for registering as a {this.props.role}.</p>
-        <p>You are currently pending approval, and an email will be sent to {this.props.email} once you have been approved.</p>
+        <p>Your registration is currently pending approval. You will receive an email approving your registration within five business days.</p>
       </div>
     )
   }
