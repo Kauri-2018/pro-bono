@@ -32,10 +32,16 @@ class App extends React.Component {
           <Snackbar
             anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}
             open={this.props.snackbar.open}
-            onClose={this.handleClose}
             ContentProps={{
-              'aria-describedby': 'message-id'
+              'aria-describedby': 'message-id',
+              styles: this.props.snackbar.error
+              ? {backgroundColor: '#b52545', color: '#b52545'}
+              : {backgroundColor: '#b52545', color: '#b52545'}
             }}
+            bodyStyle={this.props.snackbar.error
+              ? {backgroundColor: '#b52545', color: '#b52545'}
+              : {backgroundColor: '#b52545', color: '#b52545'}
+            }
             message={<span id="message-id">{this.props.snackbar.message}</span>}
           />
         </div>
