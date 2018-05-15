@@ -107,13 +107,13 @@ class NewMatter extends React.Component {
               <MenuItem onClick={ e => { this.handleClose(e, 'Family') }}>Family</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Administrative') }}>Administrative</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Criminal') }}>Criminal</MenuItem>
-              <MenuItem onClick={ e => { this.handleClose(e, 'Maori') }}>Maori</MenuItem>
+              <MenuItem onClick={ e => { this.handleClose(e, 'Māori') }}>Māori</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Specialist Services') }}>Specialist Services</MenuItem>
             </Menu>
             <br />
             <br />
             <span className='submit-matter-headings'>
-            INTERNAL REFERENCE ID (OPTIONAL)
+            INTERNAL MATTER NUMBER (OPTIONAL)
               <TextField
                 fullWidth={true}
                 required={true}
@@ -127,7 +127,7 @@ class NewMatter extends React.Component {
             <br />
             <br />
             <span className='submit-matter-headings'>
-            ADDITIONAL DETAILS
+            MATTER DETAILS
               <TextField
                 fullWidth={true}
                 required={true}

@@ -102,7 +102,7 @@ class ProfileList extends ListTemplate {
                 expanded = {this.state.expanded === profile.profileId}
               />
             )
-          : <h4>No Pending Profiles</h4>
+          : <h4>No pending profiles</h4>
         }
       </div>
     )

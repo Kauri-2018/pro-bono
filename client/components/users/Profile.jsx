@@ -42,16 +42,19 @@ class Profile extends React.Component {
           } }>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography>
-              <strong>
-                {this.props.singleProfile.lastname}
-              </strong>
-              , {this.props.singleProfile.firstname}
+              <strong>{this.props.singleProfile.firstname} {this.props.singleProfile.lastname}</strong>
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography>
-              <strong className='profile-title'>Company: </strong>
-              {this.props.singleProfile.company}
+              {this.props.singleProfile.company
+                ? <div>
+                  <strong>Company: </strong>{this.props.singleProfile.company} <br/><br/>
+                </div>
+                : <div>
+                  <strong>Law centre: </strong>{this.props.singleProfile.centreId} <br/><br/>
+                </div>
+              }
               <br/>
               <br/>
               <strong className='profile-title'>Email: </strong>

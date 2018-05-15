@@ -89,7 +89,7 @@ class EditMatter extends React.Component {
               <MenuItem onClick={ e => { this.handleClose(e, 'Family') }}>Family</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Administrative') }}>Administrative</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Criminal') }}>Criminal</MenuItem>
-              <MenuItem onClick={ e => { this.handleClose(e, 'Maori') }}>Maori</MenuItem>
+              <MenuItem onClick={ e => { this.handleClose(e, 'Māori') }}>Māori</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Specialist Services') }}>Specialist Services</MenuItem>
             </Menu>
             <br />
@@ -97,7 +97,7 @@ class EditMatter extends React.Component {
             <TextField fullWidth={true} value={this.state.internalMatterNumber} multiline={true} name="internalMatterNumber" label="Internal matter number" className="text-input" onChange={this.handleChange} margin="normal" />
             <br />
             <br />
-            <TextField fullWidth={true} value={this.state.details} multiline={true} name="details" label="Additional Detail" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField fullWidth={true} value={this.state.details} multiline={true} name="details" label="Additional detail" className="text-input" onChange={this.handleChange} margin="normal" />
           </section>
           <section>
             <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " type="submit" onClick={this.handleAdd}>Submit</Button>
