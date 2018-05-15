@@ -35,7 +35,7 @@ function signIn (req, res, next) {
 function register (req, res, next) {
   const profile = req.body.profileData
   if (!req.body.role) {
-    throw new Error('Missing user role')
+    return res.status(400).json({errorMessage: 'Missing user role'})
   }
   users.exists(req.body.email)
     .then(exists => {
