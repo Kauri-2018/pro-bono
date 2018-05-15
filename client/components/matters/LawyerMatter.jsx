@@ -10,18 +10,42 @@ import Button from 'material-ui/Button'
 // parents coming through from different containers for this Matter.jsx
 const LawyerMatter = (props) => (
   <div className='new-matter-wrapper offset-by-two column eight columns'>
-    <ExpansionPanel expanded={props.expanded} onChange={e => { props.handleExpand(props.singleMatter.referenceNumber)(e, !props.expanded) } }>
+    <ExpansionPanel expanded={props.expanded} onChange={e => {
+      props.handleExpand(props.singleMatter.referenceNumber)(e, !props.expanded)
+    } }>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
         <Typography className="">
-          <span className="span-margin-bottom fontsize175"><strong>Title: </strong>{props.singleMatter.title}</span><br/>
-          <span className="span-margin-bottom fontsize125"><strong>Category: </strong>{props.singleMatter.category}</span><br/>
-          <span className="span-margin-bottom fontsize125"><strong>Reference number: </strong>{props.singleMatter.referenceNumber}</span><br/>
+          <span className="span-margin-bottom fontsize125">
+            <strong className='matter-title'>Title: </strong>
+            <strong>{props.singleMatter.title}</strong>
+          </span>
+          <br/>
+          <span className="span-margin-bottom fontsize125">
+            <strong className='matter-title'>Category: </strong>
+            {props.singleMatter.category}
+          </span>
+          <br/>
+          <span className="span-margin-bottom fontsize125">
+            <strong className='matter-title'>Reference number: </strong>
+            {props.singleMatter.referenceNumber}
+          </span>
+          <br/>
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <Typography>
-          <span className="fontsize125"><strong>Details: </strong>{props.singleMatter.details}</span><br/><br/>
-          <span className="fontsize125"><strong>Enquiries to: </strong>{props.singleMatter.contactEmail} </span><br/><br/>
+          <span className="fontsize125">
+            <strong className='matter-title'>Details: </strong>{
+              props.singleMatter.details}
+          </span>
+          <br/>
+          <br/>
+          <span className="fontsize125">
+            <strong className='matter-title'>Enquiries to: </strong>
+            {props.singleMatter.contactEmail}
+          </span>
+          <br/>
+          <br/>
           {props.buttonData &&
             props.buttonData.map(button => {
               return (
@@ -30,7 +54,10 @@ const LawyerMatter = (props) => (
                   className="btn-submit offset-by-four columns four columns "
                   type="submit"
                   key="btn"
-                  onClick={() => { button.fn(props.getMattersFunction, props.singleMatter.referenceNumber) }}>{button.text}
+                  onClick={() => {
+                    button.fn(props.getMattersFunction, props.singleMatter.referenceNumber)
+                  }}>
+                  {button.text}
                 </Button>
               )
             })
