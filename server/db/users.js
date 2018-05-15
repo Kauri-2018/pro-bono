@@ -140,7 +140,7 @@ function getFullUserByUserId (userId, testDb) {
       'certificate',
       'company'
     )
-    .where('userId', userId)
+    .where('users.id', userId)
     .first()
 }
 
