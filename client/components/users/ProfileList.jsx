@@ -41,7 +41,6 @@ class ProfileList extends ListTemplate {
     return (
       <div className='list'>
         <Paper
-          zDepth={1}
           className='offset-by-four column'
           style={{
             height: 50,
@@ -102,7 +101,9 @@ class ProfileList extends ListTemplate {
                 expanded = {this.state.expanded === profile.profileId}
               />
             )
-          : <h4>No pending profiles</h4>
+          : <div className='list-empty'>
+            No profiles pending approval
+          </div>
         }
       </div>
     )
