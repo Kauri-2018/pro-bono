@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+
 // Material UI Components
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
@@ -18,7 +19,7 @@ const styles = {
     maxWidth: 250
   },
   checkbox: {
-    marginBottom: 16
+    marginBottom: 0
   }
 }
 
@@ -34,30 +35,8 @@ class EditMatter extends React.Component {
       internalMatterNumber: 0,
       details: '',
       centreId: 0,
-      anchorEl: null,
-      'Consumer - credit contracts and repossession': false,
-      'Employment': false,
-      'Financial - debt, insolvency': false,
-      'Tenancy': false,
-      'Human Rights': false,
-      'Care of Children': false,
-      'CYFS': false,
-      'Domestic Violence': false,
-      'PPPR': false,
-      'International relocation - urgent border alerts': false,
-      'Education': false,
-      'Board of Trustee hearings': false,
-      'Immigration and refugee': false,
-      'Welfare and social housing': false,
-      'Health and disability provider complaints': false,
-      'Disability Support Services entitlements': false,
-      'Crown Prosecutions - IRD, DOC, MAF': false,
-      'Police Prosecutions': false,
-      'Youth Justice': false,
-      'Tenure/Ownership': false,
-      'Waitangi Tribunal': false
+      anchorEl: null
     }
-
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleClose = this.handleClose.bind(this)
@@ -81,19 +60,15 @@ class EditMatter extends React.Component {
       })
   }
 
-  // updateCheck (subcategory) {
-  //   const newSubValue = !this.state[subcategory]
-  //   this.setState({
-  //     [subcategory]: newSubValue
-  //   })
-  //   newSubValue
-  //     ? this.setState({
-  //       subcategories: [...this.state.subcategories, subcategory]
-  //     })
-  //     : this.setState({
-  //       subcategories: this.state.subcategories.filter(subcat => subcat !== subcategory)
-  //     })
-  // }
+  updateCheck (subcategory) {
+    this.state.subcategories.includes(subcategory)
+      ? this.setState({
+        subcategories: this.state.subcategories.filter(subcat => subcat !== subcategory)
+      })
+      : this.setState({
+        subcategories: [...this.state.subcategories, subcategory]
+      })
+  }
 
   handleChange (e) {
     this.setState({
@@ -126,19 +101,45 @@ class EditMatter extends React.Component {
   render () {
     const anchorEl = this.state.anchorEl
     const category = this.state.category
+    const subcategories = this.state.subcategories
     return (
       <div className='new-matter-wrapper offset-by-two column eight columns'>
         <Card position="static" color="default" className="new-matter">
           <h1 className="offset-by-one columns">Edit Matter</h1>
 
           <section className="form-field">
-            <TextField fullWidth={true} required={true} value={this.state.title} multiline={true} name="title" label="Title" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField
+              fullWidth={true}
+              required={true}
+              value={this.state.title}
+              multiline={true} name="title"
+              label="Title" className="text-input"
+              onChange={this.handleChange}
+              margin="normal"
+            />
             <br />
             <br />
-            <TextField fullWidth={true} required={true} value={this.state.contactEmail} multiline={true} name="contactEmail" label="Matter contact email" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField
+              fullWidth={true}
+              required={true}
+              value={this.state.contactEmail}
+              multiline={true} name="contactEmail"
+              label="Matter contact email"
+              className="text-input"
+              onChange={this.handleChange}
+              margin="normal"
+            />
             <br />
             <br />
-            <Button fullWidth={true} required={true} aria-owns={anchorEl ? 'category-menu' : null} aria-haspopup="true" onClick={this.handleClick}>{category ? `Category: ${category}` : 'Select category'}</Button>
+            <Button
+              fullWidth={true}
+              required={true}
+              aria-owns={anchorEl ? 'category-menu' : null}
+              aria-haspopup="true"
+              onClick={this.handleClick}
+            >
+              {category ? `Category: ${category}` : 'Select category'}
+            </Button>
             <Menu id="category-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={e => { this.handleClose(e, category) }}>
               <MenuItem onClick={ e => { this.handleClose(e, 'Civil') }}>Civil</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Family') }}>Family</MenuItem>
@@ -149,7 +150,16 @@ class EditMatter extends React.Component {
             <br />
             <br />
 
-            <span className='submit-matter-headings'>Update subcategories</span>
+            <Button
+              fullWidth={true}
+              required={false}
+              // aria-owns={anchorEl ? 'category-menu' : null}
+              aria-haspopup="true"
+              // onClick={this.handleClick}
+            >
+              Update subcategories
+            </Button>
+            {/* <span className='submit-matter-headings'>Update subcategories</span> */}
             {this.state.category && categories.filter(cat => {
               return (cat.category === this.state.category)
             })[0].subcategories.map(subcategory => (
@@ -159,6 +169,7 @@ class EditMatter extends React.Component {
                   <Checkbox
                     key={subcategory}
                     label={subcategory}
+                    checked={subcategories.includes(subcategory)}
                     onChange={ () => {
                       this.updateCheck(subcategory)
                     }}
