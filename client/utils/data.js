@@ -12,9 +12,9 @@ export const categories = [
   {
     'category': 'Family',
     'subcategories': [
-      'Care of Children',
+      'Care of children',
       'CYFS',
-      'Domestic Violence',
+      'Domestic violence',
       'PPPR',
       'International relocation - urgent border alerts']
 
