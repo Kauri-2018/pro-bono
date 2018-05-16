@@ -46,7 +46,7 @@ exports.seed = (knex, Promise) => {
         {
           id: 550004,
           category: 'Criminal',
-          subcategories: 'null',
+          subcategories: '[]',
           details: `hide behind curtain when vacuum cleaner is on scratch strangers and poo on owners food jump launch to pounce upon little yarn mouse, bare fangs at toy run hide in litter box until treats are fed allways wanting food or use lap as chair, Gate keepers of hell sit in a box for hours a nice warm laptop for me to sit on. Push your water glass on the floor love and fish i must find my red catnip fishy fish and meowzer. Have secret plans make muffins, yet lick human with sandpaper tongue so kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff`,
           contact_email: 'test-contact_email',
           is_complete: false,
@@ -58,7 +58,7 @@ exports.seed = (knex, Promise) => {
         {
           id: 550005,
           category: 'Māori',
-          subcategories: '["Fisheries"]',
+          subcategories: '["Tenure/Ownership"]',
           details: `hide behind curtain when vacuum cleaner is on scratch strangers and poo on owners food jump launch to pounce upon little yarn mouse, bare fangs at toy run hide in litter box until treats are fed allways wanting food or use lap as chair, Gate keepers of hell sit in a box for hours a nice warm laptop for me to sit on. Push your water glass on the floor love and fish i must find my red catnip fishy fish and meowzer. Have secret plans make muffins, yet lick human with sandpaper tongue so kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff`,
           contact_email: 'test-contact_email',
           is_complete: false,
@@ -70,7 +70,7 @@ exports.seed = (knex, Promise) => {
         {
           id: 550006,
           category: 'Criminal',
-          subcategories: 'null',
+          subcategories: '[]',
           details: `hide behind curtain when vacuum cleaner is on scratch strangers and poo on owners food jump launch to pounce upon little yarn mouse, bare fangs at toy run hide in litter box until treats are fed allways wanting food or use lap as chair, Gate keepers of hell sit in a box for hours a nice warm laptop for me to sit on. Push your water glass on the floor love and fish i must find my red catnip fishy fish and meowzer. Have secret plans make muffins, yet lick human with sandpaper tongue so kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff`,
           contact_email: 'test-contact_email',
           is_complete: false,
@@ -90,7 +90,7 @@ function generateMatters (numMatters) {
   for (let i = 0; i < numMatters; i++) {
     const title = titles[Math.floor(Math.random() * titles.length)]
     const category = categories[Math.floor(Math.random() * categories.length)]
-    const subcategories = subcategory[Math.floor(Math.random() * subcategory.length)]
+    const subcategories = [subcategory[Math.floor(Math.random() * subcategory.length)]]
     const additionalDetails = details[Math.floor(Math.random() * details.length)]
     const contactEmail = emails[Math.floor(Math.random() * emails.length)]
     const centreId = 110001// + Math.floor(Math.random() * 23)
