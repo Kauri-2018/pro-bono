@@ -94,6 +94,11 @@ html {
   margin-right: 2%;
 }
 
+.filter-wrapper {
+  padding: 1em 2em;
+  margin: 1em;
+}
+
 .register-btn {
   margin-left: 30%;
   margin-right: 30%;
@@ -110,10 +115,6 @@ html {
 
 .matter-title, .register-title {
   color: #b52545;
-}
-
-.profile-title {
-  color: #24b56f;
 }
 
 .category-dropdown {
