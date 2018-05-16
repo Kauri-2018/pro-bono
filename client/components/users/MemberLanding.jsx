@@ -2,9 +2,10 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
-import AppBar from 'material-ui/AppBar'
-import Tabs, {Tab} from 'material-ui/Tabs'
-// import Typography from 'material-ui/Typography'
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+// import Typography from '@material-ui/core/Typography'
 
 import NewMatter from '../matters/NewMatter'
 import ApproveProfiles from './ApproveProfiles'
@@ -37,7 +38,7 @@ class MemberLanding extends React.Component {
     const isAdmin = this.props.isAdmin
     return (
       <div className='section-wrapper'>
-        <AppBar >
+        <AppBar>
           <Tabs value={selectedTabIndex} onChange={this.switchTab}>
             <Tab label="New Matter" />
             <Tab label="See Matters" />

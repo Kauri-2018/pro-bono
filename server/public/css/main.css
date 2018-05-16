@@ -6,12 +6,6 @@ html {
   font-size: 100%; 
 }
 
-.container {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-}
-
 .fontsize125 {
   font-size: 1.25em;
 }
@@ -21,6 +15,12 @@ html {
 .fontsize175 {
   font-size: 1.75em;
 }
+.fontsize200 {
+  font-size: 2.00em;
+}
+.fontsize250 {
+  font-size: 2.50em;
+}
 .margin-bottom {
   margin-bottom: 0.3%;
 }
@@ -29,10 +29,7 @@ html {
 }
 
 .new-matter {
-  padding-top: 3vh;
-  padding-bottom: 3vh;
-  padding-left: 20vw;
-  padding-right: 20vw;
+  padding: 1em 10em 1em 10em;
 }
 
 .text-input {
@@ -55,46 +52,53 @@ html {
 }
 
 .register {
-  padding-top: 3vh;
-  padding-bottom: 3vh;
-  padding-left: 15vw;
-  padding-right: 15vw;
+  padding: 1em 10em 1em 10em;
 }
 
 .matter-list-wrapper {
   width: 100%;
 }
+
 .flex-alignleft {
   display: flex;
 }
+
 .flex-alignright {
   display: flex;
   justify-content: space-between; 
   align-items: center; 
 }
 
-.center-content {
+.center-horizontally {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
   justify-content: center;
 }
-.center-vertical {
+
+.center-vertical, .center-vertically {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: center;
+  align-items: center;
 }
+
+.push-apart {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .center {
   align-content: center;
   margin-left: 2%;
   margin-right: 2%;
 }
+
 .register-btn {
   margin-left: 30%;
   margin-right: 30%;
 }
+
 .login {
   padding-top: 3%;
   padding-bottom: 3%;
@@ -103,19 +107,17 @@ html {
   margin-bottom: 5%;
   margin-top: 5%;
 }
-.centertext{
-  text-align: center;
-}
-.submit-matter-headings, .matter-title, .register-title {
+
+.matter-title, .register-title {
   color: #b52545;
 }
 
 .profile-title {
- color: #24b56f;
+  color: #24b56f;
 }
 
 .category-dropdown {
- text-align: left;
+  text-align: left;
 }
 
 .submit-matter-title {
@@ -142,9 +144,17 @@ html {
   margin-bottom: 0px;
 }
 
+.center-text{
+  text-align: center;
+}
+
 .header-text {
   color: #3f51b5;
   font-size: 2.5em;
+}
+
+.title-text {
+  font-family: 'Raleway', sans-serif;
 }
 
 .secondary-text {
@@ -159,11 +169,7 @@ html {
   color: rgb(0, 0, 0);
 }
 
-.primary-text-red {
-  color: #C7003C;
-}
-
-.secondary-text-red {
+.red-text {
   color: #C10037;
 }
 

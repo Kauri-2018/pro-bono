@@ -1,11 +1,10 @@
 import React from 'react'
-import ExpansionPanel, {
-  ExpansionPanelSummary,
-  ExpansionPanelDetails
-} from 'material-ui/ExpansionPanel'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel'
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import Typography from 'material-ui/Typography'
-import Button from 'material-ui/Button'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
 
 // parents coming through from different containers for this Matter.jsx
 const LawyerMatter = (props) => (

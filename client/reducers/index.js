@@ -6,6 +6,7 @@ import matterById from './matterById'
 import errorMessage from './errorHandle'
 import profiles from './profiles'
 import snackbar from './snackbar'
+import loading from './loading'
 
 const reducers = combineReducers({
   auth,
@@ -13,7 +14,8 @@ const reducers = combineReducers({
   matterById,
   errorMessage,
   profiles,
-  snackbar
+  snackbar,
+  loading
 })
 
 export default reducers

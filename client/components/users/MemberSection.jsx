@@ -15,11 +15,7 @@ class MemberSection extends React.Component {
   }
 
   render () {
-    return (
-      <div>
-        <MemberLanding />
-      </div>
-    )
+    return <MemberLanding />
   }
 }
 

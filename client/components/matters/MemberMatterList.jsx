@@ -4,11 +4,12 @@ import {connect} from 'react-redux'
 
 // Material UI Components
 import classNames from 'classnames'
-import TextField from 'material-ui/TextField'
-import Button from 'material-ui/Button'
-import Menu, {MenuItem} from 'material-ui/Menu'
-import Input, {InputLabel, InputAdornment} from 'material-ui/Input'
-import Icon from 'material-ui/Icon'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import Icon from '@material-ui/core/Icon'
 
 // Our Modules and Components
 import ListTemplate from './ListTemplate'
@@ -63,7 +64,7 @@ class MemberMatterList extends ListTemplate {
     const claimFilter = this.state.claimFilter
     return (
 
-      <div className='filter-list-wrapper offset-by-two column four columns center-vertical'>
+      <div className='filter-list-wrapper center-vertical'>
         <Button
           aria-owns={this.state.anchorEl ? 'simple-menu' : null}
           aria-haspopup="true"
@@ -158,7 +159,8 @@ const mapStateToProps = state => {
   if (!state.matterList.matters) {
     return {
       incompleteMatters: [],
-      currentUser: state.auth.user
+      currentUser: state.auth.user,
+      loading: state.loading
     }
   }
   const incompleteMatters = state.matterList.matters.map(matter => {
@@ -168,7 +170,8 @@ const mapStateToProps = state => {
   })
   return {
     incompleteMatters,
-    currentUser: state.auth.user
+    currentUser: state.auth.user,
+    loading: state.loading
   }
 }
 
