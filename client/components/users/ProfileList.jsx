@@ -1,6 +1,6 @@
 // renders accordion of UserListItems.jsx
 import React from 'react'
-import {connect} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 // // Material UI Components
 import Button from '@material-ui/core/Button'

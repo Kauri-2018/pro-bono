@@ -40,7 +40,7 @@ class LawyerMatterList extends ListTemplate {
 
   renderList () {
     if (this.props.loading) {
-      return <CircularProgress size={65} />
+      return <CircularProgress className='center-horizontally' size={65} />
     }
     return (
       <div>
