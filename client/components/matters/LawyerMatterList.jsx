@@ -3,7 +3,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 // Material UI Components
-import TextField from 'material-ui/TextField'
+import TextField from '@material-ui/core/TextField'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 // Our Modules and Components
 import ListTemplate from './ListTemplate'
@@ -18,7 +19,7 @@ class LawyerMatterList extends ListTemplate {
 
   renderFilters () {
     return (
-      <div className='filter-list-wrapper offset-by-two column four columns center-vertical'>
+      <div className='filter-list-wrapper center-vertical'>
         <span className="flex-alignright"><span> Reference ID: </span><TextField
           className='input-left'
           name="referenceNumber"
@@ -38,8 +39,11 @@ class LawyerMatterList extends ListTemplate {
   }
 
   renderList () {
+    if (this.props.loading) {
+      return <CircularProgress className='center-horizontally' size={65} />
+    }
     return (
-      <div className='list'>
+      <div>
         {this.props.storedMatters && this.props.storedMatters.length
           ? this.applyFilters(this.props.storedMatters)
             .map(matter =>
@@ -64,7 +68,8 @@ class LawyerMatterList extends ListTemplate {
 const mapStateToProps = state => {
   return {
     storedMatters: state.matterList.matters,
-    currentUser: state.auth.user
+    currentUser: state.auth.user,
+    loading: state.loading
   }
 }
 
