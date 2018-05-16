@@ -112,24 +112,22 @@ class EditMatter extends React.Component {
               fullWidth={true}
               required={true}
               value={this.state.title}
-              multiline={true} name="title"
+              name="title"
               label="Title" className="text-input"
               onChange={this.handleChange}
               margin="normal"
             />
             <br />
-            <br />
             <TextField
               fullWidth={true}
               required={true}
               value={this.state.contactEmail}
-              multiline={true} name="contactEmail"
+              name="contactEmail"
               label="Matter contact email"
               className="text-input"
               onChange={this.handleChange}
               margin="normal"
             />
-            <br />
             <br />
             <Button
               fullWidth={true}
@@ -147,9 +145,6 @@ class EditMatter extends React.Component {
               <MenuItem onClick={ e => { this.handleClose(e, 'Criminal') }}>Criminal</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Māori') }}>Māori</MenuItem>
             </Menu>
-            <br />
-            <br />
-
             <Button
               fullWidth={true}
               required={false}
@@ -180,15 +175,34 @@ class EditMatter extends React.Component {
             ))
             }
             <br/>
-            <br/>
 
-            <TextField fullWidth={true} value={this.state.internalMatterNumber} multiline={true} name="internalMatterNumber" label="Internal matter number" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField
+              fullWidth={true}
+              value={this.state.internalMatterNumber}
+              name="internalMatterNumber"
+              label="Internal matter number"
+              className="text-input"
+              onChange={this.handleChange}
+              margin="normal" />
             <br />
-            <br />
-            <TextField fullWidth={true} value={this.state.details} multiline={true} name="details" label="Additional detail" className="text-input" onChange={this.handleChange} margin="normal" />
+            <TextField
+              fullWidth={true}
+              value={this.state.details}
+              multiline={true}
+              name="details"
+              label="Additional detail"
+              className="text-input"
+              onChange={this.handleChange}
+              margin="normal" />
           </section>
           <section>
-            <Button variant="raised" color="primary" className="btn-submit offset-by-four columns four columns " type="submit" onClick={this.handleAdd}>Submit</Button>
+            <Button variant="raised"
+              color="primary"
+              className="btn-submit offset-by-four columns four columns"
+              type="submit"
+              onClick={this.handleAdd}>
+                Submit
+            </Button>
           </section>
         </Card>
       </div>
