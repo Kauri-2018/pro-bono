@@ -30,7 +30,6 @@ class LawyerMatterList extends ListTemplate {
         <span className="flex-alignright"><span>Category: </span><TextField
           className='input-left'
           name="category"
-          label="Category"
           margin="normal"
           onChange={this.changeFilter}
         /></span>
