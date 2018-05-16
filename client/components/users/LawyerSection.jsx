@@ -2,14 +2,15 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
-import AppBar from 'material-ui/AppBar'
-import Tabs, {Tab} from 'material-ui/Tabs'
-// import Typography from 'material-ui/Typography'
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 
 import LawyerMatterList from '../matters/LawyerMatterList'
 import {getLiveMatters, getIncompleteMattersByProfileId, getCompleteMattersByProfileId} from '../../actions/matters'
 import {logoutUser} from '../../actions/logout'
 import {claimMatter, releaseMatter} from '../../apiClient'
+import {showSnackbar} from '../../actions/snackbar'
 
 class LawyerSection extends React.Component {
   constructor (props) {
@@ -37,6 +38,7 @@ class LawyerSection extends React.Component {
     claimMatter(matterId, this.props.currentUser.profileId)
       .then(() => {
         this.props.dispatch(getMattersFunction(this.props.currentUser.profileId))
+        this.props.dispatch(showSnackbar(`Matter claimed`))
       })
       .catch(err => {
         console.log(err.message)
@@ -47,6 +49,7 @@ class LawyerSection extends React.Component {
     releaseMatter(matterId, this.props.currentUser.profileId)
       .then(() => {
         this.props.dispatch(getMattersFunction(this.props.currentUser.profileId))
+        this.props.dispatch(showSnackbar(`Matter released`))
       })
       .catch(err => {
         console.log(err.message)
@@ -57,7 +60,7 @@ class LawyerSection extends React.Component {
     const selectedTabIndex = this.state.selectedTabIndex
     return (
       <div className='member-landing'>
-        <AppBar position='static'>
+        <AppBar >
           <Tabs value={selectedTabIndex} onChange={this.switchTab}>
             <Tab label="Your Matters" />
             <Tab label="Browse Matters" />
@@ -68,23 +71,25 @@ class LawyerSection extends React.Component {
             }}/>
           </Tabs>
         </AppBar>
-        {selectedTabIndex === 0 && <LawyerMatterList
-          key="claimedMatterList"
-          matters="claimed"
-          buttonData={[{text: 'Unclaim', fn: this.handleReleaseMatter}]}
-          getMattersFunction={getIncompleteMattersByProfileId}
-        />}
-        {selectedTabIndex === 1 && <LawyerMatterList
-          key="liveMatterList"
-          matters="live"
-          buttonData={[{text: 'Claim', fn: this.handleClaimMatter}]}
-          getMattersFunction={getLiveMatters}
-        />}
-        {selectedTabIndex === 2 && <LawyerMatterList
-          key="completedMatterList"
-          matters="completed"
-          getMattersFunction={getCompleteMattersByProfileId}
-        />}
+        <div className='section-wrapper'>
+          {selectedTabIndex === 0 && <LawyerMatterList
+            key="claimedMatterList"
+            matters="claimed"
+            buttonData={[{text: 'Unclaim', fn: this.handleReleaseMatter}]}
+            getMattersFunction={getIncompleteMattersByProfileId}
+          />}
+          {selectedTabIndex === 1 && <LawyerMatterList
+            key="liveMatterList"
+            matters="live"
+            buttonData={[{text: 'Claim', fn: this.handleClaimMatter}]}
+            getMattersFunction={getLiveMatters}
+          />}
+          {selectedTabIndex === 2 && <LawyerMatterList
+            key="completedMatterList"
+            matters="completed"
+            getMattersFunction={getCompleteMattersByProfileId}
+          />}
+        </div>
       </div>
     )
   }

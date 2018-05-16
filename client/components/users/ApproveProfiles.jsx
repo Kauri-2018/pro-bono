@@ -27,10 +27,17 @@ class ApproveProfiles extends React.Component {
   render () {
     return (
       <div>
-        <ProfileList
-          pendingProfiles={this.props.pendingProfilesArray}
-          approveProfile={this.approveProfile} />
-        <ErrorMessage />
+        <div>
+          <p className='center-text title-text red-text fontsize250'>
+          APPROVE USERS
+          </p>
+        </div>
+        <div>
+          <ProfileList
+            pendingProfiles={this.props.pendingProfilesArray}
+            approveProfile={this.approveProfile} />
+          <ErrorMessage />
+        </div>
       </div>
     )
   }

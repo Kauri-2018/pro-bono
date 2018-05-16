@@ -3,7 +3,7 @@ import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 import {createStore, applyMiddleware, compose} from 'redux'
 import {BrowserRouter as Router} from 'react-router-dom'
-import CssBaseline from 'material-ui/CssBaseline'
+import CssBaseline from '@material-ui/core/CssBaseline'
 import thunk from 'redux-thunk'
 
 import reducers from './reducers'

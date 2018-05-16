@@ -1,15 +1,9 @@
 * {
-  font-family: 'museo-sans', 'Open Sans', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 html {
   font-size: 100%; 
-}
-
-.container {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
 }
 
 .fontsize125 {
@@ -21,6 +15,12 @@ html {
 .fontsize175 {
   font-size: 1.75em;
 }
+.fontsize200 {
+  font-size: 2.00em;
+}
+.fontsize250 {
+  font-size: 2.50em;
+}
 .margin-bottom {
   margin-bottom: 0.3%;
 }
@@ -29,10 +29,7 @@ html {
 }
 
 .new-matter {
-  padding-top: 3vh;
-  padding-bottom: 3vh;
-  padding-left: 20vw;
-  padding-right: 20vw;
+  padding: 1em 10em 1em 10em;
 }
 
 .text-input {
@@ -55,46 +52,53 @@ html {
 }
 
 .register {
-  padding-top: 3vh;
-  padding-bottom: 3vh;
-  padding-left: 15vw;
-  padding-right: 15vw;
+  padding: 1em 10em 1em 10em;
 }
 
 .matter-list-wrapper {
   width: 100%;
 }
+
 .flex-alignleft {
   display: flex;
 }
+
 .flex-alignright {
   display: flex;
   justify-content: space-between; 
   align-items: center; 
 }
 
-.center-content {
+.center-horizontally {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
   justify-content: center;
 }
-.center-vertical {
+
+.center-vertical, .center-vertically {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: center;
+  align-items: center;
 }
+
+.push-apart {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .center {
   align-content: center;
   margin-left: 2%;
   margin-right: 2%;
 }
+
 .register-btn {
   margin-left: 30%;
   margin-right: 30%;
 }
+
 .login {
   padding-top: 3%;
   padding-bottom: 3%;
@@ -103,21 +107,79 @@ html {
   margin-bottom: 5%;
   margin-top: 5%;
 }
-.centertext{
-  text-align: center;
-}
-.submit-matter-headings, .profile-title, .matter-title {
+
+.matter-title, .register-title {
   color: #b52545;
 }
 
+.profile-title {
+  color: #24b56f;
+}
+
 .category-dropdown {
- text-align: left;
+  text-align: left;
 }
 
 .submit-matter-title {
   font-size: 1.5em;
 }
 
+.list-empty {
+  color: #b52545;
+  position: relative;
+}
+
+.section-wrapper {
+  padding-top: 3em;
+}
+
+.role-indicator {
+  width: 20%;
+}
+
+.pageHeader {
+  color: #3f51b5;
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 0px;
+}
+
+.center-text{
+  text-align: center;
+}
+
+.header-text {
+  color: #3f51b5;
+  font-size: 2.5em;
+}
+
+.title-text {
+  font-family: 'Raleway', sans-serif;
+}
+
+.secondary-text {
+  color: rgba(80, 80, 80, 0.8);
+}
+
+.body-text {
+  color: rgba(50, 50, 50, 0.8);
+}
+
+.primary-text {
+  color: rgb(0, 0, 0);
+}
+
+.red-text {
+  color: #C10037;
+}
+
+.blue-text {
+  color: #3f51b5;
+}
+
+.green-text {
+  color: #24b56f;
+}
 
 /* random yellow on community law is #D4BD68 */
 /*one  red is #C7003C */

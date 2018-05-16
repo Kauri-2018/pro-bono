@@ -4,10 +4,9 @@ import {connect} from 'react-redux'
 
 // Material UI Components
 import classNames from 'classnames'
-import { withStyles } from 'material-ui/styles'
-import TextField from 'material-ui/TextField'
-import Input, {InputLabel, InputAdornment} from 'material-ui/Input'
-import Icon from 'material-ui/Icon'
+import TextField from '@material-ui/core/TextField'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import Icon from '@material-ui/core/Icon'
 
 // Our Modules and Components
 import ListTemplate from './ListTemplate'
