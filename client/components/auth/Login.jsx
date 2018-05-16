@@ -2,9 +2,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import Card from 'material-ui/Card'
-import TextField from 'material-ui/TextField'
-import Button from 'material-ui/Button'
+import Card from '@material-ui/core/Card'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 import {loginUser} from '../../actions/login'
 import ErrorMessage from '../ErrorMessage'
@@ -44,12 +44,14 @@ class Login extends React.Component {
 
   render () {
     return (
-      <div className='new-matter-wrapper offset-by-two column eight columns'>
+      <div className='new-matter-wrapper'>
         <Card position="static" color="default" className="login">
-          <h3 className="centertext"><strong>LOGIN</strong></h3>
+          <h3 className="center-text title-text red-text">LOGIN</h3>
           <section>
             <span>
-            Email
+              <span className='title-text'>
+                Email
+              </span>
               <TextField
                 fullWidth={true}
                 required={true}
@@ -62,7 +64,9 @@ class Login extends React.Component {
             </span>
             <br/><br/>
             <span>
-            Password
+              <span className='title-text'>
+                Password
+              </span>
               <TextField
                 fullWidth={true}
                 required={true}

@@ -2,9 +2,10 @@
 import React from 'react'
 
 // // Material UI Components
-import Button from 'material-ui/Button'
-import Menu, { MenuItem } from 'material-ui/Menu'
-import Paper from 'material-ui/Paper'
+import Button from '@material-ui/core/Button'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import Paper from '@material-ui/core/Paper'
 
 // Our Components
 import ProfileListItem from './ProfileListItem'
@@ -33,23 +34,23 @@ class ProfileList extends ListTemplate {
   }
 
   handleClick (e) {
-    this.setState({ menuIsOpen: true })
+    this.setState({menuIsOpen: true})
   }
 
   renderFilters () {
     const roleFilter = this.state.roleFilter
     return (
-      <div className='list'>
+      <div className='center-vertically'>
         <Paper
-          className='offset-by-four column'
           style={{
             height: 50,
             width: 400,
             textAlign: 'center',
-            marginBottom: 20
+            marginBottom: 20,
+            paddingTop: 5
           }}
         >
-          FILTERS BY:
+          FILTER BY ROLE:
           <Button
             aria-owns={this.state.anchorEl ? 'simple-menu' : null}
             aria-haspopup="true"

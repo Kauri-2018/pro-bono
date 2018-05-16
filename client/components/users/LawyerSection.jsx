@@ -2,24 +2,15 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
-import AppBar from 'material-ui/AppBar'
-import Tabs, {Tab} from 'material-ui/Tabs'
-// import Typography from 'material-ui/Typography'
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 
 import LawyerMatterList from '../matters/LawyerMatterList'
 import {getLiveMatters, getIncompleteMattersByProfileId, getCompleteMattersByProfileId} from '../../actions/matters'
 import {logoutUser} from '../../actions/logout'
 import {claimMatter, releaseMatter} from '../../apiClient'
 import {showSnackbar} from '../../actions/snackbar'
-
-const styles = {
-  headline: {
-    fontSize: 24,
-    paddingTop: 16,
-    marginBottom: 12,
-    fontWeight: 400
-  }
-}
 
 class LawyerSection extends React.Component {
   constructor (props) {

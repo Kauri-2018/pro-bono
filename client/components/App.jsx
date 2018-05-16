@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 // Material UI Components
-import Snackbar from 'material-ui/Snackbar'
+import Snackbar from '@material-ui/core/Snackbar'
 
 // Our Modules and Components
 import Login from './auth/Login'
@@ -19,7 +19,7 @@ class App extends React.Component {
   render () {
     return (
       <Router>
-        <div className='app container' >
+        <div className='app container center-vertically' >
           <Switch>
             <Route exact path='/pending' component={PendingLanding} />
             <Route exact path='/lawyer' component={LawyerSection} />

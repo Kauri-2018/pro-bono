@@ -2,10 +2,11 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 // Material UI Components
-import Button from 'material-ui/Button'
-import Card from 'material-ui/Card'
-import TextField from 'material-ui/TextField'
-import Menu, {MenuItem} from 'material-ui/Menu'
+import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import TextField from '@material-ui/core/TextField'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
 
 import {postNewMatter} from '../../actions/matters'
 import {showSnackbar} from '../../actions/snackbar'
@@ -51,42 +52,42 @@ class NewMatter extends React.Component {
     const anchorEl = this.state.anchorEl
     const category = this.state.category
     return (
-      <div className='new-matter-wrapper offset-by-two column eight columns'>
+      <div className='new-matter-wrapper'>
         <Card position="static" color="default" className="new-matter">
-          <h4 className="centertext">SUBMIT NEW MATTER</h4>
+          <h4 className="center-text title-text">SUBMIT NEW MATTER</h4>
 
           <section className="form-field">
-            <span className='submit-matter-headings'>
-            TITLE
-              <TextField
-                fullWidth={true}
-                required={true}
-                placeholder="Title"
-                name="title"
-                className="text-input"
-                onChange={this.handleChange}
-                margin="normal"
-                value={this.state.title}
-              />
+            <span className='red-text title-text'>
+              TITLE
             </span>
+            <TextField
+              fullWidth={true}
+              required={true}
+              placeholder="Title"
+              name="title"
+              className="text-input"
+              onChange={this.handleChange}
+              margin="normal"
+              value={this.state.title}
+            />
             <br />
             <br />
-            <span className='submit-matter-headings'>
+            <span className='red-text title-text'>
             MATTER CONTACT EMAIL
-              <TextField
-                fullWidth={true}
-                required={true}
-                placeholder="Matter contact email"
-                name="contactEmail"
-                className="text-input"
-                onChange={this.handleChange}
-                margin="normal"
-                value={this.state.contactEmail}
-              />
             </span>
+            <TextField
+              fullWidth={true}
+              required={true}
+              placeholder="Matter contact email"
+              name="contactEmail"
+              className="text-input"
+              onChange={this.handleChange}
+              margin="normal"
+              value={this.state.contactEmail}
+            />
             <br />
             <br />
-            <span className='submit-matter-headings'>SELECT A CATEGORY</span>
+            <span className='red-text title-text'>SELECT A CATEGORY</span>
             <Button
               className='category-dropdown'
               fullWidth={true}
@@ -110,35 +111,35 @@ class NewMatter extends React.Component {
             </Menu>
             <br />
             <br />
-            <span className='submit-matter-headings'>
+            <span className='red-text title-text'>
             INTERNAL MATTER NUMBER (OPTIONAL)
-              <TextField
-                fullWidth={true}
-                required={true}
-                placeholder="Internal reference ID (optional)"
-                name="internalMatterNumber"
-                className="text-input"
-                onChange={this.handleChange}
-                margin="normal"
-                value={this.state.internalMatterNumber}
-              />
             </span>
+            <TextField
+              fullWidth={true}
+              required={true}
+              placeholder="Internal reference ID (optional)"
+              name="internalMatterNumber"
+              className="text-input"
+              onChange={this.handleChange}
+              margin="normal"
+              value={this.state.internalMatterNumber}
+            />
             <br />
             <br />
-            <span className='submit-matter-headings'>
+            <span className='red-text title-text'>
             MATTER DETAILS
-              <TextField
-                fullWidth={true}
-                required={true}
-                placeholder="Add additional detail here"
-                multiline={true}
-                name="details"
-                className="text-input"
-                onChange={this.handleChange}
-                margin="normal"
-                value={this.state.details}
-              />
             </span>
+            <TextField
+              fullWidth={true}
+              required={true}
+              placeholder="Add additional detail here"
+              multiline={true}
+              name="details"
+              className="text-input"
+              onChange={this.handleChange}
+              margin="normal"
+              value={this.state.details}
+            />
           </section>
           <section>
             <Button
