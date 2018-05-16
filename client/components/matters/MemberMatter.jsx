@@ -1,15 +1,14 @@
 import React from 'react'
-import ExpansionPanel, {
-  ExpansionPanelSummary,
-  ExpansionPanelDetails
-} from 'material-ui/ExpansionPanel'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel'
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import Typography from 'material-ui/Typography'
-import Button from 'material-ui/Button'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
 
 // parents coming through from different containers for this Matter.jsx
 const MemberMatter = (props) => (
-  <div className='new-matter-wrapper offset-by-two column eight columns'>
+  <div className='new-matter-wrapper'>
     <ExpansionPanel
       className="margin-bottom"
       expanded={props.expanded}
@@ -49,30 +48,30 @@ const MemberMatter = (props) => (
           <br/>
           <br/>
           <br/>
-          <Button
-            variant="raised"
-            color='primary'
-            className="btn-submit two columns submit-button"
-            type="submit"
-            href={`/edit/${props.singleMatter.referenceNumber}`}
-          >
+          <span className='center-horizontally'>
+            <Button
+              variant="raised"
+              color='primary'
+              className="two columns"
+              type="submit"
+              href={`/edit/${props.singleMatter.referenceNumber}`}
+            >
             Edit
-          </Button>
-          <br/>
-          <br/>
-          <Button
-            variant="raised"
-            style={{
-              backgroundColor: '#b52545',
-              color: '#ffffff'
-            }}
-            className="btn-submit two columns submit-button"
-            id='close-button'
-            type="submit"
-            onClick={() => { props.handleClose(props.singleMatter.referenceNumber) }}
-          >
+            </Button>
+            <Button
+              variant="raised"
+              style={{
+                backgroundColor: '#b52545',
+                color: '#ffffff'
+              }}
+              className="two columns"
+              id='close-button'
+              type="submit"
+              onClick={() => { props.handleClose(props.singleMatter.referenceNumber) }}
+            >
             Close
-          </Button>
+            </Button>
+          </span>
         </Typography>
       </ExpansionPanelDetails>
     </ExpansionPanel>
