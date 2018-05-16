@@ -10,6 +10,7 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import Icon from '@material-ui/core/Icon'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 // Our Modules and Components
 import ListTemplate from './ListTemplate'
@@ -65,35 +66,41 @@ class MemberMatterList extends ListTemplate {
     return (
 
       <div className='filter-list-wrapper center-vertical'>
-        <Button
-          aria-owns={this.state.anchorEl ? 'simple-menu' : null}
-          aria-haspopup="true"
-          onClick={this.handleClick}
-        >
-          {(claimFilter === 'all' || !claimFilter)
-            ? 'All matters'
-            : claimFilter === 'claimed'
-              ? 'Claimed matters'
-              : 'Unclaimed matters'}
-        </Button>
-        <Menu
-          id="simple-menu"
-          anchorEl={this.state.anchorEl}
-          open={this.state.menuIsOpen}
-          onClose={e => { this.closeMenu(e, claimFilter) }}
-        >
-          <MenuItem onClick={e => { this.closeMenu(e, 'all') }}>
+        <span className="push-apart">
+          <span>
+            Status:
+          </span>
+          <Button
+            aria-owns={this.state.anchorEl ? 'simple-menu' : null}
+            aria-haspopup="true"
+            onClick={this.handleClick}
+          >
+            {(claimFilter === 'all' || !claimFilter)
+              ? 'All matters'
+              : claimFilter === 'claimed'
+                ? 'Claimed matters'
+                : 'Unclaimed matters'}
+          </Button>
+          <Menu
+            id="simple-menu"
+            anchorEl={this.state.anchorEl}
+            open={this.state.menuIsOpen}
+            onClose={e => { this.closeMenu(e, claimFilter) }}
+          >
+            <MenuItem onClick={e => { this.closeMenu(e, 'all') }}>
             All matters
-          </MenuItem>
-          <MenuItem onClick={e => { this.closeMenu(e, 'claimed') }}>
+            </MenuItem>
+            <MenuItem onClick={e => { this.closeMenu(e, 'claimed') }}>
             Claimed matters
-          </MenuItem>
-          <MenuItem onClick={e => { this.closeMenu(e, 'unclaimed') }}>
+            </MenuItem>
+            <MenuItem onClick={e => { this.closeMenu(e, 'unclaimed') }}>
             Unclaimed matters
-          </MenuItem>
-        </Menu>
+            </MenuItem>
+          </Menu>
+        </span>
 
-        <span className="flex-alignright"><span>Reference number: </span>
+        <span className="push-apart">
+          <span>Reference number: </span>
           <TextField
             className='input-left'
             name="referenceNumber"
@@ -103,7 +110,7 @@ class MemberMatterList extends ListTemplate {
             endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
           />
         </span>
-        <span className="flex-alignright">
+        <span className="push-apart">
           <span> Internal matter number: </span>
           <TextField
             className='input-left'
@@ -114,7 +121,7 @@ class MemberMatterList extends ListTemplate {
             endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
           />
         </span>
-        <span className="flex-alignright">
+        <span className="push-apart">
           <span>Category: </span>
           <TextField
             className='input-left'
@@ -128,6 +135,9 @@ class MemberMatterList extends ListTemplate {
   }
 
   renderList () {
+    if (this.props.loading) {
+      return <CircularProgress className='center-horizontally' size={65} />
+    }
     const claimFilter = this.state.claimFilter
     return (
       <div className='matter-list-wrapper'>
