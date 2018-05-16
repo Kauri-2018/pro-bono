@@ -41,7 +41,7 @@ class LawyerSection extends React.Component {
         this.props.dispatch(showSnackbar(`Matter claimed`))
       })
       .catch(err => {
-        console.log(err.message)
+        this.props.dispatch(showSnackbar(err.message))
       })
   }
 
@@ -52,7 +52,7 @@ class LawyerSection extends React.Component {
         this.props.dispatch(showSnackbar(`Matter released`))
       })
       .catch(err => {
-        console.log(err.message)
+        this.props.dispatch(showSnackbar(err.message))
       })
   }
 
