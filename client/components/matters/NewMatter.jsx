@@ -31,7 +31,29 @@ class NewMatter extends React.Component {
       details: '',
       centreId: props.centreId,
       anchorEl: null,
-      checked: false
+      // checked: false
+      'Consumer - credit contracts and repossession': false,
+      'Employment': false,
+      'Financial - debt, insolvency': false,
+      'Tenancy': false,
+      'Human Rights': false,
+      'Care of Children': false,
+      'CYFS': false,
+      'Domestic Violence': false,
+      'PPPR': false,
+      'International relocation - urgent border alerts': false,
+      'Education': false,
+      'Board of Trustee hearings': false,
+      'Immigration and refugee': false,
+      'Welfare and social housing': false,
+      'Health and disability provider complaints': false,
+      'Disability Support Services entitlements': false,
+      'Crown Prosecutions - IRD, DOC, MAF': false,
+      'Police Prosecutions': false,
+      'Youth Justice': false,
+      'Tenure/Ownership': false,
+      'Waitangi Tribunal': false,
+      checkboxes: []
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -39,22 +61,32 @@ class NewMatter extends React.Component {
     this.handleClose = this.handleClose.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
     this.updateCheck = this.updateCheck.bind(this)
-    this.handleSub = this.handleSub.bind(this)
+    this.updateSubs = this.updateSubs.bind(this)
   }
 
-  updateCheck () {
-    this.setState(oldState => {
-      return {
-        checked: !oldState.checked
-      }
-    })
-  }
-
-  handleSub (subcategory) {
+  updateCheck (subcategory) {
     this.setState({
-      subcategories: this.state.subcategories.push(subcategory)
+      subcategory: !this.state.subcategory
     })
   }
+
+  updateSubs (subcategory) {
+    this.state.subcategory
+      ? this.setState({
+        subcategories: this.state.subcategories.push(subcategory)
+      })
+      : this.setState({
+        subcategories: this.state.subcategories.filter(subcat => subcat !== subcategory)
+      })
+  }
+
+  // updateCheck () {
+  //   this.setState(oldState => {
+  //     return {
+  //       checked: !oldState.checked
+  //     }
+  //   })
+  // }
 
   handleChange (e) {
     this.setState({
@@ -153,11 +185,11 @@ class NewMatter extends React.Component {
                   <Checkbox
                     key={subcategory}
                     label={subcategory}
-                    checked={this.state.checked}
-                    // onChange={ () => {
-                    //   this.updateCheck()
-                    //   this.handleSub(subcategory)
-                    // }}
+                    // checked={this.state.checked}
+                    onChange={ () => {
+                      this.updateCheck(subcategory)
+                      this.updateSubs(subcategory)
+                    }}
                     style={styles.checkbox}
                   />
                 }
