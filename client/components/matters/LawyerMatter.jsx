@@ -5,6 +5,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import Chip from '@material-ui/core/Chip'
 
 // parents coming through from different containers for this Matter.jsx
 const LawyerMatter = (props) => (
@@ -22,6 +23,18 @@ const LawyerMatter = (props) => (
           <span className="span-margin-bottom fontsize125">
             <strong className='matter-title'>Category: </strong>
             {props.singleMatter.category}
+          </span>
+          <br/>
+          <span className="span-margin-bottom fontsize125">
+            <strong className='matter-title'>Subcategories: </strong>
+            {props.singleMatter.subcategories.length
+              ? props.singleMatter.subcategories.map(subCat => {
+                return (
+                  <Chip key={subCat} label={subCat} />
+                )
+              })
+              : <Chip label='N/A'/>
+            }
           </span>
           <br/>
           <span className="span-margin-bottom fontsize125">
