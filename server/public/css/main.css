@@ -6,6 +6,10 @@ html {
   font-size: 100%; 
 }
 
+body {
+  overflow-y:scroll
+}
+
 .fontsize125 {
   font-size: 1.25em;
 }
