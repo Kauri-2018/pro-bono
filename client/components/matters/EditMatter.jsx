@@ -1,15 +1,26 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
 // Material UI Components
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import TextField from '@material-ui/core/TextField'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import Checkbox from '@material-ui/core/Checkbox'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 
 import {editMatter, requestMatterById} from '../../apiClient'
+import {categories} from '../../utils/data'
 import {showSnackbar} from '../../actions/snackbar'
+
+const styles = {
+  block: {
+    maxWidth: 250
+  },
+  checkbox: {
+    marginBottom: 0
+  }
+}
 
 class EditMatter extends React.Component {
   constructor (props) {
@@ -19,16 +30,39 @@ class EditMatter extends React.Component {
       title: '',
       contactEmail: '',
       category: '',
+      subcategories: [],
       internalMatterNumber: 0,
       details: '',
       centreId: 0,
-      anchorEl: null
+      anchorEl: null,
+      'Consumer - credit contracts and repossession': false,
+      'Employment': false,
+      'Financial - debt, insolvency': false,
+      'Tenancy': false,
+      'Human Rights': false,
+      'Care of Children': false,
+      'CYFS': false,
+      'Domestic Violence': false,
+      'PPPR': false,
+      'International relocation - urgent border alerts': false,
+      'Education': false,
+      'Board of Trustee hearings': false,
+      'Immigration and refugee': false,
+      'Welfare and social housing': false,
+      'Health and disability provider complaints': false,
+      'Disability Support Services entitlements': false,
+      'Crown Prosecutions - IRD, DOC, MAF': false,
+      'Police Prosecutions': false,
+      'Youth Justice': false,
+      'Tenure/Ownership': false,
+      'Waitangi Tribunal': false
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleClose = this.handleClose.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
+    this.updateCheck = this.updateCheck.bind(this)
   }
 
   componentDidMount () {
@@ -39,12 +73,27 @@ class EditMatter extends React.Component {
           title: matter.matter.title,
           contactEmail: matter.matter.contactEmail,
           category: matter.matter.category,
+          subcategories: matter.matter.subcategories,
           internalMatterNumber: matter.matter.internalMatterNumber,
           details: matter.matter.details,
           centreId: matter.matter.centreId
         })
       })
   }
+
+  // updateCheck (subcategory) {
+  //   const newSubValue = !this.state[subcategory]
+  //   this.setState({
+  //     [subcategory]: newSubValue
+  //   })
+  //   newSubValue
+  //     ? this.setState({
+  //       subcategories: [...this.state.subcategories, subcategory]
+  //     })
+  //     : this.setState({
+  //       subcategories: this.state.subcategories.filter(subcat => subcat !== subcategory)
+  //     })
+  // }
 
   handleChange (e) {
     this.setState({
@@ -96,10 +145,33 @@ class EditMatter extends React.Component {
               <MenuItem onClick={ e => { this.handleClose(e, 'Administrative') }}>Administrative</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Criminal') }}>Criminal</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Māori') }}>Māori</MenuItem>
-              <MenuItem onClick={ e => { this.handleClose(e, 'Specialist Services') }}>Specialist Services</MenuItem>
             </Menu>
             <br />
             <br />
+
+            <span className='submit-matter-headings'>Update subcategories</span>
+            {this.state.category && categories.filter(cat => {
+              return (cat.category === this.state.category)
+            })[0].subcategories.map(subcategory => (
+              <FormControlLabel
+                key={subcategory}
+                control={
+                  <Checkbox
+                    key={subcategory}
+                    label={subcategory}
+                    onChange={ () => {
+                      this.updateCheck(subcategory)
+                    }}
+                    style={styles.checkbox}
+                  />
+                }
+                label={subcategory}
+              />
+            ))
+            }
+            <br/>
+            <br/>
+
             <TextField fullWidth={true} value={this.state.internalMatterNumber} multiline={true} name="internalMatterNumber" label="Internal matter number" className="text-input" onChange={this.handleChange} margin="normal" />
             <br />
             <br />

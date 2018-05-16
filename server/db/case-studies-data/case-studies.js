@@ -18,9 +18,16 @@ module.exports = {
     'Administrative',
     'Criminal',
     'Maori',
-    'Specialist Services',
+    'Specialist Services'
+  ],
+
+  subcategory: [
     'Consumer',
-    'Tenancy',
+    'Tenancy and Flatting',
+    'Trusts',
+    'Care of Children',
+    'Domestic Violence',
+    'Immigration',
     'Property',
     'Financial',
     'Medical',

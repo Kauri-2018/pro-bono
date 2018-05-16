@@ -9,6 +9,7 @@ function getAllMatters (db = knex) {
     .select(
       'id as referenceNumber',
       'category',
+      'subcategories',
       'details',
       'contact_email as contactEmail',
       'is_complete as isComplete',
@@ -25,6 +26,7 @@ function getIncompleteMatters (db = knex) {
     .select(
       'id as referenceNumber',
       'category',
+      'subcategories',
       'details',
       'contact_email as contactEmail',
       'is_complete as isComplete',
@@ -41,6 +43,7 @@ function getLiveMatters (db = knex) {
     .select(
       'id as referenceNumber',
       'category',
+      'subcategories',
       'details',
       'contact_email as contactEmail',
       'is_complete as isComplete',
@@ -57,6 +60,7 @@ function getMatterById (matterId, db = knex) {
     .select(
       'id as referenceNumber',
       'category',
+      'subcategories',
       'details',
       'contact_email as contactEmail',
       'is_complete as isComplete',
@@ -75,6 +79,7 @@ function getMattersByProfileId (profileId, db = knex) {
     .select(
       'matters.id as referenceNumber',
       'category',
+      'subcategories',
       'details',
       'contact_email as contactEmail',
       'is_complete as isComplete',
@@ -92,6 +97,7 @@ function getCompleteMattersByProfileId (profileId, db = knex) {
     .select(
       'matters.id as referenceNumber',
       'category',
+      'subcategories',
       'details',
       'contact_email as contactEmail',
       'is_complete as isComplete',
@@ -109,6 +115,7 @@ function getIncompleteMattersByProfileId (profileId, db = knex) {
     .select(
       'matters.id as referenceNumber',
       'category',
+      'subcategories',
       'details',
       'contact_email as contactEmail',
       'is_complete as isComplete',
@@ -143,6 +150,7 @@ function addNewMatter (matter, db = knex) {
     .insert({
       // 'id as referenceNumber',
       'category': matter.category,
+      'subcategories': matter.subcategories,
       'details': matter.details,
       'contact_email': matter.contactEmail,
       'is_complete': false,
@@ -159,6 +167,7 @@ function getLiveMattersByCategory (category, db = knex) {
     .select(
       'id as referenceNumber',
       'category',
+      'subcategories',
       'details',
       'contact_email as contactEmail',
       'is_complete as isComplete',
@@ -174,6 +183,7 @@ function editMatter (matter, db = knex) {
     .where('id', '=', matter.referenceNumber)
     .update({
       category: matter.category,
+      subcategories: matter.subcategories,
       details: matter.details,
       contact_email: matter.contactEmail,
       centre_id: matter.centreId,
