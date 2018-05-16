@@ -1,4 +1,4 @@
-var apiKey = process.env.MAILGUN_API_KEY
+var apiKey = process.env.MAILGUN_API_KEY || 'not a key'
 var OUR_EMAIL = 'edaprobono@gmail.com'
 const OUR_DOMAIN = 'probono.rgs.nz'
 const mg = require('mailgun-js')({apiKey, domain: OUR_DOMAIN})
