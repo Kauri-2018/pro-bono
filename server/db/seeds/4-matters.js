@@ -97,7 +97,7 @@ function generateMatters (numMatters) {
     const internalMatterNumber = 1000 + Math.floor(Math.random() * 100000)
     matterArray.push({title,
       category,
-      subcategories,
+      subcategories: JSON.stringify(subcategories),
       details: additionalDetails,
       centre_id: centreId,
       contact_email: contactEmail,
