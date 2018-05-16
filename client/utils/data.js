@@ -35,7 +35,7 @@ export const categories = [
     'subcategories': [
       'Crown Prosecutions - IRD, DOC, MAF',
       'Police Prosecutions',
-      'Youth Justice'
+      'Youth justice'
     ]
 
   },
