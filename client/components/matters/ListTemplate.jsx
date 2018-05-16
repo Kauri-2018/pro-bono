@@ -1,10 +1,9 @@
 // Modules
 import React from 'react'
-import {connect} from 'react-redux'
 
 // Material UI Components
 // import classNames from 'classnames'
-// import TextField from '@material-ui/core/TextField'
+import Paper from '@material-ui/core/Paper'
 
 // Our Modules and Components
 // import { listStyles } from '../../constants'
@@ -60,11 +59,14 @@ class ListTemplate extends React.Component {
   render () {
     return (
       <div className='list-wrapper center-vertically row'>
-        <div >
+        <Paper className='filter-wrapper'>
+          <span className='center-text title-text red-text'>
+            Filters
+          </span>
           {this.renderFilters()}
-        </div>
+        </Paper>
         <br />
-        <div>
+        <div className='row'>
           {this.renderList()}
         </div>
       </div>
