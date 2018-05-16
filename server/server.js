@@ -13,11 +13,11 @@ const server = express()
 server.use(express.static(path.join(__dirname, './public')))
 
 // routes
-server.use('/api/v1/auth/', authRoutes)
-server.use('/api/v1/matters/', matterRoutes)
-server.use('/api/v1/profiles/', profileRoutes)
-server.use('/api/v1/users/', usersRoutes)
-server.use('/api/v1/mailgun/', mailGun)
+server.use('/api/v1/auth', authRoutes)
+server.use('/api/v1/matters', matterRoutes)
+server.use('/api/v1/profiles', profileRoutes)
+server.use('/api/v1/users', usersRoutes)
+server.use('/api/v1/mailgun', mailGun)
 
 // wildcard route
 server.get('*', function (req, res) {
