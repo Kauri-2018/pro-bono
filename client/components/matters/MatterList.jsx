@@ -40,10 +40,8 @@ class MatterList extends ListTemplate {
         Reference ID: <TextField
           className='input-left'
           name="referenceNumber"
-          floatingLabelText="Reference ID"
           margin="normal"
           onChange={this.changeFilter}
-          endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
         />
         Category: <TextField
           className='input-left'
