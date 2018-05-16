@@ -52,7 +52,7 @@ exports.seed = (knex, Promise) => {
           is_complete: false,
           claimed_by: null,
           centre_id: 110001,
-          title: 'Criminal Cat',
+          title: 'Scammer Cat',
           internal_matter_number: 9874
         },
         {
@@ -64,7 +64,7 @@ exports.seed = (knex, Promise) => {
           is_complete: false,
           claimed_by: 440003,
           centre_id: 110001,
-          title: 'Māori Cat',
+          title: 'Land settlement',
           internal_matter_number: 1353274
         },
         {
@@ -76,7 +76,7 @@ exports.seed = (knex, Promise) => {
           is_complete: false,
           claimed_by: null,
           centre_id: 110001,
-          title: 'Another Criminal Cat',
+          title: 'Burglar Cat',
           internal_matter_number: 816435
         },
         ...randomMatters
@@ -88,9 +88,18 @@ function generateMatters (numMatters) {
   const matterArray = []
 
   for (let i = 0; i < numMatters; i++) {
+    const numSubcategories = Math.floor(Math.random() * 4)
+    const subcategories = []
     const title = titles[Math.floor(Math.random() * titles.length)]
     const category = categories[Math.floor(Math.random() * categories.length)]
-    const subcategories = [subcategory[Math.floor(Math.random() * subcategory.length)]]
+    for (let i = 0; i < numSubcategories; i++) {
+      const newSubcategory = subcategory[Math.floor(Math.random() * subcategory.length)]
+      if (subcategories.includes(newSubcategory)) {
+        i--
+        continue
+      }
+      subcategories.push(newSubcategory)
+    }
     const additionalDetails = details[Math.floor(Math.random() * details.length)]
     const contactEmail = emails[Math.floor(Math.random() * emails.length)]
     const centreId = 110001// + Math.floor(Math.random() * 23)
