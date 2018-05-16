@@ -24,40 +24,22 @@ const styles = {
   }
 }
 
+const blankState = (centreId) => {
+  return {
+    title: '',
+    contactEmail: '',
+    category: null,
+    subcategories: [],
+    internalMatterNumber: '',
+    details: '',
+    centreId: centreId,
+    anchorEl: null
+  }
+}
+
 class NewMatter extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      title: '',
-      contactEmail: '',
-      category: null,
-      subcategories: [],
-      internalMatterNumber: '',
-      details: '',
-      centreId: props.centreId,
-      anchorEl: null,
-      'Consumer - credit contracts and repossession': false,
-      'Employment': false,
-      'Financial - debt, insolvency': false,
-      'Tenancy': false,
-      'Human Rights': false,
-      'Care of Children': false,
-      'CYFS': false,
-      'Domestic Violence': false,
-      'PPPR': false,
-      'International relocation - urgent border alerts': false,
-      'Education': false,
-      'Board of Trustee hearings': false,
-      'Immigration and refugee': false,
-      'Welfare and social housing': false,
-      'Health and disability provider complaints': false,
-      'Disability Support Services entitlements': false,
-      'Crown Prosecutions - IRD, DOC, MAF': false,
-      'Police Prosecutions': false,
-      'Youth Justice': false,
-      'Tenure/Ownership': false,
-      'Waitangi Tribunal': false
-    }
 
     this.state = blankState(props.centreId)
     this.handleChange = this.handleChange.bind(this)
@@ -68,16 +50,12 @@ class NewMatter extends React.Component {
   }
 
   updateCheck (subcategory) {
-    const newSubValue = !this.state[subcategory]
-    this.setState({
-      [subcategory]: newSubValue
-    })
-    newSubValue
+    this.state.subcategories.includes(subcategory)
       ? this.setState({
-        subcategories: [...this.state.subcategories, subcategory]
+        subcategories: this.state.subcategories.filter(subcat => subcat !== subcategory)
       })
       : this.setState({
-        subcategories: this.state.subcategories.filter(subcat => subcat !== subcategory)
+        subcategories: [...this.state.subcategories, subcategory]
       })
   }
 
@@ -180,7 +158,7 @@ class NewMatter extends React.Component {
                   <Checkbox
                     key={subcategory}
                     label={subcategory}
-                    onChange={ () => {
+                    onChange={() => {
                       this.updateCheck(subcategory)
                     }}
                     style={styles.checkbox}
@@ -234,18 +212,6 @@ class NewMatter extends React.Component {
         </Card>
       </div>
     )
-  }
-}
-
-const blankState = (centreId) => {
-  return {
-    title: '',
-    contactEmail: '',
-    category: null,
-    internalMatterNumber: '',
-    details: '',
-    centreId: centreId,
-    anchorEl: null
   }
 }
 

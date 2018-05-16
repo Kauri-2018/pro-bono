@@ -76,45 +76,24 @@ class EditMatter extends React.Component {
           subcategories: matter.matter.subcategories,
           internalMatterNumber: matter.matter.internalMatterNumber,
           details: matter.matter.details,
-          centreId: matter.matter.centreId,
-          'Consumer - credit contracts and repossession': matter.matter.subcategories.includes('Consumer - credit contracts and repossession'),
-          'Employment': matter.matter.subcategories.includes('Employment'),
-          'Financial - debt, insolvency': matter.matter.subcategories.includes('Financial - debt, insolvency'),
-          'Tenancy': matter.matter.subcategories.includes('Tenancy'),
-          'Human Rights': matter.matter.subcategories.includes('Human Rights'),
-          'Care of Children': matter.matter.subcategories.includes('Care of Children'),
-          'CYFS': matter.matter.subcategories.includes('CYFS'),
-          'Domestic Violence': matter.matter.subcategories.includes('Domestic Violence'),
-          'PPPR': matter.matter.subcategories.includes('PPPR'),
-          'International relocation - urgent border alerts': matter.matter.subcategories.includes('International relocation - urgent border alerts'),
-          'Education': matter.matter.subcategories.includes('Education'),
-          'Board of Trustee hearings': matter.matter.subcategories.includes('Board of Trustee hearings'),
-          'Immigration and refugee': matter.matter.subcategories.includes('Immigration and refugee'),
-          'Welfare and social housing': matter.matter.subcategories.includes('Welfare and social housing'),
-          'Health and disability provider complaints': matter.matter.subcategories.includes('Health and disability provider complaints'),
-          'Disability Support Services entitlements': matter.matter.subcategories.includes('Disability Support Services entitlements'),
-          'Crown Prosecutions - IRD, DOC, MAF': matter.matter.subcategories.includes('Crown Prosecutions - IRD, DOC, MAF'),
-          'Police Prosecutions': matter.matter.subcategories.includes('Police Prosecutions'),
-          'Youth Justice': matter.matter.subcategories.includes('Youth Justice'),
-          'Tenure/Ownership': matter.matter.subcategories.includes('Tenure/Ownership'),
-          'Waitangi Tribunal': matter.matter.subcategories.includes('Waitangi Tribunal')
+          centreId: matter.matter.centreId
         })
       })
   }
 
-  updateCheck (subcategory) {
-    const newSubValue = !this.state[subcategory]
-    this.setState({
-      [subcategory]: newSubValue
-    })
-    newSubValue
-      ? this.setState({
-        subcategories: [...this.state.subcategories, subcategory]
-      })
-      : this.setState({
-        subcategories: this.state.subcategories.filter(subcat => subcat !== subcategory)
-      })
-  }
+  // updateCheck (subcategory) {
+  //   const newSubValue = !this.state[subcategory]
+  //   this.setState({
+  //     [subcategory]: newSubValue
+  //   })
+  //   newSubValue
+  //     ? this.setState({
+  //       subcategories: [...this.state.subcategories, subcategory]
+  //     })
+  //     : this.setState({
+  //       subcategories: this.state.subcategories.filter(subcat => subcat !== subcategory)
+  //     })
+  // }
 
   handleChange (e) {
     this.setState({
