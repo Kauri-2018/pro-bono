@@ -43,6 +43,11 @@ jest.mock('../../server/db/matters', () => ({
     [
       'test category 1'
     ]
+  ),
+  getIncompleteMatters: () => Promise.resolve(
+    [
+      'Incomplete matter'
+    ]
   )
 }))
 
@@ -70,7 +75,7 @@ test('GET /api/v1/matters test fails as expected', () => {
     })
 })
 
-test('GET /api/v1/matters returns allMatter', () => {
+test('GET /api/v1/live returns all live Matter', () => {
   const expected = ['test category 1']
   return request(server)
     .get('/api/v1/matters/live')
@@ -81,10 +86,32 @@ test('GET /api/v1/matters returns allMatter', () => {
     })
 })
 
-test('GET /api/v1/matters test fails as expected', () => {
-  const expected = 'test category 132123'
+test('GET /api/v1/live test fails as expected', () => {
+  const expected = ['test category 12']
   return request(server)
     .get('/api/v1/matters/live')
+    .set('Accept', 'application/json')
+    .expect(200)
+    .then(res => {
+      expect(res.body.matters).not.toBe(expected)
+    })
+})
+
+test('GET /api/v1/incomplete gets data as expected', () => {
+  const expected = ['Incomplete matter']
+  return request(server)
+    .get('/api/v1/matters/incomplete')
+    .set('Accept', 'application/json')
+    .expect(200)
+    .then(res => {
+      expect(res.body.matters).not.toBe(expected)
+    })
+})
+
+test('GET /api/v1/incomplete test fails as expected', () => {
+  const expected = ['complete matter']
+  return request(server)
+    .get('/api/v1/matters/incomplete')
     .set('Accept', 'application/json')
     .expect(200)
     .then(res => {
