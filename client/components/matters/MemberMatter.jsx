@@ -34,6 +34,11 @@ const MemberMatter = (props) => (
           </span>
           <br/>
           <span className="span-margin-bottom fontsize125">
+            <strong className='matter-title'>Category: </strong>
+            {props.singleMatter.category}
+          </span>
+          <br/>
+          <span className="span-margin-bottom fontsize125">
             <strong className='matter-title'>Subcategories: </strong>
             {props.singleMatter.subcategories.length
               ? props.singleMatter.subcategories.map(subCat => {
@@ -43,11 +48,6 @@ const MemberMatter = (props) => (
               })
               : <Chip label='N/A'/>
             }
-          </span>
-          <br/>
-          <span className="span-margin-bottom fontsize125">
-            <strong className='matter-title'>Category: </strong>
-            {props.singleMatter.category}
           </span>
           <br/>
         </Typography>
