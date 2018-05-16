@@ -19,7 +19,8 @@
   },
   "jest": {
     "setupFiles": [
-      "dotenv/config"
+      "./tests/client/configure.js",
+      "./tests/client/setup-dom.js"
     ]
   },
   "babel": {
