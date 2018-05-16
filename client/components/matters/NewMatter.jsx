@@ -178,7 +178,6 @@ class NewMatter extends React.Component {
                 }
                 label={subcategory}
               />
-
             ))
             }
             <br/>
