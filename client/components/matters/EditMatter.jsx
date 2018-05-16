@@ -154,6 +154,7 @@ class EditMatter extends React.Component {
             >
               Update subcategories
             </Button>
+            <br />
             {this.state.category && categories.filter(cat => {
               return (cat.category === this.state.category)
             })[0].subcategories.map(subcategory => (
