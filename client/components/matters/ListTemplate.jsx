@@ -4,10 +4,7 @@ import {connect} from 'react-redux'
 
 // Material UI Components
 // import classNames from 'classnames'
-// import { withStyles } from 'material-ui/styles'
-// import TextField from 'material-ui/TextField'
-// import Input, {InputLabel, InputAdornment} from 'material-ui/Input'
-// import Icon from 'material-ui/Icon'
+// import TextField from '@material-ui/core/TextField'
 
 // Our Modules and Components
 // import { listStyles } from '../../constants'
@@ -21,8 +18,8 @@ class ListTemplate extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      expanded: false,
-      filters: {}
+      filters: {},
+      expanded: false
     }
 
     this.handleExpand = this.handleExpand.bind(this)
@@ -39,7 +36,7 @@ class ListTemplate extends React.Component {
   }
 
   changeFilter (e) {
-    const newFilters = { ...this.state.filters }
+    const newFilters = {...this.state.filters}
     newFilters[e.target.name] = {
       regex: new RegExp(e.target.value.toLowerCase()),
       field: e.target.name
@@ -62,10 +59,14 @@ class ListTemplate extends React.Component {
 
   render () {
     return (
-      <div className='list-wrapper'>
-        {this.renderFilters()}
+      <div className='list-wrapper center-vertically row'>
+        <div >
+          {this.renderFilters()}
+        </div>
         <br />
-        {this.renderList()}
+        <div>
+          {this.renderList()}
+        </div>
       </div>
     )
   }

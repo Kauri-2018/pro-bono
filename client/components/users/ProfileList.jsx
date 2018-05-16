@@ -1,10 +1,13 @@
 // renders accordion of UserListItems.jsx
 import React from 'react'
+import {connect} from 'react-redux'
 
 // // Material UI Components
-import Button from 'material-ui/Button'
-import Menu, {MenuItem} from 'material-ui/Menu'
-import Paper from 'material-ui/Paper'
+import Button from '@material-ui/core/Button'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import Paper from '@material-ui/core/Paper'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 // Our Components
 import ProfileListItem from './ProfileListItem'
@@ -39,19 +42,17 @@ class ProfileList extends ListTemplate {
   renderFilters () {
     const roleFilter = this.state.roleFilter
     return (
-      <div className='list'>
+      <div className='center-vertically'>
         <Paper
-          zDepth={1}
-          className='offset-by-four column'
           style={{
             height: 50,
             width: 400,
             textAlign: 'center',
-            marginTop: 50,
-            marginBottom: 50
+            marginBottom: 20,
+            paddingTop: 5
           }}
         >
-          FILTER BY:
+          FILTER BY ROLE:
           <Button
             aria-owns={this.state.anchorEl ? 'simple-menu' : null}
             aria-haspopup="true"
@@ -84,6 +85,9 @@ class ProfileList extends ListTemplate {
     )
   }
   renderList () {
+    if (this.props.loading) {
+      return <CircularProgress size={65} />
+    }
     const roleFilter = this.state.roleFilter
     return (
       <div className='list'>
@@ -102,11 +106,19 @@ class ProfileList extends ListTemplate {
                 expanded = {this.state.expanded === profile.profileId}
               />
             )
-          : <h4>No pending profiles</h4>
+          : <div className='list-empty'>
+            No profiles pending approval
+          </div>
         }
       </div>
     )
   }
 }
 
-export default ProfileList
+const mapStateToProps = state => {
+  return {
+    loading: state.loading
+  }
+}
+
+export default connect(mapStateToProps)(ProfileList)

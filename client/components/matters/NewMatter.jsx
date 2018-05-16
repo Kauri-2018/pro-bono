@@ -1,25 +1,20 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import Button from 'material-ui/Button'
-import Card from 'material-ui/Card'
-import TextField from 'material-ui/TextField'
-import Menu, { MenuItem } from 'material-ui/Menu'
+
+// Material UI Components
+import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import TextField from '@material-ui/core/TextField'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
 
 import {postNewMatter} from '../../actions/matters'
+import {showSnackbar} from '../../actions/snackbar'
 
 class NewMatter extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      title: '',
-      contactEmail: '',
-      category: null,
-      internalMatterNumber: '',
-      details: '',
-      centreId: props.centreId,
-      anchorEl: null
-    }
-
+    this.state = blankState(props.centreId)
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleClose = this.handleClose.bind(this)
@@ -49,46 +44,50 @@ class NewMatter extends React.Component {
     const newMatter = {...this.state}
     // alert('Submitted new matter: ' + newMatter.title)
     this.props.dispatch(postNewMatter(newMatter))
+    this.setState(blankState(this.props.centreId))
+    this.props.dispatch(showSnackbar(`New matter added`))
   }
 
   render () {
     const anchorEl = this.state.anchorEl
     const category = this.state.category
     return (
-      <div className='new-matter-wrapper offset-by-two column eight columns'>
+      <div className='new-matter-wrapper'>
         <Card position="static" color="default" className="new-matter">
-          <h4 className="centertext">SUBMIT NEW MATTER</h4>
+          <h4 className="center-text title-text">SUBMIT NEW MATTER</h4>
 
           <section className="form-field">
-            <span className='submit-matter-headings'>
-            TITLE
-              <TextField
-                fullWidth={true}
-                required={true}
-                placeholder="Title"
-                name="title"
-                className="text-input"
-                onChange={this.handleChange}
-                margin="normal"
-              />
+            <span className='red-text title-text'>
+              TITLE
             </span>
+            <TextField
+              fullWidth={true}
+              required={true}
+              placeholder="Title"
+              name="title"
+              className="text-input"
+              onChange={this.handleChange}
+              margin="normal"
+              value={this.state.title}
+            />
             <br />
             <br />
-            <span className='submit-matter-headings'>
+            <span className='red-text title-text'>
             MATTER CONTACT EMAIL
-              <TextField
-                fullWidth={true}
-                required={true}
-                placeholder="Matter contact email"
-                name="contactEmail"
-                className="text-input"
-                onChange={this.handleChange}
-                margin="normal"
-              />
             </span>
+            <TextField
+              fullWidth={true}
+              required={true}
+              placeholder="Matter contact email"
+              name="contactEmail"
+              className="text-input"
+              onChange={this.handleChange}
+              margin="normal"
+              value={this.state.contactEmail}
+            />
             <br />
             <br />
-            <span className='submit-matter-headings'>SELECT A CATEGORY</span>
+            <span className='red-text title-text'>SELECT A CATEGORY</span>
             <Button
               className='category-dropdown'
               fullWidth={true}
@@ -112,33 +111,35 @@ class NewMatter extends React.Component {
             </Menu>
             <br />
             <br />
-            <span className='submit-matter-headings'>
+            <span className='red-text title-text'>
             INTERNAL MATTER NUMBER (OPTIONAL)
-              <TextField
-                fullWidth={true}
-                required={true}
-                placeholder="Internal reference ID (optional)"
-                name="internalMatterNumber"
-                className="text-input"
-                onChange={this.handleChange}
-                margin="normal"
-              />
             </span>
+            <TextField
+              fullWidth={true}
+              required={true}
+              placeholder="Internal reference ID (optional)"
+              name="internalMatterNumber"
+              className="text-input"
+              onChange={this.handleChange}
+              margin="normal"
+              value={this.state.internalMatterNumber}
+            />
             <br />
             <br />
-            <span className='submit-matter-headings'>
+            <span className='red-text title-text'>
             MATTER DETAILS
-              <TextField
-                fullWidth={true}
-                required={true}
-                placeholder="Add additional detail here"
-                multiline={true}
-                name="details"
-                className="text-input"
-                onChange={this.handleChange}
-                margin="normal"
-              />
             </span>
+            <TextField
+              fullWidth={true}
+              required={true}
+              placeholder="Add additional detail here"
+              multiline={true}
+              name="details"
+              className="text-input"
+              onChange={this.handleChange}
+              margin="normal"
+              value={this.state.details}
+            />
           </section>
           <section>
             <Button
@@ -152,6 +153,18 @@ class NewMatter extends React.Component {
         </Card>
       </div>
     )
+  }
+}
+
+const blankState = (centreId) => {
+  return {
+    title: '',
+    contactEmail: '',
+    category: null,
+    internalMatterNumber: '',
+    details: '',
+    centreId: centreId,
+    anchorEl: null
   }
 }
 
