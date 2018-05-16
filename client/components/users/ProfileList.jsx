@@ -1,11 +1,13 @@
 // renders accordion of UserListItems.jsx
 import React from 'react'
+import {connect} from 'react-router-dom'
 
 // // Material UI Components
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import Paper from '@material-ui/core/Paper'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 // Our Components
 import ProfileListItem from './ProfileListItem'
@@ -83,6 +85,9 @@ class ProfileList extends ListTemplate {
     )
   }
   renderList () {
+    if (this.props.loading) {
+      return <CircularProgress size={65} />
+    }
     const roleFilter = this.state.roleFilter
     return (
       <div className='list'>
@@ -110,4 +115,10 @@ class ProfileList extends ListTemplate {
   }
 }
 
-export default ProfileList
+const mapStateToProps = state => {
+  return {
+    loading: state.loading
+  }
+}
+
+export default connect(mapStateToProps)(ProfileList)
