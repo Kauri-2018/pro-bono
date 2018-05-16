@@ -10,6 +10,16 @@ body {
   overflow-y:scroll
 }
 
+.min480 {
+  min-width: 480px;
+}
+
+.fontsize05 {
+  font-size: 1.25em;
+}
+.fontsize075 {
+  font-size: 1.25em;
+}
 .fontsize125 {
   font-size: 1.25em;
 }
@@ -33,7 +43,7 @@ body {
 }
 
 .new-matter {
-  padding: 1em 10em 1em 10em;
+  padding: 1em 6em 1em 6em;
 }
 
 .text-input {
@@ -90,6 +100,10 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+}
+
+.padded-interior {
+  padding: 0em 1em;
 }
 
 .center {

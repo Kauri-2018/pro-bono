@@ -9,6 +9,7 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Paper from '@material-ui/core/Paper'
 
 import {postNewMatter} from '../../actions/matters'
 import {categories} from '../../utils/data'
@@ -124,15 +125,17 @@ class NewMatter extends React.Component {
             <br />
             <br />
             <span className='red-text title-text'>SELECT A CATEGORY</span>
-            <Button
-              className='category-dropdown'
-              fullWidth={true}
-              required={true}
-              aria-owns={anchorEl ? 'category-menu' : null}
-              aria-haspopup="true"
-              onClick={this.handleClick}>
-              {category ? `Category: ${category}` : 'Select category'}
-            </Button>
+            <Paper>
+              <Button
+                className='category-dropdown'
+                fullWidth={true}
+                required={true}
+                aria-owns={anchorEl ? 'category-menu' : null}
+                aria-haspopup="true"
+                onClick={this.handleClick}>
+                {category ? `Category: ${category}` : 'Select category'}
+              </Button>
+            </Paper>
             <Menu
               id="category-menu"
               anchorEl={anchorEl}
@@ -145,31 +148,32 @@ class NewMatter extends React.Component {
               <MenuItem onClick={ e => { this.handleClose(e, 'Māori') }}>Māori</MenuItem>
             </Menu>
             <br />
-            <br />
 
-            <span className='red-text title-text'>SELECT SUBCATEGORIES (OPTIONAL)</span>
-            <br />
-            {this.state.category && categories.filter(cat => {
-              return (cat.category === this.state.category)
-            })[0].subcategories.map(subcategory => (
-              <FormControlLabel
-                key={subcategory}
-                control={
-                  <Checkbox
-                    key={subcategory}
-                    label={subcategory}
-                    onChange={() => {
-                      this.updateCheck(subcategory)
-                    }}
-                    style={styles.checkbox}
-                  />
-                }
-                label={subcategory}
-              />
-            ))
-            }
-            <br/>
-            <br/>
+            {this.state.category && <div>
+              <span className='red-text title-text'>SELECT SUBCATEGORIES (OPTIONAL)</span>
+              <br />
+              {this.state.category && categories.filter(cat => {
+                return (cat.category === this.state.category)
+              })[0].subcategories.map(subcategory => (
+                <FormControlLabel
+                  key={subcategory}
+                  control={
+                    <Checkbox
+                      key={subcategory}
+                      label={subcategory}
+                      onChange={() => {
+                        this.updateCheck(subcategory)
+                      }}
+                      style={styles.checkbox}
+                    />
+                  }
+                  label={subcategory}
+                />
+              ))
+              }
+              <br/>
+              <br/>
+            </div>}
             <span className='red-text title-text'>
             INTERNAL MATTER NUMBER (OPTIONAL)
             </span>
