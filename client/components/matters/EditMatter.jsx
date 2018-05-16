@@ -90,7 +90,6 @@ class EditMatter extends React.Component {
               <MenuItem onClick={ e => { this.handleClose(e, 'Administrative') }}>Administrative</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Criminal') }}>Criminal</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Māori') }}>Māori</MenuItem>
-              <MenuItem onClick={ e => { this.handleClose(e, 'Specialist Services') }}>Specialist Services</MenuItem>
             </Menu>
             <br />
             <br />

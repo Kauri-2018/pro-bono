@@ -2,7 +2,7 @@ const {categories, subcategory, titles, details, emails} = require('../case-stud
 
 exports.seed = (knex, Promise) => {
   // Deletes ALL existing entries
-  const randomMatters = generateMatters(100)
+  const randomMatters = generateMatters(10)
   return knex('matters').del()
     .then(() => {
       // Inserts seed entries
@@ -78,8 +78,8 @@ exports.seed = (knex, Promise) => {
           centre_id: 110001,
           title: 'Special Cat Unclaimed',
           internal_matter_number: 816435
-        }
-        // ...randomMatters
+        },
+        ...randomMatters
       ])
     })
 }
