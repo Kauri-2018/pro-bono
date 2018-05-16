@@ -17,23 +17,31 @@ module.exports = {
     'Family',
     'Administrative',
     'Criminal',
-    'Maori',
-    'Specialist Services'
+    'Maori'
   ],
 
   subcategory: [
-    'Consumer',
-    'Tenancy and Flatting',
-    'Trusts',
-    'Care of Children',
-    'Domestic Violence',
-    'Immigration',
-    'Property',
-    'Financial',
-    'Medical',
-    'ACC',
+    'Consumer - credit contracts and repossession',
     'Employment',
-    'Welfare'
+    'Financial - debt, insolvency',
+    'Tenancy',
+    'Human Rights',
+    'Care of children',
+    'CYFS',
+    'Domestic violence',
+    'PPPR',
+    'International relocation - urgent border alerts',
+    'Education',
+    'Board of Trustee hearings',
+    'Immigration and refugee',
+    'Welfare and social housing',
+    'Health and disability provider complaints',
+    'Disability Support Services entitlements',
+    'Crown Prosecutions - IRD, DOC, MAF',
+    'Police Prosecutions',
+    'Youth justice',
+    'Tenure/Ownership',
+    'Waitangi Tribunal'
   ],
 
   titles: [
