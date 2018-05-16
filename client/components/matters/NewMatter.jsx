@@ -148,6 +148,7 @@ class NewMatter extends React.Component {
             <br />
 
             <span className='red-text title-text'>SELECT SUBCATEGORIES (OPTIONAL)</span>
+            <br />
             {this.state.category && categories.filter(cat => {
               return (cat.category === this.state.category)
             })[0].subcategories.map(subcategory => (
