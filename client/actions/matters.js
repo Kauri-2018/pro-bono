@@ -9,17 +9,21 @@ import {
 } from '../apiClient'
 
 import {errorHandle} from './errorHandle'
+import {setLoading} from './loading'
 
 export const SHOW_MATTER_LIST = 'SHOW_MATTER_LIST'
 export const SHOW_MATTER_BY_ID = 'SHOW_MATTER_BY_ID'
 
 export function getAllMatters () {
   return dispatch => {
+    dispatch(setLoading(true))
     return requestAllMatters()
       .then(allMatters => {
+        dispatch(setLoading(false))
         dispatch(showMatterList(allMatters))
       })
       .catch(err => {
+        dispatch(setLoading(false))
         dispatch(errorHandle(err.message))
         return Promise.reject(err.message)
       })
@@ -28,11 +32,14 @@ export function getAllMatters () {
 
 export function getCompleteMattersByProfileId (profileId) {
   return dispatch => {
+    dispatch(setLoading(true))
     return requestCompleteMattersByProfileId(profileId)
       .then(matters => {
+        dispatch(setLoading(false))
         dispatch(showMatterList(matters))
       })
       .catch(err => {
+        dispatch(setLoading(false))
         dispatch(errorHandle(err.message))
         return Promise.reject(err.message)
       })
@@ -41,11 +48,14 @@ export function getCompleteMattersByProfileId (profileId) {
 
 export function getIncompleteMattersByProfileId (profileId) {
   return dispatch => {
+    dispatch(setLoading(true))
     return requestIncompleteMattersByProfileId(profileId)
       .then(matters => {
+        dispatch(setLoading(false))
         dispatch(showMatterList(matters))
       })
       .catch(err => {
+        dispatch(setLoading(false))
         dispatch(errorHandle(err.message))
         return Promise.reject(err.message)
       })
@@ -54,11 +64,14 @@ export function getIncompleteMattersByProfileId (profileId) {
 
 export function getLiveMatters () {
   return dispatch => {
+    dispatch(setLoading(true))
     return requestLiveMatters()
       .then(liveMatters => {
+        dispatch(setLoading(false))
         dispatch(showMatterList(liveMatters))
       })
       .catch(err => {
+        dispatch(setLoading(false))
         dispatch(errorHandle(err.message))
         return Promise.reject(err.message)
       })

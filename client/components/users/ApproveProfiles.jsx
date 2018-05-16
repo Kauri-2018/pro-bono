@@ -28,7 +28,7 @@ class ApproveProfiles extends React.Component {
     return (
       <div>
         <div>
-          <p className='pageHeader'>
+          <p className='center-text title-text red-text fontsize250'>
           APPROVE USERS
           </p>
         </div>
@@ -46,7 +46,8 @@ class ApproveProfiles extends React.Component {
 const mapStateToProps = state => {
   return {
     pendingProfilesArray: state.profiles,
-    role: state.auth.user.role
+    role: state.auth.user.role,
+    loading: state.loading
   }
 }
 
