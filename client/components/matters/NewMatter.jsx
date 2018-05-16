@@ -4,8 +4,20 @@ import Button from 'material-ui/Button'
 import Card from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
 import Menu, { MenuItem } from 'material-ui/Menu'
-
+import Checkbox from 'material-ui/Checkbox'
 import {postNewMatter} from '../../actions/matters'
+// import data from '../../utils/data.json'
+import {categories} from '../../utils/data'
+import {FormControlLabel} from 'material-ui/Form'
+
+const styles = {
+  block: {
+    maxWidth: 250
+  },
+  checkbox: {
+    marginBottom: 16
+  }
+}
 
 class NewMatter extends React.Component {
   constructor (props) {
@@ -14,16 +26,34 @@ class NewMatter extends React.Component {
       title: '',
       contactEmail: '',
       category: null,
+      subcategories: [],
       internalMatterNumber: '',
       details: '',
       centreId: props.centreId,
-      anchorEl: null
+      anchorEl: null,
+      checked: false
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleClose = this.handleClose.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
+    this.updateCheck = this.updateCheck.bind(this)
+    this.handleSub = this.handleSub.bind(this)
+  }
+
+  updateCheck () {
+    this.setState(oldState => {
+      return {
+        checked: !oldState.checked
+      }
+    })
+  }
+
+  handleSub (subcategory) {
+    this.setState({
+      subcategories: this.state.subcategories.push(subcategory)
+    })
   }
 
   handleChange (e) {
@@ -88,6 +118,7 @@ class NewMatter extends React.Component {
             </span>
             <br />
             <br />
+
             <span className='submit-matter-headings'>SELECT A CATEGORY</span>
             <Button
               className='category-dropdown'
@@ -108,10 +139,35 @@ class NewMatter extends React.Component {
               <MenuItem onClick={ e => { this.handleClose(e, 'Administrative') }}>Administrative</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Criminal') }}>Criminal</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Māori') }}>Māori</MenuItem>
-              <MenuItem onClick={ e => { this.handleClose(e, 'Specialist Services') }}>Specialist Services</MenuItem>
             </Menu>
             <br />
             <br />
+
+            <span className='submit-matter-headings'>SELECT SUBCATEGORIES (OPTIONAL)</span>
+            {this.state.category && categories.filter(cat => {
+              return (cat.category === this.state.category)
+            })[0].subcategories.map(subcategory => (
+              <FormControlLabel
+                key={subcategory}
+                control={
+                  <Checkbox
+                    key={subcategory}
+                    label={subcategory}
+                    checked={this.state.checked}
+                    // onChange={ () => {
+                    //   this.updateCheck()
+                    //   this.handleSub(subcategory)
+                    // }}
+                    style={styles.checkbox}
+                  />
+                }
+                label={subcategory}
+              />
+
+            ))
+            }
+            <br/>
+            <br/>
             <span className='submit-matter-headings'>
             INTERNAL MATTER NUMBER (OPTIONAL)
               <TextField

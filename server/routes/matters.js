@@ -138,7 +138,18 @@ router.post('/add', auth.isMember, (req, res) => {
 })
 
 router.put('/edit', auth.isMember, (req, res) => {
-  const matter = req.body.matter
+  const editMatter = req.body.matter
+  const subcategories = JSON.stringify(editMatter.subcategories)
+  const matter = {
+    referenceNumber: editMatter.referenceNumber,
+    category: editMatter.category,
+    subcategories: subcategories,
+    details: editMatter.details,
+    contactEmail: editMatter.contactEmail,
+    centreId: editMatter.centreId,
+    title: editMatter.title,
+    internalMatterNumber: editMatter.internalMatterNumber
+  }
   db.editMatter(matter)
     .then(() => {
       res.sendStatus(200)
