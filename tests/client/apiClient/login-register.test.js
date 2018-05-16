@@ -22,3 +22,15 @@ test('loginUser sends post request to server', () => {
       expect(res.text).toContain(expected)
     })
 })
+
+nock('http://localhost')
+  .post('/api/v1/auth/register')
+  .reply(200, email, password)
+
+test('registerUsers sends post request to server', () => {
+  const expected = 'member'
+  return consume('post', `${AUTH_ROUTE}/register`, {email, password})
+    .then(res => {
+      expect(res.text).toContain(expected)
+    })
+})
