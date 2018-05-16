@@ -84,9 +84,16 @@ class EditMatter extends React.Component {
   }
 
   handleClose (e, category) {
+    if (category === this.state.category) {
+      return this.setState({
+        anchorEl: null,
+        category: category
+      })
+    }
     this.setState({
       anchorEl: null,
-      category: category
+      category: category,
+      subcategories: []
     })
   }
 
