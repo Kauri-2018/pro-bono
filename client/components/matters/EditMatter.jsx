@@ -103,9 +103,9 @@ class EditMatter extends React.Component {
     const category = this.state.category
     const subcategories = this.state.subcategories
     return (
-      <div className='new-matter-wrapper offset-by-two column eight columns'>
+      <div className='new-matter-wrapper'>
         <Card position="static" color="default" className="new-matter">
-          <h1 className="offset-by-one columns">Edit Matter</h1>
+          <h1 className="title-text center-text red-text">Edit Matter</h1>
 
           <section className="form-field">
             <TextField
