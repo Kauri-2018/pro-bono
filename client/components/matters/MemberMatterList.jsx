@@ -104,10 +104,8 @@ class MemberMatterList extends ListTemplate {
           <TextField
             className='input-left'
             name="referenceNumber"
-            floatingLabelText="Reference number"
             margin="normal"
             onChange={this.changeFilter}
-            endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
           />
         </span>
         <span className="push-apart">
@@ -115,10 +113,8 @@ class MemberMatterList extends ListTemplate {
           <TextField
             className='input-left'
             name="internalMatterNumber"
-            floatingLabelText="Internal matter number"
             margin="normal"
             onChange={this.changeFilter}
-            endAdornment={(<InputAdornment position="end"><Icon>search</Icon></InputAdornment>)}
           />
         </span>
         <span className="push-apart">

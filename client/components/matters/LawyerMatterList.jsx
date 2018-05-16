@@ -23,7 +23,6 @@ class LawyerMatterList extends ListTemplate {
         <span className="flex-alignright"><span> Reference ID: </span><TextField
           className='input-left'
           name="referenceNumber"
-          floatingLabelText="Reference ID"
           margin="normal"
           onChange={this.changeFilter}
         /></span>
