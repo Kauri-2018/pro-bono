@@ -2,10 +2,11 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 // Material UI Components
-import Button from 'material-ui/Button'
-import Card from 'material-ui/Card'
-import TextField from 'material-ui/TextField'
-import Menu, {MenuItem} from 'material-ui/Menu'
+import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import TextField from '@material-ui/core/TextField'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
 
 import {editMatter, requestMatterById} from '../../apiClient'
 import {showSnackbar} from '../../actions/snackbar'

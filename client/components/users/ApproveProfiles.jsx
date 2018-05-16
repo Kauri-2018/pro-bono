@@ -28,7 +28,7 @@ class ApproveProfiles extends React.Component {
     return (
       <div>
         <div>
-          <p className='pageHeader'>
+          <p className='center-text title-text red-text fontsize250'>
           APPROVE USERS
           </p>
         </div>

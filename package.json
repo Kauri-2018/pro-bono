@@ -30,6 +30,7 @@
     ]
   },
   "dependencies": {
+    "@material-ui/core": "^1.0.0-rc.1",
     "@material-ui/icons": "^1.0.0-beta.43",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -43,7 +44,6 @@
     "jwt-decode": "^2.2.0",
     "knex": "^0.14.3",
     "mailgun-js": "^0.18.0",
-    "material-ui": "^1.0.0-beta.47",
     "pg": "^7.4.1",
     "react": "^16.2.0",
     "react-async-script": "^0.9.1",
