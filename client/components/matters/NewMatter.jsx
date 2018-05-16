@@ -12,7 +12,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 
 import {postNewMatter} from '../../actions/matters'
 import {categories} from '../../utils/data'
-
 import {showSnackbar} from '../../actions/snackbar'
 
 const styles = {
@@ -24,7 +23,7 @@ const styles = {
   }
 }
 
-const blankState = (centreId) => {
+const initialiseState = (centreId) => {
   return {
     title: '',
     contactEmail: '',
@@ -41,7 +40,7 @@ class NewMatter extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = blankState(props.centreId)
+    this.state = initialiseState(props.centreId)
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleClose = this.handleClose.bind(this)
@@ -81,7 +80,7 @@ class NewMatter extends React.Component {
   handleAdd (e) {
     const newMatter = {...this.state}
     this.props.dispatch(postNewMatter(newMatter))
-    this.setState(blankState(this.props.centreId))
+    this.setState(initialiseState(this.props.centreId))
     this.props.dispatch(showSnackbar(`New matter added`))
   }
 
