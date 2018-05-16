@@ -40,8 +40,8 @@ class MemberLanding extends React.Component {
       <div className='section-wrapper'>
         <AppBar>
           <Tabs value={selectedTabIndex} onChange={this.switchTab}>
-            <Tab label="New Matter" />
-            <Tab label="See Matters" />
+            <Tab label="Create New Matter" />
+            <Tab label="Search Matters" />
             <Tab label="Approve Users" disabled={!isAdmin} />
             <Tab label="Log out" onClick={() => {
               this.props.dispatch(logoutUser())
