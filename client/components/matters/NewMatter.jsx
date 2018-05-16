@@ -6,7 +6,6 @@ import TextField from 'material-ui/TextField'
 import Menu, { MenuItem } from 'material-ui/Menu'
 import Checkbox from 'material-ui/Checkbox'
 import {postNewMatter} from '../../actions/matters'
-// import data from '../../utils/data.json'
 import {categories} from '../../utils/data'
 import {FormControlLabel} from 'material-ui/Form'
 
@@ -31,7 +30,6 @@ class NewMatter extends React.Component {
       details: '',
       centreId: props.centreId,
       anchorEl: null,
-      // checked: false
       'Consumer - credit contracts and repossession': false,
       'Employment': false,
       'Financial - debt, insolvency': false,
@@ -52,8 +50,7 @@ class NewMatter extends React.Component {
       'Police Prosecutions': false,
       'Youth Justice': false,
       'Tenure/Ownership': false,
-      'Waitangi Tribunal': false,
-      checkboxes: []
+      'Waitangi Tribunal': false
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -61,32 +58,21 @@ class NewMatter extends React.Component {
     this.handleClose = this.handleClose.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
     this.updateCheck = this.updateCheck.bind(this)
-    this.updateSubs = this.updateSubs.bind(this)
   }
 
   updateCheck (subcategory) {
+    const newSubValue = !this.state[subcategory]
     this.setState({
-      subcategory: !this.state.subcategory
+      [subcategory]: newSubValue
     })
-  }
-
-  updateSubs (subcategory) {
-    this.state.subcategory
+    newSubValue
       ? this.setState({
-        subcategories: this.state.subcategories.push(subcategory)
+        subcategories: [...this.state.subcategories, subcategory]
       })
       : this.setState({
         subcategories: this.state.subcategories.filter(subcat => subcat !== subcategory)
       })
   }
-
-  // updateCheck () {
-  //   this.setState(oldState => {
-  //     return {
-  //       checked: !oldState.checked
-  //     }
-  //   })
-  // }
 
   handleChange (e) {
     this.setState({
@@ -109,7 +95,6 @@ class NewMatter extends React.Component {
 
   handleAdd (e) {
     const newMatter = {...this.state}
-    // alert('Submitted new matter: ' + newMatter.title)
     this.props.dispatch(postNewMatter(newMatter))
   }
 
@@ -185,10 +170,8 @@ class NewMatter extends React.Component {
                   <Checkbox
                     key={subcategory}
                     label={subcategory}
-                    // checked={this.state.checked}
                     onChange={ () => {
                       this.updateCheck(subcategory)
-                      this.updateSubs(subcategory)
                     }}
                     style={styles.checkbox}
                   />
