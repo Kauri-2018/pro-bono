@@ -80,8 +80,10 @@ export function getLiveMatters () {
 
 export function getIncompleteMatters () {
   return dispatch => {
+    dispatch(setLoading(true))
     return requestIncompleteMatters()
       .then(incompleteMatters => {
+        dispatch(setLoading(false))
         if (incompleteMatters) {
           dispatch(showMatterList(incompleteMatters))
         } else {
@@ -89,6 +91,7 @@ export function getIncompleteMatters () {
         }
       })
       .catch(err => {
+        dispatch(setLoading(false))
         dispatch(errorHandle(err.message))
         return Promise.reject(err.message)
       })
@@ -104,11 +107,14 @@ export function showMatterList (matterList) {
 
 export function getMatterById (id) {
   return dispatch => {
+    dispatch(setLoading(true))
     return requestMatterById(id)
       .then(matterById => {
+        dispatch(setLoading(false))
         dispatch(showMatterById(matterById))
       })
       .catch(err => {
+        dispatch(setLoading(false))
         dispatch(errorHandle(err.message))
         return Promise.reject(err.message)
       })

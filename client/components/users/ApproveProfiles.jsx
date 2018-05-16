@@ -46,8 +46,7 @@ class ApproveProfiles extends React.Component {
 const mapStateToProps = state => {
   return {
     pendingProfilesArray: state.profiles,
-    role: state.auth.user.role,
-    loading: state.loading
+    role: state.auth.user.role
   }
 }
 
