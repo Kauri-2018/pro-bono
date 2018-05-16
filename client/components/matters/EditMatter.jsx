@@ -7,6 +7,7 @@ import Card from '@material-ui/core/Card'
 import TextField from '@material-ui/core/TextField'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import Paper from '@material-ui/core/Paper'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 
@@ -129,15 +130,17 @@ class EditMatter extends React.Component {
               margin="normal"
             />
             <br />
-            <Button
-              fullWidth={true}
-              required={true}
-              aria-owns={anchorEl ? 'category-menu' : null}
-              aria-haspopup="true"
-              onClick={this.handleClick}
-            >
-              {category ? `Category: ${category}` : 'Select category'}
-            </Button>
+            <Paper>
+              <Button
+                fullWidth={true}
+                required={true}
+                aria-owns={anchorEl ? 'category-menu' : null}
+                aria-haspopup="true"
+                onClick={this.handleClick}
+              >
+                {category ? `Category: ${category}` : 'Select category'}
+              </Button>
+            </Paper>
             <Menu id="category-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={e => { this.handleClose(e, category) }}>
               <MenuItem onClick={ e => { this.handleClose(e, 'Civil') }}>Civil</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Family') }}>Family</MenuItem>
@@ -145,37 +148,30 @@ class EditMatter extends React.Component {
               <MenuItem onClick={ e => { this.handleClose(e, 'Criminal') }}>Criminal</MenuItem>
               <MenuItem onClick={ e => { this.handleClose(e, 'Māori') }}>Māori</MenuItem>
             </Menu>
-            <Button
-              fullWidth={true}
-              required={false}
-              // aria-owns={anchorEl ? 'category-menu' : null}
-              aria-haspopup="true"
-              // onClick={this.handleClick}
-            >
-              Update subcategories
-            </Button>
-            <br />
-            {this.state.category && categories.filter(cat => {
-              return (cat.category === this.state.category)
-            })[0].subcategories.map(subcategory => (
-              <FormControlLabel
-                key={subcategory}
-                control={
-                  <Checkbox
-                    key={subcategory}
-                    label={subcategory}
-                    checked={subcategories.includes(subcategory)}
-                    onChange={ () => {
-                      this.updateCheck(subcategory)
-                    }}
-                    style={styles.checkbox}
-                  />
-                }
-                label={subcategory}
-              />
-            ))
-            }
-            <br/>
+            <Paper className='padded-interior'>
+              <span className='fontsize075'>Subcategories</span>
+              <br />
+              {this.state.category && categories.filter(cat => {
+                return (cat.category === this.state.category)
+              })[0].subcategories.map(subcategory => (
+                <FormControlLabel
+                  key={subcategory}
+                  control={
+                    <Checkbox
+                      key={subcategory}
+                      label={subcategory}
+                      checked={subcategories.includes(subcategory)}
+                      onChange={ () => {
+                        this.updateCheck(subcategory)
+                      }}
+                      style={styles.checkbox}
+                    />
+                  }
+                  label={subcategory}
+                />
+              ))
+              }
+            </Paper>
 
             <TextField
               fullWidth={true}
