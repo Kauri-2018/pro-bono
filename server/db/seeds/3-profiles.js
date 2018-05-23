@@ -17,7 +17,7 @@ exports.seed = (knex, Promise) => {
           user_id: 330002,
           firstname: 'Cam',
           lastname: 'Specter',
-          phone_number: '027123123',
+          phone_number: '027123124',
           certificate: '/url/Hello-Moto/PlaceHolder',
           company: 'Specter and Co'
         },
@@ -26,7 +26,7 @@ exports.seed = (knex, Promise) => {
           user_id: 330003,
           firstname: 'Zoe',
           lastname: 'Zane',
-          phone_number: '027123123',
+          phone_number: '027123125',
           certificate: '/url/Hello-Moto/PlaceHolder',
           company: 'Zane and Co'
         },
@@ -34,9 +34,9 @@ exports.seed = (knex, Promise) => {
           id: 440004,
           centre_id: 110002,
           user_id: 330004,
-          firstname: 'Zaeburn',
+          firstname: 'Gerald',
           lastname: 'Pearson',
-          phone_number: '027123123'
+          phone_number: '027123126'
         },
         {
           id: 440005,
@@ -44,14 +44,14 @@ exports.seed = (knex, Promise) => {
           user_id: 330005,
           firstname: 'Sarah',
           lastname: 'Suit',
-          phone_number: '027123124'
+          phone_number: '027123127'
         },
         {
           id: 440006,
           centre_id: 110001,
           user_id: 330006,
           firstname: 'Don',
-          lastname: 'Smith',
+          lastname: 'Smythe',
           phone_number: '027123128'
         }
       ])
