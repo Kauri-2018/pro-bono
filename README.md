@@ -26,13 +26,19 @@ If you choose to test on the web application we ask that you keep any submission
 There are 3 default accounts - one for each priviledge level
 
 **Lawyer**
+
 Username: lawyer
+
 Password: lawyer
 
 **Member**
+
 Username: member
+
 Password: member
 
 **Admin**
+
 Username: admin
+
 Password: admin
