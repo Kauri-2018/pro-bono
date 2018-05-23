@@ -15,30 +15,21 @@ If you choose to test on the web application we ask that you keep any submission
     * If you have the wrong node version
       1. Install __nvm__ using `sudo apt install nvm`
       2. Run `nvm install 9.11.0` to install the correct node version, or if it already installed, run `nvm use 9.11.0`
-3. Run `yarn` to install packages
+3. Rename the `.env.example` file in the base directory to `.env`
+    * If you wish, you may change the `SESSION_SECRET` and `JWT_SECRET` keys to any value.
+    * If you have your own MailGun API key you can edit the `MAILGUN_API_KEY` key to use your own. This will allow you to receive an email confirmation when your account is approved by an admin.
+4. Run `yarn` to install packages
     * If __Sodium__ does not build run `sudo apt install automake autoconf libtool`
-4. Run the seed files for the database with `yarn knex seed:run`
+5. Run the seed files for the database with `yarn knex seed:run`
     * If the database did not set up correctly for some reason run `yarn knex migrate:latest && yarn knex seed:run`
-5. Start the server using `yarn start`
-6. Connect to the server using the web browser of your choice at `localhost:3000`
+6. Start the server using `yarn start`
+7. Connect to the server using the web browser of your choice at `localhost:3000`
 
 ### Logins
 There are 3 default accounts - one for each priviledge level
 
-**Lawyer**
-
-Username: lawyer
-
-Password: lawyer
-
-**Member**
-
-Username: member
-
-Password: member
-
-**Admin**
-
-Username: admin
-
-Password: admin
+|Priveledge Level|Username|Password|
+|---             |---     |---     |
+|Admin           |admin   |admin   |
+|Member          |member  |member  |
+|Lawyer          |lawyer  |lawyer  |
