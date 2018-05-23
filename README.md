@@ -5,7 +5,7 @@ Pro-bono is a web application created for the Auckland Community Law Centre by s
 ## To Test
 ### Website
 It is deployed on heroku - http://pro-bono-test.herokuapp.com
-Feel free to register an account and then log in as an admin to approve your new account. Usernames and passwords for the default accounts are [here](#Logins).
+Feel free to register an account and then log in as an admin to approve your new account. Usernames and passwords for the default accounts are [here](#logins).
 If you choose to test on the web application we ask that you keep any submissions to the site clean and appropriate. There is no filtering of inappropriate text and other users will be using the site after you.
 
 ### Locally
