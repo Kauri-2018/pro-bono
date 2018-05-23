@@ -5,6 +5,10 @@ import {withRouter} from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
+import NotificationsNone from '@material-ui/icons/NotificationsNone'
+import NotificationsActive from '@material-ui/icons/NotificationsActive'
+import Icon from '@material-ui/core/Icon'
+import { withStyles } from '@material-ui/core/styles'
 // import Typography from '@material-ui/core/Typography'
 
 import NewMatter from '../matters/NewMatter'
@@ -12,6 +16,14 @@ import ApproveProfiles from './ApproveProfiles'
 import MemberMatterList from '../matters/MemberMatterList'
 import {getMatterById} from '../../actions/matters'
 import {logoutUser} from '../../actions/logout'
+
+const styles = theme => ({
+  root: {
+    textAlign: 'left',
+    paddingTop: 50 + theme.spacing.unit * 1,
+    paddingBottom: theme.spacing.unit * 1
+  }
+})
 
 class MemberSection extends React.Component {
   constructor (props) {
@@ -33,16 +45,15 @@ class MemberSection extends React.Component {
   }
 
   componentDidMount () {
-    if (this.props.matterId) {
-      this.props.dispatch(getMatterById(this.props.matterId))
-    }
+
   }
 
   render () {
     const selectedTabIndex = this.state.selectedTabIndex
-    const isAdmin = this.props.isAdmin
+    const {classes, isAdmin} = this.props
+
     return (
-      <div className='section-wrapper row'>
+      <div className={`${classes.root} section-wrapper row`}>
         <AppBar>
           <Tabs value={selectedTabIndex} onChange={this.switchTab}>
             <Tab label="Create New Matter" />
@@ -64,13 +75,12 @@ class MemberSection extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     isAdmin: state.auth && state.auth.user && state.auth.user.role === 'admin',
-    matterById: state.matterById,
     isAuthenticated: state.auth.isAuthenticated,
     pending: state.auth.user ? state.auth.user.pending : 1
   }
 }
 
-export default connect(mapStateToProps)(withRouter(MemberSection))
+export default connect(mapStateToProps)(withRouter(withStyles(styles)(MemberSection)))
