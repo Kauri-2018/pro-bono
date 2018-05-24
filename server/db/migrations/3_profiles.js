@@ -8,7 +8,7 @@ exports.up = knex => knex.schema.createTable('profiles', table => {
   table.string('certificate')
   table.string('company')
   table.boolean('work_remote')
-  table.integer('time_commitment')
+  table.string('time_commitment')
 })
 
 exports.down = knex => knex.schema.dropTable('profiles')

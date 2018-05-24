@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import Paper from '@material-ui/core/Paper'
+import InputAdornment from '@material-ui/core/InputAdornment'
 import ReCAPTCHA from 'react-google-recaptcha'
 
 import {registerUser} from '../../actions/register'
@@ -28,6 +29,29 @@ const styles = {
   }
 }
 
+const ranges = [
+  {
+    value: '0-5',
+    label: '0 to 5'
+  },
+  {
+    value: '5-10',
+    label: '5 to 10'
+  },
+  {
+    value: '10-15',
+    label: '10 to 15'
+  },
+  {
+    value: '15-20',
+    label: '15 to 20'
+  },
+  {
+    value: '20-30',
+    label: '20 to 30'
+  }
+]
+
 class Register extends React.Component {
   constructor (props) {
     super(props)
@@ -40,7 +64,7 @@ class Register extends React.Component {
       centreName: '',
       company: '',
       role: 'lawyer',
-      timeCommitment: 0,
+      timeCommitment: '',
       workRemote: null,
       password: '',
       confirmPassword: '',
@@ -52,6 +76,7 @@ class Register extends React.Component {
     }
 
     this.handleChange = this.handleChange.bind(this)
+    this.handleChange2 = this.handleChange2.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleClick2 = this.handleClick2.bind(this)
     this.handleClose = this.handleClose.bind(this)
@@ -85,6 +110,13 @@ class Register extends React.Component {
       else this.setState({confPasswordError: ''})
       if (this.state.email.length > 5 && !this.isEmailAddress(this.state.email)) this.setState({emailError})
       else this.setState({emailError: ''})
+    })
+  }
+
+  handleChange2 (e) {
+    // e.preventDefault()
+    this.setState({
+      timeCommitment: e.target.value
     })
   }
 
@@ -255,7 +287,7 @@ class Register extends React.Component {
                 </Menu>
               </span>
               <br />
-              <span className='red-text title-text'>Are you willing to work remotely?</span>
+              <span className='push-apart'>Are you willing to work remotely?</span>
               <Paper>
                 <Button
                   className='remotework-dropdown'
@@ -264,7 +296,7 @@ class Register extends React.Component {
                   aria-owns={anchorEle ? 'remotework-menu' : null}
                   aria-haspopup="true"
                   onClick={this.handleClick2}>
-                  {this.state.workRemote !== null ? (this.state.workRemote ? `I can work remotely` : `I cannot work remotely`) : 'Select your preference'}
+                  {this.state.workRemote !== null ? (this.state.workRemote ? `Yes` : `No`) : 'Select your preference'}
                 </Button>
               </Paper>
               <Menu
@@ -275,6 +307,30 @@ class Register extends React.Component {
                 <MenuItem onClick={ e => { this.handleWorkRemoteClose(e, true) }}>Yes</MenuItem>
                 <MenuItem onClick={ e => { this.handleWorkRemoteClose(e, false) }}>No</MenuItem>
               </Menu>
+              <br />
+
+              <span className='push-apart'>
+                <span>
+                  Approximately how many hours can you commit to pro bono work monthly?
+                </span>
+                <TextField
+                  select
+                  // label="Select"
+                  className="TextField-right register-title"
+                  value={this.state.timeCommitment}
+                  onChange={(e) => this.handleChange2(e)}
+                  margin="normal"
+                  InputProps={{
+                    startAdornment: <InputAdornment position="start">Hours</InputAdornment>
+                  }}
+                >
+                  {ranges.map(option => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </span>
               <br />
 
               <span className='push-apart'>

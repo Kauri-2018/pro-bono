@@ -22,7 +22,7 @@ exports.seed = (knex, Promise) => {
           certificate: '/url/Hello-Moto/PlaceHolder',
           company: 'Specter and Co',
           work_remote: true,
-          time_commitment: 10
+          time_commitment: '0-5'
         },
         {
           id: 440003,
@@ -34,7 +34,7 @@ exports.seed = (knex, Promise) => {
           certificate: '/url/Hello-Moto/PlaceHolder',
           company: 'Zane and Co',
           work_remote: false,
-          time_commitment: 5
+          time_commitment: '5-10'
         },
         {
           id: 440004,
