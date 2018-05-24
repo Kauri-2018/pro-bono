@@ -16,7 +16,9 @@ function getAllProfiles (db = knex) {
       'lastname',
       'phone_number as phoneNumber',
       'certificate',
-      'company'
+      'company',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
 }
 
@@ -31,7 +33,9 @@ function getProfileById (profileId, db = knex) {
       'lastname',
       'phone_number as phoneNumber',
       'certificate',
-      'company'
+      'company',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
     .first()
 }
@@ -45,7 +49,9 @@ function addProfile (profile, db = knex) {
       'lastname': profile.lastName,
       'phone_number': profile.phoneNumber,
       'certificate': profile.certificate || null,
-      'company': profile.company || null
+      'company': profile.company || null,
+      'work_remote': profile.workRemote || null,
+      'time_commitment': profile.timeCommitment || null
     })
 }
 

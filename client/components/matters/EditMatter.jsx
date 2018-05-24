@@ -84,16 +84,9 @@ class EditMatter extends React.Component {
   }
 
   handleClose (e, category) {
-    if (category === this.state.category) {
-      return this.setState({
-        anchorEl: null,
-        category: category
-      })
-    }
     this.setState({
       anchorEl: null,
-      category: category,
-      subcategories: []
+      category: category
     })
   }
 
@@ -111,7 +104,7 @@ class EditMatter extends React.Component {
     const category = this.state.category
     const subcategories = this.state.subcategories
     return (
-      <div className='new-matter-wrapper'>
+      <div className='new-matter-wrapper min480'>
         <Card position="static" color="default" className="new-matter">
           <h1 className="title-text center-text red-text">Edit Matter</h1>
 

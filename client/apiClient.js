@@ -4,6 +4,7 @@ import consume from './utils/api'
 export const BASE_ROUTE = '/api/v1'
 export const MATTER_ROUTE = BASE_ROUTE + '/matters'
 export const AUTH_ROUTE = BASE_ROUTE + '/auth'
+export const LAWCENTRE_ROUTE = BASE_ROUTE + '/lawcentres'
 export const USER_ROUTE = BASE_ROUTE + '/users'
 export const MAIL_GUN = BASE_ROUTE + '/mailgun'
 
@@ -96,4 +97,22 @@ export function approvePendingProfile (profileId, isAdmin) {
 
 export function dispatchMailGun (data) {
   return consume('post', `${MAIL_GUN}`, data)
+}
+
+// LAWCENTRE routes
+export function requestLawCentres () {
+  return consume('get', `${LAWCENTRE_ROUTE}`)
+    .then(res => res.body)
+}
+
+export function requestAucklandLawCentres () {
+  return consume('get', `${LAWCENTRE_ROUTE}/auckland`)
+    .then(res => res.body)
+}
+
+export function requestLawCentreById (lawcentreId) {
+  return consume('get', `${LAWCENTRE_ROUTE}/${lawcentreId}`)
+    .then(res => {
+      return res.body
+    })
 }
