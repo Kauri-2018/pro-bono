@@ -196,6 +196,54 @@ class NewMatter extends React.Component {
             />
             <br />
             <br />
+
+            <br />
+            <span className='push-apart'>Are you willing to work remotely?</span>
+            <Paper>
+              <Button
+                className='remotework-dropdown'
+                fullWidth={true}
+                required={true}
+                aria-owns={anchorEle ? 'remotework-menu' : null}
+                aria-haspopup="true"
+                onClick={this.handleClick2}>
+                {this.state.workRemote !== null ? (this.state.workRemote ? `Yes` : `No`) : 'Select your preference'}
+              </Button>
+            </Paper>
+            <Menu
+              id="workremote-menu"
+              anchorEle={anchorEle}
+              open={Boolean(anchorEle)}
+              onClose={e => { this.handleWorkRemoteClose(e, this.state.workRemote) }}>
+              <MenuItem onClick={ e => { this.handleWorkRemoteClose(e, true) }}>Yes</MenuItem>
+              <MenuItem onClick={ e => { this.handleWorkRemoteClose(e, false) }}>No</MenuItem>
+            </Menu>
+            <br />
+
+            <span className='push-apart'>
+              <span>
+                  Approximately how many hours can you commit to pro bono work monthly?
+              </span>
+              <TextField
+                select
+                // label="Select"
+                className="TextField-right register-title"
+                value={this.state.timeCommitment}
+                onChange={(e) => this.handleChange2(e)}
+                margin="normal"
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">Hours</InputAdornment>
+                }}
+              >
+                {ranges.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </span>
+            <br />
+
             <span className='red-text title-text'>
             MATTER DETAILS
             </span>

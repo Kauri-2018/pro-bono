@@ -70,16 +70,14 @@ class Register extends React.Component {
       confirmPassword: '',
       passwordError: '',
       confPasswordError,
-      anchorEl: null,
-      anchorEle: null,
+      selectLawCentre: null,
+      selectRemoteWork: null,
       emailError: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
-    this.handleChange2 = this.handleChange2.bind(this)
     this.handleClick = this.handleClick.bind(this)
-    this.handleClick2 = this.handleClick2.bind(this)
-    this.handleClose = this.handleClose.bind(this)
+    this.handleLawCentreClose = this.handleLawCentreClose.bind(this)
     this.handleWorkRemoteClose = this.handleWorkRemoteClose.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
     this.isEmailAddress = this.isEmailAddress.bind(this)
@@ -113,28 +111,15 @@ class Register extends React.Component {
     })
   }
 
-  handleChange2 (e) {
-    // e.preventDefault()
+  handleClick (e, attribute) {
     this.setState({
-      timeCommitment: e.target.value
+      [attribute]: e.currentTarget
     })
   }
 
-  handleClick (e) {
+  handleLawCentreClose (e, centreId) {
     this.setState({
-      anchorEl: e.currentTarget
-    })
-  }
-
-  handleClick2 (e) {
-    this.setState({
-      anchorEle: e.currentTarget
-    })
-  }
-
-  handleClose (e, centreId) {
-    this.setState({
-      anchorEl: null,
+      selectLawCentre: null,
       centreId: centreId,
       centreName: e.target.textContent
     })
@@ -142,7 +127,7 @@ class Register extends React.Component {
 
   handleWorkRemoteClose (e, workRemote) {
     this.setState({
-      anchorEle: null,
+      selectRemoteWork: null,
       workRemote: workRemote
     })
   }
@@ -178,8 +163,8 @@ class Register extends React.Component {
   }
 
   render () {
-    const anchorEl = this.state.anchorEl
-    const anchorEle = this.state.anchorEle
+    const selectLawCentre = this.state.selectLawCentre
+    const selectRemoteWork = this.state.selectRemoteWork
     const centreId = this.state.centreId
     const centreName = this.state.centreName
     return (
@@ -269,18 +254,18 @@ class Register extends React.Component {
                   className='lawcentre-dropdown'
                   fullWidth={true}
                   required={true}
-                  aria-owns={anchorEl ? 'lawcentre-menu' : null}
+                  aria-owns={selectLawCentre ? 'lawcentre-menu' : null}
                   aria-haspopup="true"
-                  onClick={this.handleClick}>
+                  onClick={(e, selectLawCentre) => { this.handleClick(e, 'selectLawCentre') }}>
                   {centreId ? `Centre: ${centreName}` : 'Select your centre'}
                 </Button>
                 <Menu
                   id="lawcentre-menu"
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  onClose={e => { this.handleClose(e, centreId) }}>
+                  selectLawCentre={selectLawCentre}
+                  open={Boolean(selectLawCentre)}
+                  onClose={e => { this.handleLawCentreClose(e, centreId) }}>
                   {this.props.lawcentres.map(lawcentre =>
-                    <MenuItem key={lawcentre.lawcentreId} onClick={ e => { this.handleClose(e, lawcentre.lawcentreId) }}>
+                    <MenuItem key={lawcentre.lawcentreId} onClick={ e => { this.handleLawCentreClose(e, lawcentre.lawcentreId) }}>
                       {lawcentre.name}
                     </MenuItem>
                   )}
@@ -293,16 +278,16 @@ class Register extends React.Component {
                   className='remotework-dropdown'
                   fullWidth={true}
                   required={true}
-                  aria-owns={anchorEle ? 'remotework-menu' : null}
+                  aria-owns={selectRemoteWork ? 'remotework-menu' : null}
                   aria-haspopup="true"
-                  onClick={this.handleClick2}>
+                  onClick={(e, selectRemoteWork) => { this.handleClick(e, 'selectRemoteWork') }}>
                   {this.state.workRemote !== null ? (this.state.workRemote ? `Yes` : `No`) : 'Select your preference'}
                 </Button>
               </Paper>
               <Menu
                 id="workremote-menu"
-                anchorEle={anchorEle}
-                open={Boolean(anchorEle)}
+                selectRemoteWork={selectRemoteWork}
+                open={Boolean(selectRemoteWork)}
                 onClose={e => { this.handleWorkRemoteClose(e, this.state.workRemote) }}>
                 <MenuItem onClick={ e => { this.handleWorkRemoteClose(e, true) }}>Yes</MenuItem>
                 <MenuItem onClick={ e => { this.handleWorkRemoteClose(e, false) }}>No</MenuItem>
@@ -315,10 +300,10 @@ class Register extends React.Component {
                 </span>
                 <TextField
                   select
-                  // label="Select"
+                  name="timeCommitment"
                   className="TextField-right register-title"
                   value={this.state.timeCommitment}
-                  onChange={(e) => this.handleChange2(e)}
+                  onChange={(e) => this.handleChange(e)}
                   margin="normal"
                   InputProps={{
                     startAdornment: <InputAdornment position="start">Hours</InputAdornment>
@@ -395,7 +380,6 @@ class Register extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    // storedMatters: state.matterList.matters,
     lawcentres: state.lawcentres
   }
 }
