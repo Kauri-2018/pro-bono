@@ -1,10 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
+
+// Material UI Components
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import TextField from '@material-ui/core/TextField'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import Paper from '@material-ui/core/Paper'
 import ReCAPTCHA from 'react-google-recaptcha'
 
 import {registerUser} from '../../actions/register'
@@ -15,6 +18,15 @@ const passwordError = 'Must be at least 7 characters long'
 const confPasswordError = 'Must match password'
 const emailError = 'Please enter a valid email address'
 let captcha = false
+
+const styles = {
+  block: {
+    maxWidth: 100
+  },
+  checkbox: {
+    marginBottom: 0
+  }
+}
 
 class Register extends React.Component {
   constructor (props) {
@@ -29,18 +41,21 @@ class Register extends React.Component {
       company: '',
       role: 'lawyer',
       timeCommitment: 0,
-      remoteWork: null,
+      workRemote: null,
       password: '',
       confirmPassword: '',
       passwordError: '',
       confPasswordError,
       anchorEl: null,
+      anchorEle: null,
       emailError: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleClick2 = this.handleClick2.bind(this)
     this.handleClose = this.handleClose.bind(this)
+    this.handleWorkRemoteClose = this.handleWorkRemoteClose.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
     this.isEmailAddress = this.isEmailAddress.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -79,11 +94,24 @@ class Register extends React.Component {
     })
   }
 
+  handleClick2 (e) {
+    this.setState({
+      anchorEle: e.currentTarget
+    })
+  }
+
   handleClose (e, centreId) {
     this.setState({
       anchorEl: null,
       centreId: centreId,
       centreName: e.target.textContent
+    })
+  }
+
+  handleWorkRemoteClose (e, workRemote) {
+    this.setState({
+      anchorEle: null,
+      workRemote: workRemote
     })
   }
 
@@ -119,6 +147,7 @@ class Register extends React.Component {
 
   render () {
     const anchorEl = this.state.anchorEl
+    const anchorEle = this.state.anchorEle
     const centreId = this.state.centreId
     const centreName = this.state.centreName
     return (
@@ -226,6 +255,28 @@ class Register extends React.Component {
                 </Menu>
               </span>
               <br />
+              <span className='red-text title-text'>Are you willing to work remotely?</span>
+              <Paper>
+                <Button
+                  className='remotework-dropdown'
+                  fullWidth={true}
+                  required={true}
+                  aria-owns={anchorEle ? 'remotework-menu' : null}
+                  aria-haspopup="true"
+                  onClick={this.handleClick2}>
+                  {this.state.workRemote !== null ? (this.state.workRemote ? `I can work remotely` : `I cannot work remotely`) : 'Select your preference'}
+                </Button>
+              </Paper>
+              <Menu
+                id="workremote-menu"
+                anchorEle={anchorEle}
+                open={Boolean(anchorEle)}
+                onClose={e => { this.handleWorkRemoteClose(e, this.state.workRemote) }}>
+                <MenuItem onClick={ e => { this.handleWorkRemoteClose(e, true) }}>Yes</MenuItem>
+                <MenuItem onClick={ e => { this.handleWorkRemoteClose(e, false) }}>No</MenuItem>
+              </Menu>
+              <br />
+
               <span className='push-apart'>
                 <span>
                   Password:
