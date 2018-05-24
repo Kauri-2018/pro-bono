@@ -5,6 +5,7 @@ import matterList from './matterList'
 import matterById from './matterById'
 import errorMessage from './errorHandle'
 import profiles from './profiles'
+import lawcentres from './lawcentres'
 import snackbar from './snackbar'
 import loading from './loading'
 
@@ -14,6 +15,7 @@ const reducers = combineReducers({
   matterById,
   errorMessage,
   profiles,
+  lawcentres,
   snackbar,
   loading
 })

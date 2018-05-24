@@ -14,6 +14,7 @@ exports.seed = (knex, Promise) => {
         },
         {
           id: 440002,
+          centre_id: 110003,
           user_id: 330002,
           firstname: 'Cam',
           lastname: 'Specter',
@@ -23,6 +24,7 @@ exports.seed = (knex, Promise) => {
         },
         {
           id: 440003,
+          centre_id: 110004,
           user_id: 330003,
           firstname: 'Zoe',
           lastname: 'Zane',

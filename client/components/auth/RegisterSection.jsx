@@ -6,9 +6,9 @@ import Button from '@material-ui/core/Button'
 const RegisterSection = () => {
   return (
     <div className='center-horizontally'>
-      <Link to='/lawyer/register'><Button className="center register-btn" variant="raised">Register as a Lawyer</Button></Link>
+      <Link to='/register/lawyer'><Button className="center register-btn" variant="raised">Register as a Lawyer</Button></Link>
       <span> </span>
-      <Link to='/member/register'><Button className="center register-btn" variant="raised">Register as a Law Centre Member</Button></Link>
+      <Link to='/register/member'><Button className="center register-btn" variant="raised">Register as a Law Centre Member</Button></Link>
     </div>
   )
 }

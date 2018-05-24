@@ -11,7 +11,8 @@ import Login from './auth/Login'
 import LawyerSection from './users/LawyerSection'
 import MemberSection from './users/MemberSection'
 import RegisterSection from './auth/RegisterSection'
-import Register from './auth/Register'
+import RegisterMember from './auth/RegisterMember'
+import RegisterLawyer from './auth/RegisterLawyer'
 import EditMatter from './matters/EditMatter'
 import PendingLanding from './auth/PendingLanding'
 
@@ -26,7 +27,8 @@ class App extends React.Component {
             <Route exact path='/member' component={MemberSection} />
             <Route exact path='/admin' component={MemberSection} />
             <Route exact path='/edit/:id' component={EditMatter} />
-            <Route path='/:type/register' component={Register}/>
+            <Route path='/register/member' component={RegisterMember}/>
+            <Route path='/register/lawyer' component={RegisterLawyer}/>
             <Route path='/' component={renderHome} />
           </Switch>
           <Snackbar
