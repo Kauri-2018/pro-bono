@@ -28,6 +28,8 @@ class Register extends React.Component {
       centreName: '',
       company: '',
       role: 'lawyer',
+      timeCommitment: 0,
+      remoteWork: null,
       password: '',
       confirmPassword: '',
       passwordError: '',
@@ -186,6 +188,20 @@ class Register extends React.Component {
               <br/>
               <span className='push-apart'>
                 <span>
+                  Company:
+                </span>
+                <TextField
+                  required={true}
+                  placeholder="Company"
+                  name="company"
+                  className="TextField-right register-title"
+                  onChange={this.handleChange}
+                  margin="normal"
+                />
+              </span>
+              <br/>
+              <span className='push-apart'>
+                <span>
                   Local Community Law Centre:
                 </span>
                 <Button
@@ -210,20 +226,6 @@ class Register extends React.Component {
                 </Menu>
               </span>
               <br />
-              <span className='push-apart'>
-                <span>
-                  Company:
-                </span>
-                <TextField
-                  required={true}
-                  placeholder="Company"
-                  name="company"
-                  className="TextField-right register-title"
-                  onChange={this.handleChange}
-                  margin="normal"
-                />
-              </span>
-              <br/>
               <span className='push-apart'>
                 <span>
                   Password:

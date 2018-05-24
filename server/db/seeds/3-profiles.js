@@ -20,7 +20,9 @@ exports.seed = (knex, Promise) => {
           lastname: 'Specter',
           phone_number: '027123124',
           certificate: '/url/Hello-Moto/PlaceHolder',
-          company: 'Specter and Co'
+          company: 'Specter and Co',
+          work_remote: true,
+          time_commitment: 10
         },
         {
           id: 440003,
@@ -30,7 +32,9 @@ exports.seed = (knex, Promise) => {
           lastname: 'Zane',
           phone_number: '027123125',
           certificate: '/url/Hello-Moto/PlaceHolder',
-          company: 'Zane and Co'
+          company: 'Zane and Co',
+          work_remote: false,
+          time_commitment: 5
         },
         {
           id: 440004,
