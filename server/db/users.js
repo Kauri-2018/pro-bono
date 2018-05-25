@@ -35,7 +35,9 @@ function getPendingProfiles (db = knex) {
       'phone_number as phoneNumber',
       'pending',
       'certificate',
-      'company'
+      'company',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
 }
 
@@ -53,7 +55,9 @@ function getApprovedProfiles (db = knex) {
       'phone_number as phoneNumber',
       'pending',
       'certificate',
-      'company'
+      'company',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
 }
 
@@ -100,7 +104,9 @@ function create (email, password, role, profile, testDb) {
           'lastname': profile.lastName,
           'phone_number': profile.phoneNumber,
           'certificate': profile.certificate || null,
-          'company': profile.company || null
+          'company': profile.company || null,
+          'work_remote': profile.workRemote || null,
+          'time_commitment': profile.timeCommitment || null
         })
     })
 }
@@ -138,7 +144,9 @@ function getFullUserByUserId (userId, testDb) {
       'phone_number as phoneNumber',
       'pending',
       'certificate',
-      'company'
+      'company',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
     .where('users.id', userId)
     .first()
@@ -159,7 +167,9 @@ function getFullUserByProfileId (profileId, testDb) {
       'phone_number as phoneNumber',
       'pending',
       'certificate',
-      'company'
+      'company',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
     .where('profileId', profileId)
     .first()
