@@ -1,7 +1,7 @@
 const request = require('supertest')
 
 // lib/auth
-jest.mock('../../server/lib/auth', () => ({
+jest.mock('../../../server/lib/auth', () => ({
   isAdmin: (req, res, next) => {
     next()
   },
@@ -26,7 +26,7 @@ jest.mock('../../server/lib/auth', () => ({
 }))
 
 // /db/matters
-jest.mock('../../server/db/matters', () => ({
+jest.mock('../../../server/db/matters', () => ({
   getAllMatters: () => Promise.resolve({
     matters: [
       {
@@ -51,7 +51,7 @@ jest.mock('../../server/db/matters', () => ({
   )
 }))
 
-const server = require('../../server/server')
+const server = require('../../../server/server')
 
 test('GET /api/v1/matters returns allMatter', () => {
   const expected = 'test category 1'
