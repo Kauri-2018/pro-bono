@@ -1,4 +1,3 @@
-
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('profiles_lawcentres').del()
@@ -7,7 +6,9 @@ exports.seed = function(knex, Promise) {
       return knex('profiles_lawcentres').insert([
         {id: 1, profile_id: 440003, lawcentre_id: 110001},
         {id: 2, profile_id: 440003, lawcentre_id: 110003},
-        {id: 3, profile_id: 440003, lawcentre_id: 110005}
+        {id: 3, profile_id: 440003, lawcentre_id: 110005},
+        {id: 4, profile_id: 440002, lawcentre_id: 110010},
+        {id: 5, profile_id: 440002, lawcentre_id: 110015}
       ])
     })
 }
