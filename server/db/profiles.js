@@ -55,9 +55,24 @@ function addProfile (profile, db = knex) {
     })
 }
 
+/**
+ * Gets an array of the law centre ids attached to a profileId
+ * @param {Number} profileId 
+ * @param {*} db 
+ */
+function getLawCentresByLawyerId (profileId, db = knex) {
+  return db('profiles_lawcentres')
+    .where('profile_id', '=', profileId)
+    .select('lawcentre_id as lawCentreId')
+    .then(lawCentres => {
+      return lawCentres.map(lawCentre => lawCentre.lawCentreId)
+    })
+}
+
 module.exports = {
   getAllProfiles,
   getProfileById,
   makeAdmin,
-  addProfile
+  addProfile,
+  getLawCentresByLawyerId
 }
