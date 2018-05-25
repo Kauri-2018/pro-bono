@@ -59,7 +59,7 @@ function getLawCentresByLawyerId (profileId, db = knex) {
     .where('profile_id', '=', profileId)
     .select('lawcentre_id as lawCentreId')
     .then(lawCentres => {
-      lawCentres.map(lawCentre => lawCentre.lawCentreId)
+      return lawCentres.map(lawCentre => lawCentre.lawCentreId)
     })
 }
 
