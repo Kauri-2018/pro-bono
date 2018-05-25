@@ -1,4 +1,4 @@
-import {showMatterList} from '../../client/actions/matters'
+import {showMatterList} from '../../../client/actions/matters'
 
 test('showMatterList returns correct action.type', () => {
   const expected = 'SHOW_MATTER_LIST'
