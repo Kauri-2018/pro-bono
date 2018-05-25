@@ -256,7 +256,7 @@ class Register extends React.Component {
                   required={true}
                   aria-owns={selectLawCentre ? 'lawcentre-menu' : null}
                   aria-haspopup="true"
-                  onClick={(e, selectLawCentre) => { this.handleClick(e, 'selectLawCentre') }}>
+                  onClick={(e) => { this.handleClick(e, 'selectLawCentre') }}>
                   {centreId ? `Centre: ${centreName}` : 'Select your centre'}
                 </Button>
                 <Menu
@@ -280,7 +280,7 @@ class Register extends React.Component {
                   required={true}
                   aria-owns={selectRemoteWork ? 'remotework-menu' : null}
                   aria-haspopup="true"
-                  onClick={(e, selectRemoteWork) => { this.handleClick(e, 'selectRemoteWork') }}>
+                  onClick={(e) => { this.handleClick(e, 'selectRemoteWork') }}>
                   {this.state.workRemote !== null ? (this.state.workRemote ? `Yes` : `No`) : 'Select your preference'}
                 </Button>
               </Paper>

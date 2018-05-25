@@ -17,7 +17,9 @@ exports.seed = (knex, Promise) => {
           claimed_by: 440003,
           centre_id: 110001,
           title: 'Unfair dismissal',
-          internal_matter_number: 1354687
+          internal_matter_number: 1354687,
+          work_remote: true,
+          time_commitment: '0-2'
         },
         {
           id: 550002,
@@ -29,7 +31,9 @@ exports.seed = (knex, Promise) => {
           claimed_by: 440003,
           centre_id: 110001,
           title: 'Care of children upon separation',
-          internal_matter_number: 1326234
+          internal_matter_number: 1326234,
+          work_remote: false,
+          time_commitment: '2-5'
         },
         {
           id: 550003,
@@ -41,7 +45,9 @@ exports.seed = (knex, Promise) => {
           claimed_by: null,
           centre_id: 110001,
           title: 'Appliction for residency',
-          internal_matter_number: 3478486
+          internal_matter_number: 3478486,
+          work_remote: true,
+          time_commitment: '5-10'
         },
         {
           id: 550004,
@@ -53,7 +59,9 @@ exports.seed = (knex, Promise) => {
           claimed_by: null,
           centre_id: 110001,
           title: 'Obstruction of justice',
-          internal_matter_number: 9874
+          internal_matter_number: 9874,
+          work_remote: false,
+          time_commitment: '10-15'
         },
         {
           id: 550005,
@@ -65,7 +73,9 @@ exports.seed = (knex, Promise) => {
           claimed_by: 440003,
           centre_id: 110001,
           title: 'Land settlement',
-          internal_matter_number: 1353274
+          internal_matter_number: 1353274,
+          work_remote: true,
+          time_commitment: '30+'
         },
         {
           id: 550006,
@@ -77,7 +87,9 @@ exports.seed = (knex, Promise) => {
           claimed_by: null,
           centre_id: 110001,
           title: 'Mt Eden theft',
-          internal_matter_number: 816435
+          internal_matter_number: 816435,
+          work_remote: true,
+          time_commitment: '20-30'
         },
         ...randomMatters
       ])

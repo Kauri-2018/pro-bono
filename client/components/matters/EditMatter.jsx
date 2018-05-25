@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Paper from '@material-ui/core/Paper'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
+import InputAdornment from '@material-ui/core/InputAdornment'
 
 import {editMatter, requestMatterById} from '../../apiClient'
 import {categories} from '../../utils/data'
@@ -24,6 +25,37 @@ const styles = {
   }
 }
 
+const ranges = [
+  {
+    value: '0-2',
+    label: '0 to 2'
+  },
+  {
+    value: '2-5',
+    label: '2 to 5'
+  },
+  {
+    value: '5-10',
+    label: '5 to 10'
+  },
+  {
+    value: '10-15',
+    label: '10 to 15'
+  },
+  {
+    value: '15-20',
+    label: '15 to 20'
+  },
+  {
+    value: '20-30',
+    label: '20 to 30'
+  },
+  {
+    value: '30-100',
+    label: '30+'
+  }
+]
+
 class EditMatter extends React.Component {
   constructor (props) {
     super(props)
@@ -36,11 +68,15 @@ class EditMatter extends React.Component {
       internalMatterNumber: 0,
       details: '',
       centreId: 0,
+      timeCommitment: '',
+      workRemote: null,
+      selectRemoteWork: null,
       anchorEl: null
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
-    this.handleClose = this.handleClose.bind(this)
+    this.handleCategoryClose = this.handleCategoryClose.bind(this)
+    this.handleWorkRemoteClose = this.handleWorkRemoteClose.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
     this.updateCheck = this.updateCheck.bind(this)
   }
@@ -56,7 +92,9 @@ class EditMatter extends React.Component {
           subcategories: matter.matter.subcategories,
           internalMatterNumber: matter.matter.internalMatterNumber,
           details: matter.matter.details,
-          centreId: matter.matter.centreId
+          centreId: matter.matter.centreId,
+          timeCommitment: matter.matter.timeCommitment,
+          workRemote: matter.matter.workRemote
         })
       })
   }
@@ -77,16 +115,23 @@ class EditMatter extends React.Component {
     })
   }
 
-  handleClick (e) {
+  handleClick (e, attribute) {
     this.setState({
-      anchorEl: e.currentTarget
+      [attribute]: e.currentTarget
     })
   }
 
-  handleClose (e, category) {
+  handleCategoryClose (e, category) {
     this.setState({
       anchorEl: null,
       category: category
+    })
+  }
+
+  handleWorkRemoteClose (e, workRemote) {
+    this.setState({
+      selectRemoteWork: null,
+      workRemote: workRemote
     })
   }
 
@@ -103,6 +148,7 @@ class EditMatter extends React.Component {
     const anchorEl = this.state.anchorEl
     const category = this.state.category
     const subcategories = this.state.subcategories
+    const selectRemoteWork = this.state.selectRemoteWork
     return (
       <div className='new-matter-wrapper min480'>
         <Card position="static" color="default" className="new-matter">
@@ -136,17 +182,21 @@ class EditMatter extends React.Component {
                 required={true}
                 aria-owns={anchorEl ? 'category-menu' : null}
                 aria-haspopup="true"
-                onClick={this.handleClick}
+                onClick={(e) => { this.handleClick(e, 'anchorEl') }}
               >
                 {category ? `Category: ${category}` : 'Select category'}
               </Button>
             </Paper>
-            <Menu id="category-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={e => { this.handleClose(e, category) }}>
-              <MenuItem onClick={ e => { this.handleClose(e, 'Civil') }}>Civil</MenuItem>
-              <MenuItem onClick={ e => { this.handleClose(e, 'Family') }}>Family</MenuItem>
-              <MenuItem onClick={ e => { this.handleClose(e, 'Administrative') }}>Administrative</MenuItem>
-              <MenuItem onClick={ e => { this.handleClose(e, 'Criminal') }}>Criminal</MenuItem>
-              <MenuItem onClick={ e => { this.handleClose(e, 'Māori') }}>Māori</MenuItem>
+            <Menu
+              id="category-menu"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={e => { this.handleCategoryClose(e, category) }}>
+              <MenuItem onClick={ e => { this.handleCategoryClose(e, 'Civil') }}>Civil</MenuItem>
+              <MenuItem onClick={ e => { this.handleCategoryClose(e, 'Family') }}>Family</MenuItem>
+              <MenuItem onClick={ e => { this.handleCategoryClose(e, 'Administrative') }}>Administrative</MenuItem>
+              <MenuItem onClick={ e => { this.handleCategoryClose(e, 'Criminal') }}>Criminal</MenuItem>
+              <MenuItem onClick={ e => { this.handleCategoryClose(e, 'Māori') }}>Māori</MenuItem>
             </Menu>
             <Paper className='padded-interior'>
               <span className='fontsize075'>Subcategories</span>
@@ -182,6 +232,58 @@ class EditMatter extends React.Component {
               onChange={this.handleChange}
               margin="normal" />
             <br />
+            <br />
+            {/* <span className='red-text title-text'>
+            CAN THIS MATTER BE COMPLETED REMOTELY?
+            </span> */}
+            <span className='fontsize075'>Can matter be completed remotely?</span>
+            <Paper>
+              <Button
+                className='remotework-dropdown'
+                fullWidth={true}
+                required={true}
+                aria-owns={selectRemoteWork ? 'remotework-menu' : null}
+                aria-haspopup="true"
+                onClick={(e) => { this.handleClick(e, 'selectRemoteWork') }}>
+                {this.state.workRemote !== null ? (this.state.workRemote ? `Yes` : `No`) : 'Select'}
+              </Button>
+            </Paper>
+            <Menu
+              id="workremote-menu"
+              selectRemoteWork={selectRemoteWork}
+              open={Boolean(selectRemoteWork)}
+              onClose={e => { this.handleWorkRemoteClose(e, this.state.workRemote) }}>
+              <MenuItem onClick={ e => { this.handleWorkRemoteClose(e, true) }}>Yes</MenuItem>
+              <MenuItem onClick={ e => { this.handleWorkRemoteClose(e, false) }}>No</MenuItem>
+            </Menu>
+            <br />
+
+            {/* <span className='red-text title-text'>
+            ESTIMATED TIME COMMITMENT?
+            </span> */}
+            <TextField
+              select
+              fullWidth={true}
+              required={true}
+              label="Estimated time commitment"
+              name="timeCommitment"
+              className="TextField-right register-title"
+              value={this.state.timeCommitment}
+              onChange={(e) => this.handleChange(e)}
+              margin="normal"
+              InputProps={{
+                startAdornment: <InputAdornment position="start">Hours</InputAdornment>
+              }}
+            >
+              {ranges.map(option => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <br />
+            <br />
+
             <TextField
               fullWidth={true}
               value={this.state.details}

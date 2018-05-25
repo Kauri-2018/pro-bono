@@ -16,7 +16,9 @@ function getAllMatters (db = knex) {
       'claimed_by as claimedBy',
       'centre_id as centreId',
       'title',
-      'internal_matter_number as internalMatterNumber'
+      'internal_matter_number as internalMatterNumber',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
 }
 
@@ -33,7 +35,9 @@ function getIncompleteMatters (db = knex) {
       'claimed_by as claimedBy',
       'centre_id as centreId',
       'title',
-      'internal_matter_number as internalMatterNumber'
+      'internal_matter_number as internalMatterNumber',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
 }
 
@@ -50,7 +54,9 @@ function getLiveMatters (db = knex) {
       'claimed_by as claimedBy',
       'centre_id as centreId',
       'title',
-      'internal_matter_number as internalMatterNumber'
+      'internal_matter_number as internalMatterNumber',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
 }
 
@@ -67,7 +73,9 @@ function getMatterById (matterId, db = knex) {
       'claimed_by as claimedBy',
       'centre_id as centreId',
       'title',
-      'internal_matter_number as internalMatterNumber'
+      'internal_matter_number as internalMatterNumber',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
     .first()
 }
@@ -86,7 +94,9 @@ function getMattersByProfileId (profileId, db = knex) {
       'claimed_by as claimedBy',
       'matters.centre_id as centreId',
       'title',
-      'internal_matter_number as internalMatterNumber'
+      'internal_matter_number as internalMatterNumber',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
 }
 
@@ -104,7 +114,9 @@ function getCompleteMattersByProfileId (profileId, db = knex) {
       'claimed_by as claimedBy',
       'matters.centre_id as centreId',
       'title',
-      'internal_matter_number as internalMatterNumber'
+      'internal_matter_number as internalMatterNumber',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
 }
 
@@ -122,7 +134,9 @@ function getIncompleteMattersByProfileId (profileId, db = knex) {
       'claimed_by as claimedBy',
       'matters.centre_id as centreId',
       'title',
-      'internal_matter_number as internalMatterNumber'
+      'internal_matter_number as internalMatterNumber',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
 }
 
@@ -157,7 +171,9 @@ function addNewMatter (matter, db = knex) {
       'claimed_by': null,
       'centre_id': matter.centreId,
       'title': matter.title,
-      'internal_matter_number': matter.internalMatterNumber
+      'internal_matter_number': matter.internalMatterNumber,
+      'work_remote': matter.workRemote,
+      'time_commitment': matter.timeCommitment
     })
 }
 
@@ -174,7 +190,9 @@ function getLiveMattersByCategory (category, db = knex) {
       'claimed_by as claimedBy',
       'centre_id as centreId',
       'title',
-      'internal_matter_number as internalMatterNumber'
+      'internal_matter_number as internalMatterNumber',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
 }
 
@@ -188,7 +206,9 @@ function editMatter (matter, db = knex) {
       contact_email: matter.contactEmail,
       centre_id: matter.centreId,
       title: matter.title,
-      internal_matter_number: matter.internalMatterNumber
+      internal_matter_number: matter.internalMatterNumber,
+      work_remote: matter.workRemote,
+      time_commitment: matter.timeCommitment
     })
 }
 
