@@ -3,6 +3,9 @@ import nock from 'nock'
 jest.mock('../../../client/utils/localstorage', () => ({
   get: () => {
     return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzMwMDAxLCJlbWFpbCI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwicGVuZGluZyI6MCwicHJvZmlsZUlkIjo0NDAwMDEsImNlbnRyZUlkIjoxMTAwMDEsImZpcnN0bmFtZSI6IkthbGUiLCJsYXN0bmFtZSI6IkxpdHQiLCJwaG9uZU51bWJlciI6IjAyNzEyMzEyMyIsImNlcnRpZmljYXRlIjpudWxsLCJjb21wYW55IjpudWxsLCJpYXQiOjE1MjY0MjYzMjYsImV4cCI6MTUyNjUxMjcyNn0.wVWXAkZ3D1lOcd6O39ZtL9CtnHK8jPnNOqzX5R0yBcc'
+  },
+  set: () => {
+    return
   }
 }))
 
