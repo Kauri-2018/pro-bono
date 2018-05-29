@@ -14,21 +14,27 @@ exports.seed = (knex, Promise) => {
         },
         {
           id: 440002,
+          centre_id: 110003,
           user_id: 330002,
           firstname: 'Cam',
           lastname: 'Specter',
           phone_number: '027123124',
           certificate: '/url/Hello-Moto/PlaceHolder',
-          company: 'Specter and Co'
+          company: 'Specter and Co',
+          work_remote: true,
+          time_commitment: '0-5'
         },
         {
           id: 440003,
+          centre_id: 110004,
           user_id: 330003,
           firstname: 'Zoe',
           lastname: 'Zane',
           phone_number: '027123125',
           certificate: '/url/Hello-Moto/PlaceHolder',
-          company: 'Zane and Co'
+          company: 'Zane and Co',
+          work_remote: false,
+          time_commitment: '5-10'
         },
         {
           id: 440004,

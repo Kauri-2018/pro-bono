@@ -16,7 +16,9 @@ function getAllProfiles (db = knex) {
       'lastname',
       'phone_number as phoneNumber',
       'certificate',
-      'company'
+      'company',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
 }
 
@@ -31,7 +33,9 @@ function getProfileById (profileId, db = knex) {
       'lastname',
       'phone_number as phoneNumber',
       'certificate',
-      'company'
+      'company',
+      'work_remote as workRemote',
+      'time_commitment as timeCommitment'
     )
     .first()
 }
@@ -45,7 +49,23 @@ function addProfile (profile, db = knex) {
       'lastname': profile.lastName,
       'phone_number': profile.phoneNumber,
       'certificate': profile.certificate || null,
-      'company': profile.company || null
+      'company': profile.company || null,
+      'work_remote': profile.workRemote || null,
+      'time_commitment': profile.timeCommitment || null
+    })
+}
+
+/**
+ * Gets an array of the law centre ids attached to a profileId
+ * @param {Number} profileId 
+ * @param {*} db 
+ */
+function getLawCentresByLawyerId (profileId, db = knex) {
+  return db('profiles_lawcentres')
+    .where('profile_id', '=', profileId)
+    .select('lawcentre_id as lawCentreId')
+    .then(lawCentres => {
+      return lawCentres.map(lawCentre => lawCentre.lawCentreId)
     })
 }
 
@@ -53,5 +73,6 @@ module.exports = {
   getAllProfiles,
   getProfileById,
   makeAdmin,
-  addProfile
+  addProfile,
+  getLawCentresByLawyerId
 }

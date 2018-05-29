@@ -1,3 +1,4 @@
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/Kauri-2018/pro-bono.svg?columns=all)](https://waffle.io/Kauri-2018/pro-bono) 
 # Pro-bono
 ## Introduction
 Pro-bono is a web application created for the Auckland Community Law Centre by students of the Enspiral Dev Academy as their final project. It was made by a team of 4 ([Sarah McLaughlin](https://github.com/sarah-mclaughlin), [Cameron Probert](https://github.com/CameronProbert), [Kale Hembrow](https://github.com/meakommo) and [Zoe Barron](https://github.com/Zoealexandra)) over 7 days, with efforts being made to continue the project after the end of the Enspiral Dev Academy bootcamp.

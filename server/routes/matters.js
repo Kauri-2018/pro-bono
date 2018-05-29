@@ -126,7 +126,9 @@ router.post('/add', auth.isMember, (req, res) => {
     contactEmail: newMatter.contactEmail,
     centreId: newMatter.centreId,
     title: newMatter.title,
-    internalMatterNumber: newMatter.internalMatterNumber
+    internalMatterNumber: newMatter.internalMatterNumber,
+    workRemote: newMatter.workRemote,
+    timeCommitment: newMatter.timeCommitment
   }
   db.addNewMatter(matter)
     .then(() => {
@@ -148,7 +150,9 @@ router.put('/edit', auth.isMember, (req, res) => {
     contactEmail: editMatter.contactEmail,
     centreId: editMatter.centreId,
     title: editMatter.title,
-    internalMatterNumber: editMatter.internalMatterNumber
+    internalMatterNumber: editMatter.internalMatterNumber,
+    workRemote: editMatter.workRemote,
+    timeCommitment: editMatter.timeCommitment
   }
   db.editMatter(matter)
     .then(() => {

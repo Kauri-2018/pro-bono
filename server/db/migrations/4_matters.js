@@ -9,6 +9,8 @@ exports.up = knex => knex.schema.createTable('matters', table => {
   table.integer('centre_id').references('lawcentres.id')
   table.string('title')
   table.integer('internal_matter_number')
+  table.boolean('work_remote')
+  table.string('time_commitment')
 })
 
 exports.down = knex => knex.schema.dropTable('matters')
