@@ -161,7 +161,7 @@ function getFullUserByProfileId (profileId, testDb) {
       'certificate',
       'company'
     )
-    .where('profileId', profileId)
+    .where('profiles.id', profileId)
     .first()
 }
 
