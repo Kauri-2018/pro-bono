@@ -13,14 +13,15 @@ router.use(auth.securityCheck)
 router.get('/', auth.isAdmin, (req, res) => {
   db.getAllMatters()
     .then(matterList => {
-      const matters = matterList.map(matter => {
-        const subcategories = JSON.parse(matter.subcategories)
-        return {
-          ...matter,
-          subcategories
-        }
-      })
-      res.json({matters})
+      // const matters = matterList.map(matter => {
+      //   const subcategories = JSON.parse(matter.subcategories)
+      //   return {
+      //     ...matter,
+      //     subcategories
+      //   }
+      // })
+      // res.json({matters})
+      res.json({matterList})
     })
     .catch(err => {
       res.status(500).json({errorMessage: err.message})

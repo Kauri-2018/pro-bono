@@ -6,23 +6,23 @@ exports.seed = (knex, Promise) => {
       return knex('categories').insert([
         {
           id: 660001,
-          category_name: 'Civil'
+          name: 'Civil'
         },
         {
           id: 660002,
-          category_name: 'Family'
+          name: 'Family'
         },
         {
           id: 660003,
-          category_name: 'Administrative'
+          name: 'Administrative'
         },
         {
           id: 660004,
-          category_name: 'Criminal'
+          name: 'Criminal'
         },
         {
           id: 660005,
-          category_name: 'Māori'
+          name: 'Māori'
         }
       ])
     })
