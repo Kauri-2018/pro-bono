@@ -12,8 +12,8 @@ function getAllMatters (db = knex) {
     .select(
       'matters.id as referenceNumber',
       'categories.id as categoryId',
-      'categories.name as category',
-      'subcategories.name as subcategories',
+      'categories.name as categoryName',
+      'subcategories.name as subcategoryName',
       'details',
       'contact_email as contactEmail',
       'is_complete as isComplete',
@@ -228,34 +228,6 @@ function editMatter (matter, db = knex) {
       work_remote: matter.workRemote,
       time_commitment: matter.timeCommitment
     })
-}
-
-function formatResults (results) {
-  const formatted = []
-  results.forEach(result => {
-    if (!formatted.some(item => item.category === result.categoryName)) {
-      formatted.push({
-        referenceNumber: result.matters.id,
-        categoryId: result.categories.id,
-        category: result.categories.name,
-        details: result.details,
-        contactEmail: result.contact_email,
-        isComplete: result.is_complete,
-        claimedBy: result.claimed_by,
-        centreId: result.centre_id,
-        title: result.title,
-        internalMatterNumber: result.internal_matter_number,
-        workRemote: result.work_remote,
-        
-      'time_commitment as timeCommitment'
-        subcategories: [result.subcategories.name]
-      })
-    } else {
-      const existing = formatted.find(item => item.category === result.categoryName)
-      existing.subcategories.push(result.subcategoryName)
-    }
-  })
-  return formatted
 }
 
 module.exports = {
