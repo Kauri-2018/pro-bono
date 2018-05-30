@@ -1,7 +1,7 @@
 exports.up = knex => knex.schema.createTable('matters', table => {
   table.increments('id').primary()
   table.integer('category_id')
-  table.string('subcategories')
+  // table.string('subcategories')
   table.text('details')
   table.string('contact_email')
   table.boolean('is_complete').defaultTo(false)
