@@ -171,7 +171,7 @@ function getFullUserByProfileId (profileId, testDb) {
       'work_remote as workRemote',
       'time_commitment as timeCommitment'
     )
-    .where('profileId', profileId)
+    .where('profiles.id', profileId)
     .first()
 }
 
