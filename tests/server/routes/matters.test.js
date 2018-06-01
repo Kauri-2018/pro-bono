@@ -27,40 +27,47 @@ jest.mock('../../../server/lib/auth', () => ({
 
 // /db/matters
 jest.mock('../../../server/db/matters', () => ({
-  getAllMatters: () => Promise.resolve({
-    matters: [
-      {
-        referenceNumber: 44,
-        category: 'test category 1'
-      },
-      {
+  getAllMatters: () => Promise.resolve([
+    {
+      referenceNumber: 44,
+      category: 'test category 1',
+    subcategories: '["sub1", "sub2"]'
+    },
+    {
+      referenceNumber: 45,
+      category: 'test category 2',
+      subcategories: '["sub1", "sub3"]'
+    }
+  ]),
+  getLiveMatters: () => Promise.resolve([
+    {
+      referenceNumber: 44,
+      category: 'test category 1',
+      subcategories: '["sub1", "sub2"]',
+      isComplete: false,
+      claimedBy: null
+    }
+  ]),
+  getIncompleteMatters: () => Promise.resolve([
+    {
         referenceNumber: 45,
-        category: 'test category 2'
-      }
-    ]
-  }),
-  getLiveMatters: () => Promise.resolve(
-    [
-      'test category 1'
-    ]
-  ),
-  getIncompleteMatters: () => Promise.resolve(
-    [
-      'Incomplete matter'
-    ]
-  )
+        category: 'test category 2',
+        subcategories: '["sub1", "sub3"]',
+        isComplete: false
+    }
+  ])
 }))
 
 const server = require('../../../server/server')
 
-test('GET /api/v1/matters returns allMatter', () => {
+test('GET /api/v1/matters returns all matters', () => {
   const expected = 'test category 1'
   return request(server)
     .get('/api/v1/matters')
     .set('Accept', 'application/json')
     .expect(200)
     .then(res => {
-      expect(res.body.matters.matters[0].category).toBe(expected)
+      expect(res.body.matters[0].category).toBe(expected)
     })
 })
 
@@ -71,50 +78,30 @@ test('GET /api/v1/matters test fails as expected', () => {
     .set('Accept', 'application/json')
     .expect(200)
     .then(res => {
-      expect(res.body.matters.matters[0].category).not.toBe(expected)
+      expect(res.body.matters[0].category).not.toBe(expected)
     })
 })
 
-test('GET /api/v1/live returns all live Matter', () => {
-  const expected = ['test category 1']
+test('GET /api/v1/matters/live returns all live matters', () => {
+  const expected = 'test category 1'
   return request(server)
     .get('/api/v1/matters/live')
     .set('Accept', 'application/json')
     .expect(200)
     .then(res => {
-      expect(res.body.matters).toEqual(expected)
+      const matter = res.body.matters[0]
+      expect(!matter.isComplete && !matter.claimedBy).toBeTruthy()
     })
 })
 
-test('GET /api/v1/live test fails as expected', () => {
-  const expected = ['test category 12']
-  return request(server)
-    .get('/api/v1/matters/live')
-    .set('Accept', 'application/json')
-    .expect(200)
-    .then(res => {
-      expect(res.body.matters).not.toBe(expected)
-    })
-})
-
-test('GET /api/v1/incomplete gets data as expected', () => {
+test('GET /api/v1/matters/incomplete gets data as expected', () => {
   const expected = ['Incomplete matter']
   return request(server)
     .get('/api/v1/matters/incomplete')
     .set('Accept', 'application/json')
     .expect(200)
     .then(res => {
-      expect(res.body.matters).not.toBe(expected)
-    })
-})
-
-test('GET /api/v1/incomplete test fails as expected', () => {
-  const expected = ['complete matter']
-  return request(server)
-    .get('/api/v1/matters/incomplete')
-    .set('Accept', 'application/json')
-    .expect(200)
-    .then(res => {
-      expect(res.body.matters).not.toBe(expected)
+      const matter = res.body.matters[0]
+      expect(matter.isComplete).toBeFalsy()
     })
 })
