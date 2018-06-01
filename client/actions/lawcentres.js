@@ -5,6 +5,7 @@ import {
 } from '../apiClient'
 
 import {errorHandle} from './errorHandle'
+import {showErrorSnackbar} from './snackbar'
 import {setLoading} from './loading'
 
 export const SHOW_LAWCENTRES = 'SHOW_LAWCENTRES'
@@ -12,33 +13,31 @@ export const SHOW_LAWCENTRES = 'SHOW_LAWCENTRES'
 
 export function getLawCentres () {
   return dispatch => {
-    dispatch(setLoading(true))
+    dispatch(setLoading(1))
     return requestLawCentres()
       .then(allLawCentres => {
-        dispatch(setLoading(false))
         dispatch(showLawCentres(allLawCentres))
       })
       .catch(err => {
-        dispatch(setLoading(false))
-        dispatch(errorHandle(err.message))
+        dispatch(showErrorSnackbar(err.message))
         return Promise.reject(err.message)
       })
+      .finally(() => dispatch(setLoading(-1)))
   }
 }
 
 // export function getAucklandLawCentres () {
 //   return dispatch => {
-//     dispatch(setLoading(true))
+//     dispatch(setLoading(1))
 //     return requestAucklandLawCentres()
 //       .then(aucklandLawCentres => {
-//         dispatch(setLoading(false))
 //         dispatch(showLawCentres(aucklandLawCentres))
 //       })
 //       .catch(err => {
-//         dispatch(setLoading(false))
-//         dispatch(errorHandle(err.message))
+//         dispatch(showErrorSnackbar(err.message))
 //         return Promise.reject(err.message)
 //       })
+      // .finally(() => dispatch(setLoading(-1)))
 //   }
 // }
 
@@ -51,17 +50,16 @@ export function showLawCentres (lawcentres) {
 
 // export function getLawCentreById (lawcentreId) {
 //   return dispatch => {
-//     dispatch(setLoading(true))
+//     dispatch(setLoading(1))
 //     return requestLawCentreById(lawcentreId)
 //       .then(lawcentre => {
-//         dispatch(setLoading(false))
 //         dispatch(showLawCentreById(lawcentre))
 //       })
 //       .catch(err => {
-//         dispatch(setLoading(false))
-//         dispatch(errorHandle(err.message))
+//         dispatch(showErrorSnackbar(err.message))
 //         return Promise.reject(err.message)
 //       })
+      // .finally(() => dispatch(setLoading(-1)))
 //   }
 // }
 

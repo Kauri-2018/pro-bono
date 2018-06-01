@@ -2,6 +2,7 @@ import request from '../utils/api'
 import {receiveLogin} from './login'
 import {saveUserToken} from '../utils/auth'
 import {AUTH_ROUTE} from '../apiClient'
+import { showErrorSnackbar } from './snackbar'
 
 export const REGISTER_REQUEST = 'REGISTER_REQUEST'
 export const REGISTER_FAILURE = 'REGISTER_FAILURE'
@@ -34,7 +35,7 @@ export function registerUser (email, password, role, profileData) {
         if (!res.ok) {
           // If there was a problem, we want to
           // dispatch the error condition
-          dispatch(registerError(res.body.message))
+          dispatch(showErrorSnackbar(res.body.message))
           return Promise.reject(res.body.message)
         } else {
           // If login was successful, set the token in local storage
@@ -44,7 +45,7 @@ export function registerUser (email, password, role, profileData) {
           return userInfo
         }
       }).catch(err => {
-        dispatch(registerError(err.message))
+        dispatch(showErrorSnackbar(err.message))
       })
   }
 }
