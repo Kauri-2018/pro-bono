@@ -6,11 +6,23 @@ const mg = require('mailgun-js')({apiKey, domain: OUR_DOMAIN})
 const APPROVE_SUBJECT = 'Your application has been approved'
 
 function mailGunApproveUser (firstname, lastname, email) {
-  const text = `${lastname}, ${firstname} thanks!`
+  let textBuilder = `${firstname}, thank you for applying for a role at Pro-Bono.\n\n`
+  textBuilder += `You have now been approved as a member of the site and can log using your email and password.`
   const data = {
     emails: [email],
     subject: APPROVE_SUBJECT,
-    text
+    text: textBuilder
+  }
+  mailGunApi(data)
+}
+
+function mailGunDenyUser (firstname, lastname, email) {
+  let textBuilder = `${firstname}, thank you for applying for a role at Pro-Bono.\n\n`
+  textBuilder += `Unfortunately your application has been denied.`
+  const data = {
+    emails: [email],
+    subject: APPROVE_SUBJECT,
+    text: textBuilder
   }
   mailGunApi(data)
 }
@@ -31,5 +43,6 @@ function mailGunApi (data) {
 
 module.exports = {
   mailGunApi,
-  mailGunApproveUser
+  mailGunApproveUser,
+  mailGunDenyUser
 }
