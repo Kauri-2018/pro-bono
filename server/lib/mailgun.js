@@ -43,5 +43,6 @@ function mailGunApi (data) {
 
 module.exports = {
   mailGunApi,
-  mailGunApproveUser
+  mailGunApproveUser,
+  mailGunDenyUser
 }
