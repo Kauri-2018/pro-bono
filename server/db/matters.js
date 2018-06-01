@@ -6,10 +6,14 @@ const knex = require('knex')(config)
 
 function getAllMatters (db = knex) {
   return db('matters')
+    .join('categories', 'matters.category_id', '=', 'categories.id')
+    .join('subcategories_matters', 'matters.id', '=', 'subcategories_matters.matter_id')
+    .join('subcategories', 'subcategories.id', '=', 'subcategories_matters.subcategory_id')
     .select(
-      'id as referenceNumber',
-      'category',
-      'subcategories',
+      'matters.id as referenceNumber',
+      'categories.id as categoryId',
+      'categories.name as categoryName',
+      'subcategories.name as subcategoryName',
       'details',
       'contact_email as contactEmail',
       'is_complete as isComplete',
@@ -24,10 +28,12 @@ function getAllMatters (db = knex) {
 
 function getIncompleteMatters (db = knex) {
   return db('matters')
+    .join('categories', 'matters.category_id', '=', 'categories.id')
     .where('is_complete', '=', false)
     .select(
-      'id as referenceNumber',
-      'category',
+      'matters.id as referenceNumber',
+      'categories.id as categoryId',
+      'categories.name as category',
       'subcategories',
       'details',
       'contact_email as contactEmail',
@@ -43,10 +49,12 @@ function getIncompleteMatters (db = knex) {
 
 function getLiveMatters (db = knex) {
   return db('matters')
+    .join('categories', 'matters.category_id', '=', 'categories.id')
     .where({'is_complete': false, 'claimed_by': null})
     .select(
-      'id as referenceNumber',
-      'category',
+      'matters.id as referenceNumber',
+      'categories.id as categoryId',
+      'categories.name as category',
       'subcategories',
       'details',
       'contact_email as contactEmail',
@@ -62,10 +70,12 @@ function getLiveMatters (db = knex) {
 
 function getMatterById (matterId, db = knex) {
   return db('matters')
+    .join('categories', 'matters.category_id', '=', 'categories.id')
     .where('id', '=', matterId)
     .select(
-      'id as referenceNumber',
-      'category',
+      'matters.id as referenceNumber',
+      'categories.id as categoryId',
+      'categories.name as category',
       'subcategories',
       'details',
       'contact_email as contactEmail',
@@ -82,11 +92,13 @@ function getMatterById (matterId, db = knex) {
 
 function getMattersByProfileId (profileId, db = knex) {
   return db('matters')
+    .join('categories', 'matters.category_id', '=', 'categories.id')
     .join('profiles', 'matters.claimed_by', '=', 'profiles.id')
     .where('claimed_by', '=', profileId)
     .select(
       'matters.id as referenceNumber',
-      'category',
+      'categories.id as categoryId',
+      'categories.name as category',
       'subcategories',
       'details',
       'contact_email as contactEmail',
@@ -102,11 +114,13 @@ function getMattersByProfileId (profileId, db = knex) {
 
 function getCompleteMattersByProfileId (profileId, db = knex) {
   return db('matters')
+    .join('categories', 'matters.category_id', '=', 'categories.id')
     .join('profiles', 'matters.claimed_by', '=', 'profiles.id')
     .where({claimed_by: profileId, is_complete: true})
     .select(
       'matters.id as referenceNumber',
-      'category',
+      'categories.id as categoryId',
+      'categories.name as category',
       'subcategories',
       'details',
       'contact_email as contactEmail',
@@ -122,11 +136,13 @@ function getCompleteMattersByProfileId (profileId, db = knex) {
 
 function getIncompleteMattersByProfileId (profileId, db = knex) {
   return db('matters')
+    .join('categories', 'matters.category_id', '=', 'categories.id')
     .join('profiles', 'matters.claimed_by', '=', 'profiles.id')
     .where({claimed_by: profileId, is_complete: false})
     .select(
       'matters.id as referenceNumber',
-      'category',
+      'categories.id as categoryId',
+      'categories.name as category',
       'subcategories',
       'details',
       'contact_email as contactEmail',
@@ -163,7 +179,7 @@ function addNewMatter (matter, db = knex) {
   return db('matters')
     .insert({
       // 'id as referenceNumber',
-      'category': matter.category,
+      // 'category_id': matter.category,
       'subcategories': matter.subcategories,
       'details': matter.details,
       'contact_email': matter.contactEmail,
@@ -179,10 +195,12 @@ function addNewMatter (matter, db = knex) {
 
 function getLiveMattersByCategory (category, db = knex) {
   return db('matters')
-    .where({'category': category, 'is_complete': false, 'claimed_by': null})
+    .join('categories', 'matters.category_id', '=', 'categories.id')
+    .where({'categories.name': category, 'is_complete': false, 'claimed_by': null})
     .select(
       'id as referenceNumber',
-      'category',
+      'categories.id as categoryId',
+      'categories.name as category',
       'subcategories',
       'details',
       'contact_email as contactEmail',
@@ -200,7 +218,7 @@ function editMatter (matter, db = knex) {
   return db('matters')
     .where('id', '=', matter.referenceNumber)
     .update({
-      category: matter.category,
+      // category_id: matter.category,
       subcategories: matter.subcategories,
       details: matter.details,
       contact_email: matter.contactEmail,

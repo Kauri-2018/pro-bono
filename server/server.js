@@ -2,6 +2,7 @@ const path = require('path')
 const express = require('express')
 
 const authRoutes = require('./routes/auth')
+const categoriesRoutes = require('./routes/categories')
 const matterRoutes = require('./routes/matters')
 const profileRoutes = require('./routes/profiles')
 const usersRoutes = require('./routes/users')
@@ -15,6 +16,7 @@ server.use(express.static(path.join(__dirname, './public')))
 
 // routes
 server.use('/api/v1/auth', authRoutes)
+server.use('/api/v1/categories', categoriesRoutes)
 server.use('/api/v1/matters', matterRoutes)
 server.use('/api/v1/profiles', profileRoutes)
 server.use('/api/v1/users', usersRoutes)

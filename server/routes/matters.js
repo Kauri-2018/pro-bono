@@ -12,16 +12,19 @@ router.use(auth.securityCheck)
 
 router.get('/', auth.isAdmin, (req, res) => {
   db.getAllMatters()
-    .then(matterList => {
-      const matters = matterList.map(matter => {
-        const subcategories = JSON.parse(matter.subcategories)
-        return {
-          ...matter,
-          subcategories
-        }
-      })
-      res.json({matters})
+    .then(results => {
+      const formatted = formatResults(results)
+      res.json({matters: formatted})
     })
+  // const matters = matterList.map(matter => {
+  //   const subcategories = JSON.parse(matter.subcategories)
+  //   return {
+  //     ...matter,
+  //     subcategories
+  //   }
+  // })
+  // res.json({matters})
+
     .catch(err => {
       res.status(500).json({errorMessage: err.message})
     })
@@ -265,5 +268,32 @@ router.get('/category/:category', (req, res) => {
       res.status(500).json({errorMessage: err.message})
     })
 })
+
+function formatResults (results) {
+  const formatted = []
+  results.forEach(result => {
+    if (!formatted.some(item => item.category === result.categoryName)) {
+      formatted.push({
+        referenceNumber: result.referenceNumber,
+        categoryId: result.categoryId,
+        category: result.categoryName,
+        subcategories: [result.subcategoryName],
+        details: result.details,
+        contactEmail: result.contactEmail,
+        isComplete: result.isComplete,
+        claimedBy: result.claimedBy,
+        centreId: result.centreId,
+        title: result.title,
+        internalMatterNumber: result.internalMatterNumber,
+        workRemote: result.workRemote,
+        timeCommitment: result.timeCommitment
+      })
+    } else {
+      const existing = formatted.find(item => item.category === result.categoryName)
+      existing.subcategories.push(result.subcategoryName)
+    }
+  })
+  return formatted
+}
 
 module.exports = router
