@@ -1,6 +1,7 @@
 import request from '../utils/api'
 import {saveUserToken} from '../utils/auth'
 import {AUTH_ROUTE} from '../apiClient'
+import { showErrorSnackbar } from './snackbar'
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -44,7 +45,7 @@ export function loginUser (creds) {
         if (!res.ok) {
           // If there was a problem, we want to
           // dispatch the error condition
-          dispatch(loginError(res.body.errorMessage))
+          dispatch(showErrorSnackbar(res.body.errorMessage))
           return Promise.reject(res.body.errorMessage)
         } else {
           // If login was successful, set the token in local storage
@@ -54,6 +55,6 @@ export function loginUser (creds) {
           return userInfo
         }
       })
-      .catch(err => dispatch(loginError(err.message)))
+      .catch(err => dispatch(showErrorSnackbar(err.message)))
   }
 }
