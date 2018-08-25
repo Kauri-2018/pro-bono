@@ -26,9 +26,9 @@ If you choose to test on the web application we ask that you keep any submission
 7. Connect to the server using the web browser of your choice at `localhost:3000`
 
 ### Logins
-There are 3 default accounts - one for each priviledge level
+There are 3 default accounts - one for each privilege level
 
-|Priveledge Level|Username|Password|
+|privilege Level|Username|Password|
 |---             |---     |---     |
 |Admin           |admin   |admin   |
 |Member          |member  |member  |
